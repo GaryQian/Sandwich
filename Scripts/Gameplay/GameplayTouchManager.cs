@@ -14,7 +14,7 @@ public class GameplayTouchManager : MonoBehaviour {
     private Vector3 prevPos;
 	// Use this for initialization
 	void Awake () {
-        knife = Instantiate(knifePrefab);
+        knife = (GameObject)Instantiate(knifePrefab, new Vector3(-4f, -6f, 5f), Quaternion.identity);
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
         //knife.transform.position = new Vector3(100f, 100f);
@@ -35,11 +35,11 @@ public class GameplayTouchManager : MonoBehaviour {
     void processTouch(int i) {
         Touch touch = Input.GetTouch(i);
         if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary) {
-            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 10f);
+            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
             knife.transform.eulerAngles = knife.transform.position - prevPos;
         }
         else if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary) {
-            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 10f);
+            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
             prevPos = knife.transform.position;
             knife.transform.eulerAngles = Vector3.zero;
         }
@@ -50,15 +50,15 @@ public class GameplayTouchManager : MonoBehaviour {
 
     void processClick() {
         if (Input.GetMouseButton(0)) {
-            knife.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
+            knife.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
         }
         if (Input.GetMouseButtonDown(0)) {
-            downLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
+            downLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
         }
         if (Input.GetMouseButtonUp(0)) {
-            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
-            if (Vector3.Distance(upLoc, wm.activeBread.transform.position) < 2) {
-                em.swipe();
+            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
+            if (Vector3.Distance(upLoc, wm.activeBread.transform.position) < wm.activeBread.GetComponent<CircleCollider2D>().radius) {
+                if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
             }
         }
     }
