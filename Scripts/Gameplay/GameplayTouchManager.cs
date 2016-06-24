@@ -10,6 +10,8 @@ public class GameplayTouchManager : MonoBehaviour {
 
     private Vector3 downLoc;
     private Vector3 upLoc;
+
+    private Vector3 prevPos;
 	// Use this for initialization
 	void Awake () {
         knife = Instantiate(knifePrefab);
@@ -34,6 +36,12 @@ public class GameplayTouchManager : MonoBehaviour {
         Touch touch = Input.GetTouch(i);
         if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary) {
             knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 10f);
+            knife.transform.eulerAngles = knife.transform.position - prevPos;
+        }
+        else if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary) {
+            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 10f);
+            prevPos = knife.transform.position;
+            knife.transform.eulerAngles = Vector3.zero;
         }
         else if (touch.phase == TouchPhase.Ended) {
             //knife.transform.position = new Vector3(100f, 100f);
