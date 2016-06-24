@@ -26,7 +26,12 @@ public class EconomyManager : MonoBehaviour {
     public float multiplier = 1f;
 
     private MoneyText moneyText;
-    // Use this for initialization
+    private WorldManager wm;
+
+    void Awake() {
+        wm = GetComponent<WorldManager>();
+    }
+
     void Start() {
         //FileStream file = File.Open(Application.persistentDataPath + "/gamedata.datxc", FileMode.Open);
         load();
@@ -39,7 +44,7 @@ public class EconomyManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (combo > 0) {
-            combo -= comboDecayRate * combo * Time.deltaTime;
+            combo -= comboDecayRate * (combo + 1f) * Time.deltaTime;
         }
     }
 
@@ -52,17 +57,18 @@ public class EconomyManager : MonoBehaviour {
         displayMoney();
     }
 
-    void swipe() {
+    public void swipe() {
         combo += 1f;
         checkCombo();
         money += sandwichValue * swipeRate * multiplier;
+        Debug.LogError("SWIPE!");
     }
 
-    void displayMoney() {
+    public void displayMoney() {
         moneyText.updateMoney(money);
     }
 
-    void recalculate() {
+    public void recalculate() {
         rate = 0f;
         sandwichValue = 1f;
 

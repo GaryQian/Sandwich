@@ -7,7 +7,7 @@ public class MoneyText : MonoBehaviour {
     // Use this for initialization
     void Start() {
         txt = GetComponent<Text>();
-        txt.fontSize = (int) (Screen.height / 9f);
+        txt.fontSize = (int) (Screen.height / 7f);
         GetComponent<RectTransform>().offsetMax = new Vector2((Screen.width / 4f), -Screen.height / 80f);
         GetComponent<RectTransform>().offsetMin = new Vector2((Screen.width / -4f), -100);
     }

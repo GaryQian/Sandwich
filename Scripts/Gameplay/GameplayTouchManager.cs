@@ -4,9 +4,17 @@ using System.Collections;
 public class GameplayTouchManager : MonoBehaviour {
     public GameObject knifePrefab;
     public GameObject knife;
+
+    private EconomyManager em;
+    private WorldManager wm;
+
+    private Vector3 downLoc;
+    private Vector3 upLoc;
 	// Use this for initialization
 	void Awake () {
         knife = Instantiate(knifePrefab);
+        em = GetComponent<EconomyManager>();
+        wm = GetComponent<WorldManager>();
         //knife.transform.position = new Vector3(100f, 100f);
 	}
 	
@@ -33,11 +41,17 @@ public class GameplayTouchManager : MonoBehaviour {
     }
 
     void processClick() {
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(0)) {
             knife.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
         }
-        else {
-            //knife.transform.position = new Vector3(100f, 100f);
+        if (Input.GetMouseButtonDown(0)) {
+            downLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
+        }
+        if (Input.GetMouseButtonUp(0)) {
+            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10f);
+            if (Vector3.Distance(upLoc, wm.activeBread.transform.position) < 2) {
+                em.swipe();
+            }
         }
     }
 }
