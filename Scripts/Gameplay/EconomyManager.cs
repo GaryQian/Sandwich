@@ -65,7 +65,7 @@ public class EconomyManager : MonoBehaviour {
         money += sandwichValue * swipeRate * multiplier;
         
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+" + encodeNumber(sandwichValue * swipeRate * multiplier), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
+        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate * multiplier), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -130,38 +130,6 @@ public class EconomyManager : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
-    }
-
-    string encodeNumber(double money) {
-        int numSize = 4;
-        while (money / Mathf.Pow(10f, numSize) > 1f) {
-            numSize += 3;
-        }
-        string suffix = "";
-        switch (numSize) {
-            case 4: suffix = ""; break;
-            case 7: suffix = "k"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 10: suffix = "m"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 13: suffix = "b"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 16: suffix = "t"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 19: suffix = "qd"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 22: suffix = "qt"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 25: suffix = "sx"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 28: suffix = "sp"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 31: suffix = "oc"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 34: suffix = "nn"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 37: suffix = "dc"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 40: suffix = "ud"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 43: suffix = "dd"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 46: suffix = "td"; money = money / Mathf.Pow(10f, numSize - 4); break;
-            case 49: suffix = "qtd"; money = money / Mathf.Pow(10f, numSize - 4); break;
-        }
-        if (money < 100f) {
-            return "$" + string.Format("{0:0.0}", money) + suffix;
-        }
-        else {
-            return "$" + string.Format("{0:0.0}", money) + suffix;
-        }
     }
 }
 
