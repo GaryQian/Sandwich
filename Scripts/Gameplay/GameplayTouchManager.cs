@@ -43,16 +43,20 @@ public class GameplayTouchManager : MonoBehaviour {
             
         }
         else if (touch.phase == TouchPhase.Began) {
-            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
-            prevPos = knife.transform.position;
-            knife.transform.eulerAngles = Vector3.zero;
-        }
-        else if (touch.phase == TouchPhase.Ended) {
-            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
-            if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
             if (wm.activeBread.GetComponent<Bread>().spreading) {
                 wm.activeBread.GetComponent<Bread>().stopSpreading();
             }
+            else {
+                knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
+                prevPos = knife.transform.position;
+                knife.transform.eulerAngles = Vector3.zero;
+            }
+            
+        }
+        else if (touch.phase == TouchPhase.Ended) {
+            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
+            //if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
+            
         }
     }
 
@@ -66,7 +70,7 @@ public class GameplayTouchManager : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)) {
             upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
             //if (Vector3.Distance(upLoc, wm.activeBread.transform.position) < wm.activeBread.GetComponent<BoxCollider2D>().size.x * 0.4) {
-            if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
+            //if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
             //}
         }
     }

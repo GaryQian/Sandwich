@@ -66,7 +66,11 @@ public class EconomyManager : MonoBehaviour {
         
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
         text.GetComponent<NotificationText>().setup("+" + encodeNumber(sandwichValue * swipeRate * multiplier), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
-        Debug.LogError("SWIPE!");
+
+        wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
+        wm.activeBread.GetComponent<Bread>().finished = true;
+        wm.activeBread.GetComponent<Bread>().finish();
+        //Debug.LogError("SWIPE!");
     }
 
     public void displayMoney() {
