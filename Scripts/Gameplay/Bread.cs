@@ -12,9 +12,9 @@ public class Bread : MonoBehaviour {
     public GameObject BreadPrefab;
     private GameObject top;
 
-    private float introTime = 0.2f;
+    private float introTime = 0.12f;
     private float introTimer;
-    private float waitTime = 0.07f;
+    private float waitTime = 0.05f;
     private float waitTimer = 0;
     private Vector3 finalPos;
     SpriteRenderer sr;
@@ -23,7 +23,7 @@ public class Bread : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         finalPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.73f, Screen.height * 0.15f)) + new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), 10f);
-        transform.position = finalPos + new Vector3(0, -5f);
+        transform.position = finalPos + new Vector3(0, -2.7f);
         
         finished = false;
         inPlace = false;
@@ -32,6 +32,10 @@ public class Bread : MonoBehaviour {
         gtm = GameObject.Find("WorldManager").GetComponent<GameplayTouchManager>();
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         sr = GetComponent<SpriteRenderer>();
+    }
+
+    void Start() {
+        deleteTrails();
     }
 	
 	// Update is called once per frame
@@ -43,7 +47,7 @@ public class Bread : MonoBehaviour {
             }
             if (introTimer <= introTime) {
                 introTimer += Time.deltaTime;
-                transform.Translate(new Vector3(0, 5f / introTime * Time.deltaTime));
+                transform.Translate(new Vector3(0, 2.7f / introTime * Time.deltaTime));
                 sr.color = new Color(1f, 1f, 1f, introTimer / introTime);
             }
             else {
@@ -94,7 +98,7 @@ public class Bread : MonoBehaviour {
     }
 
     public void resetTrail() {
-        DestroyImmediate(gtm.knife.GetComponent<Knife>().trail);
+        Destroy(gtm.knife.GetComponent<Knife>().trail);
         gtm.knife.GetComponent<Knife>().trail = null;
         gtm.knife.GetComponent<Knife>().newTrail();
         spreading = false;
@@ -103,7 +107,7 @@ public class Bread : MonoBehaviour {
     public void finish() {
         top = (GameObject)Instantiate(BreadTopPrefab, transform.position + new Vector3(Random.Range(-0.15f, 0.15f), 0.5f + 4f, -6f), Quaternion.identity);
         top.GetComponent<BreadTop>().bread = gameObject;
-        Destroy(gameObject, 0.3f);
+        Invoke("delete", 0.5f);
         wm.activeBread = Instantiate(BreadPrefab);
         Invoke("deleteTrails", 0.08f);
     }
@@ -113,13 +117,10 @@ public class Bread : MonoBehaviour {
             Transform trail = transform.FindChild("Trail");
             if (trail != null) GameObject.DestroyImmediate(trail.gameObject);
         }
-        /*while (trail != null) {
-            Destroy(trail);
-            trail = transform.FindChild("Trail").gameObject;
-        }*/
+        //Debug.LogError("Deleteing trails");
     }
 
-    void OnDestroy() {
-        //gtm.knife.GetComponent<TrailManager>().trail.enabled = false;
+    void delete() {
+        DestroyImmediate(gameObject);
     }
 }

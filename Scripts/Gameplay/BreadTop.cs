@@ -4,7 +4,7 @@ using System.Collections;
 public class BreadTop : MonoBehaviour {
     SpriteRenderer sr;
 
-    private float dropTime = 0.08f;
+    private float dropTime = 0.25f;
     private float dropTimer = 0;
     private float waitTime = 0.05f;
     private float waitTimer = 0;
@@ -25,16 +25,16 @@ public class BreadTop : MonoBehaviour {
 	void Update () {
         if (dropTimer < dropTime) {
             dropTimer += Time.deltaTime;
-            sr.color = new Color(1f, 1f, 1f, dropTimer / dropTime);
-            transform.Translate(new Vector3(0, -4f / dropTime * Time.deltaTime));
+            sr.color = new Color(1f, 1f, 1f, dropTimer / dropTime - 0.3f);
+            transform.Translate(new Vector3(5.5f / dropTime * Time.deltaTime, -4f / dropTime * Time.deltaTime));
+            bread.transform.Translate(new Vector3(5.5f / dropTime * Time.deltaTime, 0));
         }
         else if (waitTimer < waitTime) {
             waitTimer += Time.deltaTime;
-            transform.position = startPos + new Vector3(0, -4f);
+            //transform.position = startPos + new Vector3(0, -4f);
         }
         else if (removeTimer < removeTime) {
-            transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, 0));
-            bread.transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, 0));
+            
         }
 	}
 
