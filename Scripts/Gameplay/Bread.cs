@@ -6,6 +6,7 @@ public class Bread : MonoBehaviour {
     private Vector3 enterPoint = Vector3.zero;
     public bool inPlace;
     public bool finished;
+    public bool spreading;
 
     private WorldManager wm;
     // Use this for initialization
@@ -14,20 +15,24 @@ public class Bread : MonoBehaviour {
         gtm = GameObject.Find("WorldManager").GetComponent<GameplayTouchManager>();
         finished = false;
         inPlace = true;
+        spreading = false;
 
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (spreading) {
+            Vector3 offset = new Vector3(0, (wm.activeBread.transform.position.y - gtm.knife.transform.position.y) * 0.6f + 0.1f);
+            gtm.knife.transform.FindChild("Trail").transform.position = gtm.knife.transform.position + offset;
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D coll) {
-        //Debug.LogError("Enter!");
         if (coll.gameObject.GetComponent<Knife>() != null && inPlace) {
             enterPoint = coll.gameObject.transform.position;
-            Vector3 offset = new Vector3(0, (wm.activeBread.transform.position.y - enterPoint.y) * 0.7f);
+            spreading = true;
+            Vector3 offset = new Vector3(0, (wm.activeBread.transform.position.y - enterPoint.y) * 0.6f + 0.1f);
             gtm.knife.transform.FindChild("Trail").transform.Translate(offset);
             gtm.knife.transform.FindChild("Trail").GetComponent<TrailManager>().trail.enabled = true;
             gtm.knife.transform.FindChild("Trail").GetComponent<TrailManager>().trail.Clear();
@@ -36,15 +41,16 @@ public class Bread : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D coll) {
         if (coll.gameObject.GetComponent<Knife>() != null && inPlace) {
-            if (Vector3.Distance(enterPoint, coll.gameObject.transform.position) > (GetComponent<CircleCollider2D>().radius)) {
+            if (Vector3.Distance(enterPoint, coll.gameObject.transform.position) > (GetComponent<BoxCollider2D>().size.x * 0.9f)) {
                 finished = true;
             }
             gtm.knife.transform.FindChild("Trail").transform.SetParent(this.transform);
             gtm.knife.GetComponent<Knife>().newTrail();
+            spreading = false;
         }
     }
 
     void OnDestroy() {
-        gtm.knife.GetComponent<TrailManager>().trail.enabled = false;
+        //gtm.knife.GetComponent<TrailManager>().trail.enabled = false;
     }
 }

@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Knife : MonoBehaviour {
     public GameObject trailPrefab;
+    public bool hasSauce;
 	// Use this for initialization
 	void Awake() {
         newTrail();
+        hasSauce = false;
 	}
 	
 	// Update is called once per frame
