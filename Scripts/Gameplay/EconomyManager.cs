@@ -68,7 +68,6 @@ public class EconomyManager : MonoBehaviour {
         text.GetComponent<NotificationText>().setup("+" + encodeNumber(sandwichValue * swipeRate * multiplier), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
-        wm.activeBread.GetComponent<Bread>().finished = true;
         wm.activeBread.GetComponent<Bread>().finish();
         //Debug.LogError("SWIPE!");
     }
