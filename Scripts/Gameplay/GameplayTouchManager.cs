@@ -65,7 +65,7 @@ public class GameplayTouchManager : MonoBehaviour {
             bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x);
             
             //
-            if (wm.activeBread.GetComponent<Bread>().failedSpread || quickswipe) em.swipe();
+            if (quickswipe) em.swipe();
             
         }
     }
@@ -81,7 +81,7 @@ public class GameplayTouchManager : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)) {
             upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
             bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x);
-            if (wm.activeBread.GetComponent<Bread>().failedSpread || quickswipe) em.swipe();
+            if (quickswipe) em.swipe();
         }
     }
 }
