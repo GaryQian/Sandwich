@@ -17,7 +17,7 @@ public class Knife : MonoBehaviour {
 
     public void newTrail() {
         GameObject trail = Instantiate(trailPrefab);
-        trail.transform.position = transform.position;
+        trail.transform.position = transform.position + new Vector3(0, 0, -1f);
         trail.transform.SetParent(this.transform);
         trail.name = "Trail";
     }
