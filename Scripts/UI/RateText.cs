@@ -10,11 +10,11 @@ public class RateText : MonoBehaviour {
         txt = GetComponent<Text>();
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         //txt.fontSize = (int) (Screen.height / 7f);
-        GetComponent<RectTransform>().offsetMax = new Vector2((Screen.width / 4f), -Screen.height * 0.183f);
-        GetComponent<RectTransform>().offsetMin = new Vector2((Screen.width / -4f), -Screen.height * 0.3f);
+        //GetComponent<RectTransform>().offsetMax = new Vector2((Screen.width / 4f), -Screen.height * 0.183f);
+        //GetComponent<RectTransform>().offsetMin = new Vector2((Screen.width / -4f), -Screen.height * 0.3f);
     }
 
     public void updateRate(double rate) {
-        txt.text = "+$" + wm.encodeNumber(rate) + " / s";
+        txt.text = "+$" + wm.encodeNumber(rate) + " / sec";
     }
 }

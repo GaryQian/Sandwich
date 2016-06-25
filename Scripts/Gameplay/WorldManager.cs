@@ -4,6 +4,7 @@ using System.Collections;
 public class WorldManager : MonoBehaviour {
     public GameObject breadPrefab;
     public GameObject activeBread;
+    public GameObject sauce;
     public GameplayTouchManager gtm;
     public EconomyManager em;
 	// Use this for initialization

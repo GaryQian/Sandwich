@@ -7,6 +7,7 @@ public class Bread : MonoBehaviour {
     public bool inPlace;
     public bool finished;
     public bool spreading;
+    public bool failedSpread;
 
     public GameObject BreadTopPrefab;
     public GameObject BreadPrefab;
@@ -28,6 +29,7 @@ public class Bread : MonoBehaviour {
         finished = false;
         inPlace = false;
         spreading = false;
+        failedSpread = false;
         introTimer = 0;
         gtm = GameObject.Find("WorldManager").GetComponent<GameplayTouchManager>();
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
@@ -48,6 +50,9 @@ public class Bread : MonoBehaviour {
             if (introTimer <= introTime) {
                 introTimer += Time.deltaTime;
                 transform.Translate(new Vector3(0, 2.7f / introTime * Time.deltaTime));
+                if (transform.position.y > finalPos.y) {
+                    transform.position = finalPos;
+                }
                 sr.color = new Color(1f, 1f, 1f, introTimer / introTime);
             }
             else {
@@ -82,6 +87,7 @@ public class Bread : MonoBehaviour {
             }
             else {
                 resetTrail();
+                failedSpread = true;
             }
             
         }
