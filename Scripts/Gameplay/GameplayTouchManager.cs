@@ -50,6 +50,9 @@ public class GameplayTouchManager : MonoBehaviour {
         else if (touch.phase == TouchPhase.Ended) {
             upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
             if (wm.activeBread.GetComponent<Bread>().finished) em.swipe();
+            if (wm.activeBread.GetComponent<Bread>().spreading) {
+                wm.activeBread.GetComponent<Bread>().stopSpreading();
+            }
         }
     }
 

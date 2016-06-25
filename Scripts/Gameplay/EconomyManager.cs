@@ -92,7 +92,7 @@ public class EconomyManager : MonoBehaviour {
                     multiplier = 10f;
                 }
             }
-            Invoke("checkCombo", 0.15f);
+            Invoke("checkCombo", 0.2f);
         }
         else {
             multiplier = 1f;
