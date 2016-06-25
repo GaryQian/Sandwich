@@ -32,6 +32,7 @@ public class Bread : MonoBehaviour {
         if (coll.gameObject.GetComponent<Knife>() != null && inPlace) {
             enterPoint = coll.gameObject.transform.position;
             spreading = true;
+            finished = false;
             Vector3 offset = new Vector3(0, (wm.activeBread.transform.position.y - enterPoint.y) * 0.6f + 0.1f);
             gtm.knife.transform.FindChild("Trail").transform.Translate(offset);
             gtm.knife.transform.FindChild("Trail").GetComponent<TrailManager>().trail.enabled = true;
@@ -41,13 +42,17 @@ public class Bread : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D coll) {
         if (coll.gameObject.GetComponent<Knife>() != null && inPlace) {
-            if (Vector3.Distance(enterPoint, coll.gameObject.transform.position) > (GetComponent<BoxCollider2D>().size.x * 0.9f)) {
+            if (Vector3.Distance(enterPoint, coll.gameObject.transform.position) > (GetComponent<BoxCollider2D>().size.x * 0.8f * transform.localScale.x)) {
                 finished = true;
             }
-            gtm.knife.transform.FindChild("Trail").transform.SetParent(this.transform);
-            gtm.knife.GetComponent<Knife>().newTrail();
-            spreading = false;
+            stopSpreading();
         }
+    }
+
+    public void stopSpreading() {
+        gtm.knife.transform.FindChild("Trail").transform.SetParent(this.transform);
+        gtm.knife.GetComponent<Knife>().newTrail();
+        spreading = false;
     }
 
     void OnDestroy() {
