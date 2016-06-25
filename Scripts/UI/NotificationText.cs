@@ -32,6 +32,6 @@ public class NotificationText : MonoBehaviour {
     }
 
     public void setup(string str, Vector3 pos) {
-        setup(str, pos, new Color(1f, 1f, 1f), 20);
+        setup(str, pos, new Color(1f, 1f, 1f), (int)(Screen.height * 0.03f));
     }
 }
