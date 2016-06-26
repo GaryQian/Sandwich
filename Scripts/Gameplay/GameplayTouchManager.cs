@@ -40,7 +40,7 @@ public class GameplayTouchManager : MonoBehaviour {
             if (wm.activeBread.GetComponent<Bread>().spreading && knife.transform.position.x - wm.activeBread.transform.position.x > 2.3f) {
                 wm.activeBread.GetComponent<Bread>().stopSpreading();
             }
-            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
+            knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 4f);
             knife.transform.eulerAngles = knife.transform.position - prevPos;
             
         }
@@ -52,15 +52,15 @@ public class GameplayTouchManager : MonoBehaviour {
                 
             }
             else {
-                knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
+                knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 4f);
                 knife.transform.eulerAngles = Vector3.zero;
             }
-            downLoc = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 5f);
+            downLoc = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 4f);
             downTime = Time.time;
         }
         else if (touch.phase == TouchPhase.Ended) {
             wm.activeBread.GetComponent<Bread>().stopSpreading();
-            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
+            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 4f);
             //Check if shorthand swipe validation is fulfilled
             bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x);
             
@@ -72,15 +72,15 @@ public class GameplayTouchManager : MonoBehaviour {
 
     void processClick() {
         if (Input.GetMouseButton(0)) {
-            knife.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
+            knife.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 4f);
         }
         if (Input.GetMouseButtonDown(0)) {
-            downLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
+            downLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 4f);
             downTime = Time.time;
         }
         if (Input.GetMouseButtonUp(0)) {
-            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 5f);
-            bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x);
+            upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 4f);
+            bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.25f && upLoc.x > wm.activeBread.transform.position.x);
             if (quickswipe) em.swipe();
         }
     }

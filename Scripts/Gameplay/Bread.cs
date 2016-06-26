@@ -115,6 +115,7 @@ public class Bread : MonoBehaviour {
         top.GetComponent<BreadTop>().bread = gameObject;
         Invoke("delete", 0.5f);
         wm.activeBread = Instantiate(BreadPrefab);
+        wm.activeBread.name = "Bread";
         Invoke("deleteTrails", 0.08f);
     }
 
