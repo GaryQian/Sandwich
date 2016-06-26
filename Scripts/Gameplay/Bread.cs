@@ -17,7 +17,7 @@ public class Bread : MonoBehaviour {
     private float introTimer;
     private float waitTime = 0.05f;
     private float waitTimer = 0;
-    private Vector3 finalPos;
+    public Vector3 finalPos;
     SpriteRenderer sr;
 
     private WorldManager wm;

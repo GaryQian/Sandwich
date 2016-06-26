@@ -16,6 +16,7 @@ public class EconomyManager : MonoBehaviour {
     public double sps; //sandwiches per second
 
     public float updateRate;
+    private bool even;
     public float saveRate;
 
     public float combo = 0;
@@ -23,7 +24,11 @@ public class EconomyManager : MonoBehaviour {
     public float x2threshold;
     public float x5threshold;
     public float x10threshold;
-    public float multiplier = 1f;
+    bool x2shown;
+    bool x5shown;
+    bool x10shown;
+    public int multiplier = 1;
+    public int prevMultiplier = 1;
 
     private MoneyText moneyText;
     private RateText rateText;
@@ -47,7 +52,10 @@ public class EconomyManager : MonoBehaviour {
         recalculate();
         InvokeRepeating("processIncome", 0.1f, updateRate);
         InvokeRepeating("save", saveRate, saveRate);
-        
+        even = true;
+        x2shown = false;
+        x5shown = false;
+        x10shown = false;
 
     }
 
@@ -55,6 +63,11 @@ public class EconomyManager : MonoBehaviour {
     void Update() {
         if (combo > 0) {
             combo -= comboDecayRate * (combo + 1f) * Time.deltaTime;
+            if (combo < x2threshold - 1f) {
+                x2shown = false;
+                x5shown = false;
+                x10shown = false;
+            }
         }
     }
 
@@ -62,8 +75,7 @@ public class EconomyManager : MonoBehaviour {
         money += rate * sandwichValue * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
-
-
+        even = !even;
         displayMoney();
     }
 
@@ -73,7 +85,7 @@ public class EconomyManager : MonoBehaviour {
         money += sandwichValue * swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
+        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -101,18 +113,52 @@ public class EconomyManager : MonoBehaviour {
     
 
     void checkCombo() {
+        int initMult = multiplier;
+        prevMultiplier = multiplier;
         if (combo > x2threshold) {
-            multiplier = 2f;
+            multiplier = 2;
             if (combo > x5threshold) {
-                multiplier = 5f;
+                multiplier = 5;
                 if (combo > x10threshold) {
-                    multiplier = 10f;
+                    multiplier = 10;
                 }
             }
-            Invoke("checkCombo", 0.2f);
+            Invoke("checkCombo", 0.3f);
+            //spawn combo notification
+            if (initMult < multiplier) {
+
+                if (multiplier == 2 && !x2shown) {
+                    showMultiplier();
+                    x2shown = true;
+                }
+                else if (multiplier == 5 && !x5shown) {
+                    showMultiplier();
+                    x5shown = true;
+                }
+                else if (multiplier == 10 && !x10shown) {
+                    showMultiplier();
+                    x10shown = true;
+                }
+            }
+            //
         }
         else {
-            multiplier = 1f;
+            multiplier = 1;
+        }
+        recalculate();
+    }
+
+    void showMultiplier() {
+        GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
+        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.06f), 0.2f);
+    }
+
+    void multiplierDecay() {
+        switch (multiplier) {
+            case 2: multiplier = 1; break;
+            case 5: multiplier = 2; break;
+            case 10: multiplier = 5; break;
+            case 1: multiplier = 1; break;
         }
         recalculate();
     }
