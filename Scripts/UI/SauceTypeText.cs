@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SauceTypeText : MonoBehaviour {
-    TextMesh txt;
+    public TextMesh txt;
     int sauceNumber;
 	// Use this for initialization
 	void Awake () {

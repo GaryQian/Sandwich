@@ -4,10 +4,8 @@ using UnityEngine.UI;
 
 public class MoneyText : MonoBehaviour {
     Text txt;
-    WorldManager wm;
     // Use this for initialization
     void Awake() {
-        wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         txt = GetComponent<Text>();
     }
     
@@ -19,6 +17,6 @@ public class MoneyText : MonoBehaviour {
     }
 
     public void updateMoney(double money) {
-        txt.text = "$" + wm.encodeNumber(money);
+        txt.text = "$" + Util.encodeNumber(money);
     }
 }

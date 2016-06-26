@@ -10,10 +10,11 @@ public class EconomyManager : MonoBehaviour {
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate = 1f; //numhber of sandwiches made per swipe
-    public int spreadCount = 1; //which is the current spread
+    public int sauceID; //which is the current spread
     public double totalTime = 0f;
     public double gameTime = 0f;
     public double sps; //sandwiches per second
+    public double sandwichesMade;
 
     public float updateRate;
     private bool even;
@@ -34,8 +35,9 @@ public class EconomyManager : MonoBehaviour {
     private RateText rateText;
     private SandwichValueText sandwichValueText;
     private WorldManager wm;
-
     public GameObject NotificationTextPrefab;
+
+    public int sandwichCartCount = 0;
 
 
     private int totalSwipes = 0;
@@ -50,6 +52,7 @@ public class EconomyManager : MonoBehaviour {
     void Start() {
         load();
         recalculate();
+        wm.sauce.GetComponent<Sauce>().update();
         InvokeRepeating("processIncome", 0.1f, updateRate);
         InvokeRepeating("save", saveRate, saveRate);
         even = true;
@@ -73,19 +76,30 @@ public class EconomyManager : MonoBehaviour {
 
     void processIncome() {
         money += rate * sandwichValue * updateRate;
+        sandwichesMade += rate * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
         even = !even;
         displayMoney();
     }
 
+    public bool spend(double num) {
+        if (num < money) {
+            money -= num;
+            displayMoney();
+            return true;
+        }
+        return false;
+    }
+
     public void swipe() {
         combo += 1f;
         checkCombo();
         money += sandwichValue * swipeRate;
+        sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(sandwichValue * swipeRate), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -100,9 +114,15 @@ public class EconomyManager : MonoBehaviour {
         sandwichValueText.updateValue(sandwichValue);
     }
 
+    public void updateMenuCounters() {
+        if (wm.menuState == MenuType.producer) {
+            
+        }
+    }
+
     public void recalculate() {
         rate = 1f;
-        sandwichValue = 1f;
+        sandwichValue = Mathf.Pow(2f, sauceID - 1);
 
         sandwichValue *= multiplier;
         sps = rate * sandwichValue;
@@ -175,10 +195,12 @@ public class EconomyManager : MonoBehaviour {
             swipeRate = data.swipeRate;
             totalTime = data.totalTime;
             gameTime = data.gameTime;
-            spreadCount = data.spreadCount;
+            sauceID = data.sauceID;
             
 
             totalSwipes = data.totalSwipes;
+
+            sandwichCartCount = data.sandwichCartCount;
 
         }
     }
@@ -194,9 +216,11 @@ public class EconomyManager : MonoBehaviour {
         data.swipeRate = swipeRate;
         data.gameTime = gameTime;
         data.totalTime = totalTime;
-        data.spreadCount = spreadCount;
+        data.sauceID = sauceID;
 
         data.totalSwipes = totalSwipes;
+
+        data.sandwichCartCount = sandwichCartCount;
 
         bf.Serialize(file, data);
         file.Close();
@@ -205,12 +229,14 @@ public class EconomyManager : MonoBehaviour {
 
 [Serializable]
 public class SaveData {
-    public double money = 0;
-    public double rate = 0;
-    public double swipeRate = 1f;
-    public int spreadCount = 1;
-    public double totalTime = 0f;
-    public double gameTime = 0f;
+    public double money;
+    public double rate;
+    public double swipeRate;
+    public int sauceID;
+    public double totalTime;
+    public double gameTime;
 
-    public int totalSwipes = 0;
+    public int totalSwipes;
+
+    public int sandwichCartCount;
 }

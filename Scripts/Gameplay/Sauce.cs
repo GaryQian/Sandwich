@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Sauce : MonoBehaviour {
     private GameplayTouchManager gtm;
+    public Sprite peanutButter;
+    public Sprite strawberryJam;
+    public Sprite tearsOfDespair;
+    public GameObject sauceTypeText;
 
     private WorldManager wm;
     // Use this for initialization
@@ -24,5 +28,31 @@ public class Sauce : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D coll) {
         coll.gameObject.GetComponent<Knife>().hasSauce = true;
+    }
+
+    public void update() {
+        sauceTypeText.GetComponent<SauceTypeText>().txt.text = getSauceName();
+        setImage();
+        wm.em.recalculate();
+    }
+
+    public string getSauceName() {
+        switch (wm.em.sauceID) {
+            case 1: return "Peanut Butter";
+            case 2: return "Strawberry Jam";
+            case 3: return "Tears of Despair";
+            case 4: return "Nuh-tellum";
+            case 5: return "Cream Cheese";
+        }
+        return "Mystery Sauce";
+    }
+    private void setImage() {
+        switch (wm.em.sauceID) {
+            case 1: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
+            case 2: GetComponent<SpriteRenderer>().sprite = strawberryJam; break;
+            case 3: GetComponent<SpriteRenderer>().sprite = tearsOfDespair; break;
+            case 4: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
+            case 5: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
+        }
     }
 }
