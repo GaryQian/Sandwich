@@ -7,13 +7,13 @@ using System.IO;
 [Serializable]
 public class EconomyManager : MonoBehaviour {
     public double money = 0;
-    public double rate = 0;
-    public double sandwichValue = 1f;
-    public double swipeRate = 1f;
-    public int spreadCount = 1;
+    public double rate = 1f; //number of sandwiches per second
+    public double sandwichValue = 1f; //val of each sandwich
+    public double swipeRate = 1f; //numhber of sandwiches made per swipe
+    public int spreadCount = 1; //which is the current spread
     public double totalTime = 0f;
     public double gameTime = 0f;
-    public double sps = 0;
+    public double sps; //sandwiches per second
 
     public float updateRate;
     public float saveRate;
@@ -26,21 +26,29 @@ public class EconomyManager : MonoBehaviour {
     public float multiplier = 1f;
 
     private MoneyText moneyText;
+    private RateText rateText;
+    private SandwichValueText sandwichValueText;
     private WorldManager wm;
 
     public GameObject NotificationTextPrefab;
 
+
+    private int totalSwipes = 0;
+
     void Awake() {
         wm = GetComponent<WorldManager>();
+        moneyText = GameObject.Find("MoneyText").GetComponent<MoneyText>();
+        rateText = GameObject.Find("RateText").GetComponent<RateText>();
+        sandwichValueText = GameObject.Find("SandwichValueText").GetComponent<SandwichValueText>();
     }
 
     void Start() {
-        //FileStream file = File.Open(Application.persistentDataPath + "/gamedata.datxc", FileMode.Open);
         load();
+        recalculate();
         InvokeRepeating("processIncome", 0.1f, updateRate);
         InvokeRepeating("save", saveRate, saveRate);
+        
 
-        moneyText = GameObject.Find("MoneyText").GetComponent<MoneyText>();
     }
 
     // Update is called once per frame
@@ -51,7 +59,7 @@ public class EconomyManager : MonoBehaviour {
     }
 
     void processIncome() {
-        money += rate * sandwichValue * updateRate * multiplier;
+        money += rate * sandwichValue * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
 
@@ -62,25 +70,31 @@ public class EconomyManager : MonoBehaviour {
     public void swipe() {
         combo += 1f;
         checkCombo();
-        money += sandwichValue * swipeRate * multiplier;
-        
+        money += sandwichValue * swipeRate;
+        totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate * multiplier), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
+        text.GetComponent<NotificationText>().setup("+$" + wm.encodeNumber(sandwichValue * swipeRate), wm.activeBread.transform.position + new Vector3(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
-        //Debug.LogError("SWIPE!");
     }
 
     public void displayMoney() {
         moneyText.updateMoney(money);
     }
 
+    public void updateLabels() {
+        rateText.updateRate(sps);
+        sandwichValueText.updateValue(sandwichValue);
+    }
+
     public void recalculate() {
-        rate = 0f;
+        rate = 1f;
         sandwichValue = 1f;
 
-        //calculate rate and value data.
+        sandwichValue *= multiplier;
+        sps = rate * sandwichValue;
+        updateLabels();
         displayMoney();
     }
 
@@ -100,6 +114,7 @@ public class EconomyManager : MonoBehaviour {
         else {
             multiplier = 1f;
         }
+        recalculate();
     }
 
     void load() {
@@ -110,9 +125,14 @@ public class EconomyManager : MonoBehaviour {
             file.Close();
 
             money = data.money;
+            rate = data.rate;
+            swipeRate = data.swipeRate;
             totalTime = data.totalTime;
             gameTime = data.gameTime;
             spreadCount = data.spreadCount;
+            
+
+            totalSwipes = data.totalSwipes;
 
         }
     }
@@ -124,9 +144,13 @@ public class EconomyManager : MonoBehaviour {
         SaveData data = new SaveData();
 
         data.money = money;
+        data.rate = rate;
+        data.swipeRate = swipeRate;
         data.gameTime = gameTime;
         data.totalTime = totalTime;
         data.spreadCount = spreadCount;
+
+        data.totalSwipes = totalSwipes;
 
         bf.Serialize(file, data);
         file.Close();
@@ -136,7 +160,11 @@ public class EconomyManager : MonoBehaviour {
 [Serializable]
 public class SaveData {
     public double money = 0;
+    public double rate = 0;
+    public double swipeRate = 1f;
     public int spreadCount = 1;
     public double totalTime = 0f;
     public double gameTime = 0f;
+
+    public int totalSwipes = 0;
 }

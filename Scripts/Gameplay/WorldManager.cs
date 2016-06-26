@@ -48,10 +48,10 @@ public class WorldManager : MonoBehaviour {
             case 49: suffix = "qtd"; money = money / Mathf.Pow(10f, numSize - 4); break;
         }
         if (money < 100f) {
-            return string.Format("{0:0.0}", money) + suffix;
+            return string.Format("{0:N2}", money) + suffix;
         }
         else {
-            return string.Format("{0:0.0}", money) + suffix;
+            return string.Format("{0:N1}", money) + suffix;
         }
     }
 }
