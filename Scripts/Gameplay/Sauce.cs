@@ -6,6 +6,8 @@ public class Sauce : MonoBehaviour {
     public Sprite peanutButter;
     public Sprite strawberryJam;
     public Sprite tearsOfDespair;
+    public Sprite nuhtelluh;
+
     public GameObject sauceTypeText;
 
     private WorldManager wm;
@@ -41,7 +43,7 @@ public class Sauce : MonoBehaviour {
             case 1: return "Peanut Butter";
             case 2: return "Strawberry Jam";
             case 3: return "Tears of Despair";
-            case 4: return "Nuh-tellum";
+            case 4: return "Nuhtellah";
             case 5: return "Cream Cheese";
         }
         return "Mystery Sauce";
@@ -51,7 +53,7 @@ public class Sauce : MonoBehaviour {
             case 1: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
             case 2: GetComponent<SpriteRenderer>().sprite = strawberryJam; break;
             case 3: GetComponent<SpriteRenderer>().sprite = tearsOfDespair; break;
-            case 4: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
+            case 4: GetComponent<SpriteRenderer>().sprite = nuhtelluh; break;
             case 5: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
         }
     }

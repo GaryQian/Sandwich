@@ -5,6 +5,9 @@ public class TrailManager : MonoBehaviour {
     public Material peanutButter;
     public Material strawberryJam;
     public Material tearsOfDespair;
+    public Material nuhtelluh;
+
+
     public TrailRenderer trail;
     // Use this for initialization
     void Awake () {
@@ -23,7 +26,7 @@ public class TrailManager : MonoBehaviour {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;
-            case 4: return peanutButter;
+            case 4: return nuhtelluh;
             case 5: return peanutButter;
         }
         return peanutButter;
