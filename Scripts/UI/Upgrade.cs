@@ -13,9 +13,13 @@ public class Upgrade : MonoBehaviour {
     public GameObject buyButtonText;
 
     void Awake() {
+        icon = transform.FindChild("Icon").gameObject;
+        title = transform.FindChild("Title").gameObject;
+        costText = transform.FindChild("CostText").gameObject;
         switch (type) {
             case UpgradeType.producer:
-
+                counterText = transform.FindChild("CounterText").gameObject;
+                statsText = transform.FindChild("StatsText").gameObject;
                 break;
             case UpgradeType.sandwich:
 

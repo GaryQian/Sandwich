@@ -39,7 +39,11 @@ public class Sauce : MonoBehaviour {
     }
 
     public string getSauceName() {
-        switch (wm.em.sauceID) {
+        return getSauceName(wm.em.sauceID);
+    }
+
+    public string getSauceName(int i) {
+        switch (i) {
             case 1: return "Peanut Butter";
             case 2: return "Strawberry Jam";
             case 3: return "Tears of Despair";
@@ -48,6 +52,7 @@ public class Sauce : MonoBehaviour {
         }
         return "Mystery Sauce";
     }
+
     private void setImage() {
         switch (wm.em.sauceID) {
             case 1: GetComponent<SpriteRenderer>().sprite = peanutButter; break;

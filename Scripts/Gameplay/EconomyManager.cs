@@ -143,7 +143,7 @@ public class EconomyManager : MonoBehaviour {
                     multiplier = 10;
                 }
             }
-            Invoke("checkCombo", 0.3f);
+            Invoke("checkCombo", 0.5f);
             //spawn combo notification
             if (initMult < multiplier) {
 
