@@ -50,7 +50,7 @@ public class EconomyManager : MonoBehaviour {
         moneyText = GameObject.Find("MoneyText").GetComponent<MoneyText>();
         rateText = GameObject.Find("RateText").GetComponent<RateText>();
         sandwichValueText = GameObject.Find("SandwichValueText").GetComponent<SandwichValueText>();
-        list = GameObject.Find("List");
+        list = GameObject.Find("Producer");
     }
 
     void Start() {
