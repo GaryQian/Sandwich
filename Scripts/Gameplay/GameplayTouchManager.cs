@@ -66,6 +66,8 @@ public class GameplayTouchManager : MonoBehaviour {
             
             //
             if (quickswipe) em.swipe();
+            downTime = 0;
+            
             
         }
     }
