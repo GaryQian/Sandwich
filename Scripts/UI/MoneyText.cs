@@ -19,4 +19,8 @@ public class MoneyText : MonoBehaviour {
     public void updateMoney(double money) {
         txt.text = "$" + Util.encodeNumber(money);
     }
+
+    public void bounce() {
+        GetComponent<Animator>().SetTrigger("Bounce");
+    }
 }

@@ -5,6 +5,7 @@ public class ButtonHandler : MonoBehaviour {
 
     public EconomyManager em;
     private WorldManager wm;
+    public GameObject red;
 
     public double sauceBaseCost;
 
@@ -18,7 +19,13 @@ public class ButtonHandler : MonoBehaviour {
 	}
 
     void notEnough() {
+        red.active = true;
+        red.GetComponent<Animator>().SetTrigger("Flash");
+        Invoke("disableRed", 0.267f);
+    }
 
+    void disableRed() {
+        red.active = false;
     }
 
     /// <summary>
@@ -43,15 +50,36 @@ public class ButtonHandler : MonoBehaviour {
     /// SANDWICH CART
     /// </summary>
     public void buySandwichCart() {
-        if (em.money >= sauceCost()) {
-            em.spend(sauceCost());
+        if (em.money >= sandwichCartCost()) {
+            em.spend(sandwichCartCost());
             em.sandwichCartCount++;
             em.recalculate();
-            em.updateMenuCounters();
+            em.updateProducerMenuCounters();
         }
         else {
             notEnough();
         }
+    }
+    double sandwichCartCost() {
+        return em.list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCartCount);
+    }
+
+    /// <summary>
+    /// DELI
+    /// </summary>
+    public void buyDeli() {
+        if (em.money >= deliCost()) {
+            em.spend(deliCost());
+            em.deliCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double deliCost() {
+        return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount);
     }
 
 }

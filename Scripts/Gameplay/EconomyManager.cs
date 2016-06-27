@@ -38,6 +38,9 @@ public class EconomyManager : MonoBehaviour {
     public GameObject NotificationTextPrefab;
 
     public int sandwichCartCount = 0;
+    public int deliCount = 0;
+
+    public GameObject list; //the list of upgrades
 
 
     private int totalSwipes = 0;
@@ -47,11 +50,13 @@ public class EconomyManager : MonoBehaviour {
         moneyText = GameObject.Find("MoneyText").GetComponent<MoneyText>();
         rateText = GameObject.Find("RateText").GetComponent<RateText>();
         sandwichValueText = GameObject.Find("SandwichValueText").GetComponent<SandwichValueText>();
+        list = GameObject.Find("List");
     }
 
     void Start() {
         load();
         recalculate();
+        updateProducerMenuCounters();
         wm.sauce.GetComponent<Sauce>().update();
         InvokeRepeating("processIncome", 0.1f, updateRate);
         InvokeRepeating("save", saveRate, saveRate);
@@ -81,6 +86,7 @@ public class EconomyManager : MonoBehaviour {
         gameTime += updateRate;
         even = !even;
         displayMoney();
+        Util.money = money;
     }
 
     public bool spend(double num) {
@@ -114,15 +120,19 @@ public class EconomyManager : MonoBehaviour {
         sandwichValueText.updateValue(sandwichValue);
     }
 
-    public void updateMenuCounters() {
+    public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
-            
+            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount);
+            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount);
         }
     }
 
     public void recalculate() {
-        rate = 1f;
+        rate = 0;
         sandwichValue = Mathf.Pow(2f, sauceID - 1);
+
+        rate += sandwichCartCount * Util.sandwichCartRate;
+        rate += deliCount * Util.deliRate;
 
         sandwichValue *= multiplier;
         sps = rate * sandwichValue;
@@ -201,6 +211,7 @@ public class EconomyManager : MonoBehaviour {
             totalSwipes = data.totalSwipes;
 
             sandwichCartCount = data.sandwichCartCount;
+            deliCount = data.deliCount;
 
         }
     }
@@ -221,6 +232,7 @@ public class EconomyManager : MonoBehaviour {
         data.totalSwipes = totalSwipes;
 
         data.sandwichCartCount = sandwichCartCount;
+        data.deliCount = deliCount;
 
         bf.Serialize(file, data);
         file.Close();
@@ -239,4 +251,5 @@ public class SaveData {
     public int totalSwipes;
 
     public int sandwichCartCount;
+    public int deliCount;
 }

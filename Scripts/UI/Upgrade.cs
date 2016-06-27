@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum UpgradeType {sandwich, producer, ad, iap, permanent}
 
 public class Upgrade : MonoBehaviour {
+    public double baseCost;
+
     public UpgradeType type;
     public GameObject icon;
     public GameObject title;
@@ -11,6 +14,8 @@ public class Upgrade : MonoBehaviour {
     public GameObject costText;
     public GameObject statsText;
     public GameObject buyButtonText;
+
+    public double cost;
 
     void Awake() {
         icon = transform.FindChild("Icon").gameObject;
@@ -31,9 +36,24 @@ public class Upgrade : MonoBehaviour {
 	void Start () {
 	    
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public void setupProducerUpgrade(double num) {
+        updateCost(baseCost * Mathf.Pow(Util.pScale, (float)num));
+        updateCounter(num);
+    }
+
+    public void updateCost(double cost) {
+        costText.GetComponent<Text>().text = "$" + Util.encodeNumber(cost);
+        this.cost = cost;
+    }
+
+    public void updateCounter(double num) {
+        counterText.GetComponent<Text>().text = Util.encodeNumberInteger((int)num);
+    }
+
+    public void updateStats(string str) {
+        statsText.GetComponent<Text>().text = str;
+    }
+
+    
 }

@@ -7,6 +7,7 @@ public class Sauce : MonoBehaviour {
     public Sprite strawberryJam;
     public Sprite tearsOfDespair;
     public Sprite nuhtelluh;
+    public Sprite creamCheese;
 
     public GameObject sauceTypeText;
 
@@ -53,13 +54,14 @@ public class Sauce : MonoBehaviour {
         return "Mystery Sauce";
     }
 
+    //ALSO ADD TO TrailManager.cs
     private void setImage() {
         switch (wm.em.sauceID) {
             case 1: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
             case 2: GetComponent<SpriteRenderer>().sprite = strawberryJam; break;
             case 3: GetComponent<SpriteRenderer>().sprite = tearsOfDespair; break;
             case 4: GetComponent<SpriteRenderer>().sprite = nuhtelluh; break;
-            case 5: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
+            case 5: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
         }
     }
 }
