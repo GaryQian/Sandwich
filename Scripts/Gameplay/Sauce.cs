@@ -8,6 +8,7 @@ public class Sauce : MonoBehaviour {
     public Sprite tearsOfDespair;
     public Sprite nuhtelluh;
     public Sprite creamCheese;
+    public Sprite hamburger;
 
     public GameObject sauceTypeText;
 
@@ -50,6 +51,9 @@ public class Sauce : MonoBehaviour {
             case 3: return "Tears of Despair";
             case 4: return "Nuhtellah";
             case 5: return "Cream Cheese";
+            case 6: return "Hamburger Spread";
+            case 7: return "Cream Cheese";
+            case 8: return "Cream Cheese";
         }
         return "Mystery Sauce";
     }
@@ -62,6 +66,9 @@ public class Sauce : MonoBehaviour {
             case 3: GetComponent<SpriteRenderer>().sprite = tearsOfDespair; break;
             case 4: GetComponent<SpriteRenderer>().sprite = nuhtelluh; break;
             case 5: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
+            case 6: GetComponent<SpriteRenderer>().sprite = hamburger; break;
+            case 7: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
+            case 8: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
         }
     }
 }
