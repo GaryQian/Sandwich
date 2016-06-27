@@ -82,4 +82,22 @@ public class ButtonHandler : MonoBehaviour {
         return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount);
     }
 
+    /// <summary>
+    /// AUTOCHEF 9k
+    /// </summary>
+    public void buyAutochef() {
+        if (em.money >= autochefCost()) {
+            em.spend(autochefCost());
+            em.autochefCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double autochefCost() {
+        return em.list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.autochefCount);
+    }
+
 }

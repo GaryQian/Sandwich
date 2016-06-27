@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 [Serializable]
 public class EconomyManager : MonoBehaviour {
@@ -39,6 +40,7 @@ public class EconomyManager : MonoBehaviour {
 
     public int sandwichCartCount = 0;
     public int deliCount = 0;
+    public int autochefCount = 0;
 
     public GameObject list; //the list of upgrades
 
@@ -122,8 +124,11 @@ public class EconomyManager : MonoBehaviour {
 
     public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
+            list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = "Production Rate: +" + Util.encodeNumber(rate) + " &/s";
             list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount);
             list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount);
+            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount);
+
         }
     }
 
@@ -133,6 +138,7 @@ public class EconomyManager : MonoBehaviour {
 
         rate += sandwichCartCount * Util.sandwichCartRate;
         rate += deliCount * Util.deliRate;
+        rate += autochefCount * Util.autochefRate;
 
         sandwichValue *= multiplier;
         sps = rate * sandwichValue;
@@ -212,6 +218,7 @@ public class EconomyManager : MonoBehaviour {
 
             sandwichCartCount = data.sandwichCartCount;
             deliCount = data.deliCount;
+            autochefCount = data.autochefCount;
 
         }
     }
@@ -233,6 +240,7 @@ public class EconomyManager : MonoBehaviour {
 
         data.sandwichCartCount = sandwichCartCount;
         data.deliCount = deliCount;
+        data.autochefCount = autochefCount;
 
         bf.Serialize(file, data);
         file.Close();
@@ -252,4 +260,5 @@ public class SaveData {
 
     public int sandwichCartCount;
     public int deliCount;
+    public int autochefCount;
 }

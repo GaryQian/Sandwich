@@ -6,6 +6,7 @@ public class Util {
     public static float pScale = 1.5f;
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 10f;
+    public static float autochefRate = 100f;
     public static string encodeNumber(double money) {
         int numSize = 3;
         while (money / Mathf.Pow(10f, numSize) > 1f) {
