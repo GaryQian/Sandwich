@@ -36,8 +36,17 @@ public class Sauce : MonoBehaviour {
 
     public void update() {
         sauceTypeText.GetComponent<SauceTypeText>().txt.text = getSauceName();
-        setImage();
+        setImage(wm.em.sauceID);
         wm.em.recalculate();
+        wm.gtm.knife.GetComponent<Knife>().deleteTrails();
+        wm.gtm.knife.GetComponent<Knife>().newTrail();
+        if (wm.menuState == MenuType.sandwich) {
+            Upgrade up = wm.em.list.transform.FindChild("SauceUpgrade").GetComponent<Upgrade>();
+            up.updateCost(wm.buttonHandler.sauceCost());
+            up.updateName(getSauceName(wm.em.sauceID + 1));
+            up.updateIcon(getImage(wm.em.sauceID + 1));
+            up.updateStats("$" + Util.encodeNumber(wm.em.getSandwichValue(wm.em.sauceID + 1)) + " ea");
+        }
     }
 
     public string getSauceName() {
@@ -51,7 +60,7 @@ public class Sauce : MonoBehaviour {
             case 3: return "Tears of Despair";
             case 4: return "Nuhtellah";
             case 5: return "Cream Cheese";
-            case 6: return "Hamburger Spread";
+            case 6: return "Hamburger";
             case 7: return "Cream Cheese";
             case 8: return "Cream Cheese";
         }
@@ -59,16 +68,22 @@ public class Sauce : MonoBehaviour {
     }
 
     //ALSO ADD TO TrailManager.cs
-    private void setImage() {
-        switch (wm.em.sauceID) {
-            case 1: GetComponent<SpriteRenderer>().sprite = peanutButter; break;
-            case 2: GetComponent<SpriteRenderer>().sprite = strawberryJam; break;
-            case 3: GetComponent<SpriteRenderer>().sprite = tearsOfDespair; break;
-            case 4: GetComponent<SpriteRenderer>().sprite = nuhtelluh; break;
-            case 5: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
-            case 6: GetComponent<SpriteRenderer>().sprite = hamburger; break;
-            case 7: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
-            case 8: GetComponent<SpriteRenderer>().sprite = creamCheese; break;
+    private Sprite setImage(int i) {
+        GetComponent<SpriteRenderer>().sprite = getImage(i);
+        return GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public Sprite getImage(int i) {
+        switch (i) {
+            case 1: return peanutButter;
+            case 2: return strawberryJam;
+            case 3: return tearsOfDespair;
+            case 4: return nuhtelluh;
+            case 5: return creamCheese;
+            case 6: return hamburger;
+            case 7: return creamCheese;
+            case 8: return creamCheese;
         }
+        return peanutButter;
     }
 }

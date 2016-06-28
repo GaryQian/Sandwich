@@ -26,8 +26,8 @@ public class BreadTop : MonoBehaviour {
         if (dropTimer < dropTime) {
             dropTimer += Time.deltaTime;
             sr.color = new Color(1f, 1f, 1f, dropTimer / dropTime - 0.3f);
-            transform.Translate(new Vector3(5.5f / dropTime * Time.deltaTime, -4f / dropTime * Time.deltaTime));
-            bread.transform.Translate(new Vector3(5.5f / dropTime * Time.deltaTime, 0));
+            transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, -4f / dropTime * Time.deltaTime));
+            bread.transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, 0));
         }
         else if (waitTimer < waitTime) {
             waitTimer += Time.deltaTime;

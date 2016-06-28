@@ -8,6 +8,7 @@ using UnityEngine.UI;
 [Serializable]
 public class EconomyManager : MonoBehaviour {
     public double money = 0;
+    public double totalMoney = 0; //total money made so far this game.
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate = 1f; //numhber of sandwiches made per swipe
@@ -24,11 +25,11 @@ public class EconomyManager : MonoBehaviour {
     public float combo = 0;
     public float comboDecayRate;
     public float x2threshold;
+    public float x3threshold;
     public float x5threshold;
-    public float x10threshold;
     bool x2shown;
+    bool x3shown;
     bool x5shown;
-    bool x10shown;
     public int multiplier = 1;
     public int prevMultiplier = 1;
 
@@ -41,6 +42,8 @@ public class EconomyManager : MonoBehaviour {
     public int sandwichCartCount = 0;
     public int deliCount = 0;
     public int autochefCount = 0;
+    public int mcdandwichCount = 0;
+    public int sandwichCityCount = 0;
 
     public GameObject list; //the list of upgrades
 
@@ -64,8 +67,8 @@ public class EconomyManager : MonoBehaviour {
         InvokeRepeating("save", saveRate, saveRate);
         even = true;
         x2shown = false;
+        x3shown = false;
         x5shown = false;
-        x10shown = false;
 
     }
 
@@ -75,14 +78,15 @@ public class EconomyManager : MonoBehaviour {
             combo -= comboDecayRate * (combo + 1f) * Time.deltaTime;
             if (combo < x2threshold - 1f) {
                 x2shown = false;
+                x3shown = false;
                 x5shown = false;
-                x10shown = false;
             }
         }
     }
 
     void processIncome() {
         money += rate * sandwichValue * updateRate;
+        totalMoney += rate * sandwichValue * updateRate;
         sandwichesMade += rate * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
@@ -104,6 +108,7 @@ public class EconomyManager : MonoBehaviour {
         combo += 1f;
         checkCombo();
         money += sandwichValue * swipeRate;
+        totalMoney += sandwichValue * swipeRate;
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
@@ -124,26 +129,39 @@ public class EconomyManager : MonoBehaviour {
 
     public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
-            list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = "Production Rate: +" + Util.encodeNumber(rate) + " &/s";
-            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount);
-            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount);
-            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount);
-
+            list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = "Production Rate: " + Util.encodeNumber(rate) + " &/s";
+            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate);
+            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate);
+            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate);
+            list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate);
+            list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate);
         }
     }
 
     public void recalculate() {
-        rate = 0;
-        sandwichValue = Mathf.Pow(2f, sauceID - 1);
+        rate = getRate();
+        sandwichValue = getSandwichValue(sauceID);
 
-        rate += sandwichCartCount * Util.sandwichCartRate;
-        rate += deliCount * Util.deliRate;
-        rate += autochefCount * Util.autochefRate;
+        
 
         sandwichValue *= multiplier;
         sps = rate * sandwichValue;
         updateLabels();
         displayMoney();
+    }
+
+    public double getSandwichValue(int i) {
+        return Mathf.Pow(2f, i - 1);
+    }
+
+    public double getRate() {
+        double num = 0;
+        num += sandwichCartCount * Util.sandwichCartRate;
+        num += deliCount * Util.deliRate;
+        num += autochefCount * Util.autochefRate;
+        num += mcdandwichCount * Util.mcdandwichRate;
+        num += sandwichCityCount * Util.sandwichCityRate;
+        return num;
     }
 
     
@@ -153,10 +171,10 @@ public class EconomyManager : MonoBehaviour {
         prevMultiplier = multiplier;
         if (combo > x2threshold) {
             multiplier = 2;
-            if (combo > x5threshold) {
-                multiplier = 5;
-                if (combo > x10threshold) {
-                    multiplier = 10;
+            if (combo > x3threshold) {
+                multiplier = 3;
+                if (combo > x5threshold) {
+                    multiplier = 5;
                 }
             }
             Invoke("checkCombo", 0.5f);
@@ -167,13 +185,13 @@ public class EconomyManager : MonoBehaviour {
                     showMultiplier();
                     x2shown = true;
                 }
+                else if (multiplier == 3 && !x3shown) {
+                    showMultiplier();
+                    x3shown = true;
+                }
                 else if (multiplier == 5 && !x5shown) {
                     showMultiplier();
                     x5shown = true;
-                }
-                else if (multiplier == 10 && !x10shown) {
-                    showMultiplier();
-                    x10shown = true;
                 }
             }
             //
@@ -186,18 +204,9 @@ public class EconomyManager : MonoBehaviour {
 
     void showMultiplier() {
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.06f), 0.2f);
+        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.07f), 0.4f);
     }
 
-    void multiplierDecay() {
-        switch (multiplier) {
-            case 2: multiplier = 1; break;
-            case 5: multiplier = 2; break;
-            case 10: multiplier = 5; break;
-            case 1: multiplier = 1; break;
-        }
-        recalculate();
-    }
 
     void load() {
         if (File.Exists(Application.persistentDataPath + "/gamedata.dat")) {
@@ -207,6 +216,7 @@ public class EconomyManager : MonoBehaviour {
             file.Close();
 
             money = data.money;
+            totalMoney = data.totalMoney;
             rate = data.rate;
             swipeRate = data.swipeRate;
             totalTime = data.totalTime;
@@ -219,7 +229,11 @@ public class EconomyManager : MonoBehaviour {
             sandwichCartCount = data.sandwichCartCount;
             deliCount = data.deliCount;
             autochefCount = data.autochefCount;
+            mcdandwichCount = data.mcdandwichCount;
+            sandwichCityCount = data.sandwichCityCount;
 
+
+            wm.adWatchTime = data.adWatchTime;
         }
     }
 
@@ -230,6 +244,7 @@ public class EconomyManager : MonoBehaviour {
         SaveData data = new SaveData();
 
         data.money = money;
+        data.totalMoney = totalMoney;
         data.rate = rate;
         data.swipeRate = swipeRate;
         data.gameTime = gameTime;
@@ -241,6 +256,10 @@ public class EconomyManager : MonoBehaviour {
         data.sandwichCartCount = sandwichCartCount;
         data.deliCount = deliCount;
         data.autochefCount = autochefCount;
+        data.mcdandwichCount = mcdandwichCount;
+        data.sandwichCityCount = sandwichCityCount;
+
+        data.adWatchTime = wm.adWatchTime;
 
         bf.Serialize(file, data);
         file.Close();
@@ -250,6 +269,7 @@ public class EconomyManager : MonoBehaviour {
 [Serializable]
 public class SaveData {
     public double money;
+    public double totalMoney;
     public double rate;
     public double swipeRate;
     public int sauceID;
@@ -261,4 +281,9 @@ public class SaveData {
     public int sandwichCartCount;
     public int deliCount;
     public int autochefCount;
+    public int mcdandwichCount;
+    public int sandwichCityCount;
+
+
+    public double adWatchTime;
 }

@@ -3,13 +3,24 @@ using System.Collections;
 
 public class Util {
     public static double money;
-    public static float pScale = 1.5f;
+    public static double sauceBaseCost = 500f;
+    public static double sauceScale = 10f;
+    public static float pScale = 1.2f;
     public static float sandwichCartRate = 0.5f;
-    public static float deliRate = 10f;
-    public static float autochefRate = 100f;
+    public static float deliRate = 7f;
+    public static float autochefRate = 70f;
+    public static float mcdandwichRate = 800f;
+    public static float sandwichCityRate = 9000f;
+
+
+    public static float adRewardCurrentPercentage = 0.10f;
+    public static float adRewardSwipes = 500f;
+    public static float adRewardTime = 400f;
+    public static float adRewardTotalPercentage = 0.03f;
+    public static double adCooldown = 1800f;
     public static string encodeNumber(double money) {
         int numSize = 3;
-        while (money / Mathf.Pow(10f, numSize) > 1f) {
+        while (money / Mathf.Pow(10f, numSize) >= 1f) {
             numSize += 3;
         }
         string suffix = "";

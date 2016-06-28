@@ -6,6 +6,7 @@ public class TabManager : MonoBehaviour {
     WorldManager wm;
 
     public GameObject menu;
+    ScrollRect scroll;
 
     public Button statsButton;
     public Button sandwichButton;
@@ -18,6 +19,7 @@ public class TabManager : MonoBehaviour {
 
     void Awake() {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
+        scroll = menu.GetComponent<ScrollRect>();
     }
 	// Use this for initialization
 	void Start () {
@@ -36,6 +38,7 @@ public class TabManager : MonoBehaviour {
         enableCurrentMenu();
         resetHighlight();
         statsButton.colors = highlightedColor;
+        scroll.content = wm.em.list.GetComponent<RectTransform>();
         
     }
 
@@ -46,6 +49,8 @@ public class TabManager : MonoBehaviour {
         enableCurrentMenu();
         resetHighlight();
         sandwichButton.colors = highlightedColor;
+        scroll.content = wm.em.list.GetComponent<RectTransform>();
+        wm.sauce.GetComponent<Sauce>().update();
     }
 
     public void selectProducer() {
@@ -55,6 +60,7 @@ public class TabManager : MonoBehaviour {
         enableCurrentMenu();
         resetHighlight();
         producerButton.colors = highlightedColor;
+        scroll.content = wm.em.list.GetComponent<RectTransform>();
     }
 
     public void selectPermanent() {
@@ -64,6 +70,7 @@ public class TabManager : MonoBehaviour {
         enableCurrentMenu();
         resetHighlight();
         permanentButton.colors = highlightedColor;
+        scroll.content = wm.em.list.GetComponent<RectTransform>();
     }
 
     public void selectShop() {
@@ -73,6 +80,7 @@ public class TabManager : MonoBehaviour {
         enableCurrentMenu();
         resetHighlight();
         shopButton.colors = highlightedColor;
+        scroll.content = wm.em.list.GetComponent<RectTransform>();
     }
 
     void disableCurrentMenu() {
