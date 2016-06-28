@@ -9,6 +9,10 @@ public class ButtonHandler : MonoBehaviour {
     private WorldManager wm;
     public GameObject red;
 
+    public GameObject muteButton;
+    public Sprite muteOn;
+    public Sprite muteOff;
+
     void Awake() {
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
@@ -28,6 +32,19 @@ public class ButtonHandler : MonoBehaviour {
         red.SetActive(false);
     }
 
+    public void toggleMute() {
+        wm.muted = !wm.muted;
+        if (wm.muted) {
+            muteButton.GetComponent<Image>().sprite = muteOn;
+        }
+        else {
+            muteButton.GetComponent<Image>().sprite = muteOff;
+        }
+    }
+
+    /// <summary>
+    /// WATCH AD BUTTON
+    /// </summary>
     public void watchAd() {
         if (wm.adWatchTime <= 0) {
             ShowOptions options = new ShowOptions();

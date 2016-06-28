@@ -18,6 +18,8 @@ public class WorldManager : MonoBehaviour {
     public EconomyManager em;
     public ButtonHandler buttonHandler;
 
+    public bool muted = false;
+
     public Animator shopGlowAnimator;
 
     public MenuType menuState = MenuType.producer;

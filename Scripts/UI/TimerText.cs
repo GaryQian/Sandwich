@@ -19,11 +19,16 @@ public class TimerText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        TimeSpan t = TimeSpan.FromSeconds(wm.adWatchTime);
+        if (wm.adWatchTime > 0) {
+            TimeSpan t = TimeSpan.FromSeconds(wm.adWatchTime);
 
-        txt.text = string.Format("{0:D2}:{1:D2}",
-                t.Minutes,
-                t.Seconds);
+            txt.text = string.Format("{0:D2}:{1:D2}",
+                    t.Minutes,
+                    t.Seconds);
+        }
+        else {
+            txt.text = "Ready!";
+        }
         /*if (wm.adWatchTime <= 0) {
             txt.color = new Color(0, 0.9f, 0.05f);
         }

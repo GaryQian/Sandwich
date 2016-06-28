@@ -236,6 +236,7 @@ public class EconomyManager : MonoBehaviour {
 
 
             wm.adWatchTime = data.adWatchTime;
+            wm.muted = data.muted;
         }
     }
 
@@ -263,6 +264,7 @@ public class EconomyManager : MonoBehaviour {
         data.sandwichCityCount = sandwichCityCount;
 
         data.adWatchTime = wm.adWatchTime;
+        data.muted = wm.muted;
 
         bf.Serialize(file, data);
         file.Close();
@@ -290,4 +292,5 @@ public class SaveData {
 
 
     public double adWatchTime;
+    public bool muted;
 }
