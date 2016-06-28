@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Sauce : MonoBehaviour {
-    private GameplayTouchManager gtm;
     public Sprite peanutButter;
     public Sprite strawberryJam;
     public Sprite tearsOfDespair;
@@ -16,7 +15,6 @@ public class Sauce : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         transform.position = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.15f, Screen.height * 0.215f)) + new Vector3(0, 0, 10f);
-        gtm = GameObject.Find("WorldManager").GetComponent<GameplayTouchManager>();
 
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
     }

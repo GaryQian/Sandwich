@@ -12,7 +12,6 @@ public class GameplayTouchManager : MonoBehaviour {
     private float downTime;
     private Vector3 upLoc;
 
-    private Vector3 prevPos;
 	// Use this for initialization
 	void Awake () {
         knife = (GameObject)Instantiate(knifePrefab, new Vector3(-4f, -6f, 5f), Quaternion.identity);
@@ -41,7 +40,6 @@ public class GameplayTouchManager : MonoBehaviour {
                 wm.activeBread.GetComponent<Bread>().stopSpreading();
             }
             knife.transform.position = Camera.main.ScreenToWorldPoint(touch.position) + new Vector3(0, 0, 4f);
-            knife.transform.eulerAngles = knife.transform.position - prevPos;
             
         }
         else if (touch.phase == TouchPhase.Began) {

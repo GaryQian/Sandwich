@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
 public class WatchButton : MonoBehaviour {
-    private Upgrade up;
+    //private Upgrade up;
     private Button button;
     ColorBlock enabledColor;
     ColorBlock disabledColor;
@@ -12,7 +12,7 @@ public class WatchButton : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
-        up = transform.parent.GetComponent<Upgrade>();
+        //up = transform.parent.GetComponent<Upgrade>();
         button = GetComponent<Button>();
     }
 

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class TimerText : MonoBehaviour {
     WorldManager wm;
     Text txt;
-    Color normalColor;
+    //Color normalColor;
     void Awake() {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         txt = GetComponent<Text>();
-        normalColor = txt.color;
+        //normalColor = txt.color;
     }
 	// Use this for initialization
 	void Start () {

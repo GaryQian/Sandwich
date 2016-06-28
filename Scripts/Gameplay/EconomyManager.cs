@@ -12,6 +12,7 @@ public class EconomyManager : MonoBehaviour {
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate = 1f; //numhber of sandwiches made per swipe
+    public int knifeCount = 1;
     public int sauceID; //which is the current spread
     public double totalTime = 0f;
     public double gameTime = 0f;
@@ -69,7 +70,7 @@ public class EconomyManager : MonoBehaviour {
         x2shown = false;
         x3shown = false;
         x5shown = false;
-
+        wm.checkAdTimer();
     }
 
     // Update is called once per frame
@@ -204,7 +205,7 @@ public class EconomyManager : MonoBehaviour {
 
     void showMultiplier() {
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.07f), 0.4f);
+        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.08f), 0.7f);
     }
 
 
@@ -219,6 +220,7 @@ public class EconomyManager : MonoBehaviour {
             totalMoney = data.totalMoney;
             rate = data.rate;
             swipeRate = data.swipeRate;
+            knifeCount = data.knifeCount;
             totalTime = data.totalTime;
             gameTime = data.gameTime;
             sauceID = data.sauceID;
@@ -247,6 +249,7 @@ public class EconomyManager : MonoBehaviour {
         data.totalMoney = totalMoney;
         data.rate = rate;
         data.swipeRate = swipeRate;
+        data.knifeCount = knifeCount;
         data.gameTime = gameTime;
         data.totalTime = totalTime;
         data.sauceID = sauceID;
@@ -272,6 +275,7 @@ public class SaveData {
     public double totalMoney;
     public double rate;
     public double swipeRate;
+    public int knifeCount;
     public int sauceID;
     public double totalTime;
     public double gameTime;

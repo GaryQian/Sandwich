@@ -17,7 +17,7 @@ public class NotificationText : MonoBehaviour {
 	void Update () {
         timer -= Time.deltaTime;
         transform.Translate(new Vector3(0, riseRate * Time.deltaTime, 0));
-        txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 1f * (timer / life));
+        txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, initOpacity * (timer / life));
         if (timer < 0) {
             Destroy(gameObject);
         }

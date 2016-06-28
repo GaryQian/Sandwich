@@ -15,9 +15,9 @@ public class Util {
 
     public static float adRewardCurrentPercentage = 0.10f;
     public static float adRewardSwipes = 500f;
-    public static float adRewardTime = 400f;
+    public static float adRewardTime = 500f;
     public static float adRewardTotalPercentage = 0.03f;
-    public static double adCooldown = 1800f;
+    public static double adCooldown = 1200f;
     public static string encodeNumber(double money) {
         int numSize = 3;
         while (money / Mathf.Pow(10f, numSize) >= 1f) {

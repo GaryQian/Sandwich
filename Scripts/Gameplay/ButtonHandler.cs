@@ -19,13 +19,13 @@ public class ButtonHandler : MonoBehaviour {
 	}
 
     void notEnough() {
-        red.active = true;
+        red.SetActive(true);
         red.GetComponent<Animator>().SetTrigger("Flash");
         Invoke("disableRed", 0.267f);
     }
 
     void disableRed() {
-        red.active = false;
+        red.SetActive(false);
     }
 
     public void watchAd() {
@@ -57,7 +57,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public double adValue() {
-        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes + em.sandwichValue * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
+        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes * em.swipeRate + em.sandwichValue * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
     }
 
     /// <summary>

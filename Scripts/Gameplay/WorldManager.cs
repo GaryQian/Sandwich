@@ -18,6 +18,8 @@ public class WorldManager : MonoBehaviour {
     public EconomyManager em;
     public ButtonHandler buttonHandler;
 
+    public Animator shopGlowAnimator;
+
     public MenuType menuState = MenuType.producer;
     // Use this for initialization
     void Awake() {
@@ -36,6 +38,7 @@ public class WorldManager : MonoBehaviour {
                 Advertisement.Initialize(gameIDiOS); // initialize Unity Ads.
             }
         }
+        InvokeRepeating("checkAdTimer", 10f, 10f);
     }
 	
 	// Update is called once per frame
@@ -51,5 +54,14 @@ public class WorldManager : MonoBehaviour {
 
     public string encodeNumber(double money) {
         return Util.encodeNumber(money);
+    }
+
+    public void checkAdTimer() {
+        if (adWatchTime <= 0 && em.gameTime > 200f) {
+            shopGlowAnimator.SetTrigger("Pulse");
+        }
+        else {
+            shopGlowAnimator.SetTrigger("Off");
+        }
     }
 }

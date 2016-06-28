@@ -18,10 +18,10 @@ public class Upgrade : MonoBehaviour {
 
     public double cost;
 
-    private WorldManager wm;
+    //private WorldManager wm;
 
     void Awake() {
-        wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
+        //wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         icon = transform.FindChild("Icon").gameObject;
         title = transform.FindChild("Title").gameObject;
         costText = transform.FindChild("CostText").gameObject;

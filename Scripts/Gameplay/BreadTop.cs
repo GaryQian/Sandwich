@@ -11,14 +11,14 @@ public class BreadTop : MonoBehaviour {
     private float removeTime = 0.07f;
     private float removeTimer = 0;
 
-    private Vector3 startPos;
+    //private Vector3 startPos;
 
     public GameObject bread;
 	// Use this for initialization
 	void Awake () {
 	    sr = GetComponent<SpriteRenderer>();
         Invoke("suicide", 2.8f);
-        startPos = transform.position;
+        //startPos = transform.position;
 	}
 	
 	// Update is called once per frame
