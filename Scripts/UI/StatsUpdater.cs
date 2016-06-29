@@ -14,7 +14,7 @@ public class StatsUpdater : MonoBehaviour {
 
     // Update is called once per frame
     public void updateStats() {
-        Debug.LogError("Updating Stats!");
+        //Debug.LogError("Updating Stats!");
     }
 
     void OnEnable() {
