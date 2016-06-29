@@ -234,6 +234,7 @@ public class EconomyManager : MonoBehaviour {
             totalTime = data.totalTime;
             gameTime = data.gameTime;
             sauceID = data.sauceID;
+            sandwichesMade = data.sandwichesMade;
             
 
             totalSwipes = data.totalSwipes;
@@ -250,6 +251,7 @@ public class EconomyManager : MonoBehaviour {
 
             wm.adWatchTime = data.adWatchTime;
             wm.muted = data.muted;
+            Util.muted = wm.muted;
 
             wm.sm.storyProgress = data.storyProgress;
         }
@@ -270,6 +272,7 @@ public class EconomyManager : MonoBehaviour {
         data.gameTime = gameTime;
         data.totalTime = totalTime;
         data.sauceID = sauceID;
+        data.sandwichesMade = sandwichesMade;
 
         data.totalSwipes = totalSwipes;
 
@@ -303,6 +306,7 @@ public class SaveData {
     public int sauceID;
     public double totalTime;
     public double gameTime;
+    public double sandwichesMade;
 
     public int totalSwipes;
 

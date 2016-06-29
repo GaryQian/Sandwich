@@ -34,8 +34,13 @@ public class ButtonHandler : MonoBehaviour {
         red.SetActive(false);
     }
 
+    public void cheatx2() {
+        em.money *= 2f;
+    }
+
     public void toggleMute() {
         wm.muted = !wm.muted;
+        Util.muted = wm.muted;
         if (wm.muted) {
             muteButton.GetComponent<Image>().sprite = muteOn;
         }
@@ -76,7 +81,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public double adValue() {
-        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes * em.swipeRate + em.sandwichValue * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
+        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes * em.swipeRate + em.getSandwichValue(em.sauceID) * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
     }
 
     /// <summary>
@@ -116,8 +121,8 @@ public class ButtonHandler : MonoBehaviour {
     }
     public void updateSharpenKnives() {
         up = em.list.transform.FindChild("SharpenKnives").GetComponent<Upgrade>();
-        up.updateCounter("" + (int)(wm.em.knifeVamp * 100f) + "%");
-        up.updateStats("Swipes make\n" + (int)((wm.em.knifeVamp + Util.knifeVampRate) * 100f) + "% &/s");
+        up.updateCounter("" + (int)(wm.em.knifeVamp * 100f + 0.001f) + "%");
+        up.updateStats("Swipes make\n" + (int)((wm.em.knifeVamp + Util.knifeVampRate + 0.001f) * 100f) + "% &/s");
         up.updateCost(sharpenKnivesCost());
 
     }

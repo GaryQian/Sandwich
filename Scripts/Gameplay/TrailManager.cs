@@ -10,6 +10,9 @@ public class TrailManager : MonoBehaviour {
     public Material hamburger;
     public Material garlic;
     public Material guac;
+    public Material ham;
+    public Material butter;
+    public Material nails;
 
 
     public TrailRenderer trail;
@@ -27,7 +30,7 @@ public class TrailManager : MonoBehaviour {
 
     //ALSO ADD TO Sauce.cs
     Material getMaterial(int id) {
-        switch (id) {
+        switch (id % 11) {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;
@@ -36,7 +39,12 @@ public class TrailManager : MonoBehaviour {
             case 6: return hamburger;
             case 7: return garlic;
             case 8: return guac;
-            case 9: return creamCheese;
+            case 9: return ham;
+            case 10: return butter;
+            case 11: return nails;
+            case 12: return ham;
+            case 13: return ham;
+            case 14: return ham;
         }
         return peanutButter;
     }

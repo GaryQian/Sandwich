@@ -10,6 +10,9 @@ public class Sauce : MonoBehaviour {
     public Sprite hamburger;
     public Sprite garlic;
     public Sprite guac;
+    public Sprite ham;
+    public Sprite butter;
+    public Sprite nails;
 
     public GameObject sauceTypeText;
 
@@ -54,7 +57,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public string getSauceName(int i) {
-        switch (i) {
+        switch (i % 11) {
             case 1: return "Peanut Butter";
             case 2: return "Strawberry Jam";
             case 3: return "Tears of Despair";
@@ -63,6 +66,9 @@ public class Sauce : MonoBehaviour {
             case 6: return "Hamburger";
             case 7: return "Garlic Spread";
             case 8: return "Guacamole";
+            case 9: return "Ham";
+            case 10: return "Butter";
+            case 11: return "Nails";
         }
         return "Mystery Sauce";
     }
@@ -74,7 +80,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public Sprite getImage(int i) {
-        switch (i) {
+        switch (i % 11) {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;
@@ -83,6 +89,9 @@ public class Sauce : MonoBehaviour {
             case 6: return hamburger;
             case 7: return garlic;
             case 8: return guac;
+            case 9: return ham;
+            case 10: return butter;
+            case 11: return nails;
         }
         return peanutButter;
     }
