@@ -29,8 +29,8 @@ public class TrailManager : MonoBehaviour {
     }
 
     //ALSO ADD TO Sauce.cs
-    Material getMaterial(int id) {
-        switch (id % 11) {
+    Material getMaterial(int i) {
+        switch (((i - 1) % 11) + 1) {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;

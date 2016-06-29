@@ -31,7 +31,7 @@ public class Util {
 
     public static string encodeNumber(double money) {
         int numSize = 3;
-        while (money / Mathf.Pow(10f, numSize) >= 1f) {
+        while (money / System.Math.Pow(10f, numSize) >= 1f) {
             numSize += 3;
         }
         string suffix = "";
@@ -48,10 +48,21 @@ public class Util {
             case 30: suffix = "oc"; money = money / Mathf.Pow(10f, numSize - 3); break;
             case 33: suffix = "nn"; money = money / Mathf.Pow(10f, numSize - 3); break;
             case 36: suffix = "dc"; money = money / Mathf.Pow(10f, numSize - 3); break;
-            case 39: suffix = "ud"; money = money / Mathf.Pow(10f, numSize - 3); break;
-            case 42: suffix = "dd"; money = money / Mathf.Pow(10f, numSize - 3); break;
-            case 45: suffix = "td"; money = money / Mathf.Pow(10f, numSize - 3); break;
-            case 48: suffix = "qtd"; money = money / Mathf.Pow(10f, numSize - 3); break;
+            case 39: suffix = "ud"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 42: suffix = "dd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 45: suffix = "td"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 48: suffix = "qtd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 51: suffix = "qnd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 54: suffix = "sxd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 57: suffix = "spd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 60: suffix = "ocd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 63: suffix = "nvd"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 66: suffix = "vgt"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 69: suffix = "uvt"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 72: suffix = "dvt"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 75: suffix = "tvt"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 78: suffix = "qtt"; money = money / System.Math.Pow(10f, numSize - 3); break;
+            case 81: suffix = "qnt"; money = money / System.Math.Pow(10f, numSize - 3); break;
         }
         if (money < 100f) {
             return string.Format("{0:N2}", money) + suffix;

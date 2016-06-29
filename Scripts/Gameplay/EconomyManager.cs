@@ -171,6 +171,9 @@ public class EconomyManager : MonoBehaviour {
         num += autochefCount * Util.autochefRate;
         num += mcdandwichCount * Util.mcdandwichRate;
         num += sandwichCityCount * Util.sandwichCityRate;
+        num += breadCloningCount * Util.breadCloningRate;
+        num += sandwocracyCount * Util.sandwocracyRate;
+        num += sandriaLawCount * Util.sandriaLawRate;
         return num;
     }
 

@@ -57,7 +57,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public string getSauceName(int i) {
-        switch (i % 11) {
+        switch (((i - 1) % 11) + 1) {
             case 1: return "Peanut Butter";
             case 2: return "Strawberry Jam";
             case 3: return "Tears of Despair";
@@ -80,7 +80,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public Sprite getImage(int i) {
-        switch (i % 11) {
+        switch (((i - 1) % 11) + 1) {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;
