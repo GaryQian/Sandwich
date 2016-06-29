@@ -50,7 +50,13 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         sandwichButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
+        
+        setupSandwichMenu();
+    }
+
+    void setupSandwichMenu() {
         wm.sauce.GetComponent<Sauce>().update();
+        wm.buttonHandler.updateSharpenKnives();
     }
 
     public void selectProducer() {

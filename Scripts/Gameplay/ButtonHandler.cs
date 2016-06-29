@@ -13,6 +13,8 @@ public class ButtonHandler : MonoBehaviour {
     public Sprite muteOn;
     public Sprite muteOff;
 
+    private Upgrade up;
+
     void Awake() {
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
@@ -94,6 +96,30 @@ public class ButtonHandler : MonoBehaviour {
     }
     public double sauceCost() {
         return Util.sauceBaseCost * Mathf.Pow((float)Util.sauceScale, em.sauceID - 1);
+    }
+
+    /// <summary>
+    /// SHARPEN KNIVES
+    /// </summary>
+    public void sharpenKnives() {
+        if (em.money >= sharpenKnivesCost()) {
+            em.spend(sharpenKnivesCost());
+            em.knifeVamp += Util.knifeVampRate;
+            updateSharpenKnives();
+        }
+        else {
+            notEnough();
+        }
+    }
+    public double sharpenKnivesCost() {
+        return Util.knifeVampBaseCost * Mathf.Pow((float)Util.knifeVampScale, (int)((em.knifeVamp / Util.knifeVampRate)));
+    }
+    public void updateSharpenKnives() {
+        up = em.list.transform.FindChild("SharpenKnives").GetComponent<Upgrade>();
+        up.updateCounter("" + (int)(wm.em.knifeVamp * 100f) + "%");
+        up.updateStats("Swipes make\n" + (int)((wm.em.knifeVamp + Util.knifeVampRate) * 100f) + "% &/s");
+        up.updateCost(sharpenKnivesCost());
+
     }
 
 
@@ -187,5 +213,61 @@ public class ButtonHandler : MonoBehaviour {
     double sandwichCityCost() {
         return em.list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCityCount);
     }
+
+    /// <summary>
+    /// BreadCloning
+    /// </summary>
+    public void buyBreadCloning() {
+        if (em.money >= breadCloningCost()) {
+            em.spend(breadCloningCost());
+            em.breadCloningCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double breadCloningCost() {
+        return em.list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.breadCloningCount);
+    }
+
+    /// <summary>
+    /// Sandwocracy
+    /// </summary>
+    public void buySandwocracy() {
+        if (em.money >= sandwocracyCost()) {
+            em.spend(sandwocracyCost());
+            em.sandwocracyCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double sandwocracyCost() {
+        return em.list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwocracyCount);
+    }
+
+    /// <summary>
+    /// Sandria law
+    /// </summary>
+    public void buySandriaLaw() {
+        if (em.money >= sandriaLawCost()) {
+            em.spend(sandriaLawCost());
+            em.sandriaLawCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double sandriaLawCost() {
+        return em.list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandriaLawCount);
+    }
+
+
 
 }

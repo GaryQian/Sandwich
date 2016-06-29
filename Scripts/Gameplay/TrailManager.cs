@@ -8,6 +8,8 @@ public class TrailManager : MonoBehaviour {
     public Material nuhtelluh;
     public Material creamCheese;
     public Material hamburger;
+    public Material garlic;
+    public Material guac;
 
 
     public TrailRenderer trail;
@@ -32,8 +34,8 @@ public class TrailManager : MonoBehaviour {
             case 4: return nuhtelluh;
             case 5: return creamCheese;
             case 6: return hamburger;
-            case 7: return creamCheese;
-            case 8: return creamCheese;
+            case 7: return garlic;
+            case 8: return guac;
             case 9: return creamCheese;
         }
         return peanutButter;

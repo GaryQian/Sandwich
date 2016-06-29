@@ -12,6 +12,7 @@ public class EconomyManager : MonoBehaviour {
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate = 1f; //numhber of sandwiches made per swipe
+    public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public int knifeCount = 1;
     public int sauceID; //which is the current spread
     public double totalTime = 0f;
@@ -45,6 +46,9 @@ public class EconomyManager : MonoBehaviour {
     public int autochefCount = 0;
     public int mcdandwichCount = 0;
     public int sandwichCityCount = 0;
+    public int breadCloningCount = 0;
+    public int sandwocracyCount = 0;
+    public int sandriaLawCount = 0;
 
     public GameObject list; //the list of upgrades
 
@@ -108,12 +112,13 @@ public class EconomyManager : MonoBehaviour {
     public void swipe() {
         combo += 1f;
         checkCombo();
-        money += sandwichValue * swipeRate;
-        totalMoney += sandwichValue * swipeRate;
+        double num = sandwichValue * swipeRate + sps * knifeVamp;
+        money += num;
+        totalMoney += num;
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(sandwichValue * swipeRate), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -136,6 +141,10 @@ public class EconomyManager : MonoBehaviour {
             list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate);
             list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate);
             list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate);
+            list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().setupProducerUpgrade(breadCloningCount, Util.breadCloningRate);
+            list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().setupProducerUpgrade(sandwocracyCount, Util.sandwocracyRate);
+            list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate);
+
         }
     }
 
@@ -205,7 +214,7 @@ public class EconomyManager : MonoBehaviour {
 
     void showMultiplier() {
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f, 0), (int)(Screen.height * 0.08f), 0.7f);
+        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f * (1f - ((multiplier - 2f) / 2f)), 0), (int)(Screen.height * 0.08f), 0.7f);
     }
 
 
@@ -220,6 +229,7 @@ public class EconomyManager : MonoBehaviour {
             totalMoney = data.totalMoney;
             rate = data.rate;
             swipeRate = data.swipeRate;
+            knifeVamp = data.knifeVamp;
             knifeCount = data.knifeCount;
             totalTime = data.totalTime;
             gameTime = data.gameTime;
@@ -233,10 +243,15 @@ public class EconomyManager : MonoBehaviour {
             autochefCount = data.autochefCount;
             mcdandwichCount = data.mcdandwichCount;
             sandwichCityCount = data.sandwichCityCount;
+            breadCloningCount = data.breadCloningCount;
+            sandwocracyCount = data.sandwocracyCount;
+            sandriaLawCount = data.sandriaLawCount;
 
 
             wm.adWatchTime = data.adWatchTime;
             wm.muted = data.muted;
+
+            wm.sm.storyProgress = data.storyProgress;
         }
     }
 
@@ -250,6 +265,7 @@ public class EconomyManager : MonoBehaviour {
         data.totalMoney = totalMoney;
         data.rate = rate;
         data.swipeRate = swipeRate;
+        data.knifeVamp = knifeVamp;
         data.knifeCount = knifeCount;
         data.gameTime = gameTime;
         data.totalTime = totalTime;
@@ -262,9 +278,14 @@ public class EconomyManager : MonoBehaviour {
         data.autochefCount = autochefCount;
         data.mcdandwichCount = mcdandwichCount;
         data.sandwichCityCount = sandwichCityCount;
+        data.breadCloningCount = breadCloningCount;
+        data.sandwocracyCount = sandwocracyCount;
+        data.sandriaLawCount = sandriaLawCount;
 
         data.adWatchTime = wm.adWatchTime;
         data.muted = wm.muted;
+
+        data.storyProgress = wm.sm.storyProgress;
 
         bf.Serialize(file, data);
         file.Close();
@@ -277,6 +298,7 @@ public class SaveData {
     public double totalMoney;
     public double rate;
     public double swipeRate;
+    public float knifeVamp;
     public int knifeCount;
     public int sauceID;
     public double totalTime;
@@ -289,8 +311,13 @@ public class SaveData {
     public int autochefCount;
     public int mcdandwichCount;
     public int sandwichCityCount;
+    public int breadCloningCount;
+    public int sandwocracyCount;
+    public int sandriaLawCount;
 
 
     public double adWatchTime;
     public bool muted;
+
+    public int storyProgress;
 }

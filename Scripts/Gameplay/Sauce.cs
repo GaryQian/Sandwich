@@ -8,6 +8,8 @@ public class Sauce : MonoBehaviour {
     public Sprite nuhtelluh;
     public Sprite creamCheese;
     public Sprite hamburger;
+    public Sprite garlic;
+    public Sprite guac;
 
     public GameObject sauceTypeText;
 
@@ -59,8 +61,8 @@ public class Sauce : MonoBehaviour {
             case 4: return "Nuhtellah";
             case 5: return "Cream Cheese";
             case 6: return "Hamburger";
-            case 7: return "Cream Cheese";
-            case 8: return "Cream Cheese";
+            case 7: return "Garlic Spread";
+            case 8: return "Guacamole";
         }
         return "Mystery Sauce";
     }
@@ -79,8 +81,8 @@ public class Sauce : MonoBehaviour {
             case 4: return nuhtelluh;
             case 5: return creamCheese;
             case 6: return hamburger;
-            case 7: return creamCheese;
-            case 8: return creamCheese;
+            case 7: return garlic;
+            case 8: return guac;
         }
         return peanutButter;
     }

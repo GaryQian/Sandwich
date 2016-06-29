@@ -5,12 +5,20 @@ public class Util {
     public static double money;
     public static double sauceBaseCost = 500f;
     public static double sauceScale = 10f;
+    public static double knifeVampBaseCost = 2000000f;
+    public static double knifeVampScale = 200f;
+    public static float knifeVampRate = 0.04f;
+
+
     public static float pScale = 1.2f;
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 7f;
     public static float autochefRate = 70f;
     public static float mcdandwichRate = 800f;
     public static float sandwichCityRate = 9000f;
+    public static float breadCloningRate = 100000f;
+    public static float sandwocracyRate = 1000000f;
+    public static float sandriaLawRate = 10000000f;
 
 
     public static float adRewardCurrentPercentage = 0.10f;

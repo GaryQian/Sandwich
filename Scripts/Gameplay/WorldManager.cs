@@ -17,6 +17,9 @@ public class WorldManager : MonoBehaviour {
     public GameplayTouchManager gtm;
     public EconomyManager em;
     public ButtonHandler buttonHandler;
+    public StoryManager sm;
+
+    
 
     public bool muted = false;
 
@@ -28,6 +31,7 @@ public class WorldManager : MonoBehaviour {
         gtm = GetComponent<GameplayTouchManager>();
         em = GetComponent<EconomyManager>();
         buttonHandler = GetComponent<ButtonHandler>();
+        sm = GetComponent<StoryManager>();
     }
 
 	void Start () {
@@ -59,7 +63,7 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void checkAdTimer() {
-        if (adWatchTime <= 0 && em.gameTime > 200f) {
+        if (adWatchTime <= 0 && em.gameTime > 400f) {
             shopGlowAnimator.SetTrigger("Pulse");
         }
         else {
