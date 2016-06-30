@@ -6,8 +6,8 @@ public class BreadTop : MonoBehaviour {
 
     private float dropTime = 0.25f;
     private float dropTimer = 0;
-    private float waitTime = 0.05f;
-    private float waitTimer = 0;
+    private float slideTime = 0.25f;
+    private float slideTimer = 0;
     private float removeTime = 0.07f;
     private float removeTimer = 0;
 
@@ -17,7 +17,7 @@ public class BreadTop : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 	    sr = GetComponent<SpriteRenderer>();
-        Invoke("suicide", 2.8f);
+        Invoke("suicide", 0.50f);
         //startPos = transform.position;
 	}
 	
@@ -29,8 +29,10 @@ public class BreadTop : MonoBehaviour {
             transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, -4f / dropTime * Time.deltaTime));
             bread.transform.Translate(new Vector3(6f / dropTime * Time.deltaTime, 0));
         }
-        else if (waitTimer < waitTime) {
-            waitTimer += Time.deltaTime;
+        else if (slideTimer < slideTime) {
+            slideTimer += Time.deltaTime;
+            transform.Translate(new Vector3(6f / slideTime * Time.deltaTime, 0));
+            bread.transform.Translate(new Vector3(6f / slideTime * Time.deltaTime, 0));
             //transform.position = startPos + new Vector3(0, -4f);
         }
         else if (removeTimer < removeTime) {
