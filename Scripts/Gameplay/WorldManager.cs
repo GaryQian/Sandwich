@@ -32,6 +32,8 @@ public class WorldManager : MonoBehaviour {
         em = GetComponent<EconomyManager>();
         buttonHandler = GetComponent<ButtonHandler>();
         sm = GetComponent<StoryManager>();
+
+        Util.wm = this;
     }
 
 	void Start () {

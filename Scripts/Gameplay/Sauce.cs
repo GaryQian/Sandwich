@@ -13,6 +13,8 @@ public class Sauce : MonoBehaviour {
     public Sprite ham;
     public Sprite butter;
     public Sprite nails;
+    public Sprite camo;
+    public Sprite ratPoison;
 
     public GameObject sauceTypeText;
 
@@ -69,6 +71,8 @@ public class Sauce : MonoBehaviour {
             case 9: return "Ham";
             case 10: return "Butter";
             case 11: return "Nails";
+            case 12: return "Camo";
+            case 13: return "Rat Poison";
         }
         return "Mystery Sauce";
     }
@@ -92,6 +96,8 @@ public class Sauce : MonoBehaviour {
             case 9: return ham;
             case 10: return butter;
             case 11: return nails;
+            case 12: return camo;
+            case 13: return ratPoison;
         }
         return peanutButter;
     }

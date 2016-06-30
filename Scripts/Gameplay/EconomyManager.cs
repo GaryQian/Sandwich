@@ -53,7 +53,7 @@ public class EconomyManager : MonoBehaviour {
     public GameObject list; //the list of upgrades
 
 
-    private int totalSwipes = 0;
+    public int totalSwipes = 0;
 
     void Awake() {
         wm = GetComponent<WorldManager>();

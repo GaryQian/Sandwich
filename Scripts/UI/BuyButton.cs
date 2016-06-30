@@ -7,6 +7,8 @@ public class BuyButton : MonoBehaviour {
     private Button button;
     ColorBlock enabledColor;
     ColorBlock disabledColor;
+
+    public GameObject prevButton;
     // Use this for initialization
     void Awake () {
         up = transform.parent.GetComponent<Upgrade>();

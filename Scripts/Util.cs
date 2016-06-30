@@ -2,10 +2,12 @@
 using System.Collections;
 
 public class Util {
+    public static WorldManager wm;
+
     public static double money;
     public static double sauceBaseCost = 500f;
     public static double sauceScale = 10f;
-    public static int numberOfSauces = 11;
+    public static int numberOfSauces = 13;
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.04f;

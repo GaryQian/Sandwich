@@ -13,6 +13,8 @@ public class TrailManager : MonoBehaviour {
     public Material ham;
     public Material butter;
     public Material nails;
+    public Material camo;
+    public Material ratPoison;
 
 
     public TrailRenderer trail;
@@ -42,8 +44,8 @@ public class TrailManager : MonoBehaviour {
             case 9: return ham;
             case 10: return butter;
             case 11: return nails;
-            case 12: return ham;
-            case 13: return ham;
+            case 12: return camo;
+            case 13: return ratPoison;
             case 14: return ham;
         }
         return peanutButter;

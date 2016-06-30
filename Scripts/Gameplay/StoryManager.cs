@@ -4,6 +4,7 @@ using System.Collections;
 public class StoryManager : MonoBehaviour {
     public int storyProgress = 0;
     public double storyBaseValue;
+    public double storyScale;
     public static bool messageActive = false;
     private WorldManager wm;
     // Use this for initialization
@@ -12,7 +13,9 @@ public class StoryManager : MonoBehaviour {
 	}
 
     public void checkStory() {
-        //if (!messageActive && wm.money > storyBaseValue * 
+        if (!messageActive && wm.em.totalMoney > storyBaseValue * System.Math.Pow(storyScale, storyProgress)) {
+
+        }
     }
 
     public StoryLine getLine(int i) {
