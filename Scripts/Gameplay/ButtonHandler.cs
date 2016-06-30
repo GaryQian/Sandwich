@@ -282,5 +282,120 @@ public class ButtonHandler : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Sandwich Planet
+    /// </summary>
+    public void buySandwichPlanet() {
+        if (em.money >= sandwichPlanetCost()) {
+            em.spend(sandwichPlanetCost());
+            em.sandwichPlanetCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double sandwichPlanetCost() {
+        return em.list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichPlanetCount);
+    }
+
+    /// <summary>
+    /// Human Extermination
+    /// </summary>
+    public void buyHumanExtermination() {
+        if (em.money >= humanExterminationCost()) {
+            em.spend(humanExterminationCost());
+            em.humanExterminationCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double humanExterminationCost() {
+        return em.list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.humanExterminationCount);
+    }
+
+    /// <summary>
+    /// Enslave Aliens
+    /// </summary>
+    public void buyEnslaveAliens() {
+        if (em.money >= enslaveAliensCost()) {
+            em.spend(enslaveAliensCost());
+            em.enslaveAliensCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double enslaveAliensCost() {
+        return em.list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.enslaveAliensCount);
+    }
+
+    /// <summary>
+    /// Deathsandwich
+    /// </summary>
+    public void buyDeathSandwich() {
+        if (em.money >= deathSandwichCost()) {
+            em.spend(deathSandwichCost());
+            em.deathSandwichCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double deathSandwichCost() {
+        return em.list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deathSandwichCount);
+    }
+
+    /// <summary>
+    /// Sandwich Galaxy
+    /// </summary>
+    public void buySandwichGalaxy() {
+        if (em.money >= sandwichGalaxyCost()) {
+            em.spend(sandwichGalaxyCost());
+            em.sandwichGalaxyCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double sandwichGalaxyCost() {
+        return em.list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichGalaxyCount);
+    }
+
+    /// <summary>
+    /// Flying Sandwich Monster
+    /// </summary>
+    public void buyFlyingSandwichMonster() {
+        if (em.money >= flyingSandwichMonsterCost()) {
+            em.spend(flyingSandwichMonsterCost());
+            em.flyingSandwichMonsterCount++;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings++;
+        }
+        else {
+            notEnough();
+        }
+    }
+    double flyingSandwichMonsterCost() {
+        return em.list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.flyingSandwichMonsterCount);
+    }
+
+
 
 }

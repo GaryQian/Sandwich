@@ -24,6 +24,29 @@ public class Util {
     public static float breadCloningRate = 100000f;
     public static float sandwocracyRate = 1000000f;
     public static float sandriaLawRate = 10000000f;
+    public static double sandwichPlanetRate = 100000000f;
+    public static double humanExterminationRate = 1000000000f;
+    public static double enslaveAliensRate = 10000000000f;
+    public static double deathSandwichRate = 100000000000f;
+    public static double sandwichGalaxyRate = 1000000000000f;
+    public static double flyingSandwichMonsterRate = 10000000000000f;
+
+    public static float sandwichCartBase = 50f;
+    public static float deliBase = 6000f;
+    public static float autochefBase = 400000f;
+    public static float mcdandwichBase = 20000000f;
+    public static float sandwichCityBase = 1000000000f;
+    public static double breadCloningBase = 200000000000f;
+    public static double sandwocracyBase = 10000000000000f;
+    public static double sandriaLawBase = 1000000000000000f;
+    public static double sandwichPlanetBase = 100000000000000000f;
+    public static double humanExterminationBase = 1E+19;
+    public static double enslaveAliensBase = 1E+21;
+    public static double deathSandwichBase = 1E+23;
+    public static double sandwichGalaxyBase = 1E+25;
+    public static double flyingSandwichMonsterBase = 1E+27;
+
+
 
 
     public static float adRewardCurrentPercentage = 0.10f;

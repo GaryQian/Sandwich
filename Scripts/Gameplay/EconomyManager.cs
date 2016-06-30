@@ -50,6 +50,13 @@ public class EconomyManager : MonoBehaviour {
     public int breadCloningCount = 0;
     public int sandwocracyCount = 0;
     public int sandriaLawCount = 0;
+    public int sandwichPlanetCount = 0;
+    public int humanExterminationCount = 0;
+    public int enslaveAliensCount = 0;
+    public int deathSandwichCount = 0;
+    public int sandwichGalaxyCount = 0;
+    public int flyingSandwichMonsterCount = 0;
+
 
     public GameObject list; //the list of upgrades
 
@@ -138,14 +145,21 @@ public class EconomyManager : MonoBehaviour {
     public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
             list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = "Production Rate: " + Util.encodeNumber(rate) + " &/s";
-            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate);
-            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate);
-            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate);
-            list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate);
-            list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate);
-            list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().setupProducerUpgrade(breadCloningCount, Util.breadCloningRate);
-            list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().setupProducerUpgrade(sandwocracyCount, Util.sandwocracyRate);
-            list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate);
+            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate, Util.sandwichCartBase);
+            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate, Util.deliBase);
+            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate, Util.autochefBase);
+            list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate, Util.mcdandwichBase);
+            list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate, Util.sandwichCityBase);
+            list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().setupProducerUpgrade(breadCloningCount, Util.breadCloningRate, Util.breadCloningBase);
+            list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().setupProducerUpgrade(sandwocracyCount, Util.sandwocracyRate, Util.sandwocracyBase);
+            list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate, Util.sandriaLawBase);
+            list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().setupProducerUpgrade(sandwichPlanetCount, Util.sandwichPlanetRate, Util.sandwichPlanetBase);
+            list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().setupProducerUpgrade(humanExterminationCount, Util.humanExterminationRate, Util.humanExterminationBase);
+            list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().setupProducerUpgrade(enslaveAliensCount, Util.enslaveAliensRate, Util.enslaveAliensBase);
+            list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().setupProducerUpgrade(deathSandwichCount, Util.deathSandwichRate, Util.deathSandwichBase);
+            list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().setupProducerUpgrade(sandwichGalaxyCount, Util.sandwichGalaxyRate, Util.sandwichGalaxyBase);
+            list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().setupProducerUpgrade(flyingSandwichMonsterCount, Util.flyingSandwichMonsterRate, Util.flyingSandwichMonsterBase);
+
 
         }
     }
@@ -176,6 +190,12 @@ public class EconomyManager : MonoBehaviour {
         num += breadCloningCount * Util.breadCloningRate;
         num += sandwocracyCount * Util.sandwocracyRate;
         num += sandriaLawCount * Util.sandriaLawRate;
+        num += sandwichPlanetCount * Util.sandwichPlanetRate;
+        num += humanExterminationCount * Util.humanExterminationRate;
+        num += enslaveAliensCount * Util.enslaveAliensRate;
+        num += deathSandwichCount * Util.deathSandwichRate;
+        num += sandwichGalaxyCount * Util.sandwichGalaxyRate;
+        num += flyingSandwichMonsterCount * Util.flyingSandwichMonsterRate;
         return num;
     }
 
@@ -252,6 +272,12 @@ public class EconomyManager : MonoBehaviour {
             breadCloningCount = data.breadCloningCount;
             sandwocracyCount = data.sandwocracyCount;
             sandriaLawCount = data.sandriaLawCount;
+            sandwichPlanetCount = data.sandwichPlanetCount;
+            humanExterminationCount = data.humanExterminationCount;
+            enslaveAliensCount = data.enslaveAliensCount;
+            deathSandwichCount = data.deathSandwichCount;
+            sandwichGalaxyCount = data.sandwichGalaxyCount;
+            flyingSandwichMonsterCount = data.flyingSandwichMonsterCount;
 
 
             wm.adWatchTime = data.adWatchTime;
@@ -289,6 +315,12 @@ public class EconomyManager : MonoBehaviour {
         data.breadCloningCount = breadCloningCount;
         data.sandwocracyCount = sandwocracyCount;
         data.sandriaLawCount = sandriaLawCount;
+        data.sandwichPlanetCount = sandwichPlanetCount;
+        data.humanExterminationCount = humanExterminationCount;
+        data.enslaveAliensCount = enslaveAliensCount;
+        data.deathSandwichCount = deathSandwichCount;
+        data.sandwichGalaxyCount = sandwichGalaxyCount;
+        data.flyingSandwichMonsterCount = flyingSandwichMonsterCount;
 
         data.adWatchTime = wm.adWatchTime;
         data.muted = wm.muted;
@@ -323,6 +355,12 @@ public class SaveData {
     public int breadCloningCount;
     public int sandwocracyCount;
     public int sandriaLawCount;
+    public int sandwichPlanetCount;
+    public int humanExterminationCount;
+    public int enslaveAliensCount;
+    public int deathSandwichCount;
+    public int sandwichGalaxyCount;
+    public int flyingSandwichMonsterCount;
 
 
     public double adWatchTime;
