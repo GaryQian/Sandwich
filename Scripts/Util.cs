@@ -69,7 +69,10 @@ public class Util {
             case 78: suffix = "qtt"; money = money / System.Math.Pow(10f, numSize - 3); break;
             case 81: suffix = "qnt"; money = money / System.Math.Pow(10f, numSize - 3); break;
         }
-        if (money < 100f) {
+        if (money < 10f && numSize >= 6) {
+            return string.Format("{0:N3}", money) + suffix;
+        }
+        else if (money < 100f) {
             return string.Format("{0:N2}", money) + suffix;
         }
         else {
