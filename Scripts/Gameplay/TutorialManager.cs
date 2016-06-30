@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour {
 	}
 
     private bool needFinger() {
-        if (wm.em.totalMoney < 200f || wm.em.sps < 0.6f || (wm.em.gameTime < 200f && wm.em.gameTime / wm.em.totalSwipes < 5f)) {
+        if (wm.em.totalMoney < 75f || wm.em.sps < 0.4f || (wm.em.gameTime < 200f && wm.em.gameTime / wm.em.totalSwipes > 3f)) {
             return true;
         }
         return false;
@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour {
     public void showFinger() {
         Instantiate(fingerPrefab);
         if (needFinger()) {
-            Invoke("showFinger", 7f);
+            Invoke("showFinger", 10f);
         }
     }
 }

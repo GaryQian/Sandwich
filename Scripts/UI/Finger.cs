@@ -11,7 +11,7 @@ public class Finger : MonoBehaviour {
 	void Start () {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         timer = 0f;
-        transform.position = wm.sauce.transform.position - new Vector3(1f, 0, 0);
+        transform.position = wm.sauce.transform.position - new Vector3(1f, 0, 1f);
         offset = (wm.activeBread.transform.position - wm.sauce.transform.position + new Vector3(4f, 0, 0)) / life;
 
 	}
