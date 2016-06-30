@@ -46,6 +46,7 @@ public class Upgrade : MonoBehaviour {
 	}
 
     public void setupProducerUpgrade(double num, double rate, double baseCost) {
+        this.baseCost = baseCost;
         updateCost(baseCost * Mathf.Pow(Util.pScale, (float)num));
         updateCounter(num);
         updateStats("+" + Util.encodeNumber(rate) + " &/s");

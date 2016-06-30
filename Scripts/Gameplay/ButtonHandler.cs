@@ -35,7 +35,9 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void cheatx2() {
+        double num = em.money;
         em.money *= 2f;
+        em.totalMoney += num;
     }
 
     public void toggleMute() {

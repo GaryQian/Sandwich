@@ -8,7 +8,7 @@ public class Util {
 
     public static double money;
     public static double sauceBaseCost = 500f;
-    public static double sauceScale = 10f;
+    public static double sauceScale = 9f;
     public static int numberOfSauces = 13;
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
@@ -39,7 +39,7 @@ public class Util {
     public static double breadCloningBase = 200000000000f;
     public static double sandwocracyBase = 10000000000000f;
     public static double sandriaLawBase = 1000000000000000f;
-    public static double sandwichPlanetBase = 100000000000000000f;
+    public static double sandwichPlanetBase = 1E+17f;
     public static double humanExterminationBase = 1E+19;
     public static double enslaveAliensBase = 1E+21;
     public static double deathSandwichBase = 1E+23;
