@@ -9,10 +9,10 @@ public class Finger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
+        //wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         timer = 0f;
-        transform.position = wm.sauce.transform.position - new Vector3(1f, 0, 1f);
-        offset = (wm.activeBread.transform.position - wm.sauce.transform.position + new Vector3(4f, 0, 0)) / life;
+        transform.position = Util.wm.sauce.transform.position - new Vector3(1f, 0, 1f);
+        offset = (Util.wm.activeBread.transform.position - Util.wm.sauce.transform.position + new Vector3(4f, 0, 0)) / life;
 
 	}
 	

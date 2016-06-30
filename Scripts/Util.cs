@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Util {
     public static WorldManager wm;
+    public static EconomyManager em;
 
     public static double money;
     public static double sauceBaseCost = 500f;
@@ -77,5 +79,19 @@ public class Util {
 
     public static string encodeNumberInteger(int num) {
         return string.Format("{0:0}", num);
+    }
+
+    public static string encodeTime(double time) {
+        TimeSpan t = TimeSpan.FromSeconds(time);
+
+        string text = "";
+        if (t.Days > 0) {
+            text += string.Format("{0:0}Days ", t.Days);
+        }
+        if (t.Hours > 0) {
+            text += string.Format("{0:D2}Hrs ", t.Hours);
+        }
+        text += string.Format("{0:D2}M {1:D2}s ", t.Minutes, t.Seconds);
+        return text;
     }
 }

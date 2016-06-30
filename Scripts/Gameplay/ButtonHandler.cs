@@ -137,6 +137,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sandwichCartCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -155,6 +156,7 @@ public class ButtonHandler : MonoBehaviour {
             em.deliCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -173,6 +175,7 @@ public class ButtonHandler : MonoBehaviour {
             em.autochefCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -192,6 +195,7 @@ public class ButtonHandler : MonoBehaviour {
             em.mcdandwichCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -210,6 +214,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sandwichCityCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -228,6 +233,7 @@ public class ButtonHandler : MonoBehaviour {
             em.breadCloningCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -246,6 +252,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sandwocracyCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();
@@ -264,6 +271,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sandriaLawCount++;
             em.recalculate();
             em.updateProducerMenuCounters();
+            em.buildings++;
         }
         else {
             notEnough();

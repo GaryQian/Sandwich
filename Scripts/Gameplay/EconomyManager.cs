@@ -41,6 +41,7 @@ public class EconomyManager : MonoBehaviour {
     private WorldManager wm;
     public GameObject NotificationTextPrefab;
 
+    public int buildings = 0;
     public int sandwichCartCount = 0;
     public int deliCount = 0;
     public int autochefCount = 0;
@@ -56,6 +57,7 @@ public class EconomyManager : MonoBehaviour {
     public int totalSwipes = 0;
 
     void Awake() {
+        Util.em = this;
         wm = GetComponent<WorldManager>();
         moneyText = GameObject.Find("MoneyText").GetComponent<MoneyText>();
         rateText = GameObject.Find("RateText").GetComponent<RateText>();
