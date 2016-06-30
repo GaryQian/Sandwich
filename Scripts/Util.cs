@@ -129,4 +129,12 @@ public class Util {
         text += string.Format("{0:D2}M {1:D2}s ", t.Minutes, t.Seconds);
         return text;
     }
+
+
+
+
+    //Canvas scalers
+    public static float convertToCanvasWidth(float ratio) {
+        return 0;
+    }
 }

@@ -49,6 +49,8 @@ public class WorldManager : MonoBehaviour {
             }
         }
         InvokeRepeating("checkAdTimer", 10f, 10f);
+
+        GameObject.Find("MuteButton").GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
     }
 
     void setupUtil() {
