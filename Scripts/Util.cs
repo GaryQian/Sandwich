@@ -36,9 +36,9 @@ public class Util {
     public static float autochefBase = 400000f;
     public static float mcdandwichBase = 20000000f;
     public static float sandwichCityBase = 1000000000f;
-    public static double breadCloningBase = 200000000000f;
-    public static double sandwocracyBase = 10000000000000f;
-    public static double sandriaLawBase = 1000000000000000f;
+    public static double breadCloningBase = 2E+11f;
+    public static double sandwocracyBase = 1E+13f;
+    public static double sandriaLawBase = 1E+15f;
     public static double sandwichPlanetBase = 1E+17f;
     public static double humanExterminationBase = 1E+19;
     public static double enslaveAliensBase = 1E+21;
@@ -57,7 +57,8 @@ public class Util {
 
     public static bool muted;
 
-    public static string encodeNumber(double money) {
+    public static string encodeNumber(double m) {
+        double money = m;
         int numSize = 3;
         while (money / System.Math.Pow(10f, numSize) >= 1f) {
             numSize += 3;
@@ -92,6 +93,11 @@ public class Util {
             case 78: suffix = "qtt"; money = money / System.Math.Pow(10f, numSize - 3); break;
             case 81: suffix = "qnt"; money = money / System.Math.Pow(10f, numSize - 3); break;
         }
+        //special case
+        if (m > 1000f && m < 10000f) {
+            return string.Format("{0:N0}", m);
+        }
+        //normal cases
         if (money < 10f && numSize >= 6) {
             return string.Format("{0:N3}", money) + suffix;
         }

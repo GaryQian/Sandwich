@@ -45,10 +45,10 @@ public class Sauce : MonoBehaviour {
         wm.em.recalculate();
         wm.gtm.knife.GetComponent<Knife>().deleteTrails();
         wm.gtm.knife.GetComponent<Knife>().newTrail();
-        updateStatBar();
+        updateMenuBar();
     }
 
-    public void updateStatBar() {
+    public void updateMenuBar() {
         if (wm.menuState == MenuType.sandwich) {
             Upgrade up = wm.em.list.transform.FindChild("SauceUpgrade").GetComponent<Upgrade>();
             up.updateCost(wm.buttonHandler.sauceCost());
