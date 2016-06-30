@@ -55,6 +55,9 @@ public class Util {
     public static float adRewardTotalPercentage = 0.03f;
     public static double adCooldown = 1200f;
 
+
+    public static float screenToCanvasRatio;
+
     public static bool muted;
 
     public static string encodeNumber(double m) {

@@ -35,6 +35,7 @@ public class WorldManager : MonoBehaviour {
         sm = GetComponent<StoryManager>();
 
         Util.wm = this;
+        setupUtil();
     }
 
 	void Start () {
@@ -48,6 +49,10 @@ public class WorldManager : MonoBehaviour {
             }
         }
         InvokeRepeating("checkAdTimer", 10f, 10f);
+    }
+
+    void setupUtil() {
+        Util.screenToCanvasRatio = Screen.height / 1920f;
     }
 	
 	// Update is called once per frame
