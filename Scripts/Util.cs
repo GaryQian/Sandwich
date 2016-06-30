@@ -57,6 +57,14 @@ public class Util {
 
 
     public static float screenToCanvasRatio;
+    public static float screenCenterXCoord;
+    public static Vector3 worldBottomLeftPos;
+    public static Vector3 worldTopRightPos;
+    public static float worldWidth;
+    public static float worldHeight;
+    public static Vector3 worldNormBottomLeftPos;
+    public static Vector3 worldNormTopRightPos;
+    public static float worldNormalizedWidth;
 
     public static bool muted;
 

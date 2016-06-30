@@ -23,7 +23,8 @@ public class Bread : MonoBehaviour {
     private WorldManager wm;
     // Use this for initialization
     void Awake () {
-        finalPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.73f, Screen.height * 0.15f)) + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.1f, 0.1f), 10f);
+        finalPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.50f, Screen.height * 0.15f)) + new Vector3(Util.worldNormalizedWidth * +0.23f + Random.Range(-0.2f, 0.2f), Random.Range(-0.1f, 0.1f), 10f);
+        //finalPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.73f, Screen.height * 0.15f)) + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.1f, 0.1f), 10f);
         transform.position = finalPos + new Vector3(0, -2.7f);
         
         finished = false;

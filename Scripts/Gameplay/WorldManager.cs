@@ -55,6 +55,15 @@ public class WorldManager : MonoBehaviour {
 
     void setupUtil() {
         Util.screenToCanvasRatio = Screen.height / 1920f;
+        Util.screenCenterXCoord = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2f, 0f)).x;
+        Util.worldBottomLeftPos = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        Util.worldTopRightPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Util.worldHeight = Util.worldTopRightPos.y - Util.worldBottomLeftPos.y;
+        Util.worldWidth = Util.worldTopRightPos.x - Util.worldBottomLeftPos.x;
+
+        Util.worldNormBottomLeftPos = Camera.main.ScreenToWorldPoint(new Vector2((Screen.width - Screen.height / 1.77777f) / 2f, 0));
+        Util.worldNormTopRightPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width - ((Screen.width - Screen.height / 1.77777f) / 2f), Screen.height));
+        Util.worldNormalizedWidth = Util.worldNormTopRightPos.x - Util.worldNormBottomLeftPos.x;
     }
 	
 	// Update is called once per frame
