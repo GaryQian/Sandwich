@@ -57,6 +57,7 @@ public class TabManager : MonoBehaviour {
     void setupSandwichMenu() {
         wm.sauce.GetComponent<Sauce>().update();
         wm.buttonHandler.updateSharpenKnives();
+        wm.em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "Sandwich Value: " + Util.encodeNumber(Util.em.getSandwichValue()) + " each";
     }
 
     public void selectProducer() {

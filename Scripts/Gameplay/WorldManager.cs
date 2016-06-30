@@ -22,6 +22,7 @@ public class WorldManager : MonoBehaviour {
     
 
     public bool muted = false;
+    public int playthroughCount = 0;
 
     public Animator shopGlowAnimator;
 

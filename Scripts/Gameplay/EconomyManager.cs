@@ -180,6 +180,10 @@ public class EconomyManager : MonoBehaviour {
         return Mathf.Pow(2f, i - 1);
     }
 
+    public double getSandwichValue() {
+        return getSandwichValue(sauceID);
+    }
+
     public double getRate() {
         double num = 0;
         num += sandwichCartCount * Util.sandwichCartRate;
