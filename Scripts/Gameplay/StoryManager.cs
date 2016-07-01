@@ -130,7 +130,7 @@ public class StoryManager : MonoBehaviour {
                 break;
             case 1:
                 switch (i) {
-                    case 0: return new StoryLine("...", true); break;
+                    case 0: return new StoryLine("Young maker! Thank you for empowering me once again by making so many sandwiches!", true); break;
                     case 1: return new StoryLine("...", true); break;
                     case 2: return new StoryLine("...", true); break;
                     case 3: return new StoryLine("...", true); break;

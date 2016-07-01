@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Sauce : MonoBehaviour {
+    public static int numberOfSauces = 14;
+
     public Sprite peanutButter;
     public Sprite strawberryJam;
     public Sprite tearsOfDespair;
@@ -15,6 +17,8 @@ public class Sauce : MonoBehaviour {
     public Sprite nails;
     public Sprite camo;
     public Sprite ratPoison;
+    public Sprite bacon;
+    public Sprite gold;
 
     public GameObject sauceTypeText;
 
@@ -64,7 +68,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public string getSauceName(int i) {
-        switch (((i - 1) % Util.numberOfSauces) + 1) {
+        switch (((i - 1) % Sauce.numberOfSauces) + 1) {
             case 1: return "Peanut Butter";
             case 2: return "Strawberry Jam";
             case 3: return "Tears of Despair";
@@ -78,6 +82,8 @@ public class Sauce : MonoBehaviour {
             case 11: return "Nails";
             case 12: return "Camo";
             case 13: return "Rat Poison";
+            case 14: return "Bacon";
+            case 15: return "Gold";
         }
         return "Mystery Sauce";
     }
@@ -89,7 +95,7 @@ public class Sauce : MonoBehaviour {
     }
 
     public Sprite getImage(int i) {
-        switch (((i - 1) % Util.numberOfSauces) + 1) {
+        switch (((i - 1) % Sauce.numberOfSauces) + 1) {
             case 1: return peanutButter;
             case 2: return strawberryJam;
             case 3: return tearsOfDespair;
@@ -103,6 +109,8 @@ public class Sauce : MonoBehaviour {
             case 11: return nails;
             case 12: return camo;
             case 13: return ratPoison;
+            case 14: return bacon;
+            case 15: return gold;
         }
         return peanutButter;
     }
