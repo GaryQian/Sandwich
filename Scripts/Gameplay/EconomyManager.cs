@@ -289,6 +289,10 @@ public class EconomyManager : MonoBehaviour {
             Util.muted = wm.muted;
 
             wm.sm.storyProgress = data.storyProgress;
+            wm.sm.timeMachineDone = data.timeMachineDone;
+            wm.sm.hasFlux = data.hasFlux;
+            wm.sm.hasBreadclear = data.hasBreadclear;
+            wm.sm.hasSandtanium = data.hasSandtanium;
         }
     }
 
@@ -330,6 +334,10 @@ public class EconomyManager : MonoBehaviour {
         data.muted = wm.muted;
 
         data.storyProgress = wm.sm.storyProgress;
+        data.timeMachineDone = wm.sm.timeMachineDone;
+        data.hasFlux = wm.sm.hasFlux;
+        data.hasBreadclear = wm.sm.hasBreadclear;
+        data.hasSandtanium = wm.sm.hasSandtanium;
 
         bf.Serialize(file, data);
         file.Close();
@@ -371,4 +379,8 @@ public class SaveData {
     public bool muted;
 
     public int storyProgress;
+    public bool timeMachineDone;
+    public bool hasFlux;
+    public bool hasBreadclear;
+    public bool hasSandtanium;
 }

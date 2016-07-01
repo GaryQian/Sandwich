@@ -78,6 +78,7 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         permanentButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
+        wm.sm.updatePermanentTab();
     }
 
     public void selectShop() {
