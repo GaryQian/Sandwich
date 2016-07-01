@@ -41,6 +41,8 @@ public class WorldManager : MonoBehaviour {
     }
 
 	void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
         activeBread = Instantiate(breadPrefab);
         if (Advertisement.isSupported) { // If the platform is supported,
             if (Application.platform == RuntimePlatform.Android) {
