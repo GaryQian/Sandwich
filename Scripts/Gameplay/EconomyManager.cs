@@ -110,7 +110,7 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public bool spend(double num) {
-        if (num < money) {
+        if (num <= money) {
             money -= num;
             displayMoney();
             return true;

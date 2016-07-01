@@ -68,6 +68,7 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         producerButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
+        wm.tutorialManager.checkYellowArrow();
     }
 
     public void selectPermanent() {

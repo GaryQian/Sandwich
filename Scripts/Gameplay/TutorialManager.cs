@@ -40,7 +40,7 @@ public class TutorialManager : MonoBehaviour {
         }
     }
 
-    void checkYellowArrow() {
+    public void checkYellowArrow() {
         if (yellowArrow != null && Util.money >= 50f && Util.em.sandwichCartCount == 0) {
             yellowArrow.GetComponent<Animator>().SetTrigger("Pulse");
         }

@@ -117,7 +117,7 @@ public class StoryManager : MonoBehaviour {
 
     public StoryLine getLine(int i) {
         switch (oldwichLevel) {
-            case 0: switch (i % 7) {
+            case 0: switch (i % 8) {
                         case 0: return new StoryLine("...", true); break;
                         case 1: return new StoryLine("Urrrrrgh...", true); break;
                         case 2: return new StoryLine("Hurrmm...", true); break;
