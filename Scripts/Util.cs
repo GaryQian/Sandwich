@@ -20,7 +20,7 @@ public class Util {
     public static float deliRate = 7f;
     public static float autochefRate = 70f;
     public static float mcdandwichRate = 800f;
-    public static float sandwichCityRate = 9000f;
+    public static float sandwichCityRate = 10000f;
     public static float breadCloningRate = 100000f;
     public static float sandwocracyRate = 1000000f;
     public static float sandriaLawRate = 10000000f;
@@ -36,7 +36,7 @@ public class Util {
     public static float autochefBase = 400000f;
     public static float mcdandwichBase = 20000000f;
     public static float sandwichCityBase = 1000000000f;
-    public static double breadCloningBase = 2E+11f;
+    public static double breadCloningBase = 1E+11f;
     public static double sandwocracyBase = 1E+13f;
     public static double sandriaLawBase = 1E+15f;
     public static double sandwichPlanetBase = 1E+17f;

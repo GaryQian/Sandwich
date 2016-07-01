@@ -18,6 +18,7 @@ public class WorldManager : MonoBehaviour {
     public EconomyManager em;
     public ButtonHandler buttonHandler;
     public StoryManager sm;
+    public TutorialManager tutorialManager;
 
     
 
@@ -33,6 +34,7 @@ public class WorldManager : MonoBehaviour {
         em = GetComponent<EconomyManager>();
         buttonHandler = GetComponent<ButtonHandler>();
         sm = GetComponent<StoryManager>();
+        tutorialManager = GetComponent<TutorialManager>();
 
         Util.wm = this;
         setupUtil();

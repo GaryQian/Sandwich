@@ -59,6 +59,7 @@ public class StoryManager : MonoBehaviour {
 
     void level0() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich0;
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Moldy Sandwich";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
         lockBG.gameObject.SetActive(true);
         lockBG.FindChild("LockIcon").gameObject.SetActive(true);
@@ -68,6 +69,7 @@ public class StoryManager : MonoBehaviour {
 
     void level1() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich1;
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Mysterious Sandwich";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
         lockBG.gameObject.SetActive(true);
         lockBG.FindChild("LockIcon").gameObject.SetActive(true);
@@ -77,11 +79,13 @@ public class StoryManager : MonoBehaviour {
 
     void level2() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich2;
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Wise Old Sandwich";
         oldwichBG.transform.FindChild("LockBG").gameObject.SetActive(false);
     }
 
     void level3() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich2;
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Time-Master Sandwich";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
         lockBG.gameObject.SetActive(true);
         lockBG.FindChild("LockIcon").gameObject.SetActive(false);
@@ -117,10 +121,11 @@ public class StoryManager : MonoBehaviour {
                         case 0: return new StoryLine("...", true); break;
                         case 1: return new StoryLine("Urrrrrgh...", true); break;
                         case 2: return new StoryLine("Hurrmm...", true); break;
-                        case 3: return new StoryLine("Gahh...", true); break;
+                        case 3: return new StoryLine("Ouch...", true); break;
                         case 4: return new StoryLine("Ughh...", true); break;
                         case 5: return new StoryLine("Mmmmugh...", true); break;
                         case 6: return new StoryLine("Duuuughh...", true); break;
+                        case 7: return new StoryLine("So... Weak...", true); break;
                 }
                 break;
             case 1:

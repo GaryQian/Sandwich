@@ -140,6 +140,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            wm.tutorialManager.removeYellowArrow();
         }
         else {
             notEnough();
