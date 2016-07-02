@@ -52,12 +52,12 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     /// <summary>
-    /// WATCH AD BUTTON
+    /// WATCH AD Money BUTTON
     /// </summary>
-    public void watchAd() {
-        if (wm.adWatchTime <= 0) {
+    public void watchAdMoney() {
+        if (wm.adWatchTimeMoney <= 0) {
             ShowOptions options = new ShowOptions();
-            options.resultCallback = HandleShowResult;
+            options.resultCallback = HandleShowResultMoney;
 
             Advertisement.Show(wm.zoneID, options);
         }
@@ -66,12 +66,12 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
 
-    private void HandleShowResult(ShowResult result) {
+    private void HandleShowResultMoney(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
                 Debug.Log("Video completed. Rewarded $" + adValue());
                 em.money += adValue();
-                wm.adWatchTime = Util.adCooldown;
+                wm.adWatchTimeMoney = Util.adMoneyCooldown;
                 break;
             case ShowResult.Skipped:
                 Debug.LogWarning("Video was skipped.");
@@ -84,6 +84,37 @@ public class ButtonHandler : MonoBehaviour {
 
     public double adValue() {
         return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes * em.swipeRate + em.getSandwichValue(em.sauceID) * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
+    }
+
+    /// <summary>
+    /// WATCH AD Elixir BUTTON
+    /// </summary>
+    public void watchAdElixir() {
+        if (wm.adWatchTimeElixir <= 0) {
+            ShowOptions options = new ShowOptions();
+            options.resultCallback = HandleShowResultElixir;
+
+            Advertisement.Show(wm.zoneID, options);
+        }
+        else {
+            em.list.transform.FindChild("AdForElixir").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
+        }
+    }
+
+    private void HandleShowResultElixir(ShowResult result) {
+        switch (result) {
+            case ShowResult.Finished:
+                Debug.Log("Video completed. Rewarded $" + adValue());
+                em.elixir += 1;
+                wm.adWatchTimeElixir = Util.adElixirCooldown;
+                break;
+            case ShowResult.Skipped:
+                Debug.LogWarning("Video was skipped.");
+                break;
+            case ShowResult.Failed:
+                Debug.LogError("Video failed to show.");
+                break;
+        }
     }
 
     /// <summary>

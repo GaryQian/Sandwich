@@ -8,6 +8,7 @@ using UnityEngine.UI;
 [Serializable]
 public class EconomyManager : MonoBehaviour {
     public double money = 0;
+    public int elixir = 0;
     public double totalMoney = 0; //total money made so far this game.
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
@@ -255,6 +256,7 @@ public class EconomyManager : MonoBehaviour {
             file.Close();
 
             money = data.money;
+            elixir = data.elixir;
             totalMoney = data.totalMoney;
             rate = data.rate;
             swipeRate = data.swipeRate;
@@ -284,7 +286,8 @@ public class EconomyManager : MonoBehaviour {
             flyingSandwichMonsterCount = data.flyingSandwichMonsterCount;
 
 
-            wm.adWatchTime = data.adWatchTime;
+            wm.adWatchTimeMoney = data.adWatchTimeMoney;
+            wm.adWatchTimeElixir = data.adWatchTimeElixir;
             wm.muted = data.muted;
             Util.muted = wm.muted;
 
@@ -303,6 +306,7 @@ public class EconomyManager : MonoBehaviour {
         SaveData data = new SaveData();
 
         data.money = money;
+        data.elixir = elixir;
         data.totalMoney = totalMoney;
         data.rate = rate;
         data.swipeRate = swipeRate;
@@ -330,7 +334,8 @@ public class EconomyManager : MonoBehaviour {
         data.sandwichGalaxyCount = sandwichGalaxyCount;
         data.flyingSandwichMonsterCount = flyingSandwichMonsterCount;
 
-        data.adWatchTime = wm.adWatchTime;
+        data.adWatchTimeMoney = wm.adWatchTimeMoney;
+        data.adWatchTimeElixir = wm.adWatchTimeElixir;
         data.muted = wm.muted;
 
         data.storyProgress = wm.sm.storyProgress;
@@ -347,6 +352,7 @@ public class EconomyManager : MonoBehaviour {
 [Serializable]
 public class SaveData {
     public double money;
+    public int elixir;
     public double totalMoney;
     public double rate;
     public double swipeRate;
@@ -375,7 +381,8 @@ public class SaveData {
     public int flyingSandwichMonsterCount;
 
 
-    public double adWatchTime;
+    public double adWatchTimeMoney;
+    public double adWatchTimeElixir;
     public bool muted;
 
     public int storyProgress;

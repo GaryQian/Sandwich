@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Advertisements;
+using System;
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -9,7 +10,8 @@ public class WorldManager : MonoBehaviour {
     public string gameIDAndroid;
     public string gameIDiOS;
     public string zoneID;
-    public double adWatchTime;
+    public double adWatchTimeMoney;
+    public double adWatchTimeElixir;
     //
     public GameObject breadPrefab;
     public GameObject activeBread;
@@ -20,7 +22,8 @@ public class WorldManager : MonoBehaviour {
     public StoryManager sm;
     public TutorialManager tutorialManager;
 
-    
+    public DateTime lastTime;
+    public float timeScaleDivisor;
 
     public bool muted = false;
     public int playthroughCount = 0;
@@ -35,6 +38,10 @@ public class WorldManager : MonoBehaviour {
         buttonHandler = GetComponent<ButtonHandler>();
         sm = GetComponent<StoryManager>();
         tutorialManager = GetComponent<TutorialManager>();
+
+        double timeElapsed = DateTime.Now.Subtract(lastTime).TotalSeconds;
+        adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
+        adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
 
         Util.wm = this;
         setupUtil();
@@ -72,8 +79,11 @@ public class WorldManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (adWatchTime > 0) {
-            adWatchTime -= Time.deltaTime;
+        if (adWatchTimeMoney > 0) {
+            adWatchTimeMoney -= Time.deltaTime;
+        }
+        if (adWatchTimeElixir > 0) {
+            adWatchTimeElixir -= Time.deltaTime;
         }
 	}
 
@@ -86,7 +96,7 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void checkAdTimer() {
-        if (adWatchTime <= 0 && em.gameTime > 400f) {
+        if ((adWatchTimeMoney <= 0 || adWatchTimeElixir <= 0) && em.gameTime > 400f) {
             shopGlowAnimator.SetTrigger("Pulse");
         }
         else {

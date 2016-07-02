@@ -6,6 +6,7 @@ using UnityEngine.Advertisements;
 public class WatchButton : MonoBehaviour {
     //private Upgrade up;
     private Button button;
+    public TimerType type;
     ColorBlock enabledColor;
     ColorBlock disabledColor;
     WorldManager wm;
@@ -26,13 +27,26 @@ public class WatchButton : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (wm.adWatchTime > 0 || !Advertisement.IsReady()) {
-            //disable
-            button.colors = disabledColor;
+        if (type == TimerType.money) {
+            if (wm.adWatchTimeMoney > 0 || !Advertisement.IsReady()) {
+                //disable
+                button.colors = disabledColor;
+            }
+            else {
+                //enable
+                button.colors = enabledColor;
+            }
         }
         else {
-            //enable
-            button.colors = enabledColor;
+
+            if (wm.adWatchTimeElixir > 0 || !Advertisement.IsReady()) {
+                //disable
+                button.colors = disabledColor;
+            }
+            else {
+                //enable
+                button.colors = enabledColor;
+            }
         }
     }
 }
