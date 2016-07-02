@@ -51,6 +51,10 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
 
+    //public void lockIconBounce() {
+
+    //}
+
     /// <summary>
     /// WATCH AD Money BUTTON
     /// </summary>
@@ -72,6 +76,7 @@ public class ButtonHandler : MonoBehaviour {
                 Debug.Log("Video completed. Rewarded $" + adValue());
                 em.money += adValue();
                 wm.adWatchTimeMoney = Util.adMoneyCooldown;
+                em.save();
                 break;
             case ShowResult.Skipped:
                 Debug.LogWarning("Video was skipped.");
@@ -107,6 +112,7 @@ public class ButtonHandler : MonoBehaviour {
                 Debug.Log("Video completed. Rewarded $" + adValue());
                 em.elixir += 1;
                 wm.adWatchTimeElixir = Util.adElixirCooldown;
+                em.save();
                 break;
             case ShowResult.Skipped:
                 Debug.LogWarning("Video was skipped.");

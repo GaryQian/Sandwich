@@ -69,7 +69,7 @@ public class StoryManager : MonoBehaviour {
 
     void level1() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich1;
-        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Mysterious Sandwich";
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Ressurected Old Sandwich";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
         lockBG.gameObject.SetActive(true);
         lockBG.FindChild("LockIcon").gameObject.SetActive(true);
@@ -79,13 +79,13 @@ public class StoryManager : MonoBehaviour {
 
     void level2() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich2;
-        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Wise Old Sandwich";
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Sandalf the Old";
         oldwichBG.transform.FindChild("LockBG").gameObject.SetActive(false);
     }
 
     void level3() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich2;
-        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Time-Master Sandwich";
+        oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Sandalf the Old";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
         lockBG.gameObject.SetActive(true);
         lockBG.FindChild("LockIcon").gameObject.SetActive(false);

@@ -299,7 +299,7 @@ public class EconomyManager : MonoBehaviour {
         }
     }
 
-    void save() {
+    public void save() {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamedata.dat");
 
