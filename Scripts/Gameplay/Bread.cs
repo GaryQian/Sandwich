@@ -20,6 +20,14 @@ public class Bread : MonoBehaviour {
     public Vector3 finalPos;
     SpriteRenderer sr;
 
+    public AudioSource audio;
+    public AudioClip s1;
+    public AudioClip s2;
+    public AudioClip s3;
+    public AudioClip s4;
+    public AudioClip s5;
+    public AudioClip s6;
+
     private WorldManager wm;
     // Use this for initialization
     void Awake () {
@@ -32,9 +40,10 @@ public class Bread : MonoBehaviour {
         spreading = false;
         failedSpread = false;
         introTimer = 0;
-        gtm = GameObject.Find("WorldManager").GetComponent<GameplayTouchManager>();
-        wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
+        gtm = Util.wm.gtm;
+        wm = Util.wm;
         sr = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Start() {
@@ -118,6 +127,18 @@ public class Bread : MonoBehaviour {
         wm.activeBread = Instantiate(BreadPrefab);
         wm.activeBread.name = "Bread";
         Invoke("deleteTrails", 0.08f);
+
+        //play swish
+        if (!Util.muted) {
+            switch ((int)Random.Range(0, 5.99f)) {
+                case 0: audio.PlayOneShot(s1, 0.8f); break;
+                case 1: audio.PlayOneShot(s2, 0.8f); break;
+                case 2: audio.PlayOneShot(s3, 0.8f); break;
+                case 3: audio.PlayOneShot(s4, 0.8f); break;
+                case 4: audio.PlayOneShot(s5, 0.8f); break;
+                case 5: audio.PlayOneShot(s6, 0.8f); break;
+            }
+        }
     }
 
     void deleteTrails() {

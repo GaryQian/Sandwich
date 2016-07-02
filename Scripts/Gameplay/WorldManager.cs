@@ -26,6 +26,7 @@ public class WorldManager : MonoBehaviour {
     public float timeScaleDivisor;
 
     public bool muted = false;
+    public AudioSource audio;
     public int playthroughCount = 0;
 
     public Animator shopGlowAnimator;
@@ -42,6 +43,8 @@ public class WorldManager : MonoBehaviour {
         double timeElapsed = DateTime.Now.Subtract(lastTime).TotalSeconds;
         adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
         adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
+
+        audio = GetComponent<AudioSource>();
 
         Util.wm = this;
         setupUtil();
@@ -62,6 +65,13 @@ public class WorldManager : MonoBehaviour {
         InvokeRepeating("checkAdTimer", 10f, 10f);
 
         GameObject.Find("MuteButton").GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
+
+        if (muted) {
+            audio.Stop();
+        }
+        else {
+            audio.Play();
+        }
     }
 
     void setupUtil() {

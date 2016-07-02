@@ -17,6 +17,8 @@ public class TrailManager : MonoBehaviour {
     public Material ratPoison;
     public Material bacon;
     public Material gold;
+    public Material sewage;
+    public Material lava;
 
 
     public TrailRenderer trail;
@@ -50,6 +52,8 @@ public class TrailManager : MonoBehaviour {
             case 13: return ratPoison;
             case 14: return bacon;
             case 15: return gold;
+            case 16: return sewage;
+            case 17: return lava;
         }
         return peanutButter;
     }

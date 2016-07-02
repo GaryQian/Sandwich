@@ -45,9 +45,12 @@ public class ButtonHandler : MonoBehaviour {
         Util.muted = wm.muted;
         if (wm.muted) {
             muteButton.GetComponent<Image>().sprite = muteOn;
+            wm.audio.Pause();
+
         }
         else {
             muteButton.GetComponent<Image>().sprite = muteOff;
+            wm.audio.Play();
         }
     }
 
