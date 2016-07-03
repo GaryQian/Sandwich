@@ -4,7 +4,7 @@ using System.Collections;
 public class SandWitch : MonoBehaviour {
     bool isLeft = false;
     float flyInTime = 0.9f;
-    float hoverTime = 7f;
+    float hoverTime = 15f;
     float flyIn;
     float flyOut;
     float flyHover;
@@ -40,6 +40,7 @@ public class SandWitch : MonoBehaviour {
         }
         else {
             //GetComponent<RectTransform>().localScale = new Vector3(-1f, 1f, 1f);
+            rect.localScale = new Vector3(1f, 1f, 1f);
             startPos = hoverPos + new Vector2(-startX, -startY);
             offset = new Vector2(startX / flyInTime, startY / flyInTime) * correctionScale;
         }
@@ -66,4 +67,7 @@ public class SandWitch : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+    public void sandWitchClick() {
+        Util.wm.buttonHandler.sandWitchClick();
+    }
 }

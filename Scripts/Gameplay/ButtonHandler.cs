@@ -16,6 +16,8 @@ public class ButtonHandler : MonoBehaviour {
 
     private Upgrade up;
 
+    public GameObject canvasNotificationTextPrefab;
+
     void Awake() {
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
@@ -59,6 +61,8 @@ public class ButtonHandler : MonoBehaviour {
         double num = Util.sandWitchCurrentPercentage * em.money + Util.sandWitchTotalPercentage * em.totalMoney;
         em.money += num;
         em.totalMoney += num;
+        GameObject obj = Instantiate(canvasNotificationTextPrefab);
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 60, 100);
         Destroy(wm.sandWitch);
     }
 

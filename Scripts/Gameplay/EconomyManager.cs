@@ -62,6 +62,7 @@ public class EconomyManager : MonoBehaviour {
     public int sandwichGalaxyCount = 0;
     public int flyingSandwichMonsterCount = 0;
 
+    public GameObject canvasNotificationTextPrefab;
 
     public GameObject list; //the list of upgrades
 
@@ -121,6 +122,8 @@ public class EconomyManager : MonoBehaviour {
         if (num <= money) {
             money -= num;
             displayMoney();
+            GameObject obj = Instantiate(canvasNotificationTextPrefab);
+            obj.GetComponent<CanvasNotificationText>().setup("-$" + Util.encodeNumber(num), new Vector2(0, 800f), new Color(1f, 0, 0), 60, -100);
             return true;
         }
         return false;
