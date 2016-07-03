@@ -12,6 +12,7 @@ public class ButtonHandler : MonoBehaviour {
     public GameObject muteButton;
     public Sprite muteOn;
     public Sprite muteOff;
+    public AudioClip kaching;
 
     private Upgrade up;
 
@@ -19,10 +20,6 @@ public class ButtonHandler : MonoBehaviour {
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
     }
-	// Use this for initialization
-	void Start () {
-	    
-	}
 
     void notEnough() {
         red.SetActive(true);
@@ -38,6 +35,10 @@ public class ButtonHandler : MonoBehaviour {
         double num = em.money;
         em.money *= 2f;
         em.totalMoney += num;
+    }
+
+    public void playKaching() {
+        Util.wm.audio.PlayOneShot(kaching, 1f);
     }
 
     public void toggleMute() {
@@ -135,6 +136,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sauceID++;
             wm.sauce.GetComponent<Sauce>().update();
             wm.em.recalculate();
+            playKaching();
             em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each";
         }
         else {
@@ -153,6 +155,7 @@ public class ButtonHandler : MonoBehaviour {
             em.spend(sharpenKnivesCost());
             em.knifeVamp += Util.knifeVampRate;
             updateSharpenKnives();
+            playKaching();
         }
         else {
             notEnough();
@@ -181,6 +184,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             wm.tutorialManager.removeYellowArrow();
+            playKaching();
         }
         else {
             notEnough();
@@ -200,6 +204,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -219,6 +224,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -239,6 +245,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -258,6 +265,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -277,6 +285,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -296,6 +305,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -315,6 +325,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -335,6 +346,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -354,6 +366,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -373,6 +386,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -392,6 +406,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -411,6 +426,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();
@@ -430,6 +446,7 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
+            playKaching();
         }
         else {
             notEnough();

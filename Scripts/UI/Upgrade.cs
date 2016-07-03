@@ -18,13 +18,15 @@ public class Upgrade : MonoBehaviour {
     public GameObject statsText;
     public GameObject buyButtonText;
 
+    public AudioClip kaching;
+
     string normalTitle;
 
     public double cost;
 
     void Awake() {
         //wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
-        icon = transform.FindChild("Icon").gameObject;
+        //icon = transform.FindChild("Icon").gameObject;
         title = transform.FindChild("Title").gameObject;
         costText = transform.FindChild("CostText").gameObject;
         switch (type) {
@@ -36,6 +38,7 @@ public class Upgrade : MonoBehaviour {
             case UpgradeType.sandwich:
                 statsText = transform.FindChild("StatsText").gameObject;
                 nameText = transform.FindChild("NameText").gameObject;
+                icon = transform.FindChild("Icon").gameObject;
                 break;
             case UpgradeType.sharpenKnifes:
                 counterText = transform.FindChild("CounterText").gameObject;
