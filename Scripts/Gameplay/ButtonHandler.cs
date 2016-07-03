@@ -135,7 +135,7 @@ public class ButtonHandler : MonoBehaviour {
             em.sauceID++;
             wm.sauce.GetComponent<Sauce>().update();
             wm.em.recalculate();
-            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "Sandwich Value: $" + Util.encodeNumber(em.sandwichValue) + " each";
+            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each";
         }
         else {
             notEnough();

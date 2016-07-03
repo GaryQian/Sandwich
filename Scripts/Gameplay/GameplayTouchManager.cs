@@ -60,7 +60,7 @@ public class GameplayTouchManager : MonoBehaviour {
             wm.activeBread.GetComponent<Bread>().stopSpreading();
             upLoc = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 4f);
             //Check if shorthand swipe validation is fulfilled
-            bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x) && Vector3.Distance(downLoc, upLoc) > 0.3f;
+            bool quickswipe = ((Vector3.Distance(downLoc, wm.sauce.transform.position) < wm.sauce.GetComponent<BoxCollider2D>().size.x / 2f || knife.GetComponent<Knife>().hasSauce) && Time.time - downTime < 0.3f && upLoc.x > wm.activeBread.transform.position.x) && Vector3.Distance(downLoc, upLoc) > 0.3f && upLoc.y < wm.activeBread.transform.position.y + 6f;
             
             //
             if (quickswipe) em.swipe();

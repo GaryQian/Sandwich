@@ -5,6 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
 
+public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCity, breadCloning, sandwocracy, sandriaLaw, sandwichPlanet, humanExtermination, enslaveAliens, deathSandwich, sandwichGalaxy, flyingSandwichMonster }
+
 [Serializable]
 public class EconomyManager : MonoBehaviour {
     public double money = 0;
@@ -145,7 +147,7 @@ public class EconomyManager : MonoBehaviour {
 
     public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
-            list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = "Production Rate: " + Util.encodeNumber(rate) + " &/s";
+            list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = Util.encodeNumber(rate) + " &/s";
             list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate, Util.sandwichCartBase);
             list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate, Util.deliBase);
             list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate, Util.autochefBase);
