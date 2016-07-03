@@ -24,6 +24,7 @@ public class MultiplierGlow : MonoBehaviour {
         switch (Util.em.multiplier) {
             case 2:  img.color = new Color(1f, 1f, 0, 1f); break;
             case 3: img.color = new Color(1f, 0.5f, 0, 1f); break;
+            default: img.color = new Color(1f, 1f, 0, 1f); break;
         }
         CancelInvoke("fade");
         Invoke("fade", 0.7f);

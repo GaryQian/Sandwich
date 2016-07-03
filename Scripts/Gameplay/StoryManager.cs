@@ -129,12 +129,17 @@ public class StoryManager : MonoBehaviour {
                 }
                 break;
             case 1:
-                switch (i) {
+                switch (i % 10) {
                     case 0: return new StoryLine("Young maker! Thank you for empowering me once again by making so many sandwiches!", true); break;
-                    case 1: return new StoryLine("...", true); break;
-                    case 2: return new StoryLine("...", true); break;
-                    case 3: return new StoryLine("...", true); break;
-                    case 4: return new StoryLine("...", true); break;
+                    case 1: return new StoryLine("I am sure you have lots of questions. In time, I will answer them.", true); break;
+                    case 2: return new StoryLine("These sandwiches are alive you know. They draw power from the great Flying Sandwich Monster.", true); break;
+                    case 3: return new StoryLine("The more sandwiches you make, the stronger I will get.", true); break;
+                    case 4: return new StoryLine("I can tell you are different. You must be the chosen maker who will save us all!", true); break;
+                    case 5: return new StoryLine("You, as a maker of sandwiches have the power to rescue sandwichkind from the tyranny of humanity.", true); break;
+                    case 6: return new StoryLine("Free us from humans who masacre sandwiches for enjoyment!", true); break;
+                    case 7: return new StoryLine("I am still too weak. Make more sandwiches.", true); break;
+                    case 8: return new StoryLine("Come back to me when you have made one quadrillion sandwiches.", true); break;
+                    case 9: return new StoryLine("Sandwichkind depends on you!", true); break;
                 }
                 break;
             case 2:
