@@ -131,12 +131,12 @@ public class Bread : MonoBehaviour {
         //play swish
         if (!Util.muted) {
             switch ((int)Random.Range(0, 5.99f)) {
-                case 0: audio.PlayOneShot(s1, 0.8f); break;
-                case 1: audio.PlayOneShot(s2, 0.8f); break;
-                case 2: audio.PlayOneShot(s3, 0.8f); break;
-                case 3: audio.PlayOneShot(s4, 0.8f); break;
-                case 4: audio.PlayOneShot(s5, 0.8f); break;
-                case 5: audio.PlayOneShot(s6, 0.8f); break;
+                case 0: audio.PlayOneShot(s1, 0.3f); break;
+                case 1: audio.PlayOneShot(s2, 0.3f); break;
+                case 2: audio.PlayOneShot(s3, 0.3f); break;
+                case 3: audio.PlayOneShot(s4, 0.3f); break;
+                case 4: audio.PlayOneShot(s5, 0.3f); break;
+                case 5: audio.PlayOneShot(s6, 0.3f); break;
             }
         }
     }

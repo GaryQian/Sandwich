@@ -38,7 +38,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void playKaching() {
-        Util.wm.audio.PlayOneShot(kaching, 1f);
+        Util.wm.audio.PlayOneShot(kaching, 2f);
     }
 
     public void toggleMute() {

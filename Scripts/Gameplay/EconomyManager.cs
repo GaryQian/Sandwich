@@ -87,6 +87,8 @@ public class EconomyManager : MonoBehaviour {
         x3shown = false;
         x5shown = false;
         wm.checkAdTimer();
+
+        wm.initializeBGMusic();
     }
 
     // Update is called once per frame

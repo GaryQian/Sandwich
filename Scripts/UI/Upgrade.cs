@@ -18,8 +18,6 @@ public class Upgrade : MonoBehaviour {
     public GameObject statsText;
     public GameObject buyButtonText;
 
-    public AudioClip kaching;
-
     string normalTitle;
 
     public double cost;
