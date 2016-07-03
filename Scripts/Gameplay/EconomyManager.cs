@@ -37,6 +37,7 @@ public class EconomyManager : MonoBehaviour {
     bool x5shown;
     public int multiplier = 1;
     public int prevMultiplier = 1;
+    public MultiplierGlow multiplierGlow;
 
     private MoneyText moneyText;
     private RateText rateText;
@@ -73,6 +74,7 @@ public class EconomyManager : MonoBehaviour {
         rateText = GameObject.Find("RateText").GetComponent<RateText>();
         sandwichValueText = GameObject.Find("SandwichValueText").GetComponent<SandwichValueText>();
         list = GameObject.Find("Producer");
+        multiplierGlow = GameObject.Find("MultiplierGlow").GetComponent<MultiplierGlow>();
     }
 
     void Start() {
@@ -215,6 +217,7 @@ public class EconomyManager : MonoBehaviour {
         prevMultiplier = multiplier;
         if (combo > x2threshold) {
             multiplier = 2;
+            multiplierGlow.show();
             if (combo > x3threshold) {
                 multiplier = 3;
                 if (combo > x5threshold) {
