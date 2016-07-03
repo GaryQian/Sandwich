@@ -10,6 +10,7 @@ public class StoryManager : MonoBehaviour {
     public static bool messageActive = false;
 
     public GameObject speechPrefab;
+    GameObject speech;
 
     public Sprite oldwich0;
     public Sprite oldwich1;
@@ -19,6 +20,10 @@ public class StoryManager : MonoBehaviour {
     public bool hasFlux = false;
     public bool hasBreadclear = false;
     public bool hasSandtanium = false;
+
+    public GameObject fluxMenuObject;
+    public GameObject breadclearMenuObject;
+    public GameObject sandtaniumMenuObject;
 
     private WorldManager wm;
     private GameObject oldwichBG;
@@ -39,7 +44,8 @@ public class StoryManager : MonoBehaviour {
             if (Util.em.totalMoney > oldwichLevelUpThreshold * Mathf.Pow(oldwichLevelUpScale, 1f)) {
                 oldwichLevel = 2;
             }
-            if (timeMachineDone) {
+            
+            if (checkTimeMachine()) {
                 oldwichLevel = 3;
             }
 
@@ -54,6 +60,10 @@ public class StoryManager : MonoBehaviour {
                 case 3: level3(); break; //time machine completed
             }
             Invoke("updatePermanentTab", 0.7f);
+
+            if (hasFlux) setActiveFlux(false);
+            if (hasBreadclear) setActiveBreadclear(false);
+            if (hasSandtanium) setActiveSandtanium(false);
         }
     }
 
@@ -106,13 +116,51 @@ public class StoryManager : MonoBehaviour {
 
     public void showMessage() {
         if (!messageActive) {
-            GameObject speech = Instantiate(speechPrefab);
+            speech = Instantiate(speechPrefab);
             speech.GetComponent<Speech>().setMessage(getLine(storyProgress).line);
             speech.transform.SetParent(oldwichBG.transform);
             speech.GetComponent<RectTransform>().anchoredPosition = new Vector3(141f, -20f);
             speech.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
             messageActive = true;
         }
+        else {
+            speech.GetComponent<Speech>().click();
+        }
+    }
+
+    public void buyFlux() {
+        hasFlux = true;
+        setActiveFlux(false);
+        if (checkTimeMachine()) updatePermanentTab();
+    }
+    void setActiveFlux(bool b) {
+        fluxMenuObject.SetActive(b);
+    }
+
+    public void buyBreadclear() {
+        hasBreadclear = true;
+        setActiveBreadclear(false);
+        if (checkTimeMachine()) updatePermanentTab();
+    }
+    void setActiveBreadclear(bool b) {
+        breadclearMenuObject.SetActive(b);
+    }
+
+    public void buySandtanium() {
+        hasSandtanium = true;
+        setActiveSandtanium(false);
+        if (checkTimeMachine()) updatePermanentTab();
+    }
+    void setActiveSandtanium(bool b) {
+        sandtaniumMenuObject.SetActive(b);
+    }
+
+    bool checkTimeMachine() {
+        if (hasFlux && hasBreadclear && hasSandtanium) {
+            timeMachineDone = true;
+            return true;
+        }
+        return false;
     }
 
     public StoryLine getLine(int i) {

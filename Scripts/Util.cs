@@ -15,8 +15,10 @@ public class Util {
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.04f;
 
+    
+    public static float pScale = 1.15f;
 
-    public static float pScale = 1.2f;
+    //producer rates
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 7f;
     public static float autochefRate = 70f;
@@ -32,6 +34,7 @@ public class Util {
     public static double sandwichGalaxyRate = 1000000000000f;
     public static double flyingSandwichMonsterRate = 10000000000000f;
 
+    //producer base costs
     public static float sandwichCartBase = 50f;
     public static float deliBase = 6000f;
     public static float autochefBase = 400000f;
@@ -47,9 +50,10 @@ public class Util {
     public static double sandwichGalaxyBase = 1E+25;
     public static double flyingSandwichMonsterBase = 1E+27;
 
+    //time machine
+    public static double timeMachineCost = 1000000000000000000f;
 
-
-
+    //ads
     public static float adRewardCurrentPercentage = 0.10f;
     public static float adRewardSwipes = 400f;
     public static float adRewardTime = 300f;
@@ -57,11 +61,12 @@ public class Util {
     public static double adMoneyCooldown = 1200f;
     public static double adElixirCooldown = 1800f;
 
+    //sand witch
     public static float sandWitchTotalPercentage = 0.01f;
-    public static float sandWitchCurrentPercentage = 0.05f;
-    public static float sandWitchDelay = 200f;
+    public static float sandWitchCurrentPercentage = 0.10f;
+    public static float sandWitchDelay = 180f;
 
-
+    //screen ratios
     public static float screenToCanvasRatio;
     public static float screenCenterXCoord;
     public static Vector3 worldBottomLeftPos;

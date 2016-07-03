@@ -43,6 +43,37 @@ public class ButtonHandler : MonoBehaviour {
         Util.wm.audio.PlayOneShot(kaching);
     }
 
+    /// <summary>
+    /// TIME MACHINE STUFF
+    /// </summary>
+    public void buyFlux() {
+        if (em.money >= Util.timeMachineCost) {
+            em.spend(Util.timeMachineCost);
+            wm.sm.buyFlux();
+        }
+        else {
+            notEnough();
+        }
+    }
+    public void buyBreadclear() {
+        if (em.money >= Util.timeMachineCost) {
+            em.spend(Util.timeMachineCost);
+            wm.sm.buyBreadclear();
+        }
+        else {
+            notEnough();
+        }
+    }
+    public void buySandtanium() {
+        if (em.money >= Util.timeMachineCost) {
+            em.spend(Util.timeMachineCost);
+            wm.sm.buySandtanium();
+        }
+        else {
+            notEnough();
+        }
+    }
+
     public void toggleMute() {
         wm.muted = !wm.muted;
         Util.muted = wm.muted;
