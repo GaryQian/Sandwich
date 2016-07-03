@@ -2,6 +2,15 @@
 using System.Collections;
 
 public class Bread : MonoBehaviour {
+    public Sprite bread;
+    public Sprite wheat;
+    public Sprite potato;
+    public Sprite rye;
+    public Sprite banana;
+    public Sprite corn;
+    public Sprite flat;
+
+
     private GameplayTouchManager gtm;
     private Vector3 enterPoint = Vector3.zero;
     public bool inPlace;
@@ -48,6 +57,7 @@ public class Bread : MonoBehaviour {
 
     void Start() {
         deleteTrails();
+        sr.sprite = getBreadSprite();
     }
 	
 	// Update is called once per frame
@@ -123,6 +133,7 @@ public class Bread : MonoBehaviour {
     public void finish() {
         top = (GameObject)Instantiate(BreadTopPrefab, transform.position + new Vector3(Random.Range(-0.15f, 0.15f), 0.5f + 4f, -6f), Quaternion.identity);
         top.GetComponent<BreadTop>().bread = gameObject;
+        top.GetComponent<SpriteRenderer>().sprite = getBreadSprite();
         Invoke("delete", 0.5f);
         wm.activeBread = Instantiate(BreadPrefab);
         wm.activeBread.name = "Bread";
@@ -147,6 +158,54 @@ public class Bread : MonoBehaviour {
             if (trail != null) GameObject.DestroyImmediate(trail.gameObject);
         }
         //Debug.LogError("Deleteing trails");
+    }
+
+
+    public Sprite getBreadSprite() {
+        return getBreadSprite(Util.em.breadID);
+    }
+    public Sprite getBreadSprite(int i) {
+        switch (i) {
+            case 0: return bread; break;
+            case 1: return wheat; break;
+            case 2: return potato; break;
+            case 3: return rye; break;
+            case 4: return banana; break;
+            case 5: return corn; break;
+            case 6: return flat; break;
+            case 7: return bread; break;
+        }
+        return bread;
+    }
+
+
+    public string getBreadName() {
+        return getBreadName(Util.em.breadID);
+    }
+    public string getBreadName(int i) {
+        switch (i) {
+            case 0: return "White Bread"; break;
+            case 1: return "Wheat Bread"; break;
+            case 2: return "Potato Bread"; break;
+            case 3: return "Rye Bread"; break;
+            case 4: return "Banana Bread"; break;
+            case 5: return "Cornbread"; break;
+            case 6: return "Flatbread"; break;
+            case 7: return "Bread"; break;
+        }
+        return "Bread";
+    }
+
+    public static double cost(int i) {
+        return Util.breadBaseCost * System.Math.Pow(Util.breadScale, i);
+    }
+
+    public static void updateButton() {
+        Upgrade up = GameObject.Find("BreadUpgrade").GetComponent<Upgrade>();
+        up.updateIcon(Util.wm.activeBread.GetComponent<Bread>().getBreadSprite(Util.em.breadID + 1));
+        up.updateName(Util.wm.activeBread.GetComponent<Bread>().getBreadName(Util.em.breadID + 1));
+        up.updateCost(Bread.cost(Util.em.breadID));
+        up.updateStats("x2 ea &");
     }
 
     void delete() {

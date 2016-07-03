@@ -58,6 +58,7 @@ public class TabManager : MonoBehaviour {
         wm.sauce.GetComponent<Sauce>().update();
         wm.buttonHandler.updateSharpenKnives();
         wm.em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(Util.em.getSandwichValue()) + " each";
+        Bread.updateButton();
     }
 
     public void selectProducer() {

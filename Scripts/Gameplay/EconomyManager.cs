@@ -18,6 +18,7 @@ public class EconomyManager : MonoBehaviour {
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public int knifeCount = 1;
     public int sauceID; //which is the current spread
+    public int breadID = 0;
     public double totalTime = 0f;
     public double gameTime = 0f;
     public double sps; //sandwiches per second
@@ -173,7 +174,7 @@ public class EconomyManager : MonoBehaviour {
 
     public void recalculate() {
         rate = getRate();
-        sandwichValue = getSandwichValue(sauceID);
+        sandwichValue = getSandwichValue(sauceID, breadID);
 
         
 
@@ -183,12 +184,16 @@ public class EconomyManager : MonoBehaviour {
         displayMoney();
     }
 
-    public double getSandwichValue(int i) {
+    public double getSandwichValue(int i, int j) {
+        return Mathf.Pow(2f, i - 1 + j);
+    }
+
+    public double getSandwichBaseValue(int i) {
         return Mathf.Pow(2f, i - 1);
     }
 
     public double getSandwichValue() {
-        return getSandwichValue(sauceID);
+        return getSandwichValue(sauceID, breadID);
     }
 
     public double getRate() {
@@ -272,6 +277,7 @@ public class EconomyManager : MonoBehaviour {
             totalTime = data.totalTime;
             gameTime = data.gameTime;
             sauceID = data.sauceID;
+            breadID = data.breadID;
             sandwichesMade = data.sandwichesMade;
             
 
@@ -322,6 +328,7 @@ public class EconomyManager : MonoBehaviour {
         data.gameTime = gameTime;
         data.totalTime = totalTime;
         data.sauceID = sauceID;
+        data.breadID = breadID;
         data.sandwichesMade = sandwichesMade;
 
         data.totalSwipes = totalSwipes;
@@ -366,6 +373,7 @@ public class SaveData {
     public float knifeVamp;
     public int knifeCount;
     public int sauceID;
+    public int breadID;
     public double totalTime;
     public double gameTime;
     public double sandwichesMade;

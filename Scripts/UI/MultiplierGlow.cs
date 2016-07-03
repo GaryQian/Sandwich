@@ -15,11 +15,16 @@ public class MultiplierGlow : MonoBehaviour {
         GetComponent<RectTransform>().offsetMin = new Vector2(1920f / Screen.height * Screen.width / -2f, 1920f / -2f);
 
         img.color = new Color(1f, 1f, 0, 0);
+
+        transform.SetAsLastSibling();
     }
 
     public void show() {
         timer = fadeSpeed;
-        img.color = new Color(1f, 1f, 0, 1f);
+        switch (Util.em.multiplier) {
+            case 2:  img.color = new Color(1f, 1f, 0, 1f); break;
+            case 3: img.color = new Color(1f, 0.5f, 0, 1f); break;
+        }
         CancelInvoke("fade");
         Invoke("fade", 0.7f);
     }
@@ -27,7 +32,11 @@ public class MultiplierGlow : MonoBehaviour {
     public void fade() {
         timer -= 0.1f;
         if (timer >= 0) {
-            img.color = new Color(1f, 1f, 0, 1f * (timer / fadeSpeed));
+            img.color = new Color(1f, 1f, 0, timer / fadeSpeed);
+            /*switch (Util.em.multiplier) {
+                case 2: img.color = new Color(1f, 1f, 0, timer / fadeSpeed); break;
+                case 3: img.color = new Color(1f, 0.5f, 0, timer / fadeSpeed); break;
+            }*/
             Invoke("fade", 0.1f);
         }
         else {

@@ -92,7 +92,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public double adValue() {
-        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue(em.sauceID) * Util.adRewardSwipes * em.swipeRate + em.getSandwichValue(em.sauceID) * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
+        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue() * Util.adRewardSwipes * em.swipeRate + em.getSandwichValue() * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public class ButtonHandler : MonoBehaviour {
             wm.sauce.GetComponent<Sauce>().update();
             wm.em.recalculate();
             playKaching();
-            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each";
+            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each &";
         }
         else {
             notEnough();
@@ -145,6 +145,26 @@ public class ButtonHandler : MonoBehaviour {
     }
     public double sauceCost() {
         return Util.sauceBaseCost * Mathf.Pow((float)Util.sauceScale, em.sauceID - 1);
+    }
+
+    /// <summary>
+    /// BREAD UPGRADE
+    /// </summary>
+    public void upgradeBread() {
+        if (em.money >= breadCost()) {
+            em.spend(breadCost());
+            em.breadID++;
+            Bread.updateButton();
+            wm.em.recalculate();
+            playKaching();
+            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each &";
+        }
+        else {
+            notEnough();
+        }
+    }
+    public double breadCost() {
+        return Bread.cost(em.breadID);
     }
 
     /// <summary>
