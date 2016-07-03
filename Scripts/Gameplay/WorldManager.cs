@@ -16,10 +16,14 @@ public class WorldManager : MonoBehaviour {
     public GameObject breadPrefab;
     public GameObject activeBread;
     public GameObject sauce;
+    public GameObject sandWitchPrefab;
+    public GameObject sandWitch;
+
     public GameplayTouchManager gtm;
     public EconomyManager em;
     public ButtonHandler buttonHandler;
     public StoryManager sm;
+    public GameObject canvas;
     public TutorialManager tutorialManager;
 
     public DateTime lastTime;
@@ -65,6 +69,8 @@ public class WorldManager : MonoBehaviour {
         InvokeRepeating("checkAdTimer", 10f, 10f);
 
         GameObject.Find("MuteButton").GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
+
+        Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
     }
 
     public void initializeBGMusic() {
@@ -114,5 +120,10 @@ public class WorldManager : MonoBehaviour {
         else {
             shopGlowAnimator.SetTrigger("Off");
         }
+    }
+
+    public void spawnSandWitch() {
+        sandWitch = Instantiate(sandWitchPrefab);
+        Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
     }
 }

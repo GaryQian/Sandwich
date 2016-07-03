@@ -51,11 +51,15 @@ public class Util {
 
 
     public static float adRewardCurrentPercentage = 0.10f;
-    public static float adRewardSwipes = 500f;
+    public static float adRewardSwipes = 400f;
     public static float adRewardTime = 300f;
     public static float adRewardTotalPercentage = 0.03f;
     public static double adMoneyCooldown = 1200f;
     public static double adElixirCooldown = 1800f;
+
+    public static float sandWitchTotalPercentage = 0.01f;
+    public static float sandWitchCurrentPercentage = 0.05f;
+    public static float sandWitchDelay = 200f;
 
 
     public static float screenToCanvasRatio;

@@ -55,9 +55,12 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
 
-    //public void lockIconBounce() {
-
-    //}
+    public void sandWitchClick() {
+        double num = Util.sandWitchCurrentPercentage * em.money + Util.sandWitchTotalPercentage * em.totalMoney;
+        em.money += num;
+        em.totalMoney += num;
+        Destroy(wm.sandWitch);
+    }
 
     /// <summary>
     /// WATCH AD Money BUTTON
@@ -78,7 +81,9 @@ public class ButtonHandler : MonoBehaviour {
         switch (result) {
             case ShowResult.Finished:
                 Debug.Log("Video completed. Rewarded $" + adValue());
-                em.money += adValue();
+                double num = adValue();
+                em.money += num;
+                em.totalMoney += num;
                 wm.adWatchTimeMoney = Util.adMoneyCooldown;
                 em.save();
                 break;
