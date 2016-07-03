@@ -19,6 +19,11 @@ public class TrailManager : MonoBehaviour {
     public Material gold;
     public Material sewage;
     public Material lava;
+    public Material spum;
+    public Material rawEggs;
+    public Material gunpowder;
+    public Material tnt;
+    public Material acid;
 
 
     public TrailRenderer trail;
@@ -54,6 +59,11 @@ public class TrailManager : MonoBehaviour {
             case 15: return gold;
             case 16: return sewage;
             case 17: return lava;
+            case 18: return spum;
+            case 19: return rawEggs;
+            case 20: return gunpowder;
+            case 21: return tnt;
+            case 22: return acid;
         }
         return peanutButter;
     }
