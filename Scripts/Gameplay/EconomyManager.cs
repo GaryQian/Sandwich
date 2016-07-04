@@ -10,8 +10,10 @@ public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCit
 [Serializable]
 public class EconomyManager : MonoBehaviour {
     public double money = 0;
-    public int elixir = 0;
     public double totalMoney = 0; //total money made so far this game.
+    public double lifetimeMoney = 0; //money made ever
+    public long elixir = 0;
+    public long totalElixir = 0; //elixir made ever
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate = 1f; //numhber of sandwiches made per swipe
@@ -23,6 +25,9 @@ public class EconomyManager : MonoBehaviour {
     public double gameTime = 0f;
     public double sps; //sandwiches per second
     public double sandwichesMade;
+    public double lifetimeSandwichesMade;
+    public int totalSwipes = 0;
+    public int lifetimeSwipes = 0;
 
     public float updateRate;
     private bool even;
@@ -47,6 +52,7 @@ public class EconomyManager : MonoBehaviour {
     public GameObject NotificationTextPrefab;
 
     public int buildings = 0;
+    public int lifetimeBuildings = 0;
     public int sandwichCartCount = 0;
     public int deliCount = 0;
     public int autochefCount = 0;
@@ -62,13 +68,16 @@ public class EconomyManager : MonoBehaviour {
     public int sandwichGalaxyCount = 0;
     public int flyingSandwichMonsterCount = 0;
 
+    public int toasterVisionLevel = 0;
+    public int communalMindLevel = 0;
+    public int dexterousHandsLevel = 1;
+
     public GameObject canvasNotificationTextPrefab;
 
     public GameObject list; //the list of upgrades
 
 
-    public int totalSwipes = 0;
-
+    
     void Awake() {
         Util.em = this;
         wm = GetComponent<WorldManager>();
@@ -127,6 +136,11 @@ public class EconomyManager : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    public void income(double num) {
+        money += num;
+        totalMoney += num;
     }
 
     public void swipe() {
@@ -273,6 +287,7 @@ public class EconomyManager : MonoBehaviour {
             money = data.money;
             elixir = data.elixir;
             totalMoney = data.totalMoney;
+            lifetimeMoney = data.lifetimeMoney;
             rate = data.rate;
             swipeRate = data.swipeRate;
             knifeVamp = data.knifeVamp;
@@ -282,10 +297,14 @@ public class EconomyManager : MonoBehaviour {
             sauceID = data.sauceID;
             breadID = data.breadID;
             sandwichesMade = data.sandwichesMade;
+            lifetimeSandwichesMade = data.lifetimeSandwichesMade;
             
 
             totalSwipes = data.totalSwipes;
+            lifetimeSwipes = data.lifetimeSwipes;
 
+            buildings = data.buildings;
+            lifetimeBuildings = data.lifetimeBuildings;
             sandwichCartCount = data.sandwichCartCount;
             deliCount = data.deliCount;
             autochefCount = data.autochefCount;
@@ -312,6 +331,9 @@ public class EconomyManager : MonoBehaviour {
             wm.sm.hasFlux = data.hasFlux;
             wm.sm.hasBreadclear = data.hasBreadclear;
             wm.sm.hasSandtanium = data.hasSandtanium;
+
+            wm.sandWitchesClicked = data.sandWitchesClicked;
+            wm.playthroughCount = data.playthroughCount;
         }
     }
 
@@ -324,6 +346,7 @@ public class EconomyManager : MonoBehaviour {
         data.money = money;
         data.elixir = elixir;
         data.totalMoney = totalMoney;
+        data.lifetimeMoney = lifetimeMoney;
         data.rate = rate;
         data.swipeRate = swipeRate;
         data.knifeVamp = knifeVamp;
@@ -333,9 +356,13 @@ public class EconomyManager : MonoBehaviour {
         data.sauceID = sauceID;
         data.breadID = breadID;
         data.sandwichesMade = sandwichesMade;
+        data.lifetimeSandwichesMade = lifetimeSandwichesMade;
 
         data.totalSwipes = totalSwipes;
+        data.lifetimeSwipes = lifetimeSwipes;
 
+        data.buildings = buildings;
+        data.lifetimeBuildings = lifetimeBuildings;
         data.sandwichCartCount = sandwichCartCount;
         data.deliCount = deliCount;
         data.autochefCount = autochefCount;
@@ -361,6 +388,9 @@ public class EconomyManager : MonoBehaviour {
         data.hasBreadclear = wm.sm.hasBreadclear;
         data.hasSandtanium = wm.sm.hasSandtanium;
 
+        data.sandWitchesClicked = wm.sandWitchesClicked;
+        data.playthroughCount = wm.playthroughCount;
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -369,8 +399,9 @@ public class EconomyManager : MonoBehaviour {
 [Serializable]
 public class SaveData {
     public double money;
-    public int elixir;
+    public long elixir;
     public double totalMoney;
+    public double lifetimeMoney;
     public double rate;
     public double swipeRate;
     public float knifeVamp;
@@ -380,9 +411,13 @@ public class SaveData {
     public double totalTime;
     public double gameTime;
     public double sandwichesMade;
+    public double lifetimeSandwichesMade;
 
     public int totalSwipes;
+    public int lifetimeSwipes;
 
+    public int buildings;
+    public int lifetimeBuildings;
     public int sandwichCartCount;
     public int deliCount;
     public int autochefCount;
@@ -408,4 +443,7 @@ public class SaveData {
     public bool hasFlux;
     public bool hasBreadclear;
     public bool hasSandtanium;
+
+    public int sandWitchesClicked;
+    public int playthroughCount;
 }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Warning : MonoBehaviour {
     public GameObject confirm;
+    public GameObject whitescreenPrefab;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,8 +17,13 @@ public class Warning : MonoBehaviour {
         confirm.SetActive(true);
     }
 
-    public void confirmClick() {
-        cancel();
+    void callReset() {
         ResetManager.reset();
+    }
+
+    public void confirmClick() {
+        Instantiate(whitescreenPrefab);
+        Invoke("cancel", 1.1f);
+        Invoke("callReset", 1f);
     }
 }

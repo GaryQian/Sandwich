@@ -26,6 +26,7 @@ public class Sauce : MonoBehaviour {
     public Sprite gunpowder;
     public Sprite tnt;
     public Sprite acid;
+    public Sprite nuclearWaste;
 
     public GameObject sauceTypeText;
 
@@ -96,8 +97,9 @@ public class Sauce : MonoBehaviour {
             case 18: return "Spum";
             case 19: return "Eggs";
             case 20: return "Gunpowder";
-            case 21: return "TNT";
+            case 21: return "Dynamite";
             case 22: return "Acid";
+            case 23: return "Nuclear Waste";
         }
         return "Mystery Sauce";
     }
@@ -132,6 +134,7 @@ public class Sauce : MonoBehaviour {
             case 20: return gunpowder;
             case 21: return tnt;
             case 22: return acid;
+            case 23: return nuclearWaste;
         }
         return peanutButter;
     }

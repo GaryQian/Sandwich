@@ -38,10 +38,6 @@ public class StoryManager : MonoBehaviour {
 
     }
 
-    // Use this for initialization
-    void Start () {
-        
-    }
 
     public void updatePermanentTab() {
         if (Util.wm.menuState == MenuType.permanent) {
@@ -93,7 +89,7 @@ public class StoryManager : MonoBehaviour {
         }
     }
 
-    void level0() {
+    public void level0() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich0;
         oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Moldy Sandwich";
         Transform lockBG = oldwichBG.transform.FindChild("LockBG");
@@ -161,7 +157,7 @@ public class StoryManager : MonoBehaviour {
         setActiveFlux(false);
         if (checkTimeMachine()) updatePermanentTab();
     }
-    void setActiveFlux(bool b) {
+    public void setActiveFlux(bool b) {
         fluxMenuObject.SetActive(b);
     }
 
@@ -170,7 +166,7 @@ public class StoryManager : MonoBehaviour {
         setActiveBreadclear(false);
         if (checkTimeMachine()) updatePermanentTab();
     }
-    void setActiveBreadclear(bool b) {
+    public void setActiveBreadclear(bool b) {
         breadclearMenuObject.SetActive(b);
     }
 
@@ -179,7 +175,7 @@ public class StoryManager : MonoBehaviour {
         setActiveSandtanium(false);
         if (checkTimeMachine()) updatePermanentTab();
     }
-    void setActiveSandtanium(bool b) {
+    public void setActiveSandtanium(bool b) {
         sandtaniumMenuObject.SetActive(b);
     }
 

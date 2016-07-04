@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class NextElixirBar : MonoBehaviour {
     public GameObject elixirCounter;
+    public GameObject nextElixirText;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,7 +12,11 @@ public class NextElixirBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.localScale = new Vector3((float) (1f - (ResetManager.moneyRemainingNextElixir() / ResetManager.nextElixirCost())), 1f, 1f);
+        
+        if (Util.even) {
+            transform.localScale = new Vector3((float) (1f - (ResetManager.moneyRemainingNextElixir() / ResetManager.nextElixirCost())), 1f, 1f);
+            nextElixirText.GetComponent<Text>().text = "Next elixir in: $" + Util.encodeNumber(ResetManager.moneyRemainingNextElixir());
+        }
 	}
 
     void updateElixirCounter() {

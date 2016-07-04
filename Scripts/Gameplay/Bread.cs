@@ -193,7 +193,7 @@ public class Bread : MonoBehaviour {
             case 4: return "Banana Bread"; break;
             case 5: return "Cornbread"; break;
             case 6: return "Flatbread"; break;
-            case 7: return "Cinnamon"; break;
+            case 7: return "Cinnamon Bread"; break;
         }
         return "Bread";
     }
@@ -208,6 +208,11 @@ public class Bread : MonoBehaviour {
         up.updateName(Util.wm.activeBread.GetComponent<Bread>().getBreadName(Util.em.breadID + 1));
         up.updateCost(Bread.cost(Util.em.breadID));
         up.updateStats("x2 ea &");
+        updateLabel();
+    }
+
+    public static void updateLabel() {
+        GameObject.Find("BreadTypeText").GetComponent<BreadTypeText>().txt.text = Util.wm.activeBread.GetComponent<Bread>().getBreadName(Util.em.breadID);
     }
 
     void delete() {

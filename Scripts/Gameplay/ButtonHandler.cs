@@ -13,6 +13,7 @@ public class ButtonHandler : MonoBehaviour {
     public Sprite muteOn;
     public Sprite muteOff;
     public AudioClip kaching;
+    public AudioSource audioSource;
 
     private Upgrade up;
 
@@ -26,7 +27,7 @@ public class ButtonHandler : MonoBehaviour {
     void notEnough() {
         red.SetActive(true);
         red.GetComponent<Animator>().SetTrigger("Flash");
-        Invoke("disableRed", 0.267f);
+        Invoke("disableRed", 0.467f);
     }
 
     void disableRed() {
@@ -40,7 +41,9 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void playKaching() {
-        Util.wm.audio.PlayOneShot(kaching);
+        if (!Util.muted) {
+            audioSource.PlayOneShot(kaching);
+        }
     }
 
     /// <summary>
@@ -74,6 +77,9 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// MUTE
+    /// </summary>
     public void toggleMute() {
         wm.muted = !wm.muted;
         Util.muted = wm.muted;
@@ -88,10 +94,14 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sand Witch
+    /// </summary>
     public void sandWitchClick() {
         double num = Util.sandWitchCurrentPercentage * em.money + Util.sandWitchTotalPercentage * em.totalMoney;
         em.money += num;
         em.totalMoney += num;
+        wm.sandWitchesClicked++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
         obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 60, 100);
         Destroy(wm.sandWitch);

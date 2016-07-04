@@ -14,7 +14,7 @@ public class ElixirCountText : MonoBehaviour {
     }
 
     public void updateElixirText() {
-        txt.text = Util.encodeNumberInteger(Util.em.elixir);
+        txt.text = Util.encodeNumberInteger((int)Util.em.elixir);
     }
 
     void OnEnable() {

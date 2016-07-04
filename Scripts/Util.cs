@@ -61,7 +61,7 @@ public class Util {
     public static float adRewardCurrentPercentage = 0.10f;
     public static float adRewardSwipes = 400f;
     public static float adRewardTime = 300f;
-    public static float adRewardTotalPercentage = 0.03f;
+    public static float adRewardTotalPercentage = 0.02f;
     public static double adMoneyCooldown = 1200f;
     public static double adElixirCooldown = 1800f;
 
@@ -82,6 +82,8 @@ public class Util {
     public static float worldNormalizedWidth;
 
     public static bool muted;
+
+    public static bool even;
 
     public static string encodeNumber(double m) {
         double money = m * 1.000001f;

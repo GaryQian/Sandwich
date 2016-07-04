@@ -4,6 +4,8 @@ using System.Collections;
 public class ResetManager : MonoBehaviour {
     public GameObject warningPrefab;
     public GameObject warning;
+
+    public GameObject whitescreen;
 	// Use this for initialization
 	void Start () {
 	    
@@ -28,14 +30,80 @@ public class ResetManager : MonoBehaviour {
     }
 
     public void showResetWarning() {
-        warning = Instantiate(warningPrefab);
-        warning.transform.SetParent(Util.wm.canvas.transform);
-        warning.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 400f);
-        warning.transform.localScale = new Vector3(1f, 1f, 1f);
-        warning.transform.SetAsLastSibling();
+        if (Util.wm.sm.timeMachineDone) {
+            warning = Instantiate(warningPrefab);
+            warning.transform.SetParent(Util.wm.canvas.transform);
+            warning.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 400f);
+            warning.transform.localScale = new Vector3(1f, 1f, 1f);
+            warning.transform.SetAsLastSibling();
+        }
     }
 
     public static void reset() {
+        WorldManager wm = Util.wm;
+        EconomyManager em = Util.em;
+
+        wm.playthroughCount++;
+
+        //transfer into totals
+        em.elixir += elixirsOnReset();
+        em.totalElixir += elixirsOnReset();
+        em.lifetimeMoney += em.totalMoney;
+        em.lifetimeSandwichesMade += em.sandwichesMade;
+        em.lifetimeBuildings += em.buildings;
+        em.lifetimeSwipes += em.totalSwipes;
+
+        //reset to defaults
+
+        em.money = 0;
+        Util.money = 0;
+        em.totalMoney = 0;
+        em.knifeVamp = 0; //amount of the total cps gained on each swipe
+        em.sauceID = 1; //which is the current spread
+        em.breadID = 0;
+        em.gameTime = 0f;
+        em.rate = 0;
+        em.sandwichValue = 0;
+
+        em.buildings = 0;
+        em.sandwichCartCount = 0;
+        em.deliCount = 0;
+        em.autochefCount = 0;
+        em.mcdandwichCount = 0;
+        em.sandwichCityCount = 0;
+        em.breadCloningCount = 0;
+        em.sandwocracyCount = 0;
+        em.sandriaLawCount = 0;
+        em.sandwichPlanetCount = 0;
+        em.humanExterminationCount = 0;
+        em.enslaveAliensCount = 0;
+        em.deathSandwichCount = 0;
+        em.sandwichGalaxyCount = 0;
+        em.flyingSandwichMonsterCount = 0;
+
+        wm.sm.hasFlux = false;
+        wm.sm.hasBreadclear = false;
+        wm.sm.hasSandtanium = false;
+        wm.sm.timeMachineDone = false;
+        wm.sm.storyProgress = 0;
+        wm.sm.oldwichLevel = 0;
+        
+        //redo calculations
+        em.recalculate();
+        wm.sm.updatePermanentTab();
+        wm.sm.level0();
+        wm.sm.setActiveFlux(true);
+        wm.sm.setActiveBreadclear(true);
+        wm.sm.setActiveSandtanium(true);
+        wm.tabManager.selectProducer();
+        em.updateProducerMenuCounters();
+        wm.sauce.GetComponent<Sauce>().update();
+        em.swipe();
+        em.money = 0;
+
+        em.save();
+
+
 
     }
 }

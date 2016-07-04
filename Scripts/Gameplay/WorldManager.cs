@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Advertisements;
 using System;
+using UnityEngine.UI;
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -18,13 +19,16 @@ public class WorldManager : MonoBehaviour {
     public GameObject sauce;
     public GameObject sandWitchPrefab;
     public GameObject sandWitch;
+    public int sandWitchesClicked = 0;
 
     public GameplayTouchManager gtm;
     public EconomyManager em;
     public ButtonHandler buttonHandler;
     public StoryManager sm;
+    public TabManager tabManager;
     public GameObject canvas;
     public TutorialManager tutorialManager;
+    public GameObject muteButton;
 
     public DateTime lastTime;
     public float timeScaleDivisor;
@@ -41,7 +45,8 @@ public class WorldManager : MonoBehaviour {
         gtm = GetComponent<GameplayTouchManager>();
         em = GetComponent<EconomyManager>();
         buttonHandler = GetComponent<ButtonHandler>();
-        sm = GetComponent<StoryManager>();
+        //tabManager = GetComponent<TabManager>();
+        //sm = GetComponent<StoryManager>();
         tutorialManager = GetComponent<TutorialManager>();
 
         double timeElapsed = DateTime.Now.Subtract(lastTime).TotalSeconds;
@@ -68,16 +73,20 @@ public class WorldManager : MonoBehaviour {
         }
         InvokeRepeating("checkAdTimer", 10f, 10f);
 
-        GameObject.Find("MuteButton").GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
+        muteButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
 
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
+
+        Bread.updateLabel();
     }
 
     public void initializeBGMusic() {
         if (muted) {
+            muteButton.GetComponent<Image>().sprite = buttonHandler.muteOn;
             audio.Pause();
         }
         else {
+            muteButton.GetComponent<Image>().sprite = buttonHandler.muteOff;
             audio.Play();
         }
     }
@@ -103,7 +112,8 @@ public class WorldManager : MonoBehaviour {
         if (adWatchTimeElixir > 0) {
             adWatchTimeElixir -= Time.deltaTime;
         }
-	}
+        Util.even = !Util.even;
+    }
 
     public void spawnBread() {
         activeBread = Instantiate(breadPrefab);

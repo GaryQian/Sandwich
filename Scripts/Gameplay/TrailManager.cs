@@ -24,6 +24,7 @@ public class TrailManager : MonoBehaviour {
     public Material gunpowder;
     public Material tnt;
     public Material acid;
+    public Material nuclearWaste;
 
 
     public TrailRenderer trail;
@@ -64,6 +65,7 @@ public class TrailManager : MonoBehaviour {
             case 20: return gunpowder;
             case 21: return tnt;
             case 22: return acid;
+            case 23: return nuclearWaste;
         }
         return peanutButter;
     }
