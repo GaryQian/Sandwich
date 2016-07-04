@@ -25,4 +25,8 @@ public class ResetManager : MonoBehaviour {
         long num = elixirsOnReset();
         return Util.elixirBaseCost * (System.Math.Pow(num + 1, Util.elixirScale) - System.Math.Pow(num, Util.elixirScale));
     }
+
+    public void showResetWarning() {
+
+    }
 }
