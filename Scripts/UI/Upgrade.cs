@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public enum UpgradeType {sandwich, producer, ad, iap, permanent, sharpenKnifes, other}
+public enum UpgradeType {sandwich, producer, ad, iap, permanent, sharpenKnifes, timeMachine, other}
 
 public class Upgrade : MonoBehaviour {
     public double baseCost;
@@ -41,6 +41,9 @@ public class Upgrade : MonoBehaviour {
             case UpgradeType.sharpenKnifes:
                 counterText = transform.FindChild("CounterText").gameObject;
                 statsText = transform.FindChild("StatsText").gameObject;
+                break;
+            case UpgradeType.timeMachine:
+                //costText = transform.FindChild("CostText").gameObject;
                 break;
         }
     }

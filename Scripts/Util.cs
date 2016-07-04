@@ -8,9 +8,9 @@ public class Util {
 
     public static double money;
     public static double sauceBaseCost = 500f;
-    public static double sauceScale = 9.5f;
+    public static double sauceScale = 10f;
     public static double breadBaseCost = 1000000f;
-    public static double breadScale = 320f;
+    public static double breadScale = 400f;
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.04f;
@@ -51,7 +51,11 @@ public class Util {
     public static double flyingSandwichMonsterBase = 1E+27;
 
     //time machine
-    public static double timeMachineCost = 1000000000000000000f;
+    public static double timeMachineCost = 1E+15f;
+
+    //elixir
+    public static double elixirBaseCost = 1E+10;
+    public static float elixirScale = 4f;
 
     //ads
     public static float adRewardCurrentPercentage = 0.10f;
@@ -80,7 +84,7 @@ public class Util {
     public static bool muted;
 
     public static string encodeNumber(double m) {
-        double money = m;
+        double money = m * 1.000001f;
         int numSize = 3;
         while (money / System.Math.Pow(10f, numSize) >= 1f) {
             numSize += 3;

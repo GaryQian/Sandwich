@@ -33,10 +33,15 @@ public class StoryManager : MonoBehaviour {
 
     private WorldManager wm;
     private GameObject oldwichBG;
+
+    void Awake() {
+
+    }
+
     // Use this for initialization
     void Start () {
-	    
-	}
+        
+    }
 
     public void updatePermanentTab() {
         if (Util.wm.menuState == MenuType.permanent) {
@@ -96,6 +101,7 @@ public class StoryManager : MonoBehaviour {
         lockBG.FindChild("LockIcon").gameObject.SetActive(true);
         lockBG.FindChild("InfoText").gameObject.SetActive(false);
         lockBG.FindChild("ResetGainText").gameObject.SetActive(false);
+        lockBG.FindChild("NextElixirBar").gameObject.SetActive(false);
     }
 
     void level1() {
@@ -106,12 +112,16 @@ public class StoryManager : MonoBehaviour {
         lockBG.FindChild("LockIcon").gameObject.SetActive(true);
         lockBG.FindChild("InfoText").gameObject.SetActive(false);
         lockBG.FindChild("ResetGainText").gameObject.SetActive(false);
+        lockBG.FindChild("NextElixirBar").gameObject.SetActive(false);
     }
 
     void level2() {
         oldwichBG.transform.FindChild("Oldwich").GetComponent<Image>().sprite = oldwich2;
         oldwichBG.transform.FindChild("OldwichNameText").GetComponent<Text>().text = "Sandalf the Old";
         oldwichBG.transform.FindChild("LockBG").gameObject.SetActive(false);
+        fluxMenuObject.GetComponent<Upgrade>().updateCost(Util.timeMachineCost);
+        breadclearMenuObject.GetComponent<Upgrade>().updateCost(Util.timeMachineCost);
+        sandtaniumMenuObject.GetComponent<Upgrade>().updateCost(Util.timeMachineCost);
     }
 
     void level3() {
@@ -122,11 +132,8 @@ public class StoryManager : MonoBehaviour {
         lockBG.FindChild("LockIcon").gameObject.SetActive(false);
         lockBG.FindChild("InfoText").gameObject.SetActive(true);
         lockBG.FindChild("ResetGainText").gameObject.SetActive(true);
-        lockBG.FindChild("ResetGainText").GetComponent<Text>().text = Util.encodeNumberInteger(amountGained());
-    }
-
-    public int amountGained() {
-        return 10;
+        lockBG.FindChild("NextElixirBar").gameObject.SetActive(true);
+        lockBG.FindChild("ResetGainText").GetComponent<Text>().text = Util.encodeNumberInteger((int)ResetManager.elixirsOnReset());
     }
 
     public void checkStory() {
