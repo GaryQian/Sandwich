@@ -118,7 +118,7 @@ public class ButtonHandler : MonoBehaviour {
                 Debug.Log("Video completed. Rewarded $" + adValue());
                 double num = adValue();
                 em.money += num;
-                em.totalMoney += num;
+                //em.totalMoney += num;
                 wm.adWatchTimeMoney = Util.adMoneyCooldown;
                 em.save();
                 break;

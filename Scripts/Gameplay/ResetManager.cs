@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ResetManager : MonoBehaviour {
-
+    public GameObject warningPrefab;
+    public GameObject warning;
 	// Use this for initialization
 	void Start () {
 	    
@@ -27,6 +28,14 @@ public class ResetManager : MonoBehaviour {
     }
 
     public void showResetWarning() {
+        warning = Instantiate(warningPrefab);
+        warning.transform.SetParent(Util.wm.canvas.transform);
+        warning.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 400f);
+        warning.transform.localScale = new Vector3(1f, 1f, 1f);
+        warning.transform.SetAsLastSibling();
+    }
+
+    public static void reset() {
 
     }
 }
