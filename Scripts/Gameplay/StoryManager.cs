@@ -25,6 +25,12 @@ public class StoryManager : MonoBehaviour {
     public GameObject breadclearMenuObject;
     public GameObject sandtaniumMenuObject;
 
+    public GameObject flux;
+    public GameObject breadclear;
+    public GameObject sandtanium;
+    public GameObject portal;
+
+
     private WorldManager wm;
     private GameObject oldwichBG;
     // Use this for initialization
@@ -61,9 +67,24 @@ public class StoryManager : MonoBehaviour {
             }
             Invoke("updatePermanentTab", 0.7f);
 
-            if (hasFlux) setActiveFlux(false);
-            if (hasBreadclear) setActiveBreadclear(false);
-            if (hasSandtanium) setActiveSandtanium(false);
+            if (hasFlux) {
+                setActiveFlux(false);
+                flux.SetActive(true);
+            }
+            else flux.SetActive(false);
+            if (hasBreadclear) {
+                setActiveBreadclear(false);
+                breadclear.SetActive(true);
+            }
+            else breadclear.SetActive(false);
+            if (hasSandtanium) {
+                setActiveSandtanium(false);
+                sandtanium.SetActive(true);
+            }
+            else sandtanium.SetActive(false);
+
+            if (timeMachineDone) portal.SetActive(true);
+            else portal.SetActive(false);
         }
     }
 

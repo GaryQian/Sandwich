@@ -8,9 +8,9 @@ public class Util {
 
     public static double money;
     public static double sauceBaseCost = 500f;
-    public static double sauceScale = 9f;
+    public static double sauceScale = 9.5f;
     public static double breadBaseCost = 1000000f;
-    public static double breadScale = 300f;
+    public static double breadScale = 320f;
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.04f;

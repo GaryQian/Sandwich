@@ -9,6 +9,7 @@ public class Bread : MonoBehaviour {
     public Sprite banana;
     public Sprite corn;
     public Sprite flat;
+    public Sprite cinnamon;
 
 
     private GameplayTouchManager gtm;
@@ -173,7 +174,8 @@ public class Bread : MonoBehaviour {
             case 4: return banana; break;
             case 5: return corn; break;
             case 6: return flat; break;
-            case 7: return bread; break;
+            case 7: return cinnamon; break;
+            case 8: return cinnamon; break;
         }
         return bread;
     }
@@ -191,7 +193,7 @@ public class Bread : MonoBehaviour {
             case 4: return "Banana Bread"; break;
             case 5: return "Cornbread"; break;
             case 6: return "Flatbread"; break;
-            case 7: return "Bread"; break;
+            case 7: return "Cinnamon"; break;
         }
         return "Bread";
     }
