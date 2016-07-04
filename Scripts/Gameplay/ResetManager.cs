@@ -98,6 +98,7 @@ public class ResetManager : MonoBehaviour {
         wm.tabManager.selectProducer();
         em.updateProducerMenuCounters();
         wm.sauce.GetComponent<Sauce>().update();
+        Bread.updateLabel();
         em.swipe();
         em.money = 0;
 

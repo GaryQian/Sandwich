@@ -16,7 +16,7 @@ public class EconomyManager : MonoBehaviour {
     public long totalElixir = 0; //elixir made ever
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
-    public double swipeRate = 1f; //numhber of sandwiches made per swipe
+    public double swipeRate;
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public int knifeCount = 1;
     public int sauceID; //which is the current spread
@@ -69,7 +69,9 @@ public class EconomyManager : MonoBehaviour {
     public int flyingSandwichMonsterCount = 0;
 
     public int toasterVisionLevel = 0;
+    public double toasterVisionBonus;
     public int communalMindLevel = 0;
+    public double communalMindBonus;
     public int dexterousHandsLevel = 1;
 
     public GameObject canvasNotificationTextPrefab;
@@ -117,8 +119,7 @@ public class EconomyManager : MonoBehaviour {
     }
 
     void processIncome() {
-        money += rate * sandwichValue * updateRate;
-        totalMoney += rate * sandwichValue * updateRate;
+        income(rate * sandwichValue * updateRate);
         sandwichesMade += rate * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
@@ -139,20 +140,19 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void income(double num) {
-        money += num;
-        totalMoney += num;
+        money += num * toasterVisionBonus;
+        totalMoney += num * toasterVisionBonus;
     }
 
     public void swipe() {
         combo += 1f;
         checkCombo();
         double num = sandwichValue * swipeRate + sps * knifeVamp;
-        money += num;
-        totalMoney += num;
+        income(num);
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -163,8 +163,8 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void updateLabels() {
-        rateText.updateRate(sps);
-        sandwichValueText.updateValue(sandwichValue);
+        rateText.updateRate(sps * toasterVisionBonus);
+        sandwichValueText.updateValue(sandwichValue * toasterVisionBonus);
     }
 
     public void updateProducerMenuCounters() {
@@ -189,16 +189,30 @@ public class EconomyManager : MonoBehaviour {
         }
     }
 
+    public void updateElixirUpgrades() {
+        if (wm.menuState == MenuType.permanent) {
+            list.transform.FindChild("ToasterVision").GetComponent<Upgrade>().setupElixirUpgrade(wm.buttonHandler.toasterVisionCost(), "+" + Util.encodeNumberInteger(10 * toasterVisionLevel) + "%", "+" + Util.encodeNumberInteger(10 * toasterVisionLevel + 10) + "% All\nIncome");
+            list.transform.FindChild("CommunalMind").GetComponent<Upgrade>().setupElixirUpgrade(wm.buttonHandler.communalMindCost(), "+" + Util.encodeNumberInteger(communalMindLevel) + "%", "+" + Util.encodeNumberInteger(1 * communalMindLevel + 1) + "% Production\nPer 50 Buildings");
+            list.transform.FindChild("DexterousHands").GetComponent<Upgrade>().setupElixirUpgrade(wm.buttonHandler.dexterousHandsCost(), Util.encodeNumberInteger((int)getDexterousHandsBonus(dexterousHandsLevel)) + "&", Util.encodeNumberInteger((int)getDexterousHandsBonus(dexterousHandsLevel + 1)) + "& Per\nSwipe");
+
+        }
+    }
+
     public void recalculate() {
+        communalMindBonus = 1f + (buildings / 50f) * (0.01f * communalMindLevel);
         rate = getRate();
         sandwichValue = getSandwichValue(sauceID, breadID);
 
-        
-
+        toasterVisionBonus = 1f + 0.1f * toasterVisionLevel;
+        swipeRate = getDexterousHandsBonus(dexterousHandsLevel);
         sandwichValue *= multiplier;
         sps = rate * sandwichValue;
         updateLabels();
         displayMoney();
+    }
+
+    double getDexterousHandsBonus(int lvl) {
+        return (lvl * (lvl + 1)) / 2f;
     }
 
     public double getSandwichValue(int i, int j) {
@@ -229,7 +243,7 @@ public class EconomyManager : MonoBehaviour {
         num += deathSandwichCount * Util.deathSandwichRate;
         num += sandwichGalaxyCount * Util.sandwichGalaxyRate;
         num += flyingSandwichMonsterCount * Util.flyingSandwichMonsterRate;
-        return num;
+        return num * communalMindBonus;
     }
 
     
@@ -289,7 +303,6 @@ public class EconomyManager : MonoBehaviour {
             totalMoney = data.totalMoney;
             lifetimeMoney = data.lifetimeMoney;
             rate = data.rate;
-            swipeRate = data.swipeRate;
             knifeVamp = data.knifeVamp;
             knifeCount = data.knifeCount;
             totalTime = data.totalTime;
@@ -320,6 +333,10 @@ public class EconomyManager : MonoBehaviour {
             sandwichGalaxyCount = data.sandwichGalaxyCount;
             flyingSandwichMonsterCount = data.flyingSandwichMonsterCount;
 
+            toasterVisionLevel = data.toasterVisionLevel;
+            communalMindLevel = data.communalMindLevel;
+            dexterousHandsLevel = data.dexterousHandsLevel;
+
 
             wm.adWatchTimeMoney = data.adWatchTimeMoney;
             wm.adWatchTimeElixir = data.adWatchTimeElixir;
@@ -348,7 +365,6 @@ public class EconomyManager : MonoBehaviour {
         data.totalMoney = totalMoney;
         data.lifetimeMoney = lifetimeMoney;
         data.rate = rate;
-        data.swipeRate = swipeRate;
         data.knifeVamp = knifeVamp;
         data.knifeCount = knifeCount;
         data.gameTime = gameTime;
@@ -377,6 +393,10 @@ public class EconomyManager : MonoBehaviour {
         data.deathSandwichCount = deathSandwichCount;
         data.sandwichGalaxyCount = sandwichGalaxyCount;
         data.flyingSandwichMonsterCount = flyingSandwichMonsterCount;
+
+        data.toasterVisionLevel = toasterVisionLevel;
+        data.communalMindLevel = communalMindLevel;
+        data.dexterousHandsLevel = dexterousHandsLevel;
 
         data.adWatchTimeMoney = wm.adWatchTimeMoney;
         data.adWatchTimeElixir = wm.adWatchTimeElixir;
@@ -432,6 +452,10 @@ public class SaveData {
     public int deathSandwichCount;
     public int sandwichGalaxyCount;
     public int flyingSandwichMonsterCount;
+
+    public int toasterVisionLevel;
+    public int communalMindLevel;
+    public int dexterousHandsLevel;
 
 
     public double adWatchTimeMoney;

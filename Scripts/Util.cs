@@ -50,12 +50,21 @@ public class Util {
     public static double sandwichGalaxyBase = 1E+25;
     public static double flyingSandwichMonsterBase = 1E+27;
 
+
+    //elixir costs
+    public static float toasterVisionBase = 10f;
+    public static float toasterVisionScale = 1.1f;
+    public static float communalMindBase = 10f;
+    public static float communalMindScale = 1.1f;
+    public static float dexterousHandsBase = 5;
+    public static float dexterousHandsScale = 1.1f;
+
     //time machine
     public static double timeMachineCost = 1E+15f;
 
     //elixir
-    public static double elixirBaseCost = 1E+10;
-    public static float elixirScale = 4f;
+    public static double elixirBaseCost = 1E+9;
+    public static float elixirScale = 5f;
 
     //ads
     public static float adRewardCurrentPercentage = 0.10f;

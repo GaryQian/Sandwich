@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class MoneyText : MonoBehaviour {
+    public GameObject SuffixInfo;
     Text txt;
     // Use this for initialization
     void Awake() {
@@ -22,5 +23,6 @@ public class MoneyText : MonoBehaviour {
 
     public void bounce() {
         GetComponent<Animator>().SetTrigger("Bounce");
+        Instantiate(SuffixInfo);
     }
 }

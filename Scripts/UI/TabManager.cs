@@ -81,6 +81,7 @@ public class TabManager : MonoBehaviour {
         permanentButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
         wm.sm.updatePermanentTab();
+        Util.em.updateElixirUpgrades();
     }
 
     public void selectShop() {

@@ -23,7 +23,7 @@ public class Warning : MonoBehaviour {
 
     public void confirmClick() {
         Instantiate(whitescreenPrefab);
-        Invoke("cancel", 1.1f);
-        Invoke("callReset", 1f);
+        Invoke("cancel", Whitescreen.fadeTime + 0.1f);
+        Invoke("callReset", Whitescreen.fadeTime);
     }
 }

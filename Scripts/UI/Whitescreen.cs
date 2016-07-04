@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Whitescreen : MonoBehaviour {
     public GameObject portal;
     public GameObject white;
-    public float fadeTime = 1f;
+    public static float fadeTime = 2f;
     float fadeIn = 0;
     float hold = 0;
     float fadeOut;

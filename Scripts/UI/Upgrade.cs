@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public enum UpgradeType {sandwich, producer, ad, iap, permanent, sharpenKnifes, timeMachine, other}
+public enum UpgradeType {sandwich, producer, ad, iap, permanent, sharpenKnifes, timeMachine, elixir, other}
 
 public class Upgrade : MonoBehaviour {
     public double baseCost;
@@ -45,6 +45,10 @@ public class Upgrade : MonoBehaviour {
             case UpgradeType.timeMachine:
                 //costText = transform.FindChild("CostText").gameObject;
                 break;
+            case UpgradeType.elixir:
+                counterText = transform.FindChild("CounterText").gameObject;
+                statsText = transform.FindChild("StatsText").gameObject;
+                break;
         }
     }
 	// Use this for initialization
@@ -59,9 +63,20 @@ public class Upgrade : MonoBehaviour {
         updateStats("+" + Util.encodeNumber(rate) + " &/s");
     }
 
+    public void setupElixirUpgrade(int c, string counter, string stats) {
+        this.cost = c;
+        updateCost(Util.encodeNumberInteger(c));
+        updateCounter(counter);
+        updateStats(stats);
+    }
+
     public void updateCost(double cost) {
         costText.GetComponent<Text>().text = "$" + Util.encodeNumber(cost);
         this.cost = cost;
+    }
+
+    public void updateCost(string str) {
+        costText.GetComponent<Text>().text = str;
     }
 
     public void updateCounter(double num) {

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Sauce : MonoBehaviour {
-    public static int numberOfSauces = 22;
+    public static int numberOfSauces = 23;
 
     public Sprite peanutButter;
     public Sprite strawberryJam;

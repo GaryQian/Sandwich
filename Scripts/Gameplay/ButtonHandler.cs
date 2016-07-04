@@ -12,6 +12,8 @@ public class ButtonHandler : MonoBehaviour {
     public GameObject muteButton;
     public Sprite muteOn;
     public Sprite muteOff;
+    public Sprite musicMuteOn;
+    public Sprite musicMuteOff;
     public AudioClip kaching;
     public AudioSource audioSource;
 
@@ -42,8 +44,62 @@ public class ButtonHandler : MonoBehaviour {
 
     public void playKaching() {
         if (!Util.muted) {
-            audioSource.PlayOneShot(kaching);
+            audioSource.PlayOneShot(kaching, 0.5f);
         }
+    }
+
+    /// <summary>
+    /// ELIXIR Toaster Vision
+    /// </summary>
+    public void buyToasterVision() {
+        if (em.elixir >= toasterVisionCost()) {
+            em.elixir -= toasterVisionCost();
+            em.toasterVisionLevel++;
+            em.recalculate();
+            em.updateElixirUpgrades();
+        }
+        else {
+
+        }
+    }
+    public int toasterVisionCost() {
+        return (int)Mathf.Floor(Util.toasterVisionBase * Mathf.Pow(Util.toasterVisionScale, em.toasterVisionLevel) + em.toasterVisionLevel);
+    }
+
+    /// <summary>
+    /// ELIXIR Communal Minds
+    /// </summary>
+    public void buyCommunalMind() {
+        if (em.elixir >= communalMindCost()) {
+            em.elixir -= communalMindCost();
+            em.communalMindLevel++;
+            em.recalculate();
+            em.updateElixirUpgrades();
+        }
+        else {
+
+        }
+    }
+    public int communalMindCost() {
+        return (int)Mathf.Floor(Util.communalMindBase * Mathf.Pow(Util.communalMindScale, em.communalMindLevel) + em.communalMindLevel);
+    }
+
+    /// <summary>
+    /// ELIXIR Dexterous Hands
+    /// </summary>
+    public void buyDexterousHands() {
+        if (em.elixir >= dexterousHandsCost()) {
+            em.elixir -= dexterousHandsCost();
+            em.dexterousHandsLevel++;
+            em.recalculate();
+            em.updateElixirUpgrades();
+        }
+        else {
+
+        }
+    }
+    public int dexterousHandsCost() {
+        return (int)Mathf.Floor(Util.dexterousHandsBase * Mathf.Pow(Util.dexterousHandsScale, em.dexterousHandsLevel) + em.dexterousHandsLevel);
     }
 
     /// <summary>
@@ -99,8 +155,7 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void sandWitchClick() {
         double num = Util.sandWitchCurrentPercentage * em.money + Util.sandWitchTotalPercentage * em.totalMoney;
-        em.money += num;
-        em.totalMoney += num;
+        em.income(num);
         wm.sandWitchesClicked++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
         obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 60, 100);
