@@ -24,15 +24,15 @@ public class Util {
     public static float autochefRate = 75f;
     public static float mcdandwichRate = 800f;
     public static float sandwichCityRate = 10000f;
-    public static float breadCloningRate = 100000f;
-    public static float sandwocracyRate = 1000000f;
-    public static float sandriaLawRate = 10000000f;
-    public static double sandwichPlanetRate = 100000000f;
-    public static double humanExterminationRate = 1000000000f;
-    public static double enslaveAliensRate = 10000000000f;
-    public static double deathSandwichRate = 100000000000f;
-    public static double sandwichGalaxyRate = 1000000000000f;
-    public static double flyingSandwichMonsterRate = 10000000000000f;
+    public static float breadCloningRate = 90000f;
+    public static float sandwocracyRate = 800000f;
+    public static float sandriaLawRate = 6500000f;
+    public static double sandwichPlanetRate = 55000000f;
+    public static double humanExterminationRate = 400000000f;
+    public static double enslaveAliensRate = 3000000000f;
+    public static double deathSandwichRate = 25000000000f;
+    public static double sandwichGalaxyRate = 100000000000f;
+    public static double flyingSandwichMonsterRate = 1000000000000f;
 
     //producer base costs
     public static float sandwichCartBase = 50f;
@@ -48,7 +48,7 @@ public class Util {
     public static double enslaveAliensBase = 4E+21;
     public static double deathSandwichBase = 5E+23;
     public static double sandwichGalaxyBase = 6E+25;
-    public static double flyingSandwichMonsterBase = 9.999E+27;
+    public static double flyingSandwichMonsterBase = 9.999E+28;
 
 
     //elixir costs
@@ -63,7 +63,7 @@ public class Util {
     public static double timeMachineCost = 1E+15f;
 
     //elixir
-    public static double elixirBaseCost = 1E+9;
+    public static double elixirBaseCost = 1E+6;
     public static float elixirScale = 5f;
 
     //ads
