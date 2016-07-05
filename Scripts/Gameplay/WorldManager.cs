@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.Advertisements;
 using System;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -14,6 +16,13 @@ public class WorldManager : MonoBehaviour {
     public double adWatchTimeMoney;
     public double adWatchTimeElixir;
     //
+
+    //Versioning
+    public int version = 1;
+    public int savedVersion = -1;
+    //
+    
+
     public GameObject breadPrefab;
     public GameObject activeBread;
     public GameObject sauce;
@@ -35,7 +44,8 @@ public class WorldManager : MonoBehaviour {
     public float timeScaleDivisor;
 
     public bool muted = false;
-    public AudioSource audio;
+    public bool musicMuted = false;
+    public AudioSource music;
     public int playthroughCount = 0;
 
     public Animator shopGlowAnimator;
@@ -54,7 +64,7 @@ public class WorldManager : MonoBehaviour {
         adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
         adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
 
-        audio = GetComponent<AudioSource>();
+        music = GetComponent<AudioSource>();
 
         Util.wm = this;
         setupUtil();
@@ -83,14 +93,11 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void initializeBGMusic() {
-        if (muted) {
-            muteButton.GetComponent<Image>().sprite = buttonHandler.muteOn;
-            audio.Pause();
-        }
-        else {
-            muteButton.GetComponent<Image>().sprite = buttonHandler.muteOff;
-            audio.Play();
-        }
+        buttonHandler.toggleMute();
+        buttonHandler.toggleMute();
+
+        buttonHandler.toggleMusicMute();
+        buttonHandler.toggleMusicMute();
     }
 
     void setupUtil() {
@@ -139,5 +146,35 @@ public class WorldManager : MonoBehaviour {
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
     }
 
-    
+    public void saveVersion() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/version.dat");
+
+        Version data = new Version();
+
+        data.version = version;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public int loadVersion() {
+        if (File.Exists(Application.persistentDataPath + "/version.dat")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/version.dat", FileMode.Open);
+            Version data = (Version)bf.Deserialize(file);
+            file.Close();
+
+            savedVersion = data.version;
+
+            saveVersion();
+        }
+        saveVersion();
+        return savedVersion;
+    }
+}
+
+[Serializable]
+public class Version {
+    public int version;
 }

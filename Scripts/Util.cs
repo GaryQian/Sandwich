@@ -91,6 +91,7 @@ public class Util {
     public static float worldNormalizedWidth;
 
     public static bool muted;
+    public static bool musicMuted;
 
     public static bool even;
 

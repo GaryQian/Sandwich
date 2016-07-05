@@ -292,6 +292,7 @@ public class EconomyManager : MonoBehaviour {
 
 
     void load() {
+        wm.loadVersion();
         if (File.Exists(Application.persistentDataPath + "/gamedata.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamedata.dat", FileMode.Open);
@@ -342,6 +343,7 @@ public class EconomyManager : MonoBehaviour {
             wm.adWatchTimeMoney = data.adWatchTimeMoney;
             wm.adWatchTimeElixir = data.adWatchTimeElixir;
             wm.muted = data.muted;
+            wm.musicMuted = data.musicMuted;
             Util.muted = wm.muted;
 
             wm.sm.storyProgress = data.storyProgress;
@@ -403,6 +405,7 @@ public class EconomyManager : MonoBehaviour {
         data.adWatchTimeMoney = wm.adWatchTimeMoney;
         data.adWatchTimeElixir = wm.adWatchTimeElixir;
         data.muted = wm.muted;
+        data.musicMuted = wm.musicMuted;
 
         data.storyProgress = wm.sm.storyProgress;
         data.timeMachineDone = wm.sm.timeMachineDone;
@@ -464,6 +467,7 @@ public class SaveData {
     public double adWatchTimeMoney;
     public double adWatchTimeElixir;
     public bool muted;
+    public bool musicMuted;
 
     public int storyProgress;
     public bool timeMachineDone;

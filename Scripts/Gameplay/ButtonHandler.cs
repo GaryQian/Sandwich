@@ -10,6 +10,7 @@ public class ButtonHandler : MonoBehaviour {
     public GameObject red;
 
     public GameObject muteButton;
+    public GameObject musicMuteButton;
     public Sprite muteOn;
     public Sprite muteOff;
     public Sprite musicMuteOn;
@@ -141,12 +142,26 @@ public class ButtonHandler : MonoBehaviour {
         Util.muted = wm.muted;
         if (wm.muted) {
             muteButton.GetComponent<Image>().sprite = muteOn;
-            wm.audio.Pause();
-
         }
         else {
             muteButton.GetComponent<Image>().sprite = muteOff;
-            wm.audio.Play();
+        }
+    }
+
+    /// <summary>
+    /// Music MUTE
+    /// </summary>
+    public void toggleMusicMute() {
+        wm.musicMuted = !wm.musicMuted;
+        Util.musicMuted = wm.musicMuted;
+        if (wm.musicMuted) {
+            musicMuteButton.GetComponent<Image>().sprite = musicMuteOn;
+            wm.music.Pause();
+
+        }
+        else {
+            musicMuteButton.GetComponent<Image>().sprite = musicMuteOff;
+            wm.music.Play();
         }
     }
 
