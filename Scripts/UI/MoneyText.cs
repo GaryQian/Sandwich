@@ -32,10 +32,10 @@ public class MoneyText : MonoBehaviour {
                 bg1.color = new Color(0, 0.8f, 1f);
                 break;
             case 2:
-                bg1.color = new Color(1f, 0.9f, 0);
+                bg1.color = new Color(1f, 0, 0.0f);
                 break;
             case 3:
-                bg1.color = new Color(1f, 0, 0.5f);
+                bg1.color = new Color(1f, 0.9f, 0);
                 break;
         }
 
