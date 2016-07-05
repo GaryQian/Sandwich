@@ -16,7 +16,9 @@ public class StatsUpdater : MonoBehaviour {
     public Text swipesText;
     public Text buildingsText;
 
-    
+    public Text elixirsOwnedText;
+    public Text elixirsEarnedText;
+    public Text evolutionsText;
 
 
     //RIGHT
@@ -30,9 +32,8 @@ public class StatsUpdater : MonoBehaviour {
     public Text TotalswipesText;
     public Text TotalbuildingsText;
 
-    public Text elixirsOwnedText;
-    public Text elixirsEarnedText;
-    public Text evolutionsText;
+    public Text versionText;
+    
 
     void Awake() {
         
@@ -56,7 +57,12 @@ public class StatsUpdater : MonoBehaviour {
         swipesText.text = Util.encodeNumberInteger(Util.em.totalSwipes);
         buildingsText.text = Util.encodeNumberInteger(Util.em.buildings);
 
-        
+        //elixir
+        elixirsOwnedText.text = Util.encodeNumberInteger((int)Util.em.elixir);
+        elixirsEarnedText.text = Util.encodeNumberInteger((int)Util.em.totalElixir);
+        evolutionsText.text = Util.encodeNumberInteger(-1 + Util.em.toasterVisionLevel + Util.em.communalMindLevel + Util.em.dexterousHandsLevel);
+
+
 
 
         //right
@@ -71,10 +77,8 @@ public class StatsUpdater : MonoBehaviour {
         TotalswipesText.text = Util.encodeNumberInteger(Util.em.totalSwipes + Util.em.lifetimeSwipes);
         TotalbuildingsText.text = Util.encodeNumberInteger(Util.em.buildings + Util.em.lifetimeBuildings);
 
-        //elixir
-        elixirsOwnedText.text = Util.encodeNumberInteger((int)Util.em.elixir);
-        elixirsEarnedText.text = Util.encodeNumberInteger((int)Util.em.totalElixir);
-        evolutionsText.text = Util.encodeNumberInteger(-1 + Util.em.toasterVisionLevel + Util.em.communalMindLevel + Util.em.dexterousHandsLevel);
+        //version
+        versionText.text = Util.encodeNumberInteger(Util.wm.version);
     }
 
     void OnEnable() {
