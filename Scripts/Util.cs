@@ -52,9 +52,9 @@ public class Util {
 
 
     //elixir costs
-    public static float toasterVisionBase = 10f;
+    public static float toasterVisionBase = 8f;
     public static float toasterVisionScale = 1.1f;
-    public static float communalMindBase = 10f;
+    public static float communalMindBase = 8f;
     public static float communalMindScale = 1.1f;
     public static float dexterousHandsBase = 5;
     public static float dexterousHandsScale = 1.1f;
@@ -63,7 +63,7 @@ public class Util {
     public static double timeMachineCost = 1E+15f;
 
     //elixir
-    public static double elixirBaseCost = 1E+6;
+    public static double elixirBaseCost = 5E+5;
     public static float elixirScale = 5f;
 
     //ads

@@ -26,26 +26,31 @@ public class Upgrade : MonoBehaviour {
         //wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         //icon = transform.FindChild("Icon").gameObject;
         title = transform.FindChild("Title").gameObject;
-        costText = transform.FindChild("CostText").gameObject;
+        
         switch (type) {
             case UpgradeType.producer:
+                costText = transform.FindChild("CostText").gameObject;
                 counterText = transform.FindChild("CounterText").gameObject;
                 statsText = transform.FindChild("StatsText").gameObject;
                 normalTitle = title.GetComponent<Text>().text;
                 break;
             case UpgradeType.sandwich:
+                costText = transform.FindChild("CostText").gameObject;
                 statsText = transform.FindChild("StatsText").gameObject;
                 nameText = transform.FindChild("NameText").gameObject;
                 icon = transform.FindChild("Icon").gameObject;
                 break;
             case UpgradeType.sharpenKnifes:
+                costText = transform.FindChild("CostText").gameObject;
                 counterText = transform.FindChild("CounterText").gameObject;
                 statsText = transform.FindChild("StatsText").gameObject;
                 break;
             case UpgradeType.timeMachine:
+                costText = transform.FindChild("CostText").gameObject;
                 //costText = transform.FindChild("CostText").gameObject;
                 break;
             case UpgradeType.elixir:
+                costText = transform.FindChild("CostText").gameObject;
                 counterText = transform.FindChild("CounterText").gameObject;
                 statsText = transform.FindChild("StatsText").gameObject;
                 break;
