@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
 public enum TimerType { money, elixir }
 
@@ -31,7 +32,12 @@ public class TimerText : MonoBehaviour {
                         t.Seconds);
             }
             else {
-                txt.text = "Ready!";
+                if (Advertisement.IsReady()) {
+                    txt.text = "Ready!";
+                }
+                else {
+                    txt.text = "Loading";
+                }
             }
         }
         else {
@@ -43,7 +49,12 @@ public class TimerText : MonoBehaviour {
                         t.Seconds);
             }
             else {
-                txt.text = "Ready!";
+                if (Advertisement.IsReady()) {
+                    txt.text = "Ready!";
+                }
+                else {
+                    txt.text = "Loading";
+                }
             }
         }
         /*if (wm.adWatchTime <= 0) {
