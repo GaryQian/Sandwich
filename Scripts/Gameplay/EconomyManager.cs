@@ -300,6 +300,7 @@ public class EconomyManager : MonoBehaviour {
 
             money = data.money;
             elixir = data.elixir;
+            totalElixir = data.totalElixir;
             totalMoney = data.totalMoney;
             lifetimeMoney = data.lifetimeMoney;
             rate = data.rate;
@@ -362,6 +363,7 @@ public class EconomyManager : MonoBehaviour {
 
         data.money = money;
         data.elixir = elixir;
+        data.totalElixir = totalElixir;
         data.totalMoney = totalMoney;
         data.lifetimeMoney = lifetimeMoney;
         data.rate = rate;
@@ -420,6 +422,7 @@ public class EconomyManager : MonoBehaviour {
 public class SaveData {
     public double money;
     public long elixir;
+    public long totalElixir;
     public double totalMoney;
     public double lifetimeMoney;
     public double rate;

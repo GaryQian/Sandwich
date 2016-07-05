@@ -21,6 +21,6 @@ public class SandwichValueText : MonoBehaviour {
     }
 
     public void updateValue(double rate) {
-        txt.text = "+$" + wm.encodeNumber(rate) + " Ea";
+        txt.text = "+$" + wm.encodeNumber(rate) + " Ea &";
     }
 }
