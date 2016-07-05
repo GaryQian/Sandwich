@@ -48,7 +48,7 @@ public class StatsUpdater : MonoBehaviour {
         spsText.text = Util.encodeNumber(Util.em.rate) + " &/s";
         mpsText.text = "+$" + Util.encodeNumber(Util.em.rate * Util.em.sandwichValue) + " /s";
         sandiwchValueText.text = "$" + Util.encodeNumber(Util.em.sandwichValue) + " each &";
-        multiplierText.text = Util.encodeNumberInteger((int)((-2f + Util.em.toasterVisionBonus + Util.em.communalMindBonus) * 100f)) + "%";
+        multiplierText.text = Util.encodeNumberInteger((int)((-2f + Util.em.toasterVisionBonus + Util.em.communalMindBonus) * 100f)) + "% Bonus";
 
         //current
         moneyMadeText.text = "$" + Util.encodeNumber(Util.em.totalMoney);

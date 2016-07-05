@@ -21,7 +21,7 @@ namespace CompleteProject {
         // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
         // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
         // specific mapping to Unity Purchasing's AddProduct, below.
-        public static string kProductIDConsumable = "consumable";
+        public static string knifeCollectionID = "sandwichknifecollection";
         public static string kProductIDNonConsumable = "nonconsumable";
         public static string kProductIDSubscription = "subscription";
 
@@ -51,9 +51,9 @@ namespace CompleteProject {
 
             // Add a product to sell / restore by way of its identifier, associating the general identifier
             // with its store-specific identifiers.
-            builder.AddProduct(kProductIDConsumable, ProductType.Consumable);
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////builder.AddProduct(knifeCollectionID, ProductType.Consumable);
             // Continue adding the non-consumable product.
-            builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
+            builder.AddProduct(knifeCollectionID, ProductType.NonConsumable);
             // And finish adding the subscription product. Notice this uses store-specific IDs, illustrating
             // if the Product ID was configured differently between Apple and Google stores. Also note that
             // one uses the general kProductIDSubscription handle inside the game - the store-specific IDs 
@@ -74,18 +74,10 @@ namespace CompleteProject {
             return m_StoreController != null && m_StoreExtensionProvider != null;
         }
 
-
-        public void BuyConsumable() {
-            // Buy the consumable product using its general identifier. Expect a response either 
-            // through ProcessPurchase or OnPurchaseFailed asynchronously.
-            BuyProductID(kProductIDConsumable);
-        }
-
-
-        public void BuyNonConsumable() {
+        public void BuyKnifeCollection() {
             // Buy the non-consumable product using its general identifier. Expect a response either 
             // through ProcessPurchase or OnPurchaseFailed asynchronously.
-            BuyProductID(kProductIDNonConsumable);
+            BuyProductID(knifeCollectionID);
         }
 
 
@@ -184,10 +176,12 @@ namespace CompleteProject {
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
             // A consumable product has been purchased by this user.
-            if (String.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal)) {
+            if (String.Equals(args.purchasedProduct.definition.id, knifeCollectionID, StringComparison.Ordinal)) {
                 Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-                // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
-                //ScoreManager.score += 100;
+                // The knifeCollection purchased successfully. Unlock knife collection:
+                Util.wm.knifeCollectionPurchased = true;
+                Util.wm.saveIAP();
+
             }
             // Or ... a non-consumable product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal)) {

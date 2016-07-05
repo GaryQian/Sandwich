@@ -21,7 +21,12 @@ public class WorldManager : MonoBehaviour {
     public int version = 1;
     public int savedVersion = -1;
     //
-    
+
+
+    //IAP
+    public bool knifeCollectionPurchased = false;
+    public int knifeID = 0;
+    //
 
     public GameObject breadPrefab;
     public GameObject activeBread;
@@ -83,6 +88,7 @@ public class WorldManager : MonoBehaviour {
             }
         }
         InvokeRepeating("checkAdTimer", 10f, 10f);
+        InvokeRepeating("everySecond", 1f, 1f);
 
         muteButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
         musicMuteButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f, -105.5f, 0);
@@ -90,6 +96,12 @@ public class WorldManager : MonoBehaviour {
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
 
         Bread.updateLabel();
+
+        loadIAP();
+    }
+
+    void everySecond() {
+        gtm.knife.GetComponent<Knife>().setupKnifeType();
     }
 
     public void initializeBGMusic() {
@@ -172,9 +184,43 @@ public class WorldManager : MonoBehaviour {
         saveVersion();
         return savedVersion;
     }
+
+    public void saveIAP() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/purchases.dat");
+
+        IAPData data = new IAPData();
+
+        data.knifeCollectionPurchased = knifeCollectionPurchased;
+        data.knifeID = knifeID;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void loadIAP() {
+        if (File.Exists(Application.persistentDataPath + "/purchases.dat")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/purchases.dat", FileMode.Open);
+            IAPData data = (IAPData)bf.Deserialize(file);
+            file.Close();
+
+            knifeCollectionPurchased = data.knifeCollectionPurchased;
+            knifeID = data.knifeID;
+
+            saveVersion();
+        }
+    }
 }
 
 [Serializable]
 public class Version {
     public int version;
+}
+
+
+[Serializable]
+public class IAPData {
+    public bool knifeCollectionPurchased;
+    public int knifeID;
 }

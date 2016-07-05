@@ -21,7 +21,7 @@ public class Util {
     //producer rates
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 7f;
-    public static float autochefRate = 70f;
+    public static float autochefRate = 75f;
     public static float mcdandwichRate = 800f;
     public static float sandwichCityRate = 10000f;
     public static float breadCloningRate = 100000f;
@@ -36,19 +36,19 @@ public class Util {
 
     //producer base costs
     public static float sandwichCartBase = 50f;
-    public static float deliBase = 6000f;
-    public static float autochefBase = 400000f;
-    public static float mcdandwichBase = 20000000f;
+    public static float deliBase = 3000f;
+    public static float autochefBase = 250000f;
+    public static float mcdandwichBase = 15000000f;
     public static float sandwichCityBase = 1000000000f;
     public static double breadCloningBase = 1E+11f;
     public static double sandwocracyBase = 1E+13f;
     public static double sandriaLawBase = 1.0000001E+15f;
-    public static double sandwichPlanetBase = 1E+17f;
-    public static double humanExterminationBase = 1E+19;
-    public static double enslaveAliensBase = 1E+21;
-    public static double deathSandwichBase = 1E+23;
-    public static double sandwichGalaxyBase = 1E+25;
-    public static double flyingSandwichMonsterBase = 1E+27;
+    public static double sandwichPlanetBase = 2E+17f;
+    public static double humanExterminationBase = 3E+19;
+    public static double enslaveAliensBase = 4E+21;
+    public static double deathSandwichBase = 5E+23;
+    public static double sandwichGalaxyBase = 6E+25;
+    public static double flyingSandwichMonsterBase = 9.999E+27;
 
 
     //elixir costs
