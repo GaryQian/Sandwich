@@ -41,6 +41,8 @@ public class ButtonHandler : MonoBehaviour {
         double num = em.money;
         em.money *= 2f;
         em.totalMoney += num;
+        wm.playthroughCount++;
+        em.moneyText.updateColor();
     }
 
     public void playKaching() {
@@ -257,7 +259,8 @@ public class ButtonHandler : MonoBehaviour {
             wm.sauce.GetComponent<Sauce>().update();
             wm.em.recalculate();
             playKaching();
-            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each &";
+            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.getSandwichValue()) + " each &";
+            Bread.updateButton();
         }
         else {
             notEnough();
@@ -277,7 +280,7 @@ public class ButtonHandler : MonoBehaviour {
             Bread.updateButton();
             wm.em.recalculate();
             playKaching();
-            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.sandwichValue) + " each &";
+            em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.getSandwichValue()) + " each &";
         }
         else {
             notEnough();

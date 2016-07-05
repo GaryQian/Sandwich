@@ -67,7 +67,7 @@ public class Sauce : MonoBehaviour {
             up.updateCost(wm.buttonHandler.sauceCost());
             up.updateName(getSauceName(wm.em.sauceID + 1));
             up.updateIcon(getImage(wm.em.sauceID + 1));
-            up.updateStats("$" + Util.encodeNumber(wm.em.getSandwichBaseValue(wm.em.sauceID + 1)) + " ea");
+            up.updateStats("$" + Util.encodeNumber(wm.em.getSandwichValue(wm.em.sauceID + 1, Util.em.breadID)) + " ea");
         }
     }
 

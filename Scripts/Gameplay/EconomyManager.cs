@@ -45,7 +45,7 @@ public class EconomyManager : MonoBehaviour {
     public int prevMultiplier = 1;
     public MultiplierGlow multiplierGlow;
 
-    private MoneyText moneyText;
+    public MoneyText moneyText;
     private RateText rateText;
     private SandwichValueText sandwichValueText;
     private WorldManager wm;
@@ -104,6 +104,7 @@ public class EconomyManager : MonoBehaviour {
         wm.checkAdTimer();
 
         wm.initializeBGMusic();
+        moneyText.updateColor();
     }
 
     // Update is called once per frame
@@ -216,12 +217,21 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public double getSandwichValue(int i, int j) {
+        //return Mathf.Pow(Mathf.Pow(16f + 16f * Mathf.Pow(j * 1.5f, 1f/3f), 1f/4f), i - 1);
+        return Mathf.Pow(2f, i - 1 + j * 1.1f);
+    }
+
+    public double getSandwichValueOld(int i, int j) {
         return Mathf.Pow(2f, i - 1 + j);
     }
 
-    public double getSandwichBaseValue(int i) {
-        return Mathf.Pow(2f, i - 1);
+    public double getSandwichValueOld() {
+        return getSandwichValueOld(sauceID, breadID);
     }
+
+    /*public double getSandwichBaseValue(int i) {
+        return Mathf.Pow(2f, i - 1);
+    }*/
 
     public double getSandwichValue() {
         return getSandwichValue(sauceID, breadID);

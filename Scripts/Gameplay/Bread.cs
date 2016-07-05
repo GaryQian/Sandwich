@@ -207,8 +207,9 @@ public class Bread : MonoBehaviour {
         up.updateIcon(Util.wm.activeBread.GetComponent<Bread>().getBreadSprite(Util.em.breadID + 1));
         up.updateName(Util.wm.activeBread.GetComponent<Bread>().getBreadName(Util.em.breadID + 1));
         up.updateCost(Bread.cost(Util.em.breadID));
-        up.updateStats("x2 ea &");
+        up.updateStats("$" + Util.encodeNumber(Util.em.getSandwichValue((int)Util.em.sauceID, (int)Util.em.breadID + 1)) + " Ea");
         updateLabel();
+        Util.wm.sauce.GetComponent<Sauce>().updateMenuBar();
     }
 
     public static void updateLabel() {

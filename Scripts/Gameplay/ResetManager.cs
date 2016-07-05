@@ -101,6 +101,7 @@ public class ResetManager : MonoBehaviour {
         Bread.updateLabel();
         em.swipe();
         em.money = 0;
+        em.moneyText.updateColor();
 
         em.save();
 

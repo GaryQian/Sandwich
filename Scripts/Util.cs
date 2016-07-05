@@ -7,10 +7,12 @@ public class Util {
     public static EconomyManager em;
 
     public static double money;
+
     public static double sauceBaseCost = 500f;
     public static double sauceScale = 10f;
     public static double breadBaseCost = 1000000f;
     public static double breadScale = 400f;
+
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.04f;
