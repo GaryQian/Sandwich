@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public enum IAPBuyButtonType { knife, boost }
 
 public class IAPButton : MonoBehaviour {
-    //private Upgrade up;
+    
     private Button button;
     public IAPBuyButtonType type;
     ColorBlock enabledColor;

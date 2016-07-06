@@ -260,6 +260,7 @@ public class EconomyManager : MonoBehaviour {
     
 
     void checkCombo() {
+        
         int initMult = multiplier;
         prevMultiplier = multiplier;
         if (combo > x2threshold) {
@@ -307,7 +308,13 @@ public class EconomyManager : MonoBehaviour {
         if (File.Exists(Application.persistentDataPath + "/gamedata.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamedata.dat", FileMode.Open);
-            SaveData data = (SaveData)bf.Deserialize(file);
+            SaveData data = null;
+            try {
+                data = (SaveData)bf.Deserialize(file);
+            }
+            catch (Exception e) {
+
+            }
             file.Close();
 
             money = data.money;
