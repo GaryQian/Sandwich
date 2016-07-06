@@ -18,6 +18,9 @@ public class ElixirCountText : MonoBehaviour {
     }
 
     void OnEnable() {
-        InvokeRepeating("updateElixirText", 0, 2f);
+        InvokeRepeating("updateElixirText", 0, 0.3f);
+    }
+    void OnDisable() {
+        CancelInvoke("updateElixirText");
     }
 }

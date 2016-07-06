@@ -5,6 +5,7 @@ public class SandwichValueText : MonoBehaviour {
     TextMesh txt;
     WorldManager wm;
     public GameObject tagImage;
+    public GameObject tagGlow;
     // Use this for initialization
     void Awake() {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
@@ -17,6 +18,9 @@ public class SandwichValueText : MonoBehaviour {
         transform.position = new Vector3(txt.transform.position.x, txt.transform.position.y, 0);
         tagImage.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.65f, Screen.height * 0.32f));
         tagImage.transform.position = new Vector3(tagImage.transform.position.x, tagImage.transform.position.y, 0);
+        tagGlow.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.65f, Screen.height * 0.32f));
+        tagGlow.transform.position = new Vector3(tagImage.transform.position.x, tagImage.transform.position.y, -1);
+        transform.SetParent(tagImage.transform);
         transform.SetParent(tagImage.transform);
     }
 

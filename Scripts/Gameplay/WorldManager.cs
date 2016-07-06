@@ -127,6 +127,7 @@ public class WorldManager : MonoBehaviour {
             boostMultiplierText.GetComponent<Text>().text = "x7";
             boostTimer.GetComponent<Text>().text = Util.encodeTimeShort(x7Time);
             em.updateLabels();
+            em.multiplierGlow.show();
         }
         else if (x3Time > 0) {
             x7Multiplier = 1f;
@@ -136,6 +137,7 @@ public class WorldManager : MonoBehaviour {
             boostMultiplierText.GetComponent<Text>().text = "x3";
             boostTimer.GetComponent<Text>().text = Util.encodeTimeShort(x3Time);
             em.updateLabels();
+            em.multiplierGlow.show();
         }
         else {
             x7Multiplier = 1f;

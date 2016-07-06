@@ -6,6 +6,7 @@ public class MultiplierGlow : MonoBehaviour {
     float fadeSpeed = 1f;
     float timer;
     Image img;
+    public SpriteRenderer tagGlow;
     void Awake() {
         img = GetComponent<Image>();
     }
@@ -26,14 +27,16 @@ public class MultiplierGlow : MonoBehaviour {
             case 3: img.color = new Color(1f, 0.5f, 0, 1f); break;
             default: img.color = new Color(1f, 1f, 0, 1f); break;
         }
+        tagGlow.color = new Color(1f, 1f, 1f);
         CancelInvoke("fade");
-        Invoke("fade", 0.7f);
+        Invoke("fade", 1f);
     }
 
     public void fade() {
         timer -= 0.1f;
         if (timer >= 0) {
             img.color = new Color(1f, 1f, 0, timer / fadeSpeed);
+            tagGlow.color = new Color(1f, 1f, 1f, timer / fadeSpeed);
             /*switch (Util.em.multiplier) {
                 case 2: img.color = new Color(1f, 1f, 0, timer / fadeSpeed); break;
                 case 3: img.color = new Color(1f, 0.5f, 0, timer / fadeSpeed); break;
@@ -42,6 +45,7 @@ public class MultiplierGlow : MonoBehaviour {
         }
         else {
             img.color = new Color(1f, 1f, 0, 0);
+            tagGlow.color = new Color(1f, 1f, 1f, 0);
         }
     }
 }
