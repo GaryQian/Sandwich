@@ -16,7 +16,7 @@ public class ButtonHandler : MonoBehaviour {
     public Sprite musicMuteOn;
     public Sprite musicMuteOff;
     public AudioClip kaching;
-    public AudioSource audioSource;
+    public AudioClip build;
 
     private Upgrade up;
 
@@ -47,7 +47,8 @@ public class ButtonHandler : MonoBehaviour {
 
     public void playKaching() {
         if (!Util.muted) {
-            audioSource.PlayOneShot(kaching, 0.5f);
+            wm.halfAudioSource.PlayOneShot(kaching);
+            //wm.fullAudioSource.PlayOneShot(build);
         }
     }
 

@@ -37,7 +37,11 @@ public class WorldManager : MonoBehaviour {
     public GameObject sauce;
     public GameObject sandWitchPrefab;
     public GameObject sandWitch;
+    public GameObject boostMultiplierText;
+    public GameObject boostTimer;
     public int sandWitchesClicked = 0;
+
+
 
     public GameplayTouchManager gtm;
     public EconomyManager em;
@@ -56,6 +60,9 @@ public class WorldManager : MonoBehaviour {
     public bool musicMuted = false;
     public AudioSource music;
     public int playthroughCount = 0;
+
+    public AudioSource halfAudioSource;
+    public AudioSource fullAudioSource;
 
     public Animator shopGlowAnimator;
 
@@ -91,12 +98,16 @@ public class WorldManager : MonoBehaviour {
                 Advertisement.Initialize(gameIDiOS); // initialize Unity Ads.
             }
         }
-        InvokeRepeating("checkAdTimer", 10f, 10f);
-        InvokeRepeating("everySecond", 1f, 1f);
+        
 
         muteButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f , -40.5f, 0);
         musicMuteButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(-(Screen.width / Util.screenToCanvasRatio / 2f) + 40.5f, -105.5f, 0);
 
+        boostMultiplierText.GetComponent<RectTransform>().anchoredPosition = new Vector3((Screen.width / Util.screenToCanvasRatio / 2f) - 15f, -50f, 0);
+        boostTimer.GetComponent<RectTransform>().anchoredPosition = new Vector3((Screen.width / Util.screenToCanvasRatio / 2f) - 18f, -125f, 0);
+
+        InvokeRepeating("checkAdTimer", 10f, 10f);
+        InvokeRepeating("everySecond", 0, 1f);
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
 
         Bread.updateLabel();
@@ -111,14 +122,28 @@ public class WorldManager : MonoBehaviour {
         if (x7Time > 0) {
             x7Multiplier = 7f;
             x3Multiplier = 1f;
+            boostMultiplierText.SetActive(true);
+            boostTimer.SetActive(true);
+            boostMultiplierText.GetComponent<Text>().text = "x7";
+            boostTimer.GetComponent<Text>().text = Util.encodeTimeShort(x7Time);
+            em.updateLabels();
         }
         else if (x3Time > 0) {
             x7Multiplier = 1f;
             x3Multiplier = 3f;
+            boostMultiplierText.SetActive(true);
+            boostTimer.SetActive(true);
+            boostMultiplierText.GetComponent<Text>().text = "x3";
+            boostTimer.GetComponent<Text>().text = Util.encodeTimeShort(x3Time);
+            em.updateLabels();
         }
         else {
             x7Multiplier = 1f;
             x3Multiplier = 1f;
+            em.updateLabels();
+            boostMultiplierText.SetActive(false);
+            boostTimer.SetActive(false);
+            em.updateLabels();
         }
         
     }

@@ -30,7 +30,6 @@ public class Bread : MonoBehaviour {
     public Vector3 finalPos;
     SpriteRenderer sr;
 
-    public AudioSource audio;
     public AudioClip s1;
     public AudioClip s2;
     public AudioClip s3;
@@ -53,7 +52,6 @@ public class Bread : MonoBehaviour {
         gtm = Util.wm.gtm;
         wm = Util.wm;
         sr = GetComponent<SpriteRenderer>();
-        audio = GetComponent<AudioSource>();
     }
 
     void Start() {
@@ -143,12 +141,12 @@ public class Bread : MonoBehaviour {
         //play swish
         if (!Util.muted) {
             switch ((int)Random.Range(0, 5.99f)) {
-                case 0: audio.PlayOneShot(s1, 1f); break;
-                case 1: audio.PlayOneShot(s2, 1f); break;
-                case 2: audio.PlayOneShot(s3, 1f); break;
-                case 3: audio.PlayOneShot(s4, 1f); break;
-                case 4: audio.PlayOneShot(s5, 1f); break;
-                case 5: audio.PlayOneShot(s6, 1f); break;
+                case 0: wm.fullAudioSource.PlayOneShot(s1, 1f); break;
+                case 1: wm.fullAudioSource.PlayOneShot(s2, 1f); break;
+                case 2: wm.fullAudioSource.PlayOneShot(s3, 1f); break;
+                case 3: wm.fullAudioSource.PlayOneShot(s4, 1f); break;
+                case 4: wm.fullAudioSource.PlayOneShot(s5, 1f); break;
+                case 5: wm.fullAudioSource.PlayOneShot(s6, 1f); break;
             }
         }
     }

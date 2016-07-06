@@ -154,7 +154,7 @@ public class EconomyManager : MonoBehaviour {
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -172,20 +172,20 @@ public class EconomyManager : MonoBehaviour {
     public void updateProducerMenuCounters() {
         if (wm.menuState == MenuType.producer) {
             list.transform.FindChild("Rate").transform.FindChild("ProductionRateText").GetComponent<Text>().text = Util.encodeNumber(rate) + " &/s";
-            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate, Util.sandwichCartBase);
-            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate, Util.deliBase);
-            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate, Util.autochefBase);
-            list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate, Util.mcdandwichBase);
-            list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate, Util.sandwichCityBase);
-            list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().setupProducerUpgrade(breadCloningCount, Util.breadCloningRate, Util.breadCloningBase);
-            list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().setupProducerUpgrade(sandwocracyCount, Util.sandwocracyRate, Util.sandwocracyBase);
-            list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate, Util.sandriaLawBase);
-            list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().setupProducerUpgrade(sandwichPlanetCount, Util.sandwichPlanetRate, Util.sandwichPlanetBase);
-            list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().setupProducerUpgrade(humanExterminationCount, Util.humanExterminationRate, Util.humanExterminationBase);
-            list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().setupProducerUpgrade(enslaveAliensCount, Util.enslaveAliensRate, Util.enslaveAliensBase);
-            list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().setupProducerUpgrade(deathSandwichCount, Util.deathSandwichRate, Util.deathSandwichBase);
-            list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().setupProducerUpgrade(sandwichGalaxyCount, Util.sandwichGalaxyRate, Util.sandwichGalaxyBase);
-            list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().setupProducerUpgrade(flyingSandwichMonsterCount, Util.flyingSandwichMonsterRate, Util.flyingSandwichMonsterBase);
+            list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCartCount, Util.sandwichCartRate * communalMindBonus, Util.sandwichCartBase);
+            list.transform.FindChild("Deli").GetComponent<Upgrade>().setupProducerUpgrade(deliCount, Util.deliRate * communalMindBonus, Util.deliBase);
+            list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().setupProducerUpgrade(autochefCount, Util.autochefRate * communalMindBonus, Util.autochefBase);
+            list.transform.FindChild("McDandwich").GetComponent<Upgrade>().setupProducerUpgrade(mcdandwichCount, Util.mcdandwichRate * communalMindBonus, Util.mcdandwichBase);
+            list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().setupProducerUpgrade(sandwichCityCount, Util.sandwichCityRate * communalMindBonus, Util.sandwichCityBase);
+            list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().setupProducerUpgrade(breadCloningCount, Util.breadCloningRate * communalMindBonus, Util.breadCloningBase);
+            list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().setupProducerUpgrade(sandwocracyCount, Util.sandwocracyRate * communalMindBonus, Util.sandwocracyBase);
+            list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate * communalMindBonus, Util.sandriaLawBase);
+            list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().setupProducerUpgrade(sandwichPlanetCount, Util.sandwichPlanetRate * communalMindBonus, Util.sandwichPlanetBase);
+            list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().setupProducerUpgrade(humanExterminationCount, Util.humanExterminationRate * communalMindBonus, Util.humanExterminationBase);
+            list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().setupProducerUpgrade(enslaveAliensCount, Util.enslaveAliensRate * communalMindBonus, Util.enslaveAliensBase);
+            list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().setupProducerUpgrade(deathSandwichCount, Util.deathSandwichRate * communalMindBonus, Util.deathSandwichBase);
+            list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().setupProducerUpgrade(sandwichGalaxyCount, Util.sandwichGalaxyRate * communalMindBonus, Util.sandwichGalaxyBase);
+            list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().setupProducerUpgrade(flyingSandwichMonsterCount, Util.flyingSandwichMonsterRate * communalMindBonus, Util.flyingSandwichMonsterBase);
 
 
         }

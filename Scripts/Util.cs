@@ -167,6 +167,20 @@ public class Util {
         return text;
     }
 
+    public static string encodeTimeShort(double time) {
+        TimeSpan t = TimeSpan.FromSeconds(time);
+
+        string text = "";
+        if (t.Days > 0) {
+            text += string.Format("{0:0}D ", t.Days);
+        }
+        if (t.Hours > 0) {
+            text += string.Format("{0:D2}H ", t.Hours);
+        }
+        text += string.Format("{0:D1}M", t.Minutes);
+        return text;
+    }
+
 
 
 
