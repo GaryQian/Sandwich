@@ -26,6 +26,10 @@ public class WorldManager : MonoBehaviour {
     //IAP
     public bool knifeCollectionPurchased = false;
     public int knifeID = 0;
+    public double x3Time;
+    public double x7Time;
+    public double x3Multiplier = 1f;
+    public double x7Multiplier = 1f;
     //
 
     public GameObject breadPrefab;
@@ -102,6 +106,21 @@ public class WorldManager : MonoBehaviour {
 
     void everySecond() {
         gtm.knife.GetComponent<Knife>().setupKnifeType();
+        x3Time--;
+        x7Time--;
+        if (x7Time > 0) {
+            x7Multiplier = 7f;
+            x3Multiplier = 1f;
+        }
+        else if (x3Time > 0) {
+            x7Multiplier = 1f;
+            x3Multiplier = 3f;
+        }
+        else {
+            x7Multiplier = 1f;
+            x3Multiplier = 1f;
+        }
+        
     }
 
     public void initializeBGMusic() {
@@ -193,6 +212,10 @@ public class WorldManager : MonoBehaviour {
 
         data.knifeCollectionPurchased = knifeCollectionPurchased;
         data.knifeID = knifeID;
+        if (x3Time < 0) x3Time = 0;
+        if (x7Time < 0) x7Time = 0;
+        data.x3Time = x3Time;
+        data.x7Time = x7Time;
 
         bf.Serialize(file, data);
         file.Close();
@@ -207,6 +230,8 @@ public class WorldManager : MonoBehaviour {
 
             knifeCollectionPurchased = data.knifeCollectionPurchased;
             knifeID = data.knifeID;
+            x3Time = data.x3Time;
+            x7Time = data.x7Time;
 
             saveVersion();
         }
@@ -223,4 +248,6 @@ public class Version {
 public class IAPData {
     public bool knifeCollectionPurchased;
     public int knifeID;
+    public double x3Time;
+    public double x7Time;
 }

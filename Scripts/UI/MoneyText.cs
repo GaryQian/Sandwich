@@ -24,21 +24,30 @@ public class MoneyText : MonoBehaviour {
 
     public void updateColor() {
         switch (Util.wm.playthroughCount % 4) {
-            case 0:
-                //GetComponent<Text>().color = new Color(0.086f, 0.5f, 0);
+            case 0://Green
                 bg1.color = new Color(0.737f, 1f, 0);
+                setOtherColors();
                 break;
-            case 1:
+            case 1://Blue
                 bg1.color = new Color(0, 0.8f, 1f);
+                setOtherColors();
                 break;
-            case 2:
-                bg1.color = new Color(1f, 0, 0.0f);
+            case 2://RED
+                bg1.color = new Color(1f, 0.15f, 0.15f);
+                bg2.color = bg1.color * bg1.color * new Color(0.8f, 0.8f, 0.8f);
+                txt.color = new Color(0.2f, 0, 0);
+                mute1.color = (bg1.color * bg1.color * bg1.color + Color.white * 0.3f) * 0.5f;
+                mute2.color = mute1.color;
+                info.color = mute1.color;
                 break;
-            case 3:
+            case 3://Gold
                 bg1.color = new Color(1f, 0.9f, 0);
+                setOtherColors();
                 break;
         }
+    }
 
+    void setOtherColors() {
         bg2.color = bg1.color * bg1.color * new Color(0.8f, 0.8f, 0.8f);
         txt.color = bg1.color * bg1.color * bg1.color * new Color(0.5f, 0.5f, 0.5f);
         mute1.color = (bg1.color * bg1.color * bg1.color + Color.white * 0.3f) * 0.5f;

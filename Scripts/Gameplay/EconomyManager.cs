@@ -141,8 +141,9 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void income(double num) {
-        money += num * toasterVisionBonus;
-        totalMoney += num * toasterVisionBonus;
+        num = num * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier;
+        money += num;
+        totalMoney += num;
     }
 
     public void swipe() {
@@ -164,8 +165,8 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void updateLabels() {
-        rateText.updateRate(sps * toasterVisionBonus);
-        sandwichValueText.updateValue(sandwichValue * toasterVisionBonus);
+        rateText.updateRate(sps * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier);
+        sandwichValueText.updateValue(sandwichValue * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier);
     }
 
     public void updateProducerMenuCounters() {
@@ -428,6 +429,10 @@ public class EconomyManager : MonoBehaviour {
 
         bf.Serialize(file, data);
         file.Close();
+
+        if (wm.x3Time > 0 || wm.x7Time > 0) {
+            wm.saveIAP();
+        }
     }
 }
 

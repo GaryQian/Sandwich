@@ -22,14 +22,14 @@ namespace CompleteProject {
         // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
         // specific mapping to Unity Purchasing's AddProduct, below.
         public static string knifeCollectionID = "sandwichknifecollection";
-        public static string kProductIDNonConsumable = "nonconsumable";
-        public static string kProductIDSubscription = "subscription";
+        public static string x3ID = "sandwichx3boost";
+        public static string x7ID = "sandwichx7boost";
 
         // Apple App Store-specific product identifier for the subscription product.
-        private static string kProductNameAppleSubscription = "com.unity3d.subscription.new";
+        //private static string kProductNameAppleSubscription = "com.unity3d.subscription.new";
 
         // Google Play Store-specific product identifier subscription product.
-        private static string kProductNameGooglePlaySubscription = "com.unity3d.subscription.original";
+        //private static string kProductNameGooglePlaySubscription = "com.unity3d.subscription.original";
 
         void Start() {
             // If we haven't set up the Unity Purchasing reference
@@ -54,14 +54,17 @@ namespace CompleteProject {
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////builder.AddProduct(knifeCollectionID, ProductType.Consumable);
             // Continue adding the non-consumable product.
             builder.AddProduct(knifeCollectionID, ProductType.NonConsumable);
+
+            builder.AddProduct(x3ID, ProductType.Consumable);
+            builder.AddProduct(x7ID, ProductType.Consumable);
             // And finish adding the subscription product. Notice this uses store-specific IDs, illustrating
             // if the Product ID was configured differently between Apple and Google stores. Also note that
             // one uses the general kProductIDSubscription handle inside the game - the store-specific IDs 
             // must only be referenced here. 
-            builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
-                { kProductNameAppleSubscription, AppleAppStore.Name },
-                { kProductNameGooglePlaySubscription, GooglePlay.Name },
-            });
+            //builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
+            //    { kProductNameAppleSubscription, AppleAppStore.Name },
+            //    { kProductNameGooglePlaySubscription, GooglePlay.Name },
+            //});
 
             // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
             // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
@@ -77,17 +80,23 @@ namespace CompleteProject {
         public void BuyKnifeCollection() {
             // Buy the non-consumable product using its general identifier. Expect a response either 
             // through ProcessPurchase or OnPurchaseFailed asynchronously.
-            BuyProductID(knifeCollectionID);
+            if (!Util.wm.knifeCollectionPurchased) {
+                BuyProductID(knifeCollectionID);
+            }
         }
 
 
-        public void BuySubscription() {
-            // Buy the subscription product using its the general identifier. Expect a response either 
-            // through ProcessPurchase or OnPurchaseFailed asynchronously.
-            // Notice how we use the general product identifier in spite of this ID being mapped to
-            // custom store-specific identifiers above.
-            BuyProductID(kProductIDSubscription);
+        public void Buyx3() {
+            if (Util.wm.x3Time <= 0 && Util.wm.x7Time <= 0) {
+                BuyProductID(x3ID);
+            }
         }
+        public void Buyx7() {
+            if (Util.wm.x3Time <= 0 && Util.wm.x7Time <= 0) {
+                BuyProductID(x7ID);
+            }
+        }
+
 
 
         void BuyProductID(string productId) {
@@ -177,21 +186,29 @@ namespace CompleteProject {
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
             // A consumable product has been purchased by this user.
             if (String.Equals(args.purchasedProduct.definition.id, knifeCollectionID, StringComparison.Ordinal)) {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+                //Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // The knifeCollection purchased successfully. Unlock knife collection:
                 Util.wm.knifeCollectionPurchased = true;
                 Util.wm.saveIAP();
+                Debug.Log("Purchased Knife Collection!");
 
             }
             // Or ... a non-consumable product has been purchased by this user.
-            else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal)) {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-                // TODO: The non-consumable item has been successfully purchased, grant this item to the player.
+            else if (String.Equals(args.purchasedProduct.definition.id, x3ID, StringComparison.Ordinal)) {
+                //Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+                // TODO: The consumable item has been successfully purchased, grant this item to the player.
+                Util.wm.x3Time = 14400;
+                Util.wm.saveIAP();
+                Debug.Log("Purchased x3 Boost!");
             }
             // Or ... a subscription product has been purchased by this user.
-            else if (String.Equals(args.purchasedProduct.definition.id, kProductIDSubscription, StringComparison.Ordinal)) {
-                Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-                // TODO: The subscription item has been successfully purchased, grant this to the player.
+            else if (String.Equals(args.purchasedProduct.definition.id, x7ID, StringComparison.Ordinal)) {
+                //Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+                // TODO: The x7 item has been successfully purchased, grant this to the player.
+                Util.wm.x7Time = 14400;
+                Util.wm.saveIAP();
+                Debug.Log("Purchased x7 Boost!");
+
             }
             // Or ... an unknown product has been purchased by this user. Fill in additional products here....
             else {
