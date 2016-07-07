@@ -42,10 +42,10 @@ public class Util {
     public static float autochefBase = 200000f;
     public static float mcdandwichBase = 14000000f;
     public static float sandwichCityBase = 1E+9f;
-    public static double breadCloningBase = 1.5E+11f;
+    public static double breadCloningBase = 1.3E+11f;
     public static double sandwocracyBase = 1.7E+13f;
     public static double sandriaLawBase = 2E+15f; //^15 = quadrillion
-    public static double sandwichPlanetBase = 3E+17f;
+    public static double sandwichPlanetBase = 3.141E+17f;
     public static double humanExterminationBase = 4E+19;
     public static double enslaveAliensBase = 1E+22;
     public static double deathSandwichBase = 5E+24;
@@ -77,7 +77,7 @@ public class Util {
     public static double adElixirCooldown = 1800f;
 
     //Boosts
-    public static float boostTime = 7200f;
+    public static float boostTime = 10800f;
 
     //sand witch
     public static float sandWitchTotalPercentage = 0.01f;
