@@ -18,8 +18,8 @@ public class MultiplierGlow : MonoBehaviour {
         img.color = new Color(1f, 1f, 0, 0);
 
         transform.SetAsLastSibling();
-
         GameObject.Find("BlackFadeIn").transform.SetAsLastSibling();
+        GameObject.Find("Splash").transform.SetAsLastSibling();
     }
 
     public void show() {

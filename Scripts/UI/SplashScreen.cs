@@ -2,13 +2,19 @@
 using System.Collections;
 
 public class SplashScreen : MonoBehaviour {
-
+    public GameObject BlackFadeIn;
+    public GameObject Splash;
 	// Use this for initialization
 	void Start () {
-        Invoke("loadGame", 2.583f);
+        Invoke("closeSplash", 2.5f);
 	}
 	
-	public void loadGame() {
-        Application.LoadLevel("Game");
+	public void closeSplash() {
+        Destroy(Splash);
+    }
+
+    public void closeSplashEarly() {
+        Destroy(BlackFadeIn);
+        Destroy(Splash);
     }
 }
