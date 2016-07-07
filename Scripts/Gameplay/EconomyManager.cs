@@ -79,6 +79,12 @@ public class EconomyManager : MonoBehaviour {
     public GameObject list; //the list of upgrades
 
 
+    /// <summary>
+    /// Events
+    /// </summary>
+    public delegate void EconomyChanged();
+    public static event EconomyChanged MoneyChanged;
+
     
     void Awake() {
         Util.em = this;
@@ -269,7 +275,7 @@ public class EconomyManager : MonoBehaviour {
             if (combo > x3threshold) {
                 multiplier = 3;
                 if (combo > x5threshold) {
-                    multiplier = 5;
+                    //multiplier = 5;
                 }
             }
             Invoke("checkCombo", 0.5f);

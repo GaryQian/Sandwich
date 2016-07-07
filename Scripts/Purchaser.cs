@@ -197,7 +197,7 @@ namespace CompleteProject {
             else if (String.Equals(args.purchasedProduct.definition.id, x3ID, StringComparison.Ordinal)) {
                 //Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // TODO: The consumable item has been successfully purchased, grant this item to the player.
-                Util.wm.x3Time = 14400;
+                Util.wm.x3Time = Util.boostTime;
                 Util.wm.saveIAP();
                 Debug.Log("Purchased x3 Boost!");
             }
@@ -205,7 +205,7 @@ namespace CompleteProject {
             else if (String.Equals(args.purchasedProduct.definition.id, x7ID, StringComparison.Ordinal)) {
                 //Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // TODO: The x7 item has been successfully purchased, grant this to the player.
-                Util.wm.x7Time = 14400;
+                Util.wm.x7Time = Util.boostTime;
                 Util.wm.saveIAP();
                 Debug.Log("Purchased x7 Boost!");
 

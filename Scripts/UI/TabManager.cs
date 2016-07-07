@@ -17,6 +17,16 @@ public class TabManager : MonoBehaviour {
     private ColorBlock normalColor;
     private ColorBlock highlightedColor;
 
+    /// <summary>
+    /// EVENTS
+    /// </summary>
+    public delegate void TabSwitch();
+    public static event TabSwitch SwitchPermanent;
+    public static event TabSwitch SwitchStats;
+    public static event TabSwitch SwitchSandwich;
+    public static event TabSwitch SwitchProducer;
+    public static event TabSwitch SwitchShop;
+
     void Awake() {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
         scroll = menu.GetComponent<ScrollRect>();
@@ -39,6 +49,7 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         statsButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
+        if (SwitchStats != null) SwitchStats();
         
     }
 
@@ -50,8 +61,9 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         sandwichButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
-        
+        wm.tutorialManager.sandwichButtonGlow.SetActive(false);
         setupSandwichMenu();
+        if (SwitchSandwich != null) SwitchSandwich();
     }
 
     void setupSandwichMenu() {
@@ -69,7 +81,8 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         producerButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
-        wm.tutorialManager.checkYellowArrow();
+        wm.tutorialManager.producerButtonGlow.SetActive(false);
+        if (SwitchProducer != null) SwitchProducer();
     }
 
     public void selectPermanent() {
@@ -82,6 +95,7 @@ public class TabManager : MonoBehaviour {
         scroll.content = wm.em.list.GetComponent<RectTransform>();
         wm.sm.updatePermanentTab();
         Util.em.updateElixirUpgrades();
+        if (SwitchPermanent != null) SwitchPermanent();
     }
 
     public void selectShop() {
@@ -92,6 +106,7 @@ public class TabManager : MonoBehaviour {
         resetHighlight();
         shopButton.colors = highlightedColor;
         scroll.content = wm.em.list.GetComponent<RectTransform>();
+        if (SwitchShop != null) SwitchShop();
     }
 
     void disableCurrentMenu() {

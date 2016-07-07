@@ -6,6 +6,16 @@ public class ResetManager : MonoBehaviour {
     public GameObject warning;
 
     public GameObject whitescreen;
+
+    /// <summary>
+    /// EVENTS
+    /// </summary>
+    /// 
+    public delegate void ResetEvent();
+    public static event ResetEvent RESET;
+
+
+
 	// Use this for initialization
 	void Start () {
 	    
@@ -87,6 +97,8 @@ public class ResetManager : MonoBehaviour {
         wm.sm.timeMachineDone = false;
         wm.sm.storyProgress = 0;
         wm.sm.oldwichLevel = 0;
+
+        wm.tutorialManager.tutorialActive = false;
         
         //redo calculations
         em.recalculate();
@@ -105,7 +117,7 @@ public class ResetManager : MonoBehaviour {
 
         em.save();
 
-
+        if (RESET != null) RESET();
 
     }
 }

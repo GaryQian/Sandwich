@@ -67,6 +67,17 @@ public class WorldManager : MonoBehaviour {
     public Animator shopGlowAnimator;
 
     public MenuType menuState = MenuType.producer;
+
+    /// <summary>
+    /// EVENTS
+    /// </summary>
+    /// 
+    public delegate void EconStatus();
+    public static event EconStatus Reached500;
+    public static event EconStatus Reached50;
+    //
+
+
     // Use this for initialization
     void Awake() {
         gtm = GetComponent<GameplayTouchManager>();
@@ -146,6 +157,16 @@ public class WorldManager : MonoBehaviour {
             boostMultiplierText.SetActive(false);
             boostTimer.SetActive(false);
             em.updateLabels();
+        }
+
+        if (tutorialManager.tutorialActive) {
+            if (Util.em.money >= 500f && Util.em.totalMoney < 1500f) {
+                if (Reached500 != null) Reached500();
+            }
+            if (Util.em.money >= 50f && Util.em.sandwichCartCount == 0) {
+                if (Reached50 != null) Reached50();
+            }
+            
         }
         
     }

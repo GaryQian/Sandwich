@@ -76,6 +76,9 @@ public class Util {
     public static double adMoneyCooldown = 1200f;
     public static double adElixirCooldown = 1800f;
 
+    //Boosts
+    public static float boostTime = 7200f;
+
     //sand witch
     public static float sandWitchTotalPercentage = 0.01f;
     public static float sandWitchCurrentPercentage = 0.10f;

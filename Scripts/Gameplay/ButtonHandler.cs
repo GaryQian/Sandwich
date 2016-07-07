@@ -22,6 +22,32 @@ public class ButtonHandler : MonoBehaviour {
 
     public GameObject canvasNotificationTextPrefab;
 
+
+    //EVENTS
+    public delegate void BuyItem();
+
+    public static event BuyItem BuySandwichCart;
+    public static event BuyItem BuyDeli;
+    public static event BuyItem BuyAutochef;
+    public static event BuyItem BuyMcdandwich;
+    public static event BuyItem BuySandwichCity;
+    public static event BuyItem BuyBreadCloning;
+    public static event BuyItem BuySandwocracy;
+    public static event BuyItem BuySandriaLaw;
+    public static event BuyItem BuySandwichPlanet;
+    public static event BuyItem BuyHumanExtermination;
+    public static event BuyItem BuyEnslaveAliens;
+    public static event BuyItem BuyDeathSandwich;
+    public static event BuyItem BuySandwichGalaxy;
+    public static event BuyItem BuyFlyingSandwichMonster;
+
+    public static event BuyItem BuySauce;
+    public static event BuyItem BuyBread;
+    public static event BuyItem BuyEvolution;
+
+
+    //
+
     void Awake() {
         em = GetComponent<EconomyManager>();
         wm = GetComponent<WorldManager>();
@@ -41,8 +67,8 @@ public class ButtonHandler : MonoBehaviour {
         double num = em.money;
         em.money *= 2f;
         em.totalMoney += num;
-        wm.playthroughCount++;
-        em.moneyText.updateColor();
+        //wm.playthroughCount++;
+        //em.moneyText.updateColor();
     }
 
     public void playKaching() {
@@ -61,6 +87,7 @@ public class ButtonHandler : MonoBehaviour {
             em.toasterVisionLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (BuyEvolution != null) BuyEvolution();
         }
         else {
 
@@ -79,6 +106,7 @@ public class ButtonHandler : MonoBehaviour {
             em.communalMindLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (BuyEvolution != null) BuyEvolution();
         }
         else {
 
@@ -97,6 +125,7 @@ public class ButtonHandler : MonoBehaviour {
             em.dexterousHandsLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (BuyEvolution != null) BuyEvolution();
         }
         else {
 
@@ -262,6 +291,7 @@ public class ButtonHandler : MonoBehaviour {
             playKaching();
             em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.getSandwichValue()) + " each &";
             Bread.updateButton();
+            if (BuySauce != null) BuySauce();
         }
         else {
             notEnough();
@@ -282,6 +312,7 @@ public class ButtonHandler : MonoBehaviour {
             wm.em.recalculate();
             playKaching();
             em.list.transform.FindChild("Value").transform.FindChild("SandwichValueText").GetComponent<Text>().text = "$" + Util.encodeNumber(em.getSandwichValue()) + " each &";
+            if (BuyBread != null) BuyBread();
         }
         else {
             notEnough();
@@ -327,8 +358,10 @@ public class ButtonHandler : MonoBehaviour {
             em.recalculate();
             em.updateProducerMenuCounters();
             em.buildings++;
-            wm.tutorialManager.removeYellowArrow();
+            //wm.tutorialManager.removeYellowArrow();
             playKaching();
+
+            if (BuySandwichCart != null) BuySandwichCart();
         }
         else {
             notEnough();
@@ -349,6 +382,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyDeli != null) BuyDeli();
         }
         else {
             notEnough();
@@ -369,6 +403,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyAutochef != null) BuyAutochef();
         }
         else {
             notEnough();
@@ -390,6 +425,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyMcdandwich != null) BuyMcdandwich();
         }
         else {
             notEnough();
@@ -410,6 +446,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuySandwichCity != null) BuySandwichCity();
         }
         else {
             notEnough();
@@ -430,6 +467,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyBreadCloning != null) BuyBreadCloning();
         }
         else {
             notEnough();
@@ -450,6 +488,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuySandwocracy != null) BuySandwocracy();
         }
         else {
             notEnough();
@@ -470,6 +509,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuySandriaLaw != null) BuySandriaLaw();
         }
         else {
             notEnough();
@@ -491,6 +531,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuySandwichPlanet != null) BuySandwichPlanet();
         }
         else {
             notEnough();
@@ -511,6 +552,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyHumanExtermination != null) BuyHumanExtermination();
         }
         else {
             notEnough();
@@ -531,6 +573,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyEnslaveAliens != null) BuyEnslaveAliens();
         }
         else {
             notEnough();
@@ -551,6 +594,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyDeathSandwich != null) BuyDeathSandwich();
         }
         else {
             notEnough();
@@ -571,6 +615,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuySandwichGalaxy != null) BuySandwichGalaxy();
         }
         else {
             notEnough();
@@ -591,6 +636,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings++;
             playKaching();
+            if (BuyFlyingSandwichMonster != null) BuyFlyingSandwichMonster();
         }
         else {
             notEnough();

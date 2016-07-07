@@ -18,9 +18,13 @@ public class ElixirCountText : MonoBehaviour {
     }
 
     void OnEnable() {
-        InvokeRepeating("updateElixirText", 0, 0.3f);
+        ButtonHandler.BuyEvolution += updateElixirText;
+        TabManager.SwitchPermanent += updateElixirText;
+        //InvokeRepeating("updateElixirText", 0, 0.3f);
     }
     void OnDisable() {
-        CancelInvoke("updateElixirText");
+        //CancelInvoke("updateElixirText");
+        ButtonHandler.BuyEvolution -= updateElixirText;
+        TabManager.SwitchPermanent -= updateElixirText;
     }
 }

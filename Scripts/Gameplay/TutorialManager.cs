@@ -2,9 +2,22 @@
 using System.Collections;
 
 public class TutorialManager : MonoBehaviour {
+
+    public bool tutorialActive = true;
+
     public GameObject fingerPrefab;
     public GameObject yellowArrow;
 
+    public GameObject sandwichButtonGlow;
+    public GameObject sauceYellowArrow;
+
+    public GameObject producerButtonGlow;
+    public GameObject sandwichCartYellowArrow;
+
+    public GameObject permanentButtonGlow;
+    public GameObject permYellowArrow1;
+    public GameObject permYellowArrow2;
+    public GameObject permYellowArrow3;
     WorldManager wm;
 
     void Awake() {
@@ -13,17 +26,25 @@ public class TutorialManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Invoke("showFinger", 0.5f);
-        if (needFinger()) {
-            Invoke("showFinger", 1f);
-        }
-
-        if (Util.em.sandwichCartCount > 0) {
-            removeYellowArrow();
+        if (needTutorial()) {
+            tutorialActive = true;
+            if (needFinger()) {
+                Invoke("showFinger", 1f);
+            }
         }
         else {
-            Invoke("checkYellowArrow", 0.5f);
+            tutorialActive = false;
         }
+        
+    }
+
+    bool needTutorial() {
+        if (Util.em.totalMoney < 2000f || Util.em.sauceID == 1 || Util.em.sandwichCartCount == 0) {
+            if (Util.wm.playthroughCount == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private bool needFinger() {
@@ -40,21 +61,68 @@ public class TutorialManager : MonoBehaviour {
         }
     }
 
-    public void checkYellowArrow() {
-        if (yellowArrow != null && Util.money >= 50f && Util.em.sandwichCartCount == 0) {
-            yellowArrow.GetComponent<Animator>().SetTrigger("Pulse");
-        }
-        else if (yellowArrow == null) {
-
-        }
-        else {
-            Invoke("checkYellowArrow", 0.5f);
+    public void activateSandwichCartTutorial() {
+        if (Util.em.sandwichCartCount < 2) {
+            producerButtonGlow.SetActive(true);
+            sandwichCartYellowArrow.SetActive(true);
         }
     }
+    void removeSandwichCartTutorial() {
+        producerButtonGlow.SetActive(false);
+        sandwichCartYellowArrow.SetActive(false);
+        //activateSauceTutorial();
+    }
 
-    public void removeYellowArrow() {
+    /*public void removeYellowArrow() {
         if (yellowArrow != null) {
             Destroy(yellowArrow);
         }
+    }*/
+
+    void activateSauceTutorial() {
+        if (Util.em.sauceID == 1 && Util.em.sandwichCartCount >= 1) {
+            sandwichButtonGlow.SetActive(true);
+            sauceYellowArrow.SetActive(true);
+
+        }
+    }
+    void removeSauceTutorial() {
+        sandwichButtonGlow.SetActive(false);
+        sauceYellowArrow.SetActive(false);
+        activateSandwichCartTutorial();
+    }
+
+
+
+    void activateEvolutionTutorial() {
+        permanentButtonGlow.SetActive(true);
+        permYellowArrow1.SetActive(true);
+        permYellowArrow2.SetActive(true);
+        permYellowArrow3.SetActive(true);
+    }
+    void removeEvolutionTutorial() {
+        permanentButtonGlow.SetActive(false);
+        permYellowArrow1.SetActive(false);
+        permYellowArrow2.SetActive(false);
+        permYellowArrow3.SetActive(false);
+    }
+
+
+
+    void OnEnable() {
+        WorldManager.Reached50 += activateSandwichCartTutorial;
+        WorldManager.Reached500 += activateSauceTutorial;
+        ButtonHandler.BuySauce += removeSauceTutorial;
+        ButtonHandler.BuySandwichCart += removeSandwichCartTutorial;
+        ResetManager.RESET += activateEvolutionTutorial;
+        ButtonHandler.BuyEvolution += removeEvolutionTutorial;
+    }
+    void OnDisable() {
+        WorldManager.Reached50 -= activateSandwichCartTutorial;
+        WorldManager.Reached500 -= activateSauceTutorial;
+        ButtonHandler.BuySauce -= removeSauceTutorial;
+        ButtonHandler.BuySandwichCart -= removeSandwichCartTutorial;
+        ResetManager.RESET -= activateEvolutionTutorial;
+        ButtonHandler.BuyEvolution -= removeEvolutionTutorial;
     }
 }
