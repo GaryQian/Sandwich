@@ -22,35 +22,35 @@ public class Util {
 
     //producer rates
     public static float sandwichCartRate = 0.5f;
-    public static float deliRate = 7f;
+    public static float deliRate = 8f;
     public static float autochefRate = 75f;
     public static float mcdandwichRate = 800f;
     public static float sandwichCityRate = 10000f;
     public static float breadCloningRate = 90000f;
-    public static float sandwocracyRate = 800000f;
+    public static float sandwocracyRate = 850000f;
     public static float sandriaLawRate = 6500000f;
     public static double sandwichPlanetRate = 55000000f;
     public static double humanExterminationRate = 400000000f;
     public static double enslaveAliensRate = 3000000000f;
     public static double deathSandwichRate = 25000000000f;
-    public static double sandwichGalaxyRate = 100000000000f;
-    public static double flyingSandwichMonsterRate = 1000000000000f;
+    public static double sandwichGalaxyRate = 200000000000f;
+    public static double flyingSandwichMonsterRate = 3500000000000f;
 
     //producer base costs
     public static float sandwichCartBase = 50f;
-    public static float deliBase = 3000f;
-    public static float autochefBase = 250000f;
-    public static float mcdandwichBase = 15000000f;
-    public static float sandwichCityBase = 1000000000f;
-    public static double breadCloningBase = 1E+11f;
-    public static double sandwocracyBase = 1E+13f;
-    public static double sandriaLawBase = 1.0000001E+15f;
-    public static double sandwichPlanetBase = 2E+17f;
-    public static double humanExterminationBase = 3E+19;
-    public static double enslaveAliensBase = 4E+21;
-    public static double deathSandwichBase = 5E+23;
-    public static double sandwichGalaxyBase = 6E+25;
-    public static double flyingSandwichMonsterBase = 9.999E+28;
+    public static float deliBase = 1200f;
+    public static float autochefBase = 200000f;
+    public static float mcdandwichBase = 14000000f;
+    public static float sandwichCityBase = 1E+9f;
+    public static double breadCloningBase = 1.5E+11f;
+    public static double sandwocracyBase = 1.7E+13f;
+    public static double sandriaLawBase = 2E+15f; //^15 = quadrillion
+    public static double sandwichPlanetBase = 3E+17f;
+    public static double humanExterminationBase = 4E+19;
+    public static double enslaveAliensBase = 1E+22;
+    public static double deathSandwichBase = 5E+24;
+    public static double sandwichGalaxyBase = 1E+27;
+    public static double flyingSandwichMonsterBase = 9.999E+30;
 
 
     //elixir costs
@@ -82,7 +82,7 @@ public class Util {
     //sand witch
     public static float sandWitchTotalPercentage = 0.01f;
     public static float sandWitchCurrentPercentage = 0.10f;
-    public static float sandWitchDelay = 180f;
+    public static float sandWitchDelay = 200f;
 
     //screen ratios
     public static float screenToCanvasRatio;
