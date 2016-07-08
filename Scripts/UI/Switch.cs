@@ -32,12 +32,16 @@ public class Switch : MonoBehaviour {
         img.sprite = right;
         if (Toggled != null) Toggled();
         Util.wm.tabManager.setBuyButtonSprite(x10Sprite);
+        Util.buyNumberScale = Util.x10BuyCostScale;
+        Util.em.updateProducerMenuCounters();
     }
     public void setx1() {
         ButtonHandler.buyCount = 1;
         img.sprite = left;
         if (Toggled != null) Toggled();
         Util.wm.tabManager.setBuyButtonSprite(x1Sprite);
+        Util.buyNumberScale = 1f;
+        Util.em.updateProducerMenuCounters();
     }
 
     void setDarkness() {

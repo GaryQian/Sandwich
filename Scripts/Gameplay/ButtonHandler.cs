@@ -159,6 +159,7 @@ public class ButtonHandler : MonoBehaviour {
         if (em.money >= Util.timeMachineCost) {
             em.spend(Util.timeMachineCost);
             wm.sm.buyFlux();
+            playKaching();
         }
         else {
             notEnough();
@@ -168,6 +169,7 @@ public class ButtonHandler : MonoBehaviour {
         if (em.money >= Util.timeMachineCost) {
             em.spend(Util.timeMachineCost);
             wm.sm.buyBreadclear();
+            playKaching();
         }
         else {
             notEnough();
@@ -177,6 +179,7 @@ public class ButtonHandler : MonoBehaviour {
         if (em.money >= Util.timeMachineCost) {
             em.spend(Util.timeMachineCost);
             wm.sm.buySandtanium();
+            playKaching();
         }
         else {
             notEnough();
@@ -385,7 +388,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichCartCost() {
-        return em.list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCartCount) * buyCount;
+        return em.list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCartCount);
     }
 
     /// <summary>
@@ -406,7 +409,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double deliCost() {
-        return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount) * buyCount;
+        return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount);
     }
 
     /// <summary>
@@ -427,7 +430,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double autochefCost() {
-        return em.list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.autochefCount) * buyCount;
+        return em.list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.autochefCount);
     }
 
 
@@ -449,7 +452,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double mcdandwichCost() {
-        return em.list.transform.FindChild("McDandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.mcdandwichCount) * buyCount;
+        return em.list.transform.FindChild("McDandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.mcdandwichCount);
     }
 
     /// <summary>
@@ -470,7 +473,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichCityCost() {
-        return em.list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCityCount) * buyCount;
+        return em.list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCityCount);
     }
 
     /// <summary>
@@ -491,7 +494,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double breadCloningCost() {
-        return em.list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.breadCloningCount) * buyCount;
+        return em.list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.breadCloningCount);
     }
 
     /// <summary>
@@ -512,7 +515,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwocracyCost() {
-        return em.list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwocracyCount) * buyCount;
+        return em.list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwocracyCount);
     }
 
     /// <summary>
@@ -533,7 +536,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandriaLawCost() {
-        return em.list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandriaLawCount) * buyCount;
+        return em.list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandriaLawCount);
     }
 
 
@@ -555,7 +558,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichPlanetCost() {
-        return em.list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichPlanetCount) * buyCount;
+        return em.list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichPlanetCount);
     }
 
     /// <summary>
@@ -576,7 +579,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double humanExterminationCost() {
-        return em.list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.humanExterminationCount) * buyCount;
+        return em.list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.humanExterminationCount);
     }
 
 
@@ -598,7 +601,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichFleetCost() {
-        return em.list.transform.FindChild("SandwichFleet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichFleetCount) * buyCount;
+        return em.list.transform.FindChild("SandwichFleet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichFleetCount);
     }
 
     /// <summary>
@@ -619,7 +622,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double enslaveAliensCost() {
-        return em.list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.enslaveAliensCount) * buyCount;
+        return em.list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.enslaveAliensCount);
     }
 
     /// <summary>
@@ -640,7 +643,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double deathSandwichCost() {
-        return em.list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deathSandwichCount) * buyCount;
+        return em.list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deathSandwichCount);
     }
 
     /// <summary>
@@ -661,7 +664,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichGalaxyCost() {
-        return em.list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichGalaxyCount) * buyCount;
+        return em.list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichGalaxyCount);
     }
 
     /// <summary>
@@ -682,7 +685,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double flyingSandwichMonsterCost() {
-        return em.list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.flyingSandwichMonsterCount) * buyCount;
+        return em.list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.flyingSandwichMonsterCount);
     }
 
 

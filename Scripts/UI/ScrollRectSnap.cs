@@ -55,7 +55,7 @@ public class ScrollRectSnap : MonoBehaviour {
         targetH = points[currentIndex];
         scroll.horizontalNormalizedPosition = targetH;
         nameText.text = Knife.getKnifeName(currentIndex);
-        if (Util.wm.knifeCollectionPurchased) continueButtonText.text = "Use This Knife!";
+        if (Util.wm.knifeCollectionPurchased || Util.godmode) continueButtonText.text = "Use This Knife!";
 
         switch (Util.wm.saberColor) {
             case SaberColor.blue: saberCount = 4000; break;

@@ -19,6 +19,8 @@ public class Util {
 
     
     public static float pScale = 1.15f;
+    public static float x10BuyCostScale;
+    public static float buyNumberScale = 1f;
 
     //producer rates
     public static float sandwichCartRate = 0.5f;

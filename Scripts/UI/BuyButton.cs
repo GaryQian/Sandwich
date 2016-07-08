@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public enum CurrencyType { money, elixir }
+public enum BuyType { x1Only, x10 }
 
 public class BuyButton : MonoBehaviour {
     private Upgrade up;
@@ -10,6 +11,7 @@ public class BuyButton : MonoBehaviour {
     ColorBlock enabledColor;
     ColorBlock disabledColor;
     public CurrencyType type;
+    public BuyType buyType;
     public GameObject prevButton;
     // Use this for initialization
     void Awake () {
@@ -28,13 +30,25 @@ public class BuyButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (type == CurrencyType.money) {
-            if (Util.money < up.cost * ButtonHandler.buyCount) {
-                //disable
-                button.colors = disabledColor;
+            if (buyType == BuyType.x10) {
+                if (Util.money < up.cost * ButtonHandler.buyCount) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
             else {
-                //enable
-                button.colors = enabledColor;
+                if (Util.money < up.cost) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
         }
         else {

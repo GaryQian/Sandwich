@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 public class Godmode : MonoBehaviour {
     public int godCounter = 0;
     public Text txt;
     TouchScreenKeyboard kb;
     public int godmodeCode;
+    public int godmodeOffCode;
+
+    //public MD5 md5;
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("countDown", 2f, 2f);
+        //InvokeRepeating("countDown", 2f, 2f);
+        
         godmodeCode = 1884297456;
-    }
+        godmodeOffCode = ("off").GetHashCode();
+}
 
     void countDown() {
         if (godCounter >= 1) {
@@ -19,17 +25,25 @@ public class Godmode : MonoBehaviour {
     }
 
     public void click() {
-        godCounter++;
-        if (godCounter >= 10 && kb == null) {
-            kb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
+        if (kb == null) {
+            godCounter++;
+            if (godCounter == 5) {
+                kb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
+                Debug.Log("Console Keyboard Opened");
+            }
         }
     }
 
     void Update() {
         if (kb != null) {
-            if (kb.text.GetHashCode() == godmodeCode) {
+            int code = kb.text.GetHashCode();
+            if (code == godmodeCode) {
                 Util.godmode = true;
             }
+            if (code == godmodeOffCode) {
+                Util.godmode = false;
+            }
+            
         }
     }
 }
