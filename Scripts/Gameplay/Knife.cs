@@ -41,7 +41,7 @@ public class Knife : MonoBehaviour {
             case 4: return "Swordie Sword";
             case 5: return "myPhone";
             case 6: return "Scimitar";
-            case 7: return "Lasersaber";
+            case 7: return "Saber";
             case 8: return "Robohand";
             case 9: return "Sandalf's Staff";
             case 10:return "Kabob";

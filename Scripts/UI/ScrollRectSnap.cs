@@ -110,7 +110,7 @@ public class ScrollRectSnap : MonoBehaviour {
     }
 
     public void closePanel() {
-        if (Util.wm.knifeCollectionPurchased || true) {
+        if (Util.wm.knifeCollectionPurchased) {
             Util.wm.knifeID = currentIndex;
             Util.wm.gtm.knife.GetComponent<Knife>().setupKnifeType();
         }
