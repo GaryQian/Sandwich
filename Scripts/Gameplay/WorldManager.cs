@@ -18,7 +18,7 @@ public class WorldManager : MonoBehaviour {
     //
 
     //Versioning
-    public int version = 3;
+    public int version = 9;
     public int savedVersion = -1;
     //
 

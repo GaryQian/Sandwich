@@ -39,7 +39,7 @@ public class Util {
     //producer base costs
     public static float sandwichCartBase = 50f;
     public static float deliBase = 1200f;
-    public static float autochefBase = 200000f;
+    public static float autochefBase = 133700f;
     public static float mcdandwichBase = 14000000f;
     public static float sandwichCityBase = 1E+9f;
     public static double breadCloningBase = 1.3E+11f;

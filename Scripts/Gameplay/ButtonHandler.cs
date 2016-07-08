@@ -18,6 +18,8 @@ public class ButtonHandler : MonoBehaviour {
     public AudioClip kaching;
     public AudioClip build;
 
+    public GameObject knifePanel;
+
     private Upgrade up;
 
     public GameObject canvasNotificationTextPrefab;
@@ -77,6 +79,15 @@ public class ButtonHandler : MonoBehaviour {
             //wm.fullAudioSource.PlayOneShot(build);
         }
     }
+
+
+    /// KnifePanel View
+    ///
+    public void viewKnifePanel() {
+        Instantiate(knifePanel);
+    }
+
+
 
     /// <summary>
     /// ELIXIR Toaster Vision
