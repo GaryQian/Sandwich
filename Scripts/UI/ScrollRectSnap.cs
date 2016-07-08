@@ -25,6 +25,16 @@ public class ScrollRectSnap : MonoBehaviour {
     public Text nameText;
 
     public GameObject knifePanel;
+
+    public Text continueButtonText;
+
+    public Sprite blueSaber;
+    public Sprite redSaber;
+    public Sprite greenSaber;
+    public Sprite purpleSaber;
+    int saberCount = 0;
+
+    public Image saberImage;
     // Use this for initialization
     void Start() {
         scroll = gameObject.GetComponent<ScrollRect>();
@@ -45,6 +55,16 @@ public class ScrollRectSnap : MonoBehaviour {
         targetH = points[currentIndex];
         scroll.horizontalNormalizedPosition = targetH;
         nameText.text = Knife.getKnifeName(currentIndex);
+        if (Util.wm.knifeCollectionPurchased) continueButtonText.text = "Use This Knife!";
+
+        switch (Util.wm.saberColor) {
+            case SaberColor.blue: saberCount = 4000; break;
+            case SaberColor.red: saberCount = 4001; break;
+            case SaberColor.green: saberCount = 4002; break;
+            case SaberColor.purple: saberCount = 4003; break;
+        }
+        setSaberColor();
+
     }
 
     void Update() {
@@ -90,10 +110,34 @@ public class ScrollRectSnap : MonoBehaviour {
     }
 
     public void closePanel() {
-        if (Util.wm.knifeCollectionPurchased) {
+        if (Util.wm.knifeCollectionPurchased || true) {
             Util.wm.knifeID = currentIndex;
             Util.wm.gtm.knife.GetComponent<Knife>().setupKnifeType();
         }
+        switch (saberCount % 4) {
+            case 0: Util.wm.saberColor = SaberColor.blue; break;
+            case 1: Util.wm.saberColor = SaberColor.red; break;
+            case 2: Util.wm.saberColor = SaberColor.green; break;
+            case 3: Util.wm.saberColor = SaberColor.purple; break;
+        }
         Destroy(knifePanel);
+    }
+
+    public void leftButton() {
+        saberCount--;
+        setSaberColor();
+    }
+    public void rightButton() {
+        saberCount++;
+        setSaberColor();
+    }
+
+    void setSaberColor() {
+        switch (saberCount % 4) {
+            case 0: saberImage.sprite = blueSaber; break;
+            case 1: saberImage.sprite = redSaber; break;
+            case 2: saberImage.sprite = greenSaber; break;
+            case 3: saberImage.sprite = purpleSaber; break;
+        }
     }
 }

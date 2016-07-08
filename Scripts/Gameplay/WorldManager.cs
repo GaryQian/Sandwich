@@ -26,6 +26,7 @@ public class WorldManager : MonoBehaviour {
     //IAP
     public bool knifeCollectionPurchased = false;
     public int knifeID = 0;
+    public SaberColor saberColor = SaberColor.blue;
     public double x3Time;
     public double x7Time;
     public double x3Multiplier = 1f;
@@ -260,6 +261,7 @@ public class WorldManager : MonoBehaviour {
 
         data.knifeCollectionPurchased = knifeCollectionPurchased;
         data.knifeID = knifeID;
+        data.saberColor = saberColor;
         if (x3Time < 0) x3Time = 0;
         if (x7Time < 0) x7Time = 0;
         data.x3Time = x3Time;
@@ -278,6 +280,7 @@ public class WorldManager : MonoBehaviour {
 
             knifeCollectionPurchased = data.knifeCollectionPurchased;
             knifeID = data.knifeID;
+            saberColor = data.saberColor;
             x3Time = data.x3Time;
             x7Time = data.x7Time;
 
@@ -298,4 +301,5 @@ public class IAPData {
     public int knifeID;
     public double x3Time;
     public double x7Time;
+    public SaberColor saberColor;
 }
