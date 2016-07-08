@@ -19,7 +19,7 @@ public class SandwichValueText : MonoBehaviour {
         tagImage.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.65f, Screen.height * 0.32f));
         tagImage.transform.position = new Vector3(tagImage.transform.position.x, tagImage.transform.position.y, 0);
         tagGlow.transform.position = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.65f, Screen.height * 0.32f));
-        tagGlow.transform.position = new Vector3(tagImage.transform.position.x, tagImage.transform.position.y, -1);
+        tagGlow.transform.position = new Vector3(tagImage.transform.position.x, tagImage.transform.position.y, 1);
         transform.SetParent(tagImage.transform);
         transform.SetParent(tagImage.transform);
     }
