@@ -139,20 +139,24 @@ public class Upgrade : MonoBehaviour {
                     if (Util.em.sandwocracyCount == 0) updateTitleQ();
                     else updateTitle(normalTitle);
                     break;
-                case ProducerType.enslaveAliens:
+                case ProducerType.sandwichFleet:
                     if (Util.em.sandriaLawCount == 0) updateTitleQ();
                     else updateTitle(normalTitle);
                     break;
-                case ProducerType.deathSandwich:
+                case ProducerType.enslaveAliens:
                     if (Util.em.sandwichPlanetCount == 0) updateTitleQ();
                     else updateTitle(normalTitle);
                     break;
-                case ProducerType.sandwichGalaxy:
+                case ProducerType.deathSandwich:
                     if (Util.em.humanExterminationCount == 0) updateTitleQ();
                     else updateTitle(normalTitle);
                     break;
-                case ProducerType.flyingSandwichMonster:
+                case ProducerType.sandwichGalaxy:
                     if (Util.em.enslaveAliensCount == 0) updateTitleQ();
+                    else updateTitle(normalTitle);
+                    break;
+                case ProducerType.flyingSandwichMonster:
+                    if (Util.em.deathSandwichCount == 0) updateTitleQ();
                     else updateTitle(normalTitle);
                     break;
             }

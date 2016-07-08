@@ -25,6 +25,8 @@ public class ButtonHandler : MonoBehaviour {
     public GameObject canvasNotificationTextPrefab;
 
 
+    public static int buyCount = 1;
+
     //EVENTS
     public delegate void BuyItem();
 
@@ -38,6 +40,7 @@ public class ButtonHandler : MonoBehaviour {
     public static event BuyItem BuySandriaLaw;
     public static event BuyItem BuySandwichPlanet;
     public static event BuyItem BuyHumanExtermination;
+    public static event BuyItem BuySandwichFleet;
     public static event BuyItem BuyEnslaveAliens;
     public static event BuyItem BuyDeathSandwich;
     public static event BuyItem BuySandwichGalaxy;
@@ -66,9 +69,12 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void cheatx2() {
-        double num = em.money;
-        em.money *= 2f;
-        em.totalMoney += num;
+        if (Util.godmode) {
+            double num = em.money;
+            em.money *= 2f;
+            em.totalMoney += num;
+            
+        }
         //wm.playthroughCount++;
         //em.moneyText.updateColor();
     }
@@ -365,10 +371,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandwichCart() {
         if (em.money >= sandwichCartCost()) {
             em.spend(sandwichCartCost());
-            em.sandwichCartCount++;
+            em.sandwichCartCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             //wm.tutorialManager.removeYellowArrow();
             playKaching();
 
@@ -379,7 +385,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichCartCost() {
-        return em.list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCartCount);
+        return em.list.transform.FindChild("SandwichCart").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCartCount) * buyCount;
     }
 
     /// <summary>
@@ -388,10 +394,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyDeli() {
         if (em.money >= deliCost()) {
             em.spend(deliCost());
-            em.deliCount++;
+            em.deliCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyDeli != null) BuyDeli();
         }
@@ -400,7 +406,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double deliCost() {
-        return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount);
+        return em.list.transform.FindChild("Deli").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deliCount) * buyCount;
     }
 
     /// <summary>
@@ -409,10 +415,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyAutochef() {
         if (em.money >= autochefCost()) {
             em.spend(autochefCost());
-            em.autochefCount++;
+            em.autochefCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyAutochef != null) BuyAutochef();
         }
@@ -421,7 +427,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double autochefCost() {
-        return em.list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.autochefCount);
+        return em.list.transform.FindChild("Autochef9k").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.autochefCount) * buyCount;
     }
 
 
@@ -431,10 +437,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyMcdandwich() {
         if (em.money >= mcdandwichCost()) {
             em.spend(mcdandwichCost());
-            em.mcdandwichCount++;
+            em.mcdandwichCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyMcdandwich != null) BuyMcdandwich();
         }
@@ -443,7 +449,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double mcdandwichCost() {
-        return em.list.transform.FindChild("McDandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.mcdandwichCount);
+        return em.list.transform.FindChild("McDandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.mcdandwichCount) * buyCount;
     }
 
     /// <summary>
@@ -452,10 +458,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandwichCity() {
         if (em.money >= sandwichCityCost()) {
             em.spend(sandwichCityCost());
-            em.sandwichCityCount++;
+            em.sandwichCityCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuySandwichCity != null) BuySandwichCity();
         }
@@ -464,7 +470,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichCityCost() {
-        return em.list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCityCount);
+        return em.list.transform.FindChild("SandwichCity").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichCityCount) * buyCount;
     }
 
     /// <summary>
@@ -473,10 +479,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyBreadCloning() {
         if (em.money >= breadCloningCost()) {
             em.spend(breadCloningCost());
-            em.breadCloningCount++;
+            em.breadCloningCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyBreadCloning != null) BuyBreadCloning();
         }
@@ -485,7 +491,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double breadCloningCost() {
-        return em.list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.breadCloningCount);
+        return em.list.transform.FindChild("BreadCloning").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.breadCloningCount) * buyCount;
     }
 
     /// <summary>
@@ -494,10 +500,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandwocracy() {
         if (em.money >= sandwocracyCost()) {
             em.spend(sandwocracyCost());
-            em.sandwocracyCount++;
+            em.sandwocracyCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuySandwocracy != null) BuySandwocracy();
         }
@@ -506,7 +512,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwocracyCost() {
-        return em.list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwocracyCount);
+        return em.list.transform.FindChild("Sandwocracy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwocracyCount) * buyCount;
     }
 
     /// <summary>
@@ -515,10 +521,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandriaLaw() {
         if (em.money >= sandriaLawCost()) {
             em.spend(sandriaLawCost());
-            em.sandriaLawCount++;
+            em.sandriaLawCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuySandriaLaw != null) BuySandriaLaw();
         }
@@ -527,7 +533,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandriaLawCost() {
-        return em.list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandriaLawCount);
+        return em.list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandriaLawCount) * buyCount;
     }
 
 
@@ -537,10 +543,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandwichPlanet() {
         if (em.money >= sandwichPlanetCost()) {
             em.spend(sandwichPlanetCost());
-            em.sandwichPlanetCount++;
+            em.sandwichPlanetCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuySandwichPlanet != null) BuySandwichPlanet();
         }
@@ -549,7 +555,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichPlanetCost() {
-        return em.list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichPlanetCount);
+        return em.list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichPlanetCount) * buyCount;
     }
 
     /// <summary>
@@ -558,10 +564,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyHumanExtermination() {
         if (em.money >= humanExterminationCost()) {
             em.spend(humanExterminationCost());
-            em.humanExterminationCount++;
+            em.humanExterminationCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyHumanExtermination != null) BuyHumanExtermination();
         }
@@ -570,7 +576,29 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double humanExterminationCost() {
-        return em.list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.humanExterminationCount);
+        return em.list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.humanExterminationCount) * buyCount;
+    }
+
+
+    /// <summary>
+    /// Sandwich Fleet
+    /// </summary>
+    public void buySandwichFleet() {
+        if (em.money >= sandwichFleetCost()) {
+            em.spend(sandwichFleetCost());
+            em.sandwichFleetCount += buyCount;
+            em.recalculate();
+            em.updateProducerMenuCounters();
+            em.buildings += buyCount;
+            playKaching();
+            if (BuyHumanExtermination != null) BuySandwichFleet();
+        }
+        else {
+            notEnough();
+        }
+    }
+    double sandwichFleetCost() {
+        return em.list.transform.FindChild("SandwichFleet").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichFleetCount) * buyCount;
     }
 
     /// <summary>
@@ -579,10 +607,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyEnslaveAliens() {
         if (em.money >= enslaveAliensCost()) {
             em.spend(enslaveAliensCost());
-            em.enslaveAliensCount++;
+            em.enslaveAliensCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyEnslaveAliens != null) BuyEnslaveAliens();
         }
@@ -591,7 +619,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double enslaveAliensCost() {
-        return em.list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.enslaveAliensCount);
+        return em.list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.enslaveAliensCount) * buyCount;
     }
 
     /// <summary>
@@ -600,10 +628,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyDeathSandwich() {
         if (em.money >= deathSandwichCost()) {
             em.spend(deathSandwichCost());
-            em.deathSandwichCount++;
+            em.deathSandwichCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyDeathSandwich != null) BuyDeathSandwich();
         }
@@ -612,7 +640,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double deathSandwichCost() {
-        return em.list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deathSandwichCount);
+        return em.list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.deathSandwichCount) * buyCount;
     }
 
     /// <summary>
@@ -621,10 +649,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buySandwichGalaxy() {
         if (em.money >= sandwichGalaxyCost()) {
             em.spend(sandwichGalaxyCost());
-            em.sandwichGalaxyCount++;
+            em.sandwichGalaxyCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuySandwichGalaxy != null) BuySandwichGalaxy();
         }
@@ -633,7 +661,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double sandwichGalaxyCost() {
-        return em.list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichGalaxyCount);
+        return em.list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.sandwichGalaxyCount) * buyCount;
     }
 
     /// <summary>
@@ -642,10 +670,10 @@ public class ButtonHandler : MonoBehaviour {
     public void buyFlyingSandwichMonster() {
         if (em.money >= flyingSandwichMonsterCost()) {
             em.spend(flyingSandwichMonsterCost());
-            em.flyingSandwichMonsterCount++;
+            em.flyingSandwichMonsterCount += buyCount;
             em.recalculate();
             em.updateProducerMenuCounters();
-            em.buildings++;
+            em.buildings += buyCount;
             playKaching();
             if (BuyFlyingSandwichMonster != null) BuyFlyingSandwichMonster();
         }
@@ -654,7 +682,7 @@ public class ButtonHandler : MonoBehaviour {
         }
     }
     double flyingSandwichMonsterCost() {
-        return em.list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.flyingSandwichMonsterCount);
+        return em.list.transform.FindChild("FlyingSandwichMonster").GetComponent<Upgrade>().baseCost * Mathf.Pow(Util.pScale, em.flyingSandwichMonsterCount) * buyCount;
     }
 
 

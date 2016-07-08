@@ -28,7 +28,7 @@ public class BuyButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (type == CurrencyType.money) {
-            if (Util.money < up.cost) {
+            if (Util.money < up.cost * ButtonHandler.buyCount) {
                 //disable
                 button.colors = disabledColor;
             }

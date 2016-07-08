@@ -31,10 +31,11 @@ public class Util {
     public static float sandriaLawRate = 6500000f;
     public static double sandwichPlanetRate = 55000000f;
     public static double humanExterminationRate = 400000000f;
-    public static double enslaveAliensRate = 3000000000f;
-    public static double deathSandwichRate = 25000000000f;
-    public static double sandwichGalaxyRate = 200000000000f;
-    public static double flyingSandwichMonsterRate = 3500000000000f;
+    public static double sandwichFleetRate = 3000000000f;
+    public static double enslaveAliensRate = 25000000000f;
+    public static double deathSandwichRate = 200000000000f;
+    public static double sandwichGalaxyRate = 3500000000000f;
+    public static double flyingSandwichMonsterRate = 99990000000000f;
 
     //producer base costs
     public static float sandwichCartBase = 50f;
@@ -47,10 +48,11 @@ public class Util {
     public static double sandriaLawBase = 2E+15f; //^15 = quadrillion
     public static double sandwichPlanetBase = 3.141E+17f;
     public static double humanExterminationBase = 4E+19;
-    public static double enslaveAliensBase = 1E+22;
-    public static double deathSandwichBase = 5E+24;
-    public static double sandwichGalaxyBase = 1E+27;
-    public static double flyingSandwichMonsterBase = 9.999E+30;
+    public static double sandwichFleetBase = 1E+22;
+    public static double enslaveAliensBase = 5E+24;
+    public static double deathSandwichBase = 1E+27;
+    public static double sandwichGalaxyBase = 1.5E+30;
+    public static double flyingSandwichMonsterBase = 9.999E+33;
 
 
     //elixir costs
@@ -99,6 +101,7 @@ public class Util {
     public static bool musicMuted;
 
     public static bool even;
+    public static bool godmode = false;
 
     public static string encodeNumber(double m) {
         double money = m * 1.000001f;

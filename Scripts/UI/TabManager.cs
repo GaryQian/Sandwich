@@ -14,6 +14,23 @@ public class TabManager : MonoBehaviour {
     public Button permanentButton;
     public Button shopButton;
 
+
+    public Image BuyButton1;
+    public Image BuyButton2;
+    public Image BuyButton3;
+    public Image BuyButton4;
+    public Image BuyButton5;
+    public Image BuyButton6;
+    public Image BuyButton7;
+    public Image BuyButton8;
+    public Image BuyButton9;
+    public Image BuyButton10;
+    public Image BuyButton11;
+    public Image BuyButton12;
+    public Image BuyButton13;
+    public Image BuyButton14;
+    public Image BuyButton15;
+
     private ColorBlock normalColor;
     private ColorBlock highlightedColor;
 
@@ -39,6 +56,24 @@ public class TabManager : MonoBehaviour {
         highlightedColor.pressedColor = new Color(.0f, .0f, .0f);
         normalColor = statsButton.colors;
         producerButton.colors = highlightedColor;
+    }
+
+    public void setBuyButtonSprite(Sprite sp) {
+        BuyButton1.sprite = sp;
+        BuyButton2.sprite = sp;
+        BuyButton3.sprite = sp;
+        BuyButton4.sprite = sp;
+        BuyButton5.sprite = sp;
+        BuyButton6.sprite = sp;
+        BuyButton7.sprite = sp;
+        BuyButton8.sprite = sp;
+        BuyButton9.sprite = sp;
+        BuyButton10.sprite = sp;
+        BuyButton11.sprite = sp;
+        BuyButton12.sprite = sp;
+        BuyButton13.sprite = sp;
+        BuyButton14.sprite = sp;
+        BuyButton15.sprite = sp;
     }
 
     public void selectStats() {

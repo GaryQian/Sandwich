@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
 
-public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCity, breadCloning, sandwocracy, sandriaLaw, sandwichPlanet, humanExtermination, enslaveAliens, deathSandwich, sandwichGalaxy, flyingSandwichMonster }
+public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCity, breadCloning, sandwocracy, sandriaLaw, sandwichPlanet, humanExtermination, sandwichFleet, enslaveAliens, deathSandwich, sandwichGalaxy, flyingSandwichMonster }
 
 [Serializable]
 public class EconomyManager : MonoBehaviour {
@@ -63,6 +63,7 @@ public class EconomyManager : MonoBehaviour {
     public int sandriaLawCount = 0;
     public int sandwichPlanetCount = 0;
     public int humanExterminationCount = 0;
+    public int sandwichFleetCount = 0;
     public int enslaveAliensCount = 0;
     public int deathSandwichCount = 0;
     public int sandwichGalaxyCount = 0;
@@ -188,6 +189,7 @@ public class EconomyManager : MonoBehaviour {
             list.transform.FindChild("SandriaLaw").GetComponent<Upgrade>().setupProducerUpgrade(sandriaLawCount, Util.sandriaLawRate * communalMindBonus, Util.sandriaLawBase);
             list.transform.FindChild("SandwichPlanet").GetComponent<Upgrade>().setupProducerUpgrade(sandwichPlanetCount, Util.sandwichPlanetRate * communalMindBonus, Util.sandwichPlanetBase);
             list.transform.FindChild("HumanExtermination").GetComponent<Upgrade>().setupProducerUpgrade(humanExterminationCount, Util.humanExterminationRate * communalMindBonus, Util.humanExterminationBase);
+            list.transform.FindChild("SandwichFleet").GetComponent<Upgrade>().setupProducerUpgrade(sandwichFleetCount, Util.sandwichFleetRate * communalMindBonus, Util.sandwichFleetBase);
             list.transform.FindChild("EnslaveAliens").GetComponent<Upgrade>().setupProducerUpgrade(enslaveAliensCount, Util.enslaveAliensRate * communalMindBonus, Util.enslaveAliensBase);
             list.transform.FindChild("DeathSandwich").GetComponent<Upgrade>().setupProducerUpgrade(deathSandwichCount, Util.deathSandwichRate * communalMindBonus, Util.deathSandwichBase);
             list.transform.FindChild("SandwichGalaxy").GetComponent<Upgrade>().setupProducerUpgrade(sandwichGalaxyCount, Util.sandwichGalaxyRate * communalMindBonus, Util.sandwichGalaxyBase);
@@ -256,6 +258,7 @@ public class EconomyManager : MonoBehaviour {
         num += sandriaLawCount * Util.sandriaLawRate;
         num += sandwichPlanetCount * Util.sandwichPlanetRate;
         num += humanExterminationCount * Util.humanExterminationRate;
+        num += sandwichFleetCount * Util.sandwichFleetRate;
         num += enslaveAliensCount * Util.enslaveAliensRate;
         num += deathSandwichCount * Util.deathSandwichRate;
         num += sandwichGalaxyCount * Util.sandwichGalaxyRate;
@@ -354,6 +357,7 @@ public class EconomyManager : MonoBehaviour {
             sandriaLawCount = data.sandriaLawCount;
             sandwichPlanetCount = data.sandwichPlanetCount;
             humanExterminationCount = data.humanExterminationCount;
+            sandwichFleetCount = data.sandwichFleetCount;
             enslaveAliensCount = data.enslaveAliensCount;
             deathSandwichCount = data.deathSandwichCount;
             sandwichGalaxyCount = data.sandwichGalaxyCount;
@@ -417,6 +421,7 @@ public class EconomyManager : MonoBehaviour {
         data.sandriaLawCount = sandriaLawCount;
         data.sandwichPlanetCount = sandwichPlanetCount;
         data.humanExterminationCount = humanExterminationCount;
+        data.sandwichFleetCount = sandwichFleetCount;
         data.enslaveAliensCount = enslaveAliensCount;
         data.deathSandwichCount = deathSandwichCount;
         data.sandwichGalaxyCount = sandwichGalaxyCount;
@@ -482,6 +487,7 @@ public class SaveData {
     public int sandriaLawCount;
     public int sandwichPlanetCount;
     public int humanExterminationCount;
+    public int sandwichFleetCount;
     public int enslaveAliensCount;
     public int deathSandwichCount;
     public int sandwichGalaxyCount;

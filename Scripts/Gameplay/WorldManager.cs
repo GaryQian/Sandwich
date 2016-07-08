@@ -125,6 +125,10 @@ public class WorldManager : MonoBehaviour {
         Bread.updateLabel();
 
         loadIAP();
+
+        canvas.GetComponent<Canvas>().sortingGridNormalizedSize = 5;
+
+        if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
     }
 
     void everySecond() {
