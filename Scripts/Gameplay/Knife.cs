@@ -27,6 +27,23 @@ public class Knife : MonoBehaviour {
         setupKnifeType();
     }
 
+    public static string getKnifeName(int i) {
+        switch (i) {
+            case 0: return "Whimpy Knife";
+            case 1: return "Santoku!";
+            case 2: return "Chainsaw";
+            case 3: return "Cool Sword";
+            case 4: return "Swordie Sword";
+            case 5: return "myPhone";
+            case 6: return "Scimitar";
+            case 7: return "Lasersaber";
+            case 8: return "Robohand";
+            case 9: return "Sandalf's Staff";
+            case 10:return "Kabob";
+        }
+        return "Knife";
+    }
+
     public void setupKnifeType() {
         switch (Util.wm.knifeID) {
             case 0: GetComponent<SpriteRenderer>().sprite = knife; break;

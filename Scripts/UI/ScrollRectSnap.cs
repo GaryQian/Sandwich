@@ -20,6 +20,11 @@ public class ScrollRectSnap : MonoBehaviour {
     [Tooltip("Snap vertically")]
     public bool snapInV = false;
 
+
+    int currentIndex = 0;
+    public Text nameText;
+
+    public GameObject knifePanel;
     // Use this for initialization
     void Start() {
         scroll = gameObject.GetComponent<ScrollRect>();
@@ -36,6 +41,10 @@ public class ScrollRectSnap : MonoBehaviour {
         else {
             points[0] = 0;
         }
+        currentIndex = Util.wm.knifeID;
+        targetH = points[currentIndex];
+        scroll.horizontalNormalizedPosition = targetH;
+        nameText.text = Knife.getKnifeName(currentIndex);
     }
 
     void Update() {
@@ -58,6 +67,8 @@ public class ScrollRectSnap : MonoBehaviour {
             targetH = points[FindNearest(scroll.verticalNormalizedPosition, points)];
             LerpH = true;
         }
+
+        nameText.text = Knife.getKnifeName(currentIndex);
     }
 
     public void OnDrag() {
@@ -72,8 +83,17 @@ public class ScrollRectSnap : MonoBehaviour {
             if (Mathf.Abs(array[index] - f) < distance) {
                 distance = Mathf.Abs(array[index] - f);
                 output = index;
+                currentIndex = index;
             }
         }
         return output;
+    }
+
+    public void closePanel() {
+        if (Util.wm.knifeCollectionPurchased) {
+            Util.wm.knifeID = currentIndex;
+            Util.wm.gtm.knife.GetComponent<Knife>().setupKnifeType();
+        }
+        Destroy(knifePanel);
     }
 }
