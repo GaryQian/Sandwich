@@ -31,7 +31,7 @@ public class BuyButton : MonoBehaviour {
 	void Update () {
         if (type == CurrencyType.money) {
             if (buyType == BuyType.x10) {
-                if (Util.money < up.cost * ButtonHandler.buyCount) {
+                if (Util.money < up.cost) {
                     //disable
                     button.colors = disabledColor;
                 }
