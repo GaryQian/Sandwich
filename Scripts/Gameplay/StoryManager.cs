@@ -215,21 +215,23 @@ public class StoryManager : MonoBehaviour {
                 }
                 break;
             case 2:
-                switch (i) {
-                    case 0: return new StoryLine("...", true); break;
-                    case 1: return new StoryLine("...", true); break;
-                    case 2: return new StoryLine("...", true); break;
-                    case 3: return new StoryLine("...", true); break;
-                    case 4: return new StoryLine("...", true); break;
+                switch (i % 8) {
+                    case 0: return new StoryLine("I can feel the sandwich power pulsing through my mayonnaise! Thank you! I have my full strength again.", true); break;
+                    case 1: return new StoryLine("By making so many sandwiches, sandwichkind has reawakened. Countless sandwiches stand by your side.", true); break;
+                    case 2: return new StoryLine("However, our struggle has just begun. We do not yet have the numbers to fight against our human oppressors.", true); break;
+                    case 3: return new StoryLine("As the only human on our side, only you can become strong enough to end the sandwich massacre.", true); break;
+                    case 4: return new StoryLine("I have revealed to you the ancient plans to the Time Machine. Once you build all 3 parts, you can travel back in time.", true); break;
+                    case 5: return new StoryLine("These countless sandwiches are willing to sacrifice their lives to produce sandwich elixirs for you.", true); break;
+                    case 6: return new StoryLine("Elixirs contain the power you need to evolve and become the ultimate human-sandwich hybrid.", true); break;
+                    case 7: return new StoryLine("Time travel back and become stronger for us, and establish sandwichkind’s rightful place as leaders of the universe.", true); break;
                 }
                 break;
             case 3:
-                switch (i) {
-                    case 0: return new StoryLine("...", true); break;
-                    case 1: return new StoryLine("...", true); break;
-                    case 2: return new StoryLine("...", true); break;
-                    case 3: return new StoryLine("...", true); break;
-                    case 4: return new StoryLine("...", true); break;
+                switch (i % 4) {
+                    case 0: return new StoryLine("Aha! You have finished the Time Machine.", true); break;
+                    case 1: return new StoryLine("All " + Util.encodeNumber(Util.em.sandwichesMade) + " Sandwiches are ready to be elixir-fied!", true); break;
+                    case 2: return new StoryLine("Time travel back whenever you feel you are ready.", true); break;
+                    case 3: return new StoryLine("Make more sandwiches! Summon the Flying Sandwich Monster! Let him grace you with his wisdom!", true); break;
                 }
                 break;
         }

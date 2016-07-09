@@ -15,6 +15,8 @@ public class Whitescreen : MonoBehaviour {
         transform.localScale = new Vector3(1f, 1f, 1f);
         GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
         fadeOut = fadeTime;
+
+        Util.wm.fullAudioSource.PlayOneShot(ResetManager.timeTravel);
 	}
 
     // Update is called once per frame

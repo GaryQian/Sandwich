@@ -248,10 +248,6 @@ public class EconomyManager : MonoBehaviour {
         return Mathf.Pow(2f, i - 1 + j);
     }
 
-    public double getSandwichValueOld() {
-        return getSandwichValueOld(sauceID, breadID);
-    }
-
     /*public double getSandwichBaseValue(int i) {
         return Mathf.Pow(2f, i - 1);
     }*/

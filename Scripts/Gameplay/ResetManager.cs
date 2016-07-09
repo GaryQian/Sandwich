@@ -7,6 +7,8 @@ public class ResetManager : MonoBehaviour {
 
     public GameObject whitescreen;
 
+    public static AudioClip timeTravel;
+    public AudioClip timeTravelSound;
     /// <summary>
     /// EVENTS
     /// </summary>
@@ -18,7 +20,7 @@ public class ResetManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	    
+        timeTravel = timeTravelSound;
 	}
 
     public static long elixirsOnReset() {
@@ -75,6 +77,8 @@ public class ResetManager : MonoBehaviour {
         em.rate = 0;
         em.sandwichValue = 0;
 
+        //ButtonHandler.buyCount = 1;
+
         em.buildings = 0;
         em.sandwichCartCount = 0;
         em.deliCount = 0;
@@ -99,7 +103,11 @@ public class ResetManager : MonoBehaviour {
         wm.sm.oldwichLevel = 0;
 
         wm.tutorialManager.tutorialActive = false;
-        
+
+        //temp mute
+        bool tempMute = wm.muted;
+        wm.muted = true;
+
         //redo calculations
         em.recalculate();
         wm.sm.updatePermanentTab();
@@ -108,6 +116,7 @@ public class ResetManager : MonoBehaviour {
         wm.sm.setActiveBreadclear(true);
         wm.sm.setActiveSandtanium(true);
         wm.tabManager.selectProducer();
+        em.list.transform.FindChild("BuyCounterSwitchPanel1").FindChild("SwitchButton").gameObject.GetComponent<Switch>().setx1();
         em.updateProducerMenuCounters();
         wm.sauce.GetComponent<Sauce>().update();
         Bread.updateLabel();
@@ -115,7 +124,11 @@ public class ResetManager : MonoBehaviour {
         em.money = 0;
         em.moneyText.updateColor();
 
+        wm.muted = tempMute;
+
         em.save();
+
+        
 
         if (RESET != null) RESET();
 
