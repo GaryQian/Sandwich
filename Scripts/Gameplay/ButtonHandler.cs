@@ -17,6 +17,7 @@ public class ButtonHandler : MonoBehaviour {
     public Sprite musicMuteOff;
     public AudioClip kaching;
     public AudioClip build;
+    public AudioClip witch;
 
     public GameObject knifePanel;
 
@@ -222,11 +223,12 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void sandWitchClick() {
         double num = Util.sandWitchCurrentPercentage * em.money + Util.sandWitchTotalPercentage * em.totalMoney;
-        em.income(num);
+        em.money += num;
         wm.sandWitchesClicked++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
         obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 60, 100);
         Destroy(wm.sandWitch);
+        wm.fullAudioSource.PlayOneShot(witch);
     }
 
     /// <summary>
@@ -247,12 +249,13 @@ public class ButtonHandler : MonoBehaviour {
     private void HandleShowResultMoney(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
-                Debug.Log("Video completed. Rewarded $" + adValue());
-                double num = adValue();
-                em.money += num;
-                //em.totalMoney += num;
-                wm.adWatchTimeMoney = Util.adMoneyCooldown;
-                em.save();
+                //if (Util.adMoneyCooldown <= 0) {
+                    Debug.Log("Video completed. Rewarded $" + adValue());
+                    double num = adValue();
+                    em.money += num;
+                    wm.adWatchTimeMoney = Util.adMoneyCooldown;
+                    em.save();
+                //}
                 break;
             case ShowResult.Skipped:
                 Debug.LogWarning("Video was skipped.");
@@ -264,7 +267,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public double adValue() {
-        return (em.totalMoney * Util.adRewardTotalPercentage) + em.getSandwichValue() * Util.adRewardSwipes * em.swipeRate + em.getSandwichValue() * em.rate * Util.adRewardTime + Util.money * Util.adRewardCurrentPercentage;
+        return (em.totalMoney * Util.adRewardTotalPercentage) + (em.getSandwichValue() * Util.adRewardSwipes * em.swipeRate) + (em.getSandwichValue() * em.rate * Util.adRewardTime) + (Util.em.money * Util.adRewardCurrentPercentage);
     }
 
     /// <summary>
@@ -285,7 +288,7 @@ public class ButtonHandler : MonoBehaviour {
     private void HandleShowResultElixir(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
-                Debug.Log("Video completed. Rewarded $" + adValue());
+                Debug.Log("Video completed. Rewarded 1 elixir");
                 em.elixir += 1;
                 wm.adWatchTimeElixir = Util.adElixirCooldown;
                 em.save();
