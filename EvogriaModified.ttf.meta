@@ -9,7 +9,8 @@ TrueTypeFontImporter:
   characterSpacing: 1
   characterPadding: 0
   includeFontData: 1
-  fontNames: []
+  fontNames:
+  - Evogria
   fallbackFontReferences:
   - {fileID: 12800000, guid: 140e939dcfcaba54a9fcfc763315a5fa, type: 3}
   customCharacters: 

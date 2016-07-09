@@ -13,6 +13,8 @@ public class Switch : MonoBehaviour {
 
     public delegate void BuyCountChange();
     public static event BuyCountChange Toggled;
+
+    public AudioClip switchSound;
 	// Use this for initialization
 	void Start () {
         setDarkness();
@@ -28,6 +30,7 @@ public class Switch : MonoBehaviour {
     }
 
     public void setx10() {
+        if (ButtonHandler.buyCount != 10 && !Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(switchSound);
         ButtonHandler.buyCount = 10;
         img.sprite = right;
         if (Toggled != null) Toggled();
@@ -36,6 +39,7 @@ public class Switch : MonoBehaviour {
         Util.em.updateProducerMenuCounters();
     }
     public void setx1() {
+        if (ButtonHandler.buyCount != 1 && !Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(switchSound);
         ButtonHandler.buyCount = 1;
         img.sprite = left;
         if (Toggled != null) Toggled();

@@ -8,7 +8,7 @@ public class Godmode : MonoBehaviour {
     TouchScreenKeyboard kb;
     public int godmodeCode;
     public int godmodeOffCode;
-
+    public int resetCode;
     //public MD5 md5;
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,8 @@ public class Godmode : MonoBehaviour {
         
         godmodeCode = 1884297456;
         godmodeOffCode = ("off").GetHashCode();
-}
+        resetCode = ("reset!").GetHashCode();
+    }
 
     void countDown() {
         if (godCounter >= 1) {
@@ -27,11 +28,17 @@ public class Godmode : MonoBehaviour {
     public void click() {
         if (kb == null) {
             godCounter++;
+            CancelInvoke("godCounter");
+            Invoke("godCounter", 1f);
             if (godCounter == 5) {
                 kb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
                 Debug.Log("Console Keyboard Opened");
             }
         }
+    }
+
+    void resetCounter() {
+        godCounter = 0;
     }
 
     void Update() {
@@ -43,7 +50,9 @@ public class Godmode : MonoBehaviour {
             if (code == godmodeOffCode) {
                 Util.godmode = false;
             }
-            
+            if (code == resetCode) {
+                ResetManager.completeReset();
+            }
         }
     }
 }

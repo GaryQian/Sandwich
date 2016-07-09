@@ -120,4 +120,33 @@ public class ResetManager : MonoBehaviour {
         if (RESET != null) RESET();
 
     }
+
+    public static void completeReset() {
+        reset();
+        WorldManager wm = Util.wm;
+        EconomyManager em = Util.em;
+
+        wm.playthroughCount = 0;
+
+        //transfer into totals
+        em.elixir = 0;
+        em.totalElixir = 0;
+        em.lifetimeMoney = 0;
+        em.lifetimeSandwichesMade = 0;
+        em.lifetimeBuildings = 0;
+        em.lifetimeSwipes = 0;
+
+        em.totalTime = 0;
+
+        wm.sandWitchesClicked = 0;
+
+        em.toasterVisionLevel = 0;
+        em.communalMindLevel = 0;
+        em.dexterousHandsLevel = 1;
+
+        wm.knifeID = 0;
+
+
+        em.recalculate();
+    }
 }
