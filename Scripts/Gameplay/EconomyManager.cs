@@ -4,6 +4,8 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCity, breadCloning, sandwocracy, sandriaLaw, sandwichPlanet, humanExtermination, sandwichFleet, enslaveAliens, deathSandwich, sandwichGalaxy, flyingSandwichMonster }
 
@@ -79,7 +81,7 @@ public class EconomyManager : MonoBehaviour {
 
     public GameObject list; //the list of upgrades
 
-
+    
     /// <summary>
     /// Events
     /// </summary>
@@ -114,6 +116,14 @@ public class EconomyManager : MonoBehaviour {
         moneyText.updateColor();
 
         Util.x10BuyCostScale = calculateCostScale();
+
+        //LEADERBOARDS:
+        Social.localUser.Authenticate((bool success) => {
+            // handle success or failure
+            if (success) wm.postScore();
+        });
+        
+
     }
 
     // Update is called once per frame

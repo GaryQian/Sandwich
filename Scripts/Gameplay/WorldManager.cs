@@ -5,6 +5,8 @@ using System;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -79,6 +81,8 @@ public class WorldManager : MonoBehaviour {
     //
 
 
+    private bool scorePostFailed = false;
+
     // Use this for initialization
     void Awake() {
         gtm = GetComponent<GameplayTouchManager>();
@@ -129,6 +133,32 @@ public class WorldManager : MonoBehaviour {
         canvas.GetComponent<Canvas>().sortingGridNormalizedSize = 5;
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
+    }
+
+    public void postScore() {
+        //total money
+        Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
+            // handle success or failure
+            if (!success) {
+                scorePostFailed = true;
+            }
+        });
+        //total elixirs
+        Social.ReportScore((long)em.totalElixir, "CgkI1rDm6sMKEAIQDg", (bool success) => {
+            // handle success or failure
+            if (!success) {
+                scorePostFailed = true;
+            }
+        });
+        //total swipes
+        Social.ReportScore((long)em.totalSwipes, "CgkI1rDm6sMKEAIQDA", (bool success) => {
+            // handle success or failure
+            if (!success) {
+                scorePostFailed = true;
+            }
+        });
+
+        if (scorePostFailed) Invoke("postScore", 300f);
     }
 
     void everySecond() {

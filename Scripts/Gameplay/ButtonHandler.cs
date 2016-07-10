@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class ButtonHandler : MonoBehaviour {
 
@@ -216,6 +218,14 @@ public class ButtonHandler : MonoBehaviour {
             musicMuteButton.GetComponent<Image>().sprite = musicMuteOff;
             wm.music.Play();
         }
+    }
+
+    ///
+    /// LEADERBOARD UI
+    /// 
+
+    public void showLeaderboard() {
+        Social.ShowLeaderboardUI();
     }
 
     /// <summary>
