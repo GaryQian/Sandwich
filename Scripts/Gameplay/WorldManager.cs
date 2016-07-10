@@ -433,6 +433,16 @@ public class WorldManager : MonoBehaviour {
     void OnApplicationQuit() {
         em.save();
     }
+
+    void OnApplicationFocus(bool pauseStatus) {
+        if (pauseStatus) {
+            //In forground
+            processOffline();
+        }
+        else {
+            lastTime = Util.GetNISTDate(true);
+        }
+    }
 }
 
 [Serializable]
