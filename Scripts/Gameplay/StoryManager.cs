@@ -9,6 +9,9 @@ public class StoryManager : MonoBehaviour {
     public float oldwichLevelUpScale;
     public static bool messageActive = false;
 
+    GameObject fb;
+    public GameObject flashbackPrefab;
+
     public GameObject speechPrefab;
     GameObject speech;
 
@@ -34,11 +37,6 @@ public class StoryManager : MonoBehaviour {
     private WorldManager wm;
     private GameObject oldwichBG;
 
-    void Awake() {
-
-    }
-
-
     public void updatePermanentTab() {
         if (Util.wm.menuState == MenuType.permanent) {
             int prevLevel = oldwichLevel;
@@ -51,7 +49,7 @@ public class StoryManager : MonoBehaviour {
             if (Util.em.totalMoney > oldwichLevelUpThreshold * Mathf.Pow(oldwichLevelUpScale, 1f)) {
                 oldwichLevel = 2;
             }
-            
+
             if (checkTimeMachine()) {
                 oldwichLevel = 3;
             }
@@ -190,14 +188,14 @@ public class StoryManager : MonoBehaviour {
     public StoryLine getLine(int i) {
         switch (oldwichLevel) {
             case 0: switch (i % 8) {
-                        case 0: return new StoryLine("Aghhhh...", true); break;
-                        case 1: return new StoryLine("Urrrrrgh...", true); break;
-                        case 2: return new StoryLine("Hurrmm...", true); break;
-                        case 3: return new StoryLine("Ouch...", true); break;
-                        case 4: return new StoryLine("Ughh...", true); break;
-                        case 5: return new StoryLine("Mmmmugh...", true); break;
-                        case 6: return new StoryLine("Duuuughh...", true); break;
-                        case 7: return new StoryLine("So... Weak...", true); break;
+                    case 0: return new StoryLine("Aghhhh...", true); break;
+                    case 1: return new StoryLine("Urrrrrgh...", true); break;
+                    case 2: return new StoryLine("Hurrmm...", true); break;
+                    case 3: return new StoryLine("Ouch...", true); break;
+                    case 4: return new StoryLine("Ughh...", true); break;
+                    case 5: return new StoryLine("Mmmmugh...", true); break;
+                    case 6: return new StoryLine("Duuuughh...", true); break;
+                    case 7: return new StoryLine("So... Weak...", true); break;
                 }
                 break;
             case 1:
@@ -235,8 +233,35 @@ public class StoryManager : MonoBehaviour {
                 }
                 break;
         }
-        
+
         return new StoryLine("", true);
+    }
+
+    void showFlashback() {
+        fb = Instantiate(flashbackPrefab);
+        //setup flashback
+    }
+
+
+    void showHumanExterminationBomb() {
+        if (Util.em.humanExterminationCount == 1) {
+            //Show bomb
+        }
+    }
+
+    void showFlyingSandwichMonster() {
+        if (Util.em.flyingSandwichMonsterCount == 1) {
+            //show fsm
+        }
+    }
+
+    void OnEnable() {
+        ButtonHandler.BuyHumanExtermination += showHumanExterminationBomb;
+        ButtonHandler.BuyFlyingSandwichMonster += showFlyingSandwichMonster;
+    }
+    void OnDisable() {
+        ButtonHandler.BuyHumanExtermination -= showHumanExterminationBomb;
+        ButtonHandler.BuyFlyingSandwichMonster -= showFlyingSandwichMonster;
     }
 }
 
