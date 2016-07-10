@@ -95,6 +95,9 @@ public class ResetManager : MonoBehaviour {
         em.sandwichGalaxyCount = 0;
         em.flyingSandwichMonsterCount = 0;
 
+        em.nurseryPop = 0;
+        em.reproductionRate = 0;
+
         wm.sm.hasFlux = false;
         wm.sm.hasBreadclear = false;
         wm.sm.hasSandtanium = false;
@@ -128,7 +131,7 @@ public class ResetManager : MonoBehaviour {
 
         em.save();
 
-        
+        Social.ReportProgress("CgkI1rDm6sMKEAIQAg", 100.0f, (bool success) => { });
 
         if (RESET != null) RESET();
 

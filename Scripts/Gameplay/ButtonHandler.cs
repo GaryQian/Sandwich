@@ -227,6 +227,18 @@ public class ButtonHandler : MonoBehaviour {
     public void showLeaderboard() {
         Social.ShowLeaderboardUI();
     }
+    ///
+    /// Achievements UI
+    public void showAchievements() {
+        Social.ShowAchievementsUI();
+    }
+
+    ///
+    /// Facebook UI
+    /// 
+    public void showFB() {
+        Application.OpenURL("http://facebook.com/sandwichorelse");
+    }
 
     /// <summary>
     /// Sand Witch

@@ -3,6 +3,7 @@ using System.Collections;
 
 public enum SaberColor { blue, red, green, purple }
 
+
 public class Knife : MonoBehaviour {
     public Sprite knife;
     public Sprite k1;
@@ -16,16 +17,23 @@ public class Knife : MonoBehaviour {
     public Sprite greenSaber;
     public Sprite purpleSaber;
     public Sprite k8;
-    public Sprite k9;
+    public Sprite redShoe;
+    public Sprite blackShoe;
+    public Sprite purpleShoe;
+    public Sprite blueShoe;
     public Sprite k10;
     public Sprite k11;
     public Sprite k12;
     public Sprite k13;
     public Sprite k14;
     public Sprite k15;
-    public Sprite k16;
+    public Sprite redFlowers;
+    public Sprite whiteFlowers;
+    public Sprite yellowFlowers;
+    public Sprite purpleFlowers;
     public Sprite k17;
     public Sprite k18;
+    
     public Sprite k19;
     public Sprite k20;
 
@@ -53,18 +61,18 @@ public class Knife : MonoBehaviour {
             case 6: return "Scimitar";
             case 7: return "Saber";
             case 8: return "Robohand";
-            case 9: return "Sandalf's Staff";
+            case 9: return "Shoe";
             case 10: return "Kabob";
             case 11: return "Keyboard";
             case 12: return "Rubber Chicken";
             case 13: return "Baguette";
             case 14: return "Guitar";
             case 15: return "Hunting Knife";
-            case 16: return "";
-            case 17: return "";
-            case 18: return "";
-            case 19: return "";
-            case 20: return "";
+            case 16: return "Flowers";
+            case 17: return "Lamp!";
+            case 18: return "Sandalf's Staff";
+            case 19: return "Microphone";
+            case 20: return "Spatula";
         }
         return "Knife";
     }
@@ -89,14 +97,32 @@ public class Knife : MonoBehaviour {
                     break;
                 }
             case 8: GetComponent<SpriteRenderer>().sprite = k8; break;
-            case 9: GetComponent<SpriteRenderer>().sprite = k9; break;
+            case 9:
+                {
+                    switch (Util.wm.shoeColor % 4) {
+                        case 0: GetComponent<SpriteRenderer>().sprite = redShoe; break;
+                        case 1: GetComponent<SpriteRenderer>().sprite = blackShoe; break;
+                        case 2: GetComponent<SpriteRenderer>().sprite = purpleShoe; break;
+                        case 3: GetComponent<SpriteRenderer>().sprite = blueShoe; break;
+                    }
+                    break;
+                }
             case 10: GetComponent<SpriteRenderer>().sprite = k10; break;
             case 11: GetComponent<SpriteRenderer>().sprite = k11; break;
             case 12: GetComponent<SpriteRenderer>().sprite = k12; break;
             case 13: GetComponent<SpriteRenderer>().sprite = k13; break;
             case 14: GetComponent<SpriteRenderer>().sprite = k14; break;
             case 15: GetComponent<SpriteRenderer>().sprite = k15; break;
-            case 16: GetComponent<SpriteRenderer>().sprite = k16; break;
+            case 16:
+                {
+                    switch (Util.wm.flowerColor % 4) {
+                        case 0: GetComponent<SpriteRenderer>().sprite = redFlowers; break;
+                        case 1: GetComponent<SpriteRenderer>().sprite = whiteFlowers; break;
+                        case 2: GetComponent<SpriteRenderer>().sprite = yellowFlowers; break;
+                        case 3: GetComponent<SpriteRenderer>().sprite = purpleFlowers; break;
+                    }
+                    break;
+                }
             case 17: GetComponent<SpriteRenderer>().sprite = k17; break;
             case 18: GetComponent<SpriteRenderer>().sprite = k18; break;
             case 19: GetComponent<SpriteRenderer>().sprite = k19; break;

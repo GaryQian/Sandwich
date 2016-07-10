@@ -46,7 +46,8 @@ public class Godmode : MonoBehaviour {
             int code = kb.text.GetHashCode();
             if (code == godmodeCode) {
                 Util.godmode = true;
-            }
+                Util.wm.hasCheated = true;
+                Util.wm.saveIAP();            }
             if (code == godmodeOffCode) {
                 Util.godmode = false;
             }

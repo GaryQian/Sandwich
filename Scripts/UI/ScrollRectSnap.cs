@@ -32,9 +32,22 @@ public class ScrollRectSnap : MonoBehaviour {
     public Sprite redSaber;
     public Sprite greenSaber;
     public Sprite purpleSaber;
+
+    public Sprite redFlowers;
+    public Sprite whiteFlowers;
+    public Sprite yellowFlowers;
+    public Sprite purpleFlowers;
+
+    public Sprite redShoe;
+    public Sprite blackShoe;
+    public Sprite purpleShoe;
+    public Sprite blueShoe;
+
     int saberCount = 0;
 
     public Image saberImage;
+    public Image flowerImage;
+    public Image shoeImage;
     // Use this for initialization
     void Start() {
         scroll = gameObject.GetComponent<ScrollRect>();
@@ -58,12 +71,16 @@ public class ScrollRectSnap : MonoBehaviour {
         if (Util.wm.knifeCollectionPurchased || Util.godmode) continueButtonText.text = "Use This Knife!";
 
         switch (Util.wm.saberColor) {
-            case SaberColor.blue: saberCount = 4000; break;
-            case SaberColor.red: saberCount = 4001; break;
-            case SaberColor.green: saberCount = 4002; break;
-            case SaberColor.purple: saberCount = 4003; break;
+            case SaberColor.blue: saberCount = 40000; break;
+            case SaberColor.red: saberCount = 40001; break;
+            case SaberColor.green: saberCount = 40002; break;
+            case SaberColor.purple: saberCount = 40003; break;
         }
+        Util.wm.flowerColor = Util.wm.flowerColor % 4 + 40000;
+        Util.wm.shoeColor = Util.wm.shoeColor % 4 + 40000;
         setSaberColor();
+        setFlowerColor();
+        setShoeColor();
 
     }
 
@@ -123,13 +140,31 @@ public class ScrollRectSnap : MonoBehaviour {
         Destroy(knifePanel);
     }
 
-    public void leftButton() {
+    public void leftButtonSaber() {
         saberCount--;
         setSaberColor();
     }
-    public void rightButton() {
+    public void rightButtonSaber() {
         saberCount++;
         setSaberColor();
+    }
+
+    public void leftButtonFlower() {
+        Util.wm.flowerColor--;
+        setFlowerColor();
+    }
+    public void rightButtonFlower() {
+        Util.wm.flowerColor++;
+        setFlowerColor();
+    }
+
+    public void leftButtonShoe() {
+        Util.wm.shoeColor--;
+        setShoeColor();
+    }
+    public void rightButtonShoe() {
+        Util.wm.shoeColor++;
+        setShoeColor();
     }
 
     void setSaberColor() {
@@ -138,6 +173,22 @@ public class ScrollRectSnap : MonoBehaviour {
             case 1: saberImage.sprite = redSaber; break;
             case 2: saberImage.sprite = greenSaber; break;
             case 3: saberImage.sprite = purpleSaber; break;
+        }
+    }
+    void setFlowerColor() {
+        switch (Util.wm.flowerColor % 4) {
+            case 0: flowerImage.sprite = redFlowers; break;
+            case 1: flowerImage.sprite = whiteFlowers; break;
+            case 2: flowerImage.sprite = yellowFlowers; break;
+            case 3: flowerImage.sprite = purpleFlowers; break;
+        }
+    }
+    void setShoeColor() {
+        switch (Util.wm.shoeColor % 4) {
+            case 0: shoeImage.sprite = redShoe;  break;
+            case 1: shoeImage.sprite = blackShoe;  break;
+            case 2: shoeImage.sprite = purpleShoe; break;
+            case 3: shoeImage.sprite = blueShoe; break;
         }
     }
 }

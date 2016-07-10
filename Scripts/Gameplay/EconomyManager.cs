@@ -20,7 +20,8 @@ public class EconomyManager : MonoBehaviour {
     public double sandwichValue = 1f; //val of each sandwich
     public double swipeRate;
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
-    public int knifeCount = 1;
+    public float reproductionRate = 0;
+    public double nurseryPop = 0;
     public int sauceID; //which is the current spread
     public int breadID = 0;
     public double totalTime = 0f;
@@ -117,12 +118,9 @@ public class EconomyManager : MonoBehaviour {
 
         Util.x10BuyCostScale = calculateCostScale();
 
-        //LEADERBOARDS:
-        Social.localUser.Authenticate((bool success) => {
-            // handle success or failure
-            if (success) wm.postScore();
-        });
-        
+        wm.setupGPGS();
+        wm.processOffline();
+
 
     }
 
@@ -353,7 +351,8 @@ public class EconomyManager : MonoBehaviour {
             lifetimeMoney = data.lifetimeMoney;
             rate = data.rate;
             knifeVamp = data.knifeVamp;
-            knifeCount = data.knifeCount;
+            reproductionRate = data.reproductionRate;
+            nurseryPop = data.nurseryPop;
             totalTime = data.totalTime;
             gameTime = data.gameTime;
             sauceID = data.sauceID;
@@ -402,6 +401,8 @@ public class EconomyManager : MonoBehaviour {
 
             wm.sandWitchesClicked = data.sandWitchesClicked;
             wm.playthroughCount = data.playthroughCount;
+
+            wm.lastTime = data.lastTime;
         }
     }
 
@@ -418,7 +419,8 @@ public class EconomyManager : MonoBehaviour {
         data.lifetimeMoney = lifetimeMoney;
         data.rate = rate;
         data.knifeVamp = knifeVamp;
-        data.knifeCount = knifeCount;
+        data.reproductionRate = reproductionRate;
+        data.nurseryPop = nurseryPop;
         data.gameTime = gameTime;
         data.totalTime = totalTime;
         data.sauceID = sauceID;
@@ -465,6 +467,8 @@ public class EconomyManager : MonoBehaviour {
         data.sandWitchesClicked = wm.sandWitchesClicked;
         data.playthroughCount = wm.playthroughCount;
 
+        data.lastTime = GetComponent<WebDateTime>().GetCurrentTime();
+
         bf.Serialize(file, data);
         file.Close();
 
@@ -484,7 +488,8 @@ public class SaveData {
     public double rate;
     public double swipeRate;
     public float knifeVamp;
-    public int knifeCount;
+    public float reproductionRate;
+    public double nurseryPop;
     public int sauceID;
     public int breadID;
     public double totalTime;
@@ -531,4 +536,6 @@ public class SaveData {
 
     public int sandWitchesClicked;
     public int playthroughCount;
+
+    public DateTime lastTime;
 }
