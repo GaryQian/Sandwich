@@ -137,12 +137,15 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void processOffline() {
-        double timeElapsed = DateTime.Now.Subtract(lastTime).TotalSeconds;
-        if (timeElapsed > 0) {
-            adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
-            adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
+        DateTime dt = Util.GetNISTDate(false);
+        if (dt != null) {
+            double timeElapsed = dt.Subtract(lastTime).TotalSeconds;
+            if (timeElapsed > 0) {
+                adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
+                adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
 
-            em.nurseryPop += em.rate * em.reproductionRate * timeElapsed / 100f;
+                em.nurseryPop += em.rate * em.reproductionRate * timeElapsed / 100f;
+            }
         }
     }
 

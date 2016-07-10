@@ -466,7 +466,7 @@ public class EconomyManager : MonoBehaviour {
         data.sandWitchesClicked = wm.sandWitchesClicked;
         data.playthroughCount = wm.playthroughCount;
 
-        data.lastTime = DateTime.Now;// GetComponent<WebDateTime>().GetCurrentTime();
+        data.lastTime = Util.GetNISTDate(true); ;// GetComponent<WebDateTime>().GetCurrentTime();
 
         bf.Serialize(file, data);
         file.Close();
