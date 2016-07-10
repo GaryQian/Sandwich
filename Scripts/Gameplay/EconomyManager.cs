@@ -22,6 +22,7 @@ public class EconomyManager : MonoBehaviour {
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public float reproductionRate = 0;
     public double nurseryPop = 0;
+    public double maxBabyPop;
     public int sauceID; //which is the current spread
     public int breadID = 0;
     public double totalTime = 0f;
@@ -117,11 +118,9 @@ public class EconomyManager : MonoBehaviour {
         moneyText.updateColor();
 
         Util.x10BuyCostScale = calculateCostScale();
-
+        maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
         wm.setupGPGS();
         wm.processOffline();
-
-
     }
 
     // Update is called once per frame
@@ -467,7 +466,7 @@ public class EconomyManager : MonoBehaviour {
         data.sandWitchesClicked = wm.sandWitchesClicked;
         data.playthroughCount = wm.playthroughCount;
 
-        data.lastTime = GetComponent<WebDateTime>().GetCurrentTime();
+        data.lastTime = DateTime.Now;// GetComponent<WebDateTime>().GetCurrentTime();
 
         bf.Serialize(file, data);
         file.Close();

@@ -15,7 +15,11 @@ public class Util {
 
     public static double knifeVampBaseCost = 2000000f;
     public static double knifeVampScale = 200f;
-    public static float knifeVampRate = 0.04f;
+    public static float knifeVampRate = 0.03f;
+
+    public static double sandwichReproductionBase = 10000f;
+    public static double sandwichReproductionScale = 2000f;
+    public static float maxBabyTime = 28800f;
 
     
     public static float pScale = 1.15f;

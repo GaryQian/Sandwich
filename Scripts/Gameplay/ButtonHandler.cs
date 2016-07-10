@@ -52,6 +52,7 @@ public class ButtonHandler : MonoBehaviour {
     public static event BuyItem BuySauce;
     public static event BuyItem BuyBread;
     public static event BuyItem BuyEvolution;
+    public static event BuyItem BuySandwichReproduction;
 
 
     //
@@ -248,7 +249,7 @@ public class ButtonHandler : MonoBehaviour {
         em.money += num;
         wm.sandWitchesClicked++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 60, 100);
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 70, 100);
         Destroy(wm.sandWitch);
         wm.fullAudioSource.PlayOneShot(witch);
     }
@@ -389,6 +390,32 @@ public class ButtonHandler : MonoBehaviour {
         up.updateCounter("" + (int)(wm.em.knifeVamp * 100f + 0.001f) + "%");
         up.updateStats("Swipes make\n" + (int)((wm.em.knifeVamp + Util.knifeVampRate + 0.001f) * 100f) + "% &/s");
         up.updateCost(sharpenKnivesCost());
+
+    }
+    /// <summary>
+    /// SANDWICH REPRODUCTION
+    /// </summary>
+    public void upgradeSandwichReproduction() {
+        if (em.money >= swReproductionCost()) {
+            em.spend(swReproductionCost());
+            em.reproductionRate++;
+
+            updateSandwichReproduction();
+            playKaching();
+            if (BuySandwichReproduction != null) BuySandwichReproduction();
+        }
+        else {
+            notEnough();
+        }
+    }
+    public double swReproductionCost() {
+        return Util.sandwichReproductionBase * System.Math.Pow(Util.sandwichReproductionScale, em.reproductionRate);
+    }
+    public void updateSandwichReproduction() {
+        up = em.list.transform.FindChild("SandwichReproduction").GetComponent<Upgrade>();
+        up.updateCounter("" + (int)(em.reproductionRate + 0.0001f) + "%");
+        up.updateStats("Make " + (int)(1.0001f + em.reproductionRate) + "%\nProduction even\nWith App Closed");
+        up.updateCost(swReproductionCost());
 
     }
 

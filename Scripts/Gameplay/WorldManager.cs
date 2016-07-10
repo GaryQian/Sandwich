@@ -137,7 +137,7 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void processOffline() {
-        double timeElapsed = GetComponent<WebDateTime>().GetCurrentTime().Subtract(lastTime).TotalSeconds;
+        double timeElapsed = DateTime.Now.Subtract(lastTime).TotalSeconds;
         if (timeElapsed > 0) {
             adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
             adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
@@ -242,7 +242,9 @@ public class WorldManager : MonoBehaviour {
             
         }
 
+        em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
         em.nurseryPop += em.rate * em.reproductionRate / 100f;
+        if (em.nurseryPop > em.maxBabyPop) em.nurseryPop = em.maxBabyPop;
     }
 
     void every5() {
