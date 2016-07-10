@@ -401,7 +401,7 @@ public class EconomyManager : MonoBehaviour {
             wm.sandWitchesClicked = data.sandWitchesClicked;
             wm.playthroughCount = data.playthroughCount;
 
-            wm.lastTime = data.lastTime;
+            wm.loadTime();
         }
     }
 
@@ -466,10 +466,10 @@ public class EconomyManager : MonoBehaviour {
         data.sandWitchesClicked = wm.sandWitchesClicked;
         data.playthroughCount = wm.playthroughCount;
 
-        data.lastTime = Util.GetNISTDate(true); ;// GetComponent<WebDateTime>().GetCurrentTime();
-
         bf.Serialize(file, data);
         file.Close();
+
+        wm.saveTime();
 
         if (wm.x3Time > 0 || wm.x7Time > 0) {
             wm.saveIAP();
@@ -535,6 +535,4 @@ public class SaveData {
 
     public int sandWitchesClicked;
     public int playthroughCount;
-
-    public DateTime lastTime;
 }

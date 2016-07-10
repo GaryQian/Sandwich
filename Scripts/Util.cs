@@ -18,8 +18,8 @@ public class Util {
     public static double knifeVampScale = 200f;
     public static float knifeVampRate = 0.03f;
 
-    public static double sandwichReproductionBase = 10000f;
-    public static double sandwichReproductionScale = 2000f;
+    public static double sandwichReproductionBase = 20000f;
+    public static double sandwichReproductionScale = 200000f;
     public static float maxBabyTime = 28800f;
 
     
@@ -71,10 +71,10 @@ public class Util {
     public static float dexterousHandsScale = 1.1f;
 
     //time machine
-    public static double timeMachineCost = 1E+15f;
+    public static double timeMachineCost = 1E+16f;
 
     //elixir
-    public static double elixirBaseCost = 5E+5;
+    public static double elixirBaseCost = 5E+6;
     public static float elixirScale = 5f;
 
     //ads

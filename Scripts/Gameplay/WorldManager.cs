@@ -145,6 +145,8 @@ public class WorldManager : MonoBehaviour {
                 adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
 
                 em.nurseryPop += em.rate * em.reproductionRate * timeElapsed / 100f;
+                em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
+                if (em.nurseryPop > em.maxBabyPop) em.nurseryPop = em.maxBabyPop;
             }
         }
     }
@@ -403,6 +405,31 @@ public class WorldManager : MonoBehaviour {
         }
     }
 
+    public void saveTime() {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/time.dat");
+
+        SaveTime data = new SaveTime();
+
+        data.logoffTime = Util.GetNISTDate(true);
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    public void loadTime() {
+        if (File.Exists(Application.persistentDataPath + "/time.dat")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/time.dat", FileMode.Open);
+            SaveTime data = (SaveTime)bf.Deserialize(file);
+            file.Close();
+
+            lastTime = data.logoffTime;
+
+            saveVersion();
+        }
+    }
+
     void OnApplicationQuit() {
         em.save();
     }
@@ -413,6 +440,10 @@ public class Version {
     public int version;
 }
 
+[Serializable]
+public class SaveTime {
+    public DateTime logoffTime;
+}
 
 [Serializable]
 public class IAPData {

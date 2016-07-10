@@ -18,7 +18,7 @@ public class UpdateNursery : MonoBehaviour {
 
     void update() {
         pop.text = Util.encodeNumber(Util.em.nurseryPop) + " Baby Sandwiches";
-        val.text = "Worth $" + Util.encodeNumber(Util.em.nurseryPop * Util.em.getSandwichValue());
+        val.text = "Worth $" + Util.encodeNumber(Util.em.nurseryPop * Util.em.getSandwichValue() * Util.wm.x3Multiplier * Util.wm.x7Multiplier);
         while (bm.babyCount <= bm.maxbabies * (Util.em.nurseryPop / Util.em.maxBabyPop)) {
             bm.spawnbaby();
         }
@@ -30,7 +30,7 @@ public class UpdateNursery : MonoBehaviour {
         Util.em.income(num);
         Util.em.nurseryPop = 0;
         GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), new Vector3(0, 0, 0), new Color(0, 1f, 0), 120, 100);
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * Util.wm.x3Multiplier * Util.wm.x7Multiplier), new Vector3(0, 0, 0), new Color(0, 1f, 0), 120, 100);
         update();
     }
 

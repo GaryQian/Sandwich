@@ -11,7 +11,7 @@ public class BabyManager : MonoBehaviour {
     ArrayList babies;
 
     public int babyCount = 0;
-    public int maxbabies = 50;
+    public int maxbabies;
 
     void Awake() {
         babies = new ArrayList();
