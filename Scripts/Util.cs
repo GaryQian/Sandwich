@@ -110,6 +110,9 @@ public class Util {
     public static bool even;
     public static bool godmode = false;
 
+    public static DateTime currentTimeFuture;
+    public static DateTime currentTimePast;
+
     public static string encodeNumber(double m) {
         double money = m * 1.000001f;
         int numSize = 3;
@@ -202,7 +205,8 @@ public class Util {
         return 0;
     }
 
-    public static DateTime GetNISTDate(bool futureDefault) {
+    /*public static DateTime GetNISTDate(bool futureDefault) {
+        Debug.Log("Fetching Time from NIST");
         System.Random ran = new System.Random(DateTime.Now.Millisecond);
         DateTime date;
         if (futureDefault) {
@@ -261,10 +265,74 @@ public class Util {
 
             }
             catch (Exception ex) {
-                /* Do Nothing...try the next server */
+                // Do Nothing...try the next server /
             }
         }
 
         return date;
-    }
+    }*/
+
+    /*public IEnumerator GetDateCo() {
+        Debug.Log("Fetching Time from NIST");
+        System.Random ran = new System.Random(DateTime.Now.Millisecond);
+        DateTime date = new DateTime();
+        //currentTimeFuture = new DateTime(9998, 1, 1);
+        //currentTimePast = new DateTime(1, 1, 1);
+        string serverResponse = string.Empty;
+        bool success = false;
+        // Represents the list of NIST servers
+        string[] servers = new string[] {
+                         "129.6.15.30",
+                         "98.175.203.200",
+                         "198.111.152.100",
+                         "216.229.0.179",
+                         "128.138.140.44",
+                         "131.107.13.100",
+                         "216.228.192.69",
+                         "129.6.15.29"
+                          };
+
+        // Try each server in random order to avoid blocked requests due to too frequent request
+        for (int i = 0; i < 5; i++) {
+            try {
+                // Open a StreamReader to a random time server
+                StreamReader reader = new StreamReader(new System.Net.Sockets.TcpClient(servers[ran.Next(0, servers.Length)], 13).GetStream());
+                serverResponse = reader.ReadToEnd();
+                reader.Close();
+
+                // Check to see that the signiture is there
+                if (serverResponse.Length > 47 && serverResponse.Substring(38, 9).Equals("UTC(NIST)")) {
+                    // Parse the date
+                    int jd = int.Parse(serverResponse.Substring(1, 5));
+                    int yr = int.Parse(serverResponse.Substring(7, 2));
+                    int mo = int.Parse(serverResponse.Substring(10, 2));
+                    int dy = int.Parse(serverResponse.Substring(13, 2));
+                    int hr = int.Parse(serverResponse.Substring(16, 2));
+                    int mm = int.Parse(serverResponse.Substring(19, 2));
+                    int sc = int.Parse(serverResponse.Substring(22, 2));
+
+                    if (jd > 51544)
+                        yr += 2000;
+                    else
+                        yr += 1999;
+
+                    date = new DateTime(yr, mo, dy, hr, mm, sc);
+
+                    success = true;
+                    // Exit the loop
+                    break;
+                }
+                
+
+            }
+            catch (Exception ex) {
+                // Do Nothing...try the next server /
+            }
+            yield return null;
+        }
+        if (success) {
+            currentTimeFuture = date;
+            currentTimePast = date;
+        }
+    }*/
 }

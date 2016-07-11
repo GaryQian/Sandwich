@@ -121,6 +121,7 @@ public class EconomyManager : MonoBehaviour {
         maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
         wm.setupGPGS();
         wm.processOffline();
+        wm.spawnAlert();
     }
 
     // Update is called once per frame

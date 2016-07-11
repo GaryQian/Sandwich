@@ -160,4 +160,11 @@ public class TabManager : MonoBehaviour {
         permanentButton.colors = normalColor;
         shopButton.colors = normalColor;
     }
+
+
+    public void showNursery() {
+        selectSandwich();
+        GameObject.Find("MainScrollbar").GetComponent<Scrollbar>().value = 0;
+        Destroy(GameObject.Find("NurseryAlert"));
+    }
 }

@@ -55,6 +55,7 @@ public class WorldManager : MonoBehaviour {
     public StoryManager sm;
     public TabManager tabManager;
     public GameObject canvas;
+    public UpdateNursery nursery;
     public TutorialManager tutorialManager;
     public GameObject muteButton;
     public GameObject musicMuteButton;
@@ -74,6 +75,11 @@ public class WorldManager : MonoBehaviour {
 
     public MenuType menuState = MenuType.producer;
 
+    public GameObject nurseryAlert;
+    public GameObject nurseryAlertPrefab;
+
+    public Util util;
+
     /// <summary>
     /// EVENTS
     /// </summary>
@@ -88,12 +94,6 @@ public class WorldManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
-        gtm = GetComponent<GameplayTouchManager>();
-        em = GetComponent<EconomyManager>();
-        buttonHandler = GetComponent<ButtonHandler>();
-        //tabManager = GetComponent<TabManager>();
-        //sm = GetComponent<StoryManager>();
-        tutorialManager = GetComponent<TutorialManager>();
 
         music = GetComponent<AudioSource>();
 
@@ -103,6 +103,7 @@ public class WorldManager : MonoBehaviour {
     }
 
 	void Start () {
+        util = new Util();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         activeBread = Instantiate(breadPrefab);
@@ -134,10 +135,11 @@ public class WorldManager : MonoBehaviour {
         canvas.GetComponent<Canvas>().sortingGridNormalizedSize = 5;
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
+
     }
 
     public void processOffline() {
-        DateTime dt = Util.GetNISTDate(false);
+        DateTime dt = UnbiasedTime.Instance.Now();
         if (dt != null) {
             double timeElapsed = dt.Subtract(lastTime).TotalSeconds;
             if (timeElapsed > 0) {
@@ -151,13 +153,24 @@ public class WorldManager : MonoBehaviour {
         }
     }
 
+    public void spawnAlert() {
+        em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
+        if (menuState != MenuType.sandwich && nurseryAlert == null && em.nurseryPop == em.maxBabyPop  && em.nurseryPop != 0) {
+            nurseryAlert = Instantiate(nurseryAlertPrefab);
+            nurseryAlert.transform.SetParent(Util.wm.canvas.transform);
+            nurseryAlert.GetComponent<RectTransform>().anchoredPosition = new Vector3(-200f, -304f, 0);
+            nurseryAlert.transform.localScale = new Vector3(1f, 1f, 1f);
+            nurseryAlert.transform.SetAsFirstSibling();
+        }
+    }
+
     public void setupGPGS() {
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
 
 
         //PlayGamesPlatform.InitializeInstance(config);
         // recommended for debugging:
-        PlayGamesPlatform.DebugLogEnabled = true;
+        //PlayGamesPlatform.DebugLogEnabled = true;
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
 
@@ -283,6 +296,8 @@ public class WorldManager : MonoBehaviour {
 
             if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
         }
+        
+        spawnAlert();
     }
 
     public void initializeBGMusic() {
@@ -406,25 +421,31 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void saveTime() {
+        lastTime = UnbiasedTime.Instance.Now();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/time.dat");
-
+        
         SaveTime data = new SaveTime();
-
-        data.logoffTime = Util.GetNISTDate(true);
-
+        
+        data.logoffTime = lastTime;
+        
         bf.Serialize(file, data);
         file.Close();
     }
 
     public void loadTime() {
+        lastTime = new DateTime(9998, 1, 1);
         if (File.Exists(Application.persistentDataPath + "/time.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/time.dat", FileMode.Open);
-            SaveTime data = (SaveTime)bf.Deserialize(file);
+            SaveTime data = null;
+            try {
+                data = (SaveTime)bf.Deserialize(file);
+            }
+            catch { }
             file.Close();
 
-            lastTime = data.logoffTime;
+            if (data != null) lastTime = data.logoffTime;
 
             saveVersion();
         }
@@ -440,7 +461,7 @@ public class WorldManager : MonoBehaviour {
             processOffline();
         }
         else {
-            lastTime = Util.GetNISTDate(true);
+            lastTime = UnbiasedTime.Instance.Now();
         }
     }
 }
