@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Security.Cryptography;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
+using GooglePlayGames.BasicApi;
 public class Godmode : MonoBehaviour {
     public int godCounter = 0;
     public Text txt;
@@ -47,6 +50,7 @@ public class Godmode : MonoBehaviour {
             if (code == godmodeCode) {
                 Util.godmode = true;
                 Util.wm.hasCheated = true;
+                
                 Util.wm.saveIAP();            }
             if (code == godmodeOffCode) {
                 Util.godmode = false;

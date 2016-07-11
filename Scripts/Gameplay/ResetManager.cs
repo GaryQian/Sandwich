@@ -90,6 +90,7 @@ public class ResetManager : MonoBehaviour {
         em.sandriaLawCount = 0;
         em.sandwichPlanetCount = 0;
         em.humanExterminationCount = 0;
+        em.sandwichFleetCount = 0;
         em.enslaveAliensCount = 0;
         em.deathSandwichCount = 0;
         em.sandwichGalaxyCount = 0;

@@ -9,17 +9,19 @@ public class Util {
 
     public static double money;
 
+    public static double obfuscateNumber = 634294.262d;
+
     public static double sauceBaseCost = 500f;
     public static double sauceScale = 10f;
     public static double breadBaseCost = 1000000f;
     public static double breadScale = 400f;
 
     public static double knifeVampBaseCost = 2000000f;
-    public static double knifeVampScale = 200f;
+    public static double knifeVampScale = 300f;
     public static float knifeVampRate = 0.03f;
 
     public static double sandwichReproductionBase = 20000f;
-    public static double sandwichReproductionScale = 200000f;
+    public static double sandwichReproductionScale = 600000f;
     public static float maxBabyTime = 28800f;
 
     
@@ -30,13 +32,13 @@ public class Util {
     //producer rates
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 8f;
-    public static float autochefRate = 75f;
+    public static float autochefRate = 70f;
     public static float mcdandwichRate = 1000f;
-    public static float sandwichCityRate = 12000f;
-    public static float breadCloningRate = 90000f;
-    public static float sandwocracyRate = 850000f;
-    public static float sandriaLawRate = 6000000f;
-    public static double sandwichPlanetRate = 55000000f;
+    public static float sandwichCityRate = 10000f;
+    public static float breadCloningRate = 82500f;
+    public static float sandwocracyRate = 750000f;
+    public static float sandriaLawRate = 6E+6f;
+    public static double sandwichPlanetRate = 5.5E+7f;
     public static double humanExterminationRate = 5E+8f;
     public static double sandwichFleetRate = 5E+9f;
     public static double enslaveAliensRate = 3E+10f;
@@ -49,10 +51,10 @@ public class Util {
     public static float deliBase = 1200f; //150 x1.5
     public static float autochefBase = 55550f; //740 x5
     public static float mcdandwichBase = 7777000f; //7777 x10.5
-    public static float sandwichCityBase = 1.3E+9f; //108,333 x13.9
+    public static float sandwichCityBase = 1.4E+9f; //108,333 x13.9
     public static double breadCloningBase = 1.414E+11f; //1.57m x14.5
-    public static double sandwocracyBase = 2E+13f; //23.53m x14.9
-    public static double sandriaLawBase = 2E+15f; //333.7m x14.2
+    public static double sandwocracyBase = 2.5E+13f; //23.53m x14.9
+    public static double sandriaLawBase = 2.7E+15f; //333.7m x14.2
     public static double sandwichPlanetBase = 3.141E+17f; //5.71b x17
     public static double humanExterminationBase = 6.666E+19; //1.333^11 x23.3
     public static double sandwichFleetBase = 1.701E+22; //3.4^12 x34
@@ -65,16 +67,16 @@ public class Util {
     //elixir costs
     public static float toasterVisionBase = 8f;
     public static float toasterVisionScale = 1.1f;
-    public static float communalMindBase = 8f;
+    public static float communalMindBase = 10f;
     public static float communalMindScale = 1.1f;
     public static float dexterousHandsBase = 5;
     public static float dexterousHandsScale = 1.1f;
 
     //time machine
-    public static double timeMachineCost = 1E+16f;
+    public static double timeMachineCost = 8.8E+17f;
 
     //elixir
-    public static double elixirBaseCost = 5E+6;
+    public static double elixirBaseCost = 5E+7;
     public static float elixirScale = 5f;
 
     //ads
@@ -82,8 +84,11 @@ public class Util {
     public static float adRewardSwipes = 400f;
     public static float adRewardTime = 300f;
     public static float adRewardTotalPercentage = 0.02f;
-    public static double adMoneyCooldown = 1200f;
-    public static double adElixirCooldown = 1800f;
+    public static double adMoneyCooldown = 1800f;
+    public static double adElixirCooldown = 1200f;
+
+    public static float adx2Time = 180f;
+    public static float adx2Cooldown = 1800f;
 
     //Boosts
     public static float boostTime = 10800f;
@@ -109,9 +114,6 @@ public class Util {
 
     public static bool even;
     public static bool godmode = false;
-
-    public static DateTime currentTimeFuture;
-    public static DateTime currentTimePast;
 
     public static string encodeNumber(double m) {
         double money = m * 1.000001f;
@@ -194,6 +196,9 @@ public class Util {
             text += string.Format("{0:D2}H ", t.Hours);
         }
         text += string.Format("{0:D1}M", t.Minutes);
+        if (t.Hours == 0 && t.Days == 0) {
+            text += string.Format("{0:D1}S", t.Seconds);
+        }
         return text;
     }
 

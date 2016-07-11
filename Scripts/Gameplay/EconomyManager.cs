@@ -158,7 +158,7 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void income(double num) {
-        num = num * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier;
+        num = num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier;
         money += num;
         totalMoney += num;
     }
@@ -183,7 +183,7 @@ public class EconomyManager : MonoBehaviour {
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -194,8 +194,8 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void updateLabels() {
-        rateText.updateRate(sps * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier);
-        sandwichValueText.updateValue(sandwichValue * toasterVisionBonus * wm.x3Multiplier * wm.x7Multiplier);
+        rateText.updateRate(sps * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier);
+        sandwichValueText.updateValue(sandwichValue * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier);
     }
 
     public void updateProducerMenuCounters() {
@@ -344,8 +344,8 @@ public class EconomyManager : MonoBehaviour {
             }
             file.Close();
 
-            money = data.money;
-            elixir = data.elixir;
+            money = data.money * Util.obfuscateNumber;
+            elixir = data.elixir * (int)Util.obfuscateNumber;
             totalElixir = data.totalElixir;
             totalMoney = data.totalMoney;
             lifetimeMoney = data.lifetimeMoney;
@@ -389,6 +389,7 @@ public class EconomyManager : MonoBehaviour {
 
             wm.adWatchTimeMoney = data.adWatchTimeMoney;
             wm.adWatchTimeElixir = data.adWatchTimeElixir;
+            wm.adWatchTimex2 = data.adWatchTimex2;
             wm.muted = data.muted;
             wm.musicMuted = data.musicMuted;
             Util.muted = wm.muted;
@@ -412,8 +413,8 @@ public class EconomyManager : MonoBehaviour {
 
         SaveData data = new SaveData();
 
-        data.money = money;
-        data.elixir = elixir;
+        data.money = money / Util.obfuscateNumber;
+        data.elixir = elixir / (int)Util.obfuscateNumber;
         data.totalElixir = totalElixir;
         data.totalMoney = totalMoney;
         data.lifetimeMoney = lifetimeMoney;
@@ -455,6 +456,7 @@ public class EconomyManager : MonoBehaviour {
 
         data.adWatchTimeMoney = wm.adWatchTimeMoney;
         data.adWatchTimeElixir = wm.adWatchTimeElixir;
+        data.adWatchTimex2 = wm.adWatchTimex2;
         data.muted = wm.muted;
         data.musicMuted = wm.musicMuted;
 
@@ -525,6 +527,7 @@ public class SaveData {
 
     public double adWatchTimeMoney;
     public double adWatchTimeElixir;
+    public double adWatchTimex2;
     public bool muted;
     public bool musicMuted;
 

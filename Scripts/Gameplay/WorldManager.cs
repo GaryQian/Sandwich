@@ -18,6 +18,7 @@ public class WorldManager : MonoBehaviour {
     public string zoneID;
     public double adWatchTimeMoney;
     public double adWatchTimeElixir;
+    public double adWatchTimex2;
     //
 
     //Versioning
@@ -32,8 +33,10 @@ public class WorldManager : MonoBehaviour {
     public SaberColor saberColor = SaberColor.blue;
     public int flowerColor = 40000;
     public int shoeColor = 40000;
+    public double x2Time;
     public double x3Time;
     public double x7Time;
+    public double x2Multiplier = 1f;
     public double x3Multiplier = 1f;
     public double x7Multiplier = 1f;
     //
@@ -145,7 +148,7 @@ public class WorldManager : MonoBehaviour {
             if (timeElapsed > 0) {
                 adWatchTimeElixir -= timeElapsed / timeScaleDivisor;
                 adWatchTimeMoney -= timeElapsed / timeScaleDivisor;
-
+                adWatchTimex2 -= timeElapsed / timeScaleDivisor;
                 em.nurseryPop += em.rate * em.reproductionRate * timeElapsed / 100f;
                 em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
                 if (em.nurseryPop > em.maxBabyPop) em.nurseryPop = em.maxBabyPop;
@@ -219,6 +222,7 @@ public class WorldManager : MonoBehaviour {
 
     void everySecond() {
         gtm.knife.GetComponent<Knife>().setupKnifeType();
+        x2Time--;
         x3Time--;
         x7Time--;
         if (x7Time > 0) {
@@ -241,9 +245,21 @@ public class WorldManager : MonoBehaviour {
             em.updateLabels();
             em.multiplierGlow.show();
         }
+        else if (x2Time > 0) {
+            x7Multiplier = 1f;
+            x3Multiplier = 1f;
+            x2Multiplier = 2f;
+            boostMultiplierText.SetActive(true);
+            boostTimer.SetActive(true);
+            boostMultiplierText.GetComponent<Text>().text = "x2";
+            boostTimer.GetComponent<Text>().text = Util.encodeTimeShort(x2Time);
+            em.updateLabels();
+            em.multiplierGlow.show();
+        }
         else {
             x7Multiplier = 1f;
             x3Multiplier = 1f;
+            x2Multiplier = 1f;
             em.updateLabels();
             boostMultiplierText.SetActive(false);
             boostTimer.SetActive(false);
@@ -266,35 +282,37 @@ public class WorldManager : MonoBehaviour {
     }
 
     void every5() {
-        if (em.totalMoney < 1E+18f) {
-            if (em.money >= 1E+6f) Social.ReportProgress("CgkI1rDm6sMKEAIQBA", 100.0f, (bool success) => { });
-            if (em.money >= 1E+9f) Social.ReportProgress("CgkI1rDm6sMKEAIQBQ", 100.0f, (bool success) => { });
-            if (em.money >= 1E+12f) Social.ReportProgress("CgkI1rDm6sMKEAIQBw", 100.0f, (bool success) => { });
-            if (em.money >= 1E+15f) Social.ReportProgress("CgkI1rDm6sMKEAIQBg", 100.0f, (bool success) => { });
+        if (!hasCheated) {
+            if (em.totalMoney < 1E+18f) {
+                if (em.money >= 1E+6f) Social.ReportProgress("CgkI1rDm6sMKEAIQBA", 100.0f, (bool success) => { });
+                if (em.money >= 1E+9f) Social.ReportProgress("CgkI1rDm6sMKEAIQBQ", 100.0f, (bool success) => { });
+                if (em.money >= 1E+12f) Social.ReportProgress("CgkI1rDm6sMKEAIQBw", 100.0f, (bool success) => { });
+                if (em.money >= 1E+15f) Social.ReportProgress("CgkI1rDm6sMKEAIQBg", 100.0f, (bool success) => { });
 
-            if (em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
-        }
-        else if (em.totalMoney < 1E+30f) {
-            if (em.money >= 1E+18f) Social.ReportProgress("CgkI1rDm6sMKEAIQCA", 100.0f, (bool success) => { });
-            if (em.money >= 1E+21f) Social.ReportProgress("CgkI1rDm6sMKEAIQCg", 100.0f, (bool success) => { });
-            if (em.money >= 1E+24f) Social.ReportProgress("CgkI1rDm6sMKEAIQCw", 100.0f, (bool success) => { });
-            if (em.money >= 1E+27f) Social.ReportProgress("CgkI1rDm6sMKEAIQDw", 100.0f, (bool success) => { });
+                if (em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
+            }
+            else if (em.totalMoney < 1E+30f) {
+                if (em.money >= 1E+18f) Social.ReportProgress("CgkI1rDm6sMKEAIQCA", 100.0f, (bool success) => { });
+                if (em.money >= 1E+21f) Social.ReportProgress("CgkI1rDm6sMKEAIQCg", 100.0f, (bool success) => { });
+                if (em.money >= 1E+24f) Social.ReportProgress("CgkI1rDm6sMKEAIQCw", 100.0f, (bool success) => { });
+                if (em.money >= 1E+27f) Social.ReportProgress("CgkI1rDm6sMKEAIQDw", 100.0f, (bool success) => { });
 
-            if (em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
-            if (em.humanExterminationCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
-            if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
-        }
-        else {
-            if (em.money >= 1E+30f) Social.ReportProgress("CgkI1rDm6sMKEAIQEA", 100.0f, (bool success) => { });
-            if (em.money >= 1E+33f) Social.ReportProgress("CgkI1rDm6sMKEAIQEQ", 100.0f, (bool success) => { });
-            if (em.money >= 1E+36f) Social.ReportProgress("CgkI1rDm6sMKEAIQEg", 100.0f, (bool success) => { });
-            if (em.money >= 1E+39d) Social.ReportProgress("CgkI1rDm6sMKEAIQEw", 100.0f, (bool success) => { });
-            if (em.money >= 1E+32d) Social.ReportProgress("CgkI1rDm6sMKEAIQFA", 100.0f, (bool success) => { });
-            if (em.money >= 1E+35d) Social.ReportProgress("CgkI1rDm6sMKEAIQFQ", 100.0f, (bool success) => { });
-            if (em.money >= 1E+38d) Social.ReportProgress("CgkI1rDm6sMKEAIQFg", 100.0f, (bool success) => { });
-            if (em.money >= 1E+41d) Social.ReportProgress("CgkI1rDm6sMKEAIQFw", 100.0f, (bool success) => { });
+                if (em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
+                if (em.humanExterminationCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
+                if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+            }
+            else {
+                if (em.money >= 1E+30f) Social.ReportProgress("CgkI1rDm6sMKEAIQEA", 100.0f, (bool success) => { });
+                if (em.money >= 1E+33f) Social.ReportProgress("CgkI1rDm6sMKEAIQEQ", 100.0f, (bool success) => { });
+                if (em.money >= 1E+36f) Social.ReportProgress("CgkI1rDm6sMKEAIQEg", 100.0f, (bool success) => { });
+                if (em.money >= 1E+39d) Social.ReportProgress("CgkI1rDm6sMKEAIQEw", 100.0f, (bool success) => { });
+                if (em.money >= 1E+32d) Social.ReportProgress("CgkI1rDm6sMKEAIQFA", 100.0f, (bool success) => { });
+                if (em.money >= 1E+35d) Social.ReportProgress("CgkI1rDm6sMKEAIQFQ", 100.0f, (bool success) => { });
+                if (em.money >= 1E+38d) Social.ReportProgress("CgkI1rDm6sMKEAIQFg", 100.0f, (bool success) => { });
+                if (em.money >= 1E+41d) Social.ReportProgress("CgkI1rDm6sMKEAIQFw", 100.0f, (bool success) => { });
 
-            if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+                if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+            }
         }
         
         spawnAlert();
@@ -323,12 +341,9 @@ public class WorldManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (adWatchTimeMoney > 0) {
-            adWatchTimeMoney -= Time.deltaTime;
-        }
-        if (adWatchTimeElixir > 0) {
-            adWatchTimeElixir -= Time.deltaTime;
-        }
+        adWatchTimeMoney -= Time.deltaTime;
+        adWatchTimeElixir -= Time.deltaTime;
+        adWatchTimex2 -= Time.deltaTime;
         Util.even = !Util.even;
     }
 
@@ -341,7 +356,7 @@ public class WorldManager : MonoBehaviour {
     }
 
     public void checkAdTimer() {
-        if ((adWatchTimeMoney <= 0 || adWatchTimeElixir <= 0) && em.gameTime > 400f) {
+        if ((adWatchTimeMoney <= 0 || adWatchTimeElixir <= 0 || adWatchTimex2 <= 0) && em.gameTime > 400f) {
             shopGlowAnimator.SetTrigger("Pulse");
         }
         else {

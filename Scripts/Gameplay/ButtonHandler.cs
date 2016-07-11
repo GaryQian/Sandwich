@@ -326,6 +326,39 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     /// <summary>
+    /// WATCH AD x2
+    /// </summary>
+    public void watchAdx2() {
+        if (wm.adWatchTimex2 <= 0) {
+            ShowOptions options = new ShowOptions();
+            options.resultCallback = HandleShowResultx2;
+
+            Advertisement.Show(wm.zoneID, options);
+        }
+        else {
+            em.list.transform.FindChild("AdForMoney").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
+        }
+    }
+
+    private void HandleShowResultx2(ShowResult result) {
+        switch (result) {
+            case ShowResult.Finished:
+                //if (Util.adMoneyCooldown <= 0) {
+                Debug.Log("Video completed. Rewarded $" + adValue());
+                wm.adWatchTimex2 = Util.adx2Cooldown;
+                wm.x2Time = Util.adx2Time;
+                //}
+                break;
+            case ShowResult.Skipped:
+                Debug.LogWarning("Video was skipped.");
+                break;
+            case ShowResult.Failed:
+                Debug.LogError("Video failed to show.");
+                break;
+        }
+    }
+
+    /// <summary>
     /// SAUCE UPGRADE
     /// </summary>
     public void upgradeSauce() {
@@ -646,7 +679,7 @@ public class ButtonHandler : MonoBehaviour {
             em.updateProducerMenuCounters();
             em.buildings += buyCount;
             playKaching();
-            if (BuyHumanExtermination != null) BuySandwichFleet();
+            if (BuySandwichFleet != null) BuySandwichFleet();
         }
         else {
             notEnough();

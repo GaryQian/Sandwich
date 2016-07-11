@@ -18,7 +18,7 @@ public class TrailManager : MonoBehaviour {
     public Material bacon;
     public Material gold;
     public Material sewage;
-    public Material lava;
+    public Material sandaline;
     public Material spum;
     public Material rawEggs;
     public Material gunpowder;
@@ -28,6 +28,7 @@ public class TrailManager : MonoBehaviour {
     public Material nuclearWaste;
     public Material camo;
     public Material sandmite;
+    public Material lava;
 
 
     public TrailRenderer trail;
@@ -62,7 +63,7 @@ public class TrailManager : MonoBehaviour {
             case 14: return bacon;
             case 15: return gold;
             case 16: return sewage;
-            case 17: return lava;
+            case 17: return sandaline;
             case 18: return spum;
             case 19: return rawEggs;
             case 20: return gunpowder;
@@ -72,6 +73,7 @@ public class TrailManager : MonoBehaviour {
             case 24: return nuclearWaste;
             case 25: return camo;
             case 26: return sandmite;
+            case 27: return lava;
         }
         return peanutButter;
     }

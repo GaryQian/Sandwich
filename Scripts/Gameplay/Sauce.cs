@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Sauce : MonoBehaviour {
-    public static int numberOfSauces = 26;
+    public static int numberOfSauces = 27;
 
     public Sprite peanutButter;
     public Sprite strawberryJam;
@@ -20,7 +20,7 @@ public class Sauce : MonoBehaviour {
     public Sprite bacon;
     public Sprite gold;
     public Sprite sewage;
-    public Sprite lava;
+    public Sprite sandaline;
     public Sprite spum;
     public Sprite rawEggs;
     public Sprite gunpowder;
@@ -30,6 +30,7 @@ public class Sauce : MonoBehaviour {
     public Sprite nuclearWaste;
     public Sprite camo;
     public Sprite sandmite;
+    public Sprite lava;
 
     public GameObject sauceTypeText;
 
@@ -96,7 +97,7 @@ public class Sauce : MonoBehaviour {
             case 14: return "Bacon";
             case 15: return "Gold";
             case 16: return "Sewage";
-            case 17: return "Lava";
+            case 17: return "Sandaline";
             case 18: return "Spum";
             case 19: return "Eggs";
             case 20: return "Gunpowder";
@@ -106,6 +107,7 @@ public class Sauce : MonoBehaviour {
             case 24: return "Nuclear Waste";
             case 25: return "Camo";
             case 26: return "Sandmite";
+            case 27: return "Lava";
         }
         return "Mystery Sauce";
     }
@@ -134,7 +136,7 @@ public class Sauce : MonoBehaviour {
             case 14: return bacon;
             case 15: return gold;
             case 16: return sewage;
-            case 17: return lava;
+            case 17: return sandaline;
             case 18: return spum;
             case 19: return rawEggs;
             case 20: return gunpowder;
@@ -144,6 +146,7 @@ public class Sauce : MonoBehaviour {
             case 24: return nuclearWaste;
             case 25: return camo;
             case 26: return sandmite;
+            case 27: return lava;
         }
         return peanutButter;
     }

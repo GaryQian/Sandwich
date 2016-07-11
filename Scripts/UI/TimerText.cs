@@ -4,7 +4,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
-public enum TimerType { money, elixir }
+public enum TimerType { money, elixir, x2 }
 
 public class TimerText : MonoBehaviour {
     WorldManager wm;
@@ -40,7 +40,7 @@ public class TimerText : MonoBehaviour {
                 }
             }
         }
-        else {
+        else if (type == TimerType.elixir) {
             if (wm.adWatchTimeElixir > 0) {
                 TimeSpan t = TimeSpan.FromSeconds(wm.adWatchTimeElixir);
 
@@ -57,11 +57,22 @@ public class TimerText : MonoBehaviour {
                 }
             }
         }
-        /*if (wm.adWatchTime <= 0) {
-            txt.color = new Color(0, 0.9f, 0.05f);
+        else if (type == TimerType.x2) {
+            if (wm.adWatchTimex2 > 0) {
+                TimeSpan t = TimeSpan.FromSeconds(wm.adWatchTimex2);
+
+                txt.text = string.Format("{0:D2}:{1:D2}",
+                        t.Minutes,
+                        t.Seconds);
+            }
+            else {
+                if (Advertisement.IsReady()) {
+                    txt.text = "Ready!";
+                }
+                else {
+                    txt.text = "Loading";
+                }
+            }
         }
-        else {
-            txt.color = normalColor;
-        }*/
     }
 }
