@@ -4,10 +4,9 @@ using UnityEngine.UI;
 public class UpdateNursery : MonoBehaviour {
     public Text pop;
     public Text val;
-
+    public GameObject bar;
     public BabyManager bm;
-
-    public float maxBabyTime;
+    public Text timer;
     // Use this for initialization
     void Awake() {
     }
@@ -19,9 +18,18 @@ public class UpdateNursery : MonoBehaviour {
     void update() {
         pop.text = Util.encodeNumber(Util.em.nurseryPop) + " Baby Sandwiches";
         val.text = "Worth $" + Util.encodeNumber(Util.em.nurseryPop * Util.em.getSandwichValue() * Util.wm.x3Multiplier * Util.wm.x7Multiplier);
-        while (bm.babyCount <= bm.maxbabies * (Util.em.nurseryPop / Util.em.maxBabyPop)) {
+        float ratio;
+        if (Util.em.nurseryPop > 0) {
+            ratio = (float)(Util.em.nurseryPop / Util.em.maxBabyPop);
+        }
+        else {
+            ratio = 0;
+        }
+        while (bm.babyCount <= bm.maxbabies * ratio) {
             bm.spawnbaby();
         }
+        bar.transform.localScale = new Vector3(ratio, 1f, 1f);
+        timer.text = Util.encodeTimeShort(Util.maxBabyTime * (1f - ratio)) + " Until Full";
     }
 
     public void sellBabies() {

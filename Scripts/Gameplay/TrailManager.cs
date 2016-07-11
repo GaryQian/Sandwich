@@ -13,7 +13,7 @@ public class TrailManager : MonoBehaviour {
     public Material ham;
     public Material butter;
     public Material nails;
-    public Material camo;
+    public Material sushi;
     public Material ratPoison;
     public Material bacon;
     public Material gold;
@@ -26,6 +26,8 @@ public class TrailManager : MonoBehaviour {
     public Material acid;
     public Material tacoDip;
     public Material nuclearWaste;
+    public Material camo;
+    public Material sandmite;
 
 
     public TrailRenderer trail;
@@ -55,7 +57,7 @@ public class TrailManager : MonoBehaviour {
             case 9: return ham;
             case 10: return butter;
             case 11: return nails;
-            case 12: return camo;
+            case 12: return sushi;
             case 13: return ratPoison;
             case 14: return bacon;
             case 15: return gold;
@@ -68,6 +70,8 @@ public class TrailManager : MonoBehaviour {
             case 22: return acid;
             case 23: return tacoDip;
             case 24: return nuclearWaste;
+            case 25: return camo;
+            case 26: return sandmite;
         }
         return peanutButter;
     }

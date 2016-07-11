@@ -28,9 +28,9 @@ public class Godmode : MonoBehaviour {
     public void click() {
         if (kb == null) {
             godCounter++;
-            CancelInvoke("godCounter");
-            Invoke("godCounter", 1f);
-            if (godCounter == 5) {
+            CancelInvoke("resetCounter");
+            Invoke("resetCounter", 0.5f);
+            if (godCounter == 9) {
                 kb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
                 Debug.Log("Console Keyboard Opened");
             }

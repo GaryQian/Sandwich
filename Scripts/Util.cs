@@ -31,35 +31,35 @@ public class Util {
     public static float sandwichCartRate = 0.5f;
     public static float deliRate = 8f;
     public static float autochefRate = 75f;
-    public static float mcdandwichRate = 800f;
-    public static float sandwichCityRate = 10000f;
+    public static float mcdandwichRate = 1000f;
+    public static float sandwichCityRate = 12000f;
     public static float breadCloningRate = 90000f;
     public static float sandwocracyRate = 850000f;
-    public static float sandriaLawRate = 6500000f;
+    public static float sandriaLawRate = 6000000f;
     public static double sandwichPlanetRate = 55000000f;
-    public static double humanExterminationRate = 400000000f;
-    public static double sandwichFleetRate = 3000000000f;
-    public static double enslaveAliensRate = 25000000000f;
-    public static double deathSandwichRate = 200000000000f;
-    public static double sandwichGalaxyRate = 3500000000000f;
-    public static double flyingSandwichMonsterRate = 99990000000000f;
+    public static double humanExterminationRate = 5E+8f;
+    public static double sandwichFleetRate = 5E+9f;
+    public static double enslaveAliensRate = 3E+10f;
+    public static double deathSandwichRate = 2E+11f;
+    public static double sandwichGalaxyRate = 3.5E+12f;
+    public static double flyingSandwichMonsterRate = 9.999E+13f;
 
     //producer base costs
-    public static float sandwichCartBase = 50f;
-    public static float deliBase = 1200f;
-    public static float autochefBase = 133700f;
-    public static float mcdandwichBase = 14000000f;
-    public static float sandwichCityBase = 1E+9f;
-    public static double breadCloningBase = 1.3E+11f;
-    public static double sandwocracyBase = 1.7E+13f;
-    public static double sandriaLawBase = 2E+15f; //^15 = quadrillion
-    public static double sandwichPlanetBase = 3.141E+17f;
-    public static double humanExterminationBase = 4E+19;
-    public static double sandwichFleetBase = 1E+22;
-    public static double enslaveAliensBase = 5E+24;
-    public static double deathSandwichBase = 1E+27;
-    public static double sandwichGalaxyBase = 1.5E+30;
-    public static double flyingSandwichMonsterBase = 9.999E+33;
+    public static float sandwichCartBase = 50f; //100
+    public static float deliBase = 1200f; //150 x1.5
+    public static float autochefBase = 55550f; //740 x5
+    public static float mcdandwichBase = 7777000f; //7777 x10.5
+    public static float sandwichCityBase = 1.3E+9f; //108,333 x13.9
+    public static double breadCloningBase = 1.414E+11f; //1.57m x14.5
+    public static double sandwocracyBase = 2E+13f; //23.53m x14.9
+    public static double sandriaLawBase = 2E+15f; //333.7m x14.2
+    public static double sandwichPlanetBase = 3.141E+17f; //5.71b x17
+    public static double humanExterminationBase = 6.666E+19; //1.333^11 x23.3
+    public static double sandwichFleetBase = 1.701E+22; //3.4^12 x34
+    public static double enslaveAliensBase = 5E+24; //1.666^14 x49
+    public static double deathSandwichBase = 2E+27; //1^16 x60
+    public static double sandwichGalaxyBase = 2.718E+30d; //7.767^17 x77
+    public static double flyingSandwichMonsterBase = 9.999E+33d; //1^20 x128
 
 
     //elixir costs

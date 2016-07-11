@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Sauce : MonoBehaviour {
-    public static int numberOfSauces = 24;
+    public static int numberOfSauces = 26;
 
     public Sprite peanutButter;
     public Sprite strawberryJam;
@@ -15,7 +15,7 @@ public class Sauce : MonoBehaviour {
     public Sprite ham;
     public Sprite butter;
     public Sprite nails;
-    public Sprite camo;
+    public Sprite sushi;
     public Sprite ratPoison;
     public Sprite bacon;
     public Sprite gold;
@@ -28,6 +28,8 @@ public class Sauce : MonoBehaviour {
     public Sprite acid;
     public Sprite tacoDip;
     public Sprite nuclearWaste;
+    public Sprite camo;
+    public Sprite sandmite;
 
     public GameObject sauceTypeText;
 
@@ -89,7 +91,7 @@ public class Sauce : MonoBehaviour {
             case 9: return "Ham";
             case 10: return "Butter";
             case 11: return "Nails";
-            case 12: return "Camo";
+            case 12: return "Sushi";
             case 13: return "Rat Poison";
             case 14: return "Bacon";
             case 15: return "Gold";
@@ -102,6 +104,8 @@ public class Sauce : MonoBehaviour {
             case 22: return "Acid";
             case 23: return "Taco Dip";
             case 24: return "Nuclear Waste";
+            case 25: return "Camo";
+            case 26: return "Sandmite";
         }
         return "Mystery Sauce";
     }
@@ -125,7 +129,7 @@ public class Sauce : MonoBehaviour {
             case 9: return ham;
             case 10: return butter;
             case 11: return nails;
-            case 12: return camo;
+            case 12: return sushi;
             case 13: return ratPoison;
             case 14: return bacon;
             case 15: return gold;
@@ -138,6 +142,8 @@ public class Sauce : MonoBehaviour {
             case 22: return acid;
             case 23: return tacoDip;
             case 24: return nuclearWaste;
+            case 25: return camo;
+            case 26: return sandmite;
         }
         return peanutButter;
     }
