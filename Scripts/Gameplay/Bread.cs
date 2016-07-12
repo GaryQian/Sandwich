@@ -2,17 +2,19 @@
 using System.Collections;
 
 public class Bread : MonoBehaviour {
-    public static int totalBreads = 9;
+    public static int totalBreads = 11;
 
     public Sprite bread;
     public Sprite wheat;
     public Sprite french;
     public Sprite rye;
     public Sprite flat;
+    public Sprite bagel;
     public Sprite corn;
     public Sprite cinnamon;
     public Sprite banana;
     public Sprite potato;
+    public Sprite pizza;
 
     private GameplayTouchManager gtm;
     private Vector3 enterPoint = Vector3.zero;
@@ -172,10 +174,12 @@ public class Bread : MonoBehaviour {
             case 2: return french; break;
             case 3: return rye; break;
             case 4: return flat; break;
-            case 5: return corn; break;
-            case 6: return cinnamon; break;
-            case 7: return banana; break;
-            case 8: return potato; break;
+            case 5: return bagel; break;
+            case 6: return corn; break;
+            case 7: return cinnamon; break;
+            case 8: return banana; break;
+            case 9: return potato; break;
+            case 10: return pizza; break;
         }
         return bread;
     }
@@ -192,10 +196,12 @@ public class Bread : MonoBehaviour {
             case 2: return "French Bread"; break;
             case 3: return "Rye Bread"; break;
             case 4: return "Flatbread"; break;
-            case 5: return "Cornbread"; break;
-            case 6: return "Cinnamon Bread"; break;
-            case 7: return "Banana Bread"; break;
-            case 8: return "Potato bread"; break;
+            case 5: return "Bagel"; break;
+            case 6: return "Cornbread"; break;
+            case 7: return "Cinnamon Bread"; break;
+            case 8: return "Banana Bread"; break;
+            case 9: return "Potato bread"; break;
+            case 10: return "Pizza!"; break;
         }
         return "Bread";
     }
