@@ -37,9 +37,19 @@ public class WatchButton : MonoBehaviour {
                 button.colors = enabledColor;
             }
         }
-        else {
+        else if (type == TimerType.elixir) {
 
             if (wm.adWatchTimeElixir > 0 || !Advertisement.IsReady()) {
+                //disable
+                button.colors = disabledColor;
+            }
+            else {
+                //enable
+                button.colors = enabledColor;
+            }
+        }
+        else {
+            if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady()) {
                 //disable
                 button.colors = disabledColor;
             }
