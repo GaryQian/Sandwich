@@ -43,11 +43,6 @@ public class Sauce : MonoBehaviour {
         wm = GameObject.Find("WorldManager").GetComponent<WorldManager>();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     void OnTriggerEnter2D(Collider2D coll) {
         coll.gameObject.GetComponent<Knife>().hasSauce = true;
     }

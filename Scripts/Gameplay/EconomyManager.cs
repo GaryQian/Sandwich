@@ -128,7 +128,7 @@ public class EconomyManager : MonoBehaviour {
     void Update() {
         if (combo > 0) {
             combo -= comboDecayRate * (combo + 1f) * Time.deltaTime;
-            if (combo < x2threshold - 1f) {
+            if (Util.even && combo < x2threshold - 1f) {
                 x2shown = false;
                 x3shown = false;
                 x5shown = false;

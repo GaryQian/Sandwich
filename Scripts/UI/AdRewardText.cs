@@ -13,6 +13,8 @@ public class AdRewardText : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        txt.text = "+$" + Util.encodeNumber(wm.buttonHandler.adValue());
+        if (!Util.even) {
+            txt.text = "+$" + Util.encodeNumber(wm.buttonHandler.adValue());
+        }
 	}
 }

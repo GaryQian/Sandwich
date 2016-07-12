@@ -28,24 +28,26 @@ public class IAPButton : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (type == IAPBuyButtonType.knife) {
-            if (wm.knifeCollectionPurchased) {
-                //disable
-                button.colors = disabledColor;
+        if (Util.even) {
+            if (type == IAPBuyButtonType.knife) {
+                if (wm.knifeCollectionPurchased) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
             else {
-                //enable
-                button.colors = enabledColor;
-            }
-        }
-        else {
-            if (wm.x3Time > 0 || wm.x7Time > 0) {
-                //disable
-                button.colors = disabledColor;
-            }
-            else {
-                //enable
-                button.colors = enabledColor;
+                if (wm.x3Time > 0 || wm.x7Time > 0) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
         }
     }
