@@ -68,7 +68,7 @@ public class Util {
     public static float communalMindBase = 10f;
     public static float communalMindScale = 1.1f;
     public static float dexterousHandsBase = 5;
-    public static float dexterousHandsScale = 1.1f;
+    public static float dexterousHandsScale = 1.08f;
 
     //time machine
     public static double timeMachineCost = 8.8E+17f;
@@ -188,7 +188,7 @@ public class Util {
             text += string.Format("{0:0}D ", t.Days);
         }
         if (t.Hours > 0) {
-            text += string.Format("{0:D2}H ", t.Hours);
+            text += string.Format("{0:D1}H ", t.Hours);
         }
         text += string.Format("{0:D1}M", t.Minutes);
         if (t.Hours == 0 && t.Days == 0) {

@@ -49,7 +49,7 @@ public class WatchButton : MonoBehaviour {
             }
         }
         else {
-            if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady()) {
+            if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady() || wm.x3Time > 0 || wm.x7Time > 0) {
                 //disable
                 button.colors = disabledColor;
             }

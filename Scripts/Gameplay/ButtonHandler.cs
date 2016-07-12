@@ -335,7 +335,7 @@ public class ButtonHandler : MonoBehaviour {
     /// WATCH AD x2
     /// </summary>
     public void watchAdx2() {
-        if (wm.adWatchTimex2 <= 0) {
+        if (wm.adWatchTimex2 <= 0 && wm.x3Time <= 0 && wm.x7Time <= 0) {
             ShowOptions options = new ShowOptions();
             options.resultCallback = HandleShowResultx2;
 

@@ -33,7 +33,7 @@ public class Godmode : MonoBehaviour {
             godCounter++;
             CancelInvoke("resetCounter");
             Invoke("resetCounter", 0.5f);
-            if (godCounter == 9) {
+            if (godCounter == 11) {
                 kb = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, true);
                 Debug.Log("Console Keyboard Opened");
             }
@@ -50,7 +50,6 @@ public class Godmode : MonoBehaviour {
             if (code == godmodeCode) {
                 Util.godmode = true;
                 Util.wm.hasCheated = true;
-                
                 Util.wm.saveSettings();            }
             if (code == godmodeOffCode) {
                 Util.godmode = false;
