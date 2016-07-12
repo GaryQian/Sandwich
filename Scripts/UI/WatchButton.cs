@@ -27,35 +27,37 @@ public class WatchButton : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (type == TimerType.money) {
-            if (wm.adWatchTimeMoney > 0 || !Advertisement.IsReady()) {
-                //disable
-                button.colors = disabledColor;
+        if (Util.even) {
+            if (type == TimerType.money) {
+                if (wm.adWatchTimeMoney > 0 || !Advertisement.IsReady()) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
-            else {
-                //enable
-                button.colors = enabledColor;
-            }
-        }
-        else if (type == TimerType.elixir) {
+            else if (type == TimerType.elixir) {
 
-            if (wm.adWatchTimeElixir > 0 || !Advertisement.IsReady()) {
-                //disable
-                button.colors = disabledColor;
+                if (wm.adWatchTimeElixir > 0 || !Advertisement.IsReady()) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
             else {
-                //enable
-                button.colors = enabledColor;
-            }
-        }
-        else {
-            if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady() || wm.x3Time > 0 || wm.x7Time > 0) {
-                //disable
-                button.colors = disabledColor;
-            }
-            else {
-                //enable
-                button.colors = enabledColor;
+                if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady() || wm.x3Time > 0 || wm.x7Time > 0) {
+                    //disable
+                    button.colors = disabledColor;
+                }
+                else {
+                    //enable
+                    button.colors = enabledColor;
+                }
             }
         }
     }

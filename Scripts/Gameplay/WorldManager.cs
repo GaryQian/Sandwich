@@ -110,6 +110,10 @@ public class WorldManager : MonoBehaviour {
     }
 
 	void Start () {
+        Application.targetFrameRate = 30;
+
+        if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
+
         util = new Util();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -130,9 +134,10 @@ public class WorldManager : MonoBehaviour {
         boostMultiplierText.GetComponent<RectTransform>().anchoredPosition = new Vector3((Screen.width / Util.screenToCanvasRatio / 2f) - 15f, -50f, 0);
         boostTimer.GetComponent<RectTransform>().anchoredPosition = new Vector3((Screen.width / Util.screenToCanvasRatio / 2f) - 18f, -125f, 0);
 
-        InvokeRepeating("checkAdTimer", 10f, 10f);
+        InvokeRepeating("checkAdTimer", 5f, 17f);
         InvokeRepeating("everySecond", 0, 1f);
-        InvokeRepeating("every5", 5.5f, 10f);
+        InvokeRepeating("every5", 3f, 5f);
+        InvokeRepeating("every10", 5.5f, 10f);
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
 
         Bread.updateLabel();
@@ -257,6 +262,9 @@ public class WorldManager : MonoBehaviour {
         x2Time--;
         x3Time--;
         x7Time--;
+        adWatchTimeMoney--;
+        adWatchTimeElixir--;
+        adWatchTimex2--;
         if (x7Time > 0) {
             x7Multiplier = 7f;
             x3Multiplier = 1f;
@@ -314,6 +322,10 @@ public class WorldManager : MonoBehaviour {
     }
 
     void every5() {
+
+    }
+
+    void every10() {
         if (!hasCheated) {
             if (em.totalMoney < 1E+18f) {
                 if (em.money >= 1E+6f) Social.ReportProgress("CgkI1rDm6sMKEAIQBA", 100.0f, (bool success) => { });
@@ -328,10 +340,7 @@ public class WorldManager : MonoBehaviour {
                 if (em.money >= 1E+21f) Social.ReportProgress("CgkI1rDm6sMKEAIQCg", 100.0f, (bool success) => { });
                 if (em.money >= 1E+24f) Social.ReportProgress("CgkI1rDm6sMKEAIQCw", 100.0f, (bool success) => { });
                 if (em.money >= 1E+27f) Social.ReportProgress("CgkI1rDm6sMKEAIQDw", 100.0f, (bool success) => { });
-
-                if (em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
-                if (em.humanExterminationCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
-                if (em.flyingSandwichMonsterCount >= 1) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+                
             }
             else {
                 if (em.money >= 1E+30f) Social.ReportProgress("CgkI1rDm6sMKEAIQEA", 100.0f, (bool success) => { });
@@ -373,9 +382,6 @@ public class WorldManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        adWatchTimeMoney -= Time.deltaTime;
-        adWatchTimeElixir -= Time.deltaTime;
-        adWatchTimex2 -= Time.deltaTime;
         Util.even = !Util.even;
     }
 

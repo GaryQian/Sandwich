@@ -16,30 +16,23 @@ public class UpdateNursery : MonoBehaviour {
     public static event NurseryEvent SoldBabies;
 
     public AudioClip sellSound;
-    // Use this for initialization
-    void Awake() {
-    }
-
-	void Start () {
-	    
-	}
 
     void update() {
-        pop.text = Util.encodeNumber(Util.em.nurseryPop) + " Baby Sandwiches";
-        val.text = "Worth $" + Util.encodeNumber(Util.em.nurseryPop * Util.em.getSandwichValue() * Util.wm.x2Multiplier * Util.wm.x3Multiplier * Util.wm.x7Multiplier);
-        if (Util.em.nurseryPop > 0) {
-            ratio = (float)(Util.em.nurseryPop / Util.em.maxBabyPop);
-        }
-        else {
-            ratio = 0;
-        }
-        while (bm.babyCount <= bm.maxbabies * ratio) {
-            bm.spawnbaby();
-        }
-        bar.transform.localScale = new Vector3(ratio, 1f, 1f);
-        timer.text = Util.encodeTimeShort(Util.maxBabyTime * (1f - ratio)) + " Until Full";
+            pop.text = Util.encodeNumber(Util.em.nurseryPop) + " Baby Sandwiches";
+            val.text = "Worth $" + Util.encodeNumber(Util.em.nurseryPop * Util.em.getSandwichValue() * Util.wm.x2Multiplier * Util.wm.x3Multiplier * Util.wm.x7Multiplier);
+            if (Util.em.nurseryPop > 0) {
+                ratio = (float)(Util.em.nurseryPop / Util.em.maxBabyPop);
+            }
+            else {
+                ratio = 0;
+            }
+            while (bm.babyCount <= bm.maxbabies * ratio) {
+                bm.spawnbaby();
+            }
+            bar.transform.localScale = new Vector3(ratio, 1f, 1f);
+            timer.text = Util.encodeTimeShort(Util.maxBabyTime * (1f - ratio)) + " Until Full";
 
-        Util.wm.spawnAlert();
+            Util.wm.spawnAlert();
     }
 
 
@@ -62,7 +55,7 @@ public class UpdateNursery : MonoBehaviour {
     }
 
     void OnEnable() {
-        InvokeRepeating("update", 0, 1f);
+        InvokeRepeating("update", 0, 1.1f);
     }
 
     void OnDisable() {

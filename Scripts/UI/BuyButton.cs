@@ -29,9 +29,31 @@ public class BuyButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (type == CurrencyType.money) {
-            if (buyType == BuyType.x10) {
-                if (Util.em.money < up.cost) {
+        if (Util.even) {
+            if (type == CurrencyType.money) {
+                if (buyType == BuyType.x10) {
+                    if (Util.em.money < up.cost) {
+                        //disable
+                        button.colors = disabledColor;
+                    }
+                    else {
+                        //enable
+                        button.colors = enabledColor;
+                    }
+                }
+                else {
+                    if (Util.em.money < up.cost) {
+                        //disable
+                        button.colors = disabledColor;
+                    }
+                    else {
+                        //enable
+                        button.colors = enabledColor;
+                    }
+                }
+            }
+            else {
+                if (Util.em.elixir < up.cost) {
                     //disable
                     button.colors = disabledColor;
                 }
@@ -39,26 +61,6 @@ public class BuyButton : MonoBehaviour {
                     //enable
                     button.colors = enabledColor;
                 }
-            }
-            else {
-                if (Util.em.money < up.cost) {
-                    //disable
-                    button.colors = disabledColor;
-                }
-                else {
-                    //enable
-                    button.colors = enabledColor;
-                }
-            }
-        }
-        else {
-            if (Util.em.elixir < up.cost) {
-                //disable
-                button.colors = disabledColor;
-            }
-            else {
-                //enable
-                button.colors = enabledColor;
             }
         }
 	}

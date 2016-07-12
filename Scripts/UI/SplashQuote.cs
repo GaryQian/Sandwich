@@ -55,6 +55,8 @@ public class SplashQuote : MonoBehaviour {
             case 41: return "Don't do drugs!";
             case 42: return "Happy birthday!";
             case 43: return "Who farted?";
+            case 44: return "Winter is coming.";
+            case 45: return "You know nothing, Jon Snow.";
         }
         return "Wow my switch statement failed and now you are seeing this.";
     }
