@@ -14,6 +14,8 @@ public class UpdateNursery : MonoBehaviour {
 
     public delegate void NurseryEvent();
     public static event NurseryEvent SoldBabies;
+
+    public AudioClip sellSound;
     // Use this for initialization
     void Awake() {
     }
@@ -45,11 +47,17 @@ public class UpdateNursery : MonoBehaviour {
         bm.eatBabies();
         double num = Util.em.nurseryPop * Util.em.getSandwichValue();
         Util.em.income(num);
+        if (Util.em.nurseryPop > 0.01f) {
+            GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);
+            obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * Util.wm.x2Multiplier * Util.wm.x3Multiplier * Util.wm.x7Multiplier), new Vector3(0, 0, 0), new Color(0, 1f, 0), 120, 100);
+            if (!Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(sellSound);
+        }
+        else {
+            GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);
+            obj.GetComponent<CanvasNotificationText>().setup("Empty!", new Vector3(0, 0, 0), new Color(0.9f, 1f, 0), 120, 100);
+        }
         Util.em.nurseryPop = 0;
-        GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * Util.wm.x2Multiplier * Util.wm.x3Multiplier * Util.wm.x7Multiplier), new Vector3(0, 0, 0), new Color(0, 1f, 0), 120, 100);
         update();
-
         if (SoldBabies != null) SoldBabies();
     }
 

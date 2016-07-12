@@ -20,6 +20,9 @@ public class ButtonHandler : MonoBehaviour {
     public AudioClip kaching;
     public AudioClip build;
     public AudioClip witch;
+    public AudioClip evolveSound;
+    public AudioClip click;
+    public AudioClip bagDrop;
 
     public GameObject knifePanel;
 
@@ -66,6 +69,7 @@ public class ButtonHandler : MonoBehaviour {
         red.SetActive(true);
         red.GetComponent<Animator>().SetTrigger("Flash");
         Invoke("disableRed", 0.467f);
+        Util.wm.fullAudioSource.PlayOneShot(click);
     }
 
     void disableRed() {
@@ -95,6 +99,7 @@ public class ButtonHandler : MonoBehaviour {
     ///
     public void viewKnifePanel() {
         Instantiate(knifePanel);
+        if (!Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(bagDrop);
     }
 
 
@@ -108,6 +113,7 @@ public class ButtonHandler : MonoBehaviour {
             em.toasterVisionLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (!Util.wm.muted) wm.fullAudioSource.PlayOneShot(evolveSound);
             if (BuyEvolution != null) BuyEvolution();
         }
         else {
@@ -127,6 +133,7 @@ public class ButtonHandler : MonoBehaviour {
             em.communalMindLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (!Util.wm.muted) wm.fullAudioSource.PlayOneShot(evolveSound);
             if (BuyEvolution != null) BuyEvolution();
         }
         else {
@@ -146,6 +153,7 @@ public class ButtonHandler : MonoBehaviour {
             em.dexterousHandsLevel++;
             em.recalculate();
             em.updateElixirUpgrades();
+            if (!Util.wm.muted) wm.fullAudioSource.PlayOneShot(evolveSound);
             if (BuyEvolution != null) BuyEvolution();
         }
         else {
@@ -336,7 +344,7 @@ public class ButtonHandler : MonoBehaviour {
             Advertisement.Show(wm.zoneID, options);
         }
         else {
-            em.list.transform.FindChild("AdForMoney").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
+            em.list.transform.FindChild("AdForx2").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
         }
     }
 
