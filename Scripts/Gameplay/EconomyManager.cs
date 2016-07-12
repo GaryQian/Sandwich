@@ -345,7 +345,7 @@ public class EconomyManager : MonoBehaviour {
             file.Close();
 
             money = data.money * Util.obfuscateNumber;
-            elixir = data.elixir * (int)Util.obfuscateNumber;
+            elixir = data.elixir;
             totalElixir = data.totalElixir;
             totalMoney = data.totalMoney;
             lifetimeMoney = data.lifetimeMoney;
@@ -414,7 +414,7 @@ public class EconomyManager : MonoBehaviour {
         SaveData data = new SaveData();
 
         data.money = money / Util.obfuscateNumber;
-        data.elixir = elixir / (int)Util.obfuscateNumber;
+        data.elixir = elixir;
         data.totalElixir = totalElixir;
         data.totalMoney = totalMoney;
         data.lifetimeMoney = lifetimeMoney;

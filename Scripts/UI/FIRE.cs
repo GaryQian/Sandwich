@@ -15,7 +15,7 @@ public class FIRE : MonoBehaviour {
     }
 
     void OnBuySandriaLaw() {
-        Debug.LogError("ONBUYSANDRIALAW");
+        //Debug.LogError("ONBUYSANDRIALAW");
         if (Util.em.sandriaLawCount >= 1 && Util.em.humanExterminationCount == 0) {
             anim.SetTrigger("FireOn");
         }
