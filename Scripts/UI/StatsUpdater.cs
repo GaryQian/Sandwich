@@ -78,7 +78,7 @@ public class StatsUpdater : MonoBehaviour {
         TotalbuildingsText.text = Util.encodeNumberInteger(Util.em.buildings + Util.em.lifetimeBuildings);
 
         //version
-        versionText.text = Util.encodeNumberInteger(Util.wm.version);
+        versionText.text = "" + Util.wm.version;
     }
 
     void OnEnable() {

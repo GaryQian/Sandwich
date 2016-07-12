@@ -37,6 +37,7 @@ public static class GPGSConstants
         public const string achievement_time_traveler = "CgkI1rDm6sMKEAIQAg"; // <GPGSID>
         public const string achievement_quadrillionaire = "CgkI1rDm6sMKEAIQBg"; // <GPGSID>
         public const string achievement_all_hail = "CgkI1rDm6sMKEAIQAw"; // <GPGSID>
+        public const string achievement_i_declare_war = "CgkI1rDm6sMKEAIQGA"; // <GPGSID>
         public const string leaderboard_total_money_made = "CgkI1rDm6sMKEAIQDQ"; // <GPGSID>
         public const string achievement_duodecillionaire = "CgkI1rDm6sMKEAIQEw"; // <GPGSID>
         public const string achievement_tredecillionaire = "CgkI1rDm6sMKEAIQFA"; // <GPGSID>

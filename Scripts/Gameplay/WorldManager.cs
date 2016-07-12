@@ -149,8 +149,8 @@ public class WorldManager : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
 
-        RequestInterstitial();
-        Invoke("playInterstitial", 15f);
+        //RequestInterstitial();
+        //Invoke("playInterstitial", 15f);
         //Invoke("playInterstitial", 630f);
         //InvokeRepeating("playInsterstitial", 2400f, 1800f); 
     }
@@ -338,8 +338,8 @@ public class WorldManager : MonoBehaviour {
         buttonHandler.toggleMute();
         buttonHandler.toggleMute();
 
-        buttonHandler.toggleMusicMute();
-        buttonHandler.toggleMusicMute();
+        //buttonHandler.toggleMusicMute();
+        //buttonHandler.toggleMusicMute();
     }
 
     void setupUtil() {
@@ -420,8 +420,10 @@ public class WorldManager : MonoBehaviour {
         data.saberColor = saberColor;
         if (x3Time < 0) x3Time = 0;
         if (x7Time < 0) x7Time = 0;
+        if (x2Time < 0) x2Time = 0;
         data.x3Time = x3Time;
         data.x7Time = x7Time;
+        data.x2Time = x2Time;
 
         bf.Serialize(file, data);
         file.Close();
@@ -439,6 +441,7 @@ public class WorldManager : MonoBehaviour {
             saberColor = data.saberColor;
             x3Time = data.x3Time;
             x7Time = data.x7Time;
+            x2Time = data.x2Time;
 
             saveVersion();
         }
@@ -517,6 +520,7 @@ public class IAPData {
     public int knifeID;
     public double x3Time;
     public double x7Time;
+    public double x2Time;
 
     public SaberColor saberColor;
 }

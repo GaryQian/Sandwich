@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 public class SplashQuote : MonoBehaviour {
-    float quoteCount = 43f;
+    float quoteCount = 101f;
 	// Use this for initialization
 	void Start () {
         GetComponent<Text>().text = "\"" + getQuote() + "\"";
@@ -57,6 +57,61 @@ public class SplashQuote : MonoBehaviour {
             case 43: return "Who farted?";
             case 44: return "Winter is coming.";
             case 45: return "You know nothing, Jon Snow.";
+            case 46: return "They may take our lives, but they’ll never take our freedom!";
+            case 47: return "I’ll be back.";
+            case 48: return "Have you seen my bear Tibbers?";
+            case 49: return "Gems are truly, truly, truly outrageous.";
+            case 50: return "Chewie, we’re home.";
+            case 51: return "Who let the dogs out?";
+            case 52: return "Don’t talk to strangers!";
+            case 53: return "Mitochondria is the powerhouse of the cell.";
+            case 54: return "Bounce batteries to see if they are good or bad.";
+            case 55: return "Tomato is a fruit.";
+            case 56: return "Brush your teeth!";
+            case 57: return "Don’t forget to floss!";
+            case 58: return "Don’t forget an umbrella.";
+            case 59: return "Ask for both beans.";
+            case 60: return "Did you turn off all the lights?";
+            case 61: return "Pluto isn’t a planet, RIP.";
+            case 62: return "GGWP!";
+            case 63: return "All hail the dark lord Teemo.";
+            case 64: return "Don’t chase Singed!";
+            case 65: return "Demacia!";
+            case 66: return "Double rainbow, what does it mean?";
+            case 67: return "Oh baby a triple!";
+            case 68: return "RYUU GA WAGA TEKI WO KURAU!";
+            case 69: return "Pikachu has fainted!";
+            case 70: return "I am the one who knocks!";
+            case 71: return "Say my name.";
+            case 72: return "Wombo Combo!";
+            case 73: return "PENTA KILL!";
+            case 74: return "360 No Scope!";
+            case 75: return "Fabio’s hair is epic.";
+            case 76: return "How was your day?";
+            case 77: return "Everything’s gonna be alright.";
+            case 78: return "Is your refridgerator running?";
+            case 79: return "Why did the chicken cross the road?";
+            case 80: return "When you click your pen one more time to use it.";
+            case 81: return "2 + 2 = fish.";
+            case 82: return "1337!";
+            case 83: return "I luv u!";
+            case 84: return "My fingers hurt!";
+            case 85: return "Carpal Tunnel is a serious thing.";
+            case 86: return "In seven different flavors!";
+            case 87: return "I broke my crayon again!";
+            case 88: return "Brb (#2).";
+            case 89: return "Magikarp used splash!";
+            case 90: return "95% Organic!";
+            case 91: return "Let it go!";
+            case 92: return "The Lion King makes me cry.";
+            case 93: return "Whoa, that’s heavy Doc!";
+            case 94: return "We’re going to need a bigger boat.";
+            case 95: return "One small step for man.";
+            case 96: return "This. Is. Spartaaa!";
+            case 97: return "_____ [GONE WRONG].";
+            case 98: return "It’s a prank bro!";
+            case 99: return "I need more ketchup!";
+            case 100: return "Open up the GATESSS!";
         }
         return "Wow my switch statement failed and now you are seeing this.";
     }

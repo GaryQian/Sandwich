@@ -343,7 +343,7 @@ public class EconomyManager : MonoBehaviour {
             }
             file.Close();
 
-            money = data.money * Util.obfuscateNumber;
+            money = data.money;
             elixir = data.elixir;
             totalElixir = data.totalElixir;
             totalMoney = data.totalMoney;
@@ -409,7 +409,7 @@ public class EconomyManager : MonoBehaviour {
 
         SaveData data = new SaveData();
 
-        data.money = money / Util.obfuscateNumber;
+        data.money = money;
         data.elixir = elixir;
         data.totalElixir = totalElixir;
         data.totalMoney = totalMoney;
@@ -469,7 +469,7 @@ public class EconomyManager : MonoBehaviour {
 
         wm.saveSettings();
 
-        if (wm.x3Time > 0 || wm.x7Time > 0) {
+        if (wm.x3Time > 0 || wm.x7Time > 0 || wm.x2Time > 0) {
             wm.saveIAP();
         }
     }

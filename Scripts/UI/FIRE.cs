@@ -25,8 +25,10 @@ public class FIRE : MonoBehaviour {
     }
 
     void OnBuyHumanExtermination() {
-        anim.SetTrigger("FireFade");
-        Invoke("setOff", 1.667f);
+        if (Util.em.humanExterminationCount == 1) {
+            anim.SetTrigger("FireFade");
+            Invoke("setOff", 1.667f);
+        }
     }
 
     void setOff() {
