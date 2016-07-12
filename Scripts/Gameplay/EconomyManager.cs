@@ -143,7 +143,6 @@ public class EconomyManager : MonoBehaviour {
         gameTime += updateRate;
         even = !even;
         displayMoney();
-        Util.money = money;
     }
 
     public bool spend(double num) {
@@ -390,9 +389,6 @@ public class EconomyManager : MonoBehaviour {
             wm.adWatchTimeMoney = data.adWatchTimeMoney;
             wm.adWatchTimeElixir = data.adWatchTimeElixir;
             wm.adWatchTimex2 = data.adWatchTimex2;
-            wm.muted = data.muted;
-            wm.musicMuted = data.musicMuted;
-            Util.muted = wm.muted;
 
             wm.sm.storyProgress = data.storyProgress;
             wm.sm.timeMachineDone = data.timeMachineDone;
@@ -457,8 +453,7 @@ public class EconomyManager : MonoBehaviour {
         data.adWatchTimeMoney = wm.adWatchTimeMoney;
         data.adWatchTimeElixir = wm.adWatchTimeElixir;
         data.adWatchTimex2 = wm.adWatchTimex2;
-        data.muted = wm.muted;
-        data.musicMuted = wm.musicMuted;
+        
 
         data.storyProgress = wm.sm.storyProgress;
         data.timeMachineDone = wm.sm.timeMachineDone;
@@ -472,7 +467,7 @@ public class EconomyManager : MonoBehaviour {
         bf.Serialize(file, data);
         file.Close();
 
-        wm.saveTime();
+        wm.saveSettings();
 
         if (wm.x3Time > 0 || wm.x7Time > 0) {
             wm.saveIAP();
@@ -528,8 +523,6 @@ public class SaveData {
     public double adWatchTimeMoney;
     public double adWatchTimeElixir;
     public double adWatchTimex2;
-    public bool muted;
-    public bool musicMuted;
 
     public int storyProgress;
     public bool timeMachineDone;

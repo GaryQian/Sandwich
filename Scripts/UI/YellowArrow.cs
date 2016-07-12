@@ -13,7 +13,7 @@ public class YellowArrow : MonoBehaviour {
 	}
 
     void check() {
-        if (Util.money >= 50f && Util.em.totalMoney < 100 && Util.em.sandwichCartCount == 0) {
+        if (Util.em.money >= 50f && Util.em.totalMoney < 100 && Util.em.sandwichCartCount == 0) {
             gameObject.SetActive(true);
         }
     }

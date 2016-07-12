@@ -6,7 +6,7 @@ public class SplashScreen : MonoBehaviour {
     public GameObject Splash;
 	// Use this for initialization
 	void Start () {
-        Invoke("closeSplash", 2.5f);
+        Invoke("closeSplash", 3.5f);
 	}
 	
 	public void closeSplash() {

@@ -7,8 +7,6 @@ public class Util {
     public static WorldManager wm;
     public static EconomyManager em;
 
-    public static double money;
-
     public static double obfuscateNumber = 634294.262d;
 
     public static double sauceBaseCost = 500f;
@@ -91,7 +89,7 @@ public class Util {
     public static float adx2Cooldown = 1800f;
 
     //Boosts
-    public static float boostTime = 10800f;
+    public static float boostTime = 14400f;
 
     //sand witch
     public static float sandWitchTotalPercentage = 0.01f;
@@ -108,9 +106,6 @@ public class Util {
     public static Vector3 worldNormBottomLeftPos;
     public static Vector3 worldNormTopRightPos;
     public static float worldNormalizedWidth;
-
-    public static bool muted;
-    public static bool musicMuted;
 
     public static bool even;
     public static bool godmode = false;

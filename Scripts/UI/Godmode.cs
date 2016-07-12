@@ -51,7 +51,7 @@ public class Godmode : MonoBehaviour {
                 Util.godmode = true;
                 Util.wm.hasCheated = true;
                 
-                Util.wm.saveIAP();            }
+                Util.wm.saveSettings();            }
             if (code == godmodeOffCode) {
                 Util.godmode = false;
             }

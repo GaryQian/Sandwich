@@ -68,7 +68,6 @@ public class ResetManager : MonoBehaviour {
         //reset to defaults
 
         em.money = 0;
-        Util.money = 0;
         em.totalMoney = 0;
         em.knifeVamp = 0; //amount of the total cps gained on each swipe
         em.sauceID = 1; //which is the current spread

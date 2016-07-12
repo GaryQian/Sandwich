@@ -143,7 +143,7 @@ public class Bread : MonoBehaviour {
         Invoke("deleteTrails", 0.08f);
 
         //play swish
-        if (!Util.muted) {
+        if (!Util.wm.muted) {
             switch ((int)Random.Range(0, 5.99f)) {
                 case 0: wm.fullAudioSource.PlayOneShot(s1, 1f); break;
                 case 1: wm.fullAudioSource.PlayOneShot(s2, 1f); break;

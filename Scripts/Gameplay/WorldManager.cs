@@ -8,6 +8,7 @@ using System.IO;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
+using GoogleMobileAds.Api;
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -93,6 +94,9 @@ public class WorldManager : MonoBehaviour {
     //
 
 
+    //ADS
+    public InterstitialAd interstitial;
+
     private bool scorePostFailed = false;
 
     // Use this for initialization
@@ -139,6 +143,10 @@ public class WorldManager : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
 
+        //RequestInterstitial();
+        //Invoke("playInterstitial", 15f);
+        //Invoke("playInterstitial", 630f);
+        //InvokeRepeating("playInsterstitial", 2400f, 1800f); 
     }
 
     public void processOffline() {
@@ -164,6 +172,30 @@ public class WorldManager : MonoBehaviour {
             nurseryAlert.GetComponent<RectTransform>().anchoredPosition = new Vector3(-200f, -304f, 0);
             nurseryAlert.transform.localScale = new Vector3(1f, 1f, 1f);
             nurseryAlert.transform.SetAsFirstSibling();
+        }
+    }
+
+    private void RequestInterstitial() {
+        #if UNITY_ANDROID
+                string adUnitId = "ca-app-pub-3270795222614514/2236020819";
+        #elif UNITY_IPHONE
+                string adUnitId = "INSERT_IOS_INTERSTITIAL_AD_UNIT_ID_HERE";
+        #else
+                string adUnitId = "unexpected_platform";
+        #endif
+
+        // Initialize an InterstitialAd.
+        interstitial = new InterstitialAd(adUnitId);
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+        // Load the interstitial with the request.
+        interstitial.LoadAd(request);
+    }
+
+    void playInterstitial() {
+        if (interstitial.IsLoaded()) {
+            interstitial.Show();
+            Invoke("RequestInterstitial", 5f);
         }
     }
 
@@ -410,8 +442,6 @@ public class WorldManager : MonoBehaviour {
         data.x3Time = x3Time;
         data.x7Time = x7Time;
 
-        data.hasCheated = hasCheated;
-
         bf.Serialize(file, data);
         file.Close();
     }
@@ -429,38 +459,42 @@ public class WorldManager : MonoBehaviour {
             x3Time = data.x3Time;
             x7Time = data.x7Time;
 
-            hasCheated = data.hasCheated;
-
             saveVersion();
         }
     }
 
-    public void saveTime() {
+    public void saveSettings() {
         lastTime = UnbiasedTime.Instance.Now();
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/time.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/settings.dat");
         
-        SaveTime data = new SaveTime();
+        SaveSettings data = new SaveSettings();
         
         data.logoffTime = lastTime;
-        
+        data.muted = muted;
+        data.musicMuted = musicMuted;
+        data.hasCheated = hasCheated;
+
         bf.Serialize(file, data);
         file.Close();
     }
 
     public void loadTime() {
         lastTime = new DateTime(9998, 1, 1);
-        if (File.Exists(Application.persistentDataPath + "/time.dat")) {
+        if (File.Exists(Application.persistentDataPath + "/settings.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/time.dat", FileMode.Open);
-            SaveTime data = null;
+            FileStream file = File.Open(Application.persistentDataPath + "/settings.dat", FileMode.Open);
+            SaveSettings data = null;
             try {
-                data = (SaveTime)bf.Deserialize(file);
+                data = (SaveSettings)bf.Deserialize(file);
             }
             catch { }
             file.Close();
 
             if (data != null) lastTime = data.logoffTime;
+            muted = data.muted;
+            musicMuted = data.musicMuted;
+            hasCheated = data.hasCheated;
 
             saveVersion();
         }
@@ -487,8 +521,13 @@ public class Version {
 }
 
 [Serializable]
-public class SaveTime {
+public class SaveSettings {
     public DateTime logoffTime;
+
+    public bool muted;
+    public bool musicMuted;
+
+    public bool hasCheated;
 }
 
 [Serializable]
@@ -497,8 +536,6 @@ public class IAPData {
     public int knifeID;
     public double x3Time;
     public double x7Time;
-
-    public bool hasCheated;
 
     public SaberColor saberColor;
 }

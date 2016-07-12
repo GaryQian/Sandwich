@@ -88,7 +88,7 @@ public class ButtonHandler : MonoBehaviour {
     }
 
     public void playKaching() {
-        if (!Util.muted) {
+        if (!Util.wm.muted) {
             wm.halfAudioSource.PlayOneShot(kaching);
             //wm.fullAudioSource.PlayOneShot(build);
         }
@@ -203,7 +203,6 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void toggleMute() {
         wm.muted = !wm.muted;
-        Util.muted = wm.muted;
         if (wm.muted) {
             muteButton.GetComponent<Image>().sprite = muteOn;
         }
@@ -217,7 +216,6 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void toggleMusicMute() {
         wm.musicMuted = !wm.musicMuted;
-        Util.musicMuted = wm.musicMuted;
         if (wm.musicMuted) {
             musicMuteButton.GetComponent<Image>().sprite = musicMuteOn;
             wm.music.Pause();

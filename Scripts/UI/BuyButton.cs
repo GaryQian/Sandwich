@@ -31,7 +31,7 @@ public class BuyButton : MonoBehaviour {
 	void Update () {
         if (type == CurrencyType.money) {
             if (buyType == BuyType.x10) {
-                if (Util.money < up.cost) {
+                if (Util.em.money < up.cost) {
                     //disable
                     button.colors = disabledColor;
                 }
@@ -41,7 +41,7 @@ public class BuyButton : MonoBehaviour {
                 }
             }
             else {
-                if (Util.money < up.cost) {
+                if (Util.em.money < up.cost) {
                     //disable
                     button.colors = disabledColor;
                 }
