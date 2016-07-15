@@ -69,7 +69,7 @@ public class ButtonHandler : MonoBehaviour {
         red.SetActive(true);
         red.GetComponent<Animator>().SetTrigger("Flash");
         Invoke("disableRed", 0.467f);
-        Util.wm.fullAudioSource.PlayOneShot(click);
+        if (!Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(click);
     }
 
     void disableRed() {
@@ -257,7 +257,7 @@ public class ButtonHandler : MonoBehaviour {
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
         obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num), wm.sandWitch.GetComponent<RectTransform>().anchoredPosition, new Color(0, 1f, 0), 70, 100);
         Destroy(wm.sandWitch);
-        wm.fullAudioSource.PlayOneShot(witch);
+        if (!Util.wm.muted) wm.fullAudioSource.PlayOneShot(witch);
     }
 
     /// <summary>

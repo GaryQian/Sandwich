@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 public class SplashQuote : MonoBehaviour {
-    float quoteCount = 101f;
+    float quoteCount = 103f;
 	// Use this for initialization
 	void Start () {
         GetComponent<Text>().text = "\"" + getQuote() + "\"";
@@ -111,7 +111,9 @@ public class SplashQuote : MonoBehaviour {
             case 97: return "_____ [GONE WRONG].";
             case 98: return "It’s a prank bro!";
             case 99: return "I need more ketchup!";
-            case 100: return "Open up the GATESSS!";
+            case 100: return "Do you want to build a snowman?";
+            case 101: return "Apple seeds are poisonous (true fact)";
+            case 102: return "Giraffe tongues are purple.";
         }
         return "Wow my switch statement failed and now you are seeing this.";
     }

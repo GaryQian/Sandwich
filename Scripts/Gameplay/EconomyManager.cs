@@ -22,7 +22,7 @@ public class EconomyManager : MonoBehaviour {
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public float reproductionRate = 0;
     public double nurseryPop = 0;
-    public double maxBabyPop;
+    public double maxBabyPop = 0;
     public int sauceID; //which is the current spread
     public int breadID = 0;
     public double totalTime = 0f;

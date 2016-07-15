@@ -7,8 +7,6 @@ public class Util {
     public static WorldManager wm;
     public static EconomyManager em;
 
-    public static double obfuscateNumber = 634294.262d;
-
     public static double sauceBaseCost = 500f;
     public static double sauceScale = 10f;
     public static double breadBaseCost = 1000000f;
@@ -74,8 +72,8 @@ public class Util {
     public static double timeMachineCost = 8.8E+17f;
 
     //elixir
-    public static double elixirBaseCost = 5E+7;
-    public static float elixirScale = 5f;
+    public static double elixirBaseCost = 3E+7;
+    public static float elixirScale = 6f;
 
     //ads
     public static float adRewardCurrentPercentage = 0.10f;
@@ -87,6 +85,8 @@ public class Util {
 
     public static float adx2Time = 180f;
     public static float adx2Cooldown = 1800f;
+
+    public static float interstitialFrequency = 1800f;
 
     //Boosts
     public static float boostTime = 14400f;

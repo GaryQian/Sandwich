@@ -58,6 +58,7 @@ public class WorldManager : MonoBehaviour {
     public ButtonHandler buttonHandler;
     public StoryManager sm;
     public AchievementManager am;
+    public AdManager adm;
     public TabManager tabManager;
     public GameObject canvas;
     public UpdateNursery nursery;
@@ -165,14 +166,14 @@ public class WorldManager : MonoBehaviour {
                 adWatchTimex2 -= timeElapsed / timeScaleDivisor;
                 em.nurseryPop += em.rate * em.reproductionRate * timeElapsed / 100f;
                 em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
-                if (em.nurseryPop > em.maxBabyPop) em.nurseryPop = em.maxBabyPop;
+                if (em.nurseryPop > em.maxBabyPop && em.nurseryPop != 0) em.nurseryPop = em.maxBabyPop;
             }
         }
     }
 
     public void spawnAlert() {
         em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
-        if (menuState != MenuType.sandwich && nurseryAlert == null && em.nurseryPop == em.maxBabyPop  && em.nurseryPop != 0) {
+        if (menuState != MenuType.sandwich && nurseryAlert == null && em.nurseryPop == em.maxBabyPop && em.nurseryPop != 0) {
             nurseryAlert = Instantiate(nurseryAlertPrefab);
             nurseryAlert.transform.SetParent(Util.wm.canvas.transform);
             nurseryAlert.GetComponent<RectTransform>().anchoredPosition = new Vector3(-200f, -304f, 0);
@@ -319,7 +320,7 @@ public class WorldManager : MonoBehaviour {
 
         em.maxBabyPop = Util.em.rate * Util.em.reproductionRate * Util.maxBabyTime / 100f;
         em.nurseryPop += em.rate * em.reproductionRate / 100f;
-        if (em.nurseryPop > em.maxBabyPop) em.nurseryPop = em.maxBabyPop;
+        if (em.nurseryPop > em.maxBabyPop && em.nurseryPop != 0) em.nurseryPop = em.maxBabyPop;
     }
 
     void every5() {
