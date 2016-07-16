@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 public class SplashQuote : MonoBehaviour {
-    float quoteCount = 103f;
+    float quoteCount = 104f;
 	// Use this for initialization
 	void Start () {
         GetComponent<Text>().text = "\"" + getQuote() + "\"";
@@ -70,7 +70,7 @@ public class SplashQuote : MonoBehaviour {
             case 56: return "Brush your teeth!";
             case 57: return "Don’t forget to floss!";
             case 58: return "Don’t forget an umbrella.";
-            case 59: return "Ask for both beans.";
+            case 59: return "Ask for both beans at Chipotle.";
             case 60: return "Did you turn off all the lights?";
             case 61: return "Pluto isn’t a planet, RIP.";
             case 62: return "GGWP!";
@@ -82,21 +82,21 @@ public class SplashQuote : MonoBehaviour {
             case 68: return "RYUU GA WAGA TEKI WO KURAU!";
             case 69: return "Pikachu has fainted!";
             case 70: return "I am the one who knocks!";
-            case 71: return "Say my name.";
+            case 71: return "Say my name... Heisenberg";
             case 72: return "Wombo Combo!";
-            case 73: return "PENTA KILL!";
-            case 74: return "360 No Scope!";
+            case 73: return "PENTAKILL!";
+            case 74: return "360 No-Scope!";
             case 75: return "Fabio’s hair is epic.";
             case 76: return "How was your day?";
             case 77: return "Everything’s gonna be alright.";
-            case 78: return "Is your refridgerator running?";
+            case 78: return "Is your refrigerator running?";
             case 79: return "Why did the chicken cross the road?";
-            case 80: return "When you click your pen one more time to use it.";
+            case 80: return "Pen: *click click click click*";
             case 81: return "2 + 2 = fish.";
             case 82: return "1337!";
             case 83: return "I luv u!";
             case 84: return "My fingers hurt!";
-            case 85: return "Carpal Tunnel is a serious thing.";
+            case 85: return "Carpal Tunnel is a serious disease.";
             case 86: return "In seven different flavors!";
             case 87: return "I broke my crayon again!";
             case 88: return "Brb (#2).";
@@ -114,6 +114,7 @@ public class SplashQuote : MonoBehaviour {
             case 100: return "Do you want to build a snowman?";
             case 101: return "Apple seeds are poisonous (true fact)";
             case 102: return "Giraffe tongues are purple.";
+            case 103: return "So. Much. Swiping.";
         }
         return "Wow my switch statement failed and now you are seeing this.";
     }

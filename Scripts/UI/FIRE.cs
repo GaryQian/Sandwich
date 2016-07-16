@@ -24,7 +24,7 @@ public class FIRE : MonoBehaviour {
         }
     }
 
-    void OnBuyHumanExtermination() {
+    public void OnBuyHumanExtermination() {
         if (Util.em.humanExterminationCount == 1) {
             anim.SetTrigger("FireFade");
             Invoke("setOff", 1.667f);

@@ -127,6 +127,8 @@ public class ResetManager : MonoBehaviour {
         em.money = 0;
         em.moneyText.updateColor();
 
+        GameObject.Find("FIRE").GetComponent<Animator>().SetTrigger("FireFade");
+
         wm.muted = tempMute;
 
         em.save();

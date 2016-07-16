@@ -181,8 +181,10 @@ public class EconomyManager : MonoBehaviour {
         income(num);
         sandwichesMade += swipeRate;
         totalSwipes++;
-        GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        GameObject obj = Instantiate(canvasNotificationTextPrefab);
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -620f), new Color(1f, 1f, 1f), 80, 300f);
+        //GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
+        //text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
