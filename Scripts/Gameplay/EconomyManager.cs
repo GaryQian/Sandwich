@@ -182,7 +182,7 @@ public class EconomyManager : MonoBehaviour {
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -620f), new Color(1f, 1f, 1f), 80, 300f);
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 1f), 80, 400f);
         //GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
         //text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
 
@@ -326,8 +326,11 @@ public class EconomyManager : MonoBehaviour {
     }
 
     void showMultiplier() {
+        /*
         GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f * (1f - ((multiplier - 2f) / 2f)), 0), (int)(Screen.height * 0.08f), 0.7f);
+        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f * (1f - ((multiplier - 2f) / 2f)), 0), (int)(Screen.height * 0.08f), 0.7f);*/
+        GameObject obj = Instantiate(canvasNotificationTextPrefab);
+        obj.GetComponent<CanvasNotificationText>().setup("x" + (int)multiplier, /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 0), 150, 500f);
     }
 
 
