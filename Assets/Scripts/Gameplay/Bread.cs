@@ -146,11 +146,11 @@ public class Bread : MonoBehaviour {
         if (!Util.wm.muted) {
             switch ((int)Random.Range(0, 5.99f)) {
                 case 0: wm.fullAudioSource.PlayOneShot(s1, 1f); break;
-                case 1: wm.fullAudioSource.PlayOneShot(s2, 1f); break;
+                case 1: wm.fullAudioSource2.PlayOneShot(s2, 1f); break;
                 case 2: wm.fullAudioSource.PlayOneShot(s3, 1f); break;
-                case 3: wm.fullAudioSource.PlayOneShot(s4, 1f); break;
+                case 3: wm.fullAudioSource2.PlayOneShot(s4, 1f); break;
                 case 4: wm.fullAudioSource.PlayOneShot(s5, 1f); break;
-                case 5: wm.fullAudioSource.PlayOneShot(s6, 1f); break;
+                case 5: wm.fullAudioSource2.PlayOneShot(s6, 1f); break;
             }
         }
     }

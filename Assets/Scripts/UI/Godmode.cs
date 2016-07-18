@@ -8,14 +8,19 @@ public class Godmode : MonoBehaviour {
     public int godmodeCode;
     public int godmodeOffCode;
     public int resetCode;
-    //public MD5 md5;
+    public int fpsCode;
+
+
+    public GameObject fpsPrefab;
+    GameObject fps;
 	// Use this for initialization
 	void Start () {
         //InvokeRepeating("countDown", 2f, 2f);
-        
+        fps = GameObject.Find("FPS");
         godmodeCode = 1884297456;
         godmodeOffCode = ("off").GetHashCode();
         resetCode = ("reset!").GetHashCode();
+        fpsCode = ("fps").GetHashCode();
     }
 
     void countDown() {
@@ -55,6 +60,12 @@ public class Godmode : MonoBehaviour {
             }
             if (code == resetCode) {
                 ResetManager.completeReset();
+            }
+            if (code == fpsCode) {
+                if (fps == null) {
+                    fps = Instantiate(fpsPrefab);
+                    fps.name = "FPS";
+                }
             }
         }
     }

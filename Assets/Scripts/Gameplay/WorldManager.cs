@@ -5,9 +5,9 @@ using System;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SocialPlatforms;
 #if UNITY_ANDROID
 using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 using GoogleMobileAds.Api;
 #endif
@@ -78,6 +78,7 @@ public class WorldManager : MonoBehaviour {
 
     public AudioSource halfAudioSource;
     public AudioSource fullAudioSource;
+    public AudioSource fullAudioSource2;
 
     public Animator shopGlowAnimator;
 
@@ -117,7 +118,7 @@ public class WorldManager : MonoBehaviour {
 
 	void Start () {
         Application.targetFrameRate = 30;
-
+        
         if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
 
         util = new Util();
@@ -153,11 +154,6 @@ public class WorldManager : MonoBehaviour {
         canvas.GetComponent<Canvas>().sortingGridNormalizedSize = 5;
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
-
-        //RequestInterstitial();
-        //Invoke("playInterstitial", 15f);
-        //Invoke("playInterstitial", 630f);
-        //InvokeRepeating("playInsterstitial", 2400f, 1800f); 
     }
 
     public void processOffline() {
@@ -189,59 +185,61 @@ public class WorldManager : MonoBehaviour {
     private void RequestInterstitial() {
         #if UNITY_ANDROID
                 string adUnitId = "ca-app-pub-3270795222614514/2236020819";
-#elif UNITY_IPHONE
+        #elif UNITY_IPHONE
                 string adUnitId = "INSERT_IOS_INTERSTITIAL_AD_UNIT_ID_HERE";
-#else
+        #else
                 string adUnitId = "unexpected_platform";
-#endif
+        #endif
 
-#if UNITY_ANDROID
+    #if UNITY_ANDROID
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
-#endif
+    #endif
     }
-#if UNITY_ANDROID
+
     void playInterstitial() {
+        #if UNITY_ANDROID
         if (interstitial.IsLoaded()) {
             interstitial.Show();
             Invoke("RequestInterstitial", 5f);
         }
+        #endif
     }
-#endif
+
 
     public void setupGPGS() {
-#if UNITY_ANDROID
+    #if UNITY_ANDROID
         //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-
+        Debug.Log("Activating GPGS");
 
         //PlayGamesPlatform.InitializeInstance(config);
         // recommended for debugging:
         //PlayGamesPlatform.DebugLogEnabled = true;
         // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
-
-
-        //LEADERBOARDS:
-
+        Debug.Log("GPGS Activated");
         try {
+            Debug.Log("Authenticating GPGS...");
             Social.localUser.Authenticate((bool success) => {
+                Debug.Log("GPGS Authenticated, Posting scores.");
                 // handle success or failure
                 if (success) postScore();
+                Debug.Log("Scores Posted.");
             });
         }
         catch (Exception e) {
             Debug.LogError("ERROR AUTHENTICATION: " + e.Message);
         }
-#endif
+    #endif
     }
 
     public void postScore() {
         if (!hasCheated) {
-#if UNITY_ANDROID
+        #if UNITY_ANDROID
             scorePostFailed = false;
             //total money
             Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
@@ -266,7 +264,7 @@ public class WorldManager : MonoBehaviour {
             });
 
             if (scorePostFailed) Invoke("postScore", 300f);
-#endif
+        #endif
         }
     }
 

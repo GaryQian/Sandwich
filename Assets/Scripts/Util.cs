@@ -18,7 +18,7 @@ public class Util {
 
     public static double sandwichReproductionBase = 20000f;
     public static double sandwichReproductionScale = 600000f;
-    public static float maxBabyTime = 28800f;
+    public static float maxBabyTime = 21600f;
 
     
     public static float pScale = 1.15f;
@@ -43,7 +43,7 @@ public class Util {
     public static double flyingSandwichMonsterRate = 9.999E+14f;
 
     //producer base costs
-    public static float sandwichCartBase = 50f; //100
+    public static float sandwichCartBase = 25f; //100
     public static float deliBase = 1200f; //150 x1.5
     public static float autochefBase = 55550f; //740 x5
     public static float mcdandwichBase = 7777000f; //7777 x10.5

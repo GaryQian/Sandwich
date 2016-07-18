@@ -39,7 +39,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     bool needTutorial() {
-        if (Util.em.totalMoney < 2000f || Util.em.sauceID == 1 || Util.em.sandwichCartCount == 0) {
+        if (Util.em.totalMoney < 2000f || Util.em.sauceID == 1 || Util.em.sandwichCartCount < 4) {
             if (Util.wm.playthroughCount == 0) {
                 return true;
             }
@@ -62,28 +62,26 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public void activateSandwichCartTutorial() {
-        if (Util.em.sandwichCartCount < 2) {
+        if (Util.em.sandwichCartCount < 4) {
             producerButtonGlow.SetActive(true);
             sandwichCartYellowArrow.SetActive(true);
         }
     }
     void removeSandwichCartTutorial() {
+        
         producerButtonGlow.SetActive(false);
         sandwichCartYellowArrow.SetActive(false);
-        //activateSauceTutorial();
+        if (tutorialActive) Invoke("activateSandwichCartTutorial", 10f);
+        if (tutorialActive && Util.em.sauceID == 1 && Util.em.sandwichCartCount >= 1) {
+            activateSauceTutorial();
+        }
     }
 
-    /*public void removeYellowArrow() {
-        if (yellowArrow != null) {
-            Destroy(yellowArrow);
-        }
-    }*/
 
     void activateSauceTutorial() {
         if (Util.em.sauceID == 1 && Util.em.sandwichCartCount >= 1) {
             sandwichButtonGlow.SetActive(true);
             sauceYellowArrow.SetActive(true);
-
         }
     }
     void removeSauceTutorial() {

@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GPGSConstants.cs" />
+    <Compile Include="Assets\GPGSConstantsAndroid.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdFailedToLoadEventArgs.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdLoader.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdPosition.cs" />
@@ -347,6 +348,7 @@
     <Compile Include="Assets\Scripts\UI\CanvasNotificationText.cs" />
     <Compile Include="Assets\Scripts\UI\ElixirCountText.cs" />
     <Compile Include="Assets\Scripts\UI\FIRE.cs" />
+    <Compile Include="Assets\Scripts\UI\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\Finger.cs" />
     <Compile Include="Assets\Scripts\UI\Godmode.cs" />
     <Compile Include="Assets\Scripts\UI\IAPButton.cs" />

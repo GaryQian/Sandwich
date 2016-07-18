@@ -8,7 +8,6 @@ using UnityEngine.Purchasing;
 namespace CompleteProject {
     // Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
     public class Purchaser : MonoBehaviour, IStoreListener {
-#if UNITY_ANDROID
         private static IStoreController m_StoreController;          // The Unity Purchasing system.
         private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
@@ -36,7 +35,9 @@ namespace CompleteProject {
             // If we haven't set up the Unity Purchasing reference
             if (m_StoreController == null) {
                 // Begin to configure our connection to Purchasing
+            #if UNITY_ANDROID
                 InitializePurchasing();
+            #endif
             }
         }
 
@@ -228,6 +229,5 @@ namespace CompleteProject {
             // this reason with the user to guide their troubleshooting actions.
             Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
         }
-#endif
     }
 }
