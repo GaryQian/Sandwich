@@ -1,9 +1,12 @@
-﻿#if UNITY_ANDROID
+﻿
 using UnityEngine;
 using System.Collections;
+#if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
 using GoogleMobileAds.Api;
+#endif
 public class AdManager : MonoBehaviour {
+#if UNITY_ANDROID
     bool ready = false;
 	// Use this for initialization
 	void Start () {
@@ -73,5 +76,5 @@ public class AdManager : MonoBehaviour {
         ButtonHandler.BuyDeathSandwich -= showAd;
         ButtonHandler.BuySandwichGalaxy -= showAd;
     }
+    #endif
 }
-#endif
