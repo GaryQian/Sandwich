@@ -6,10 +6,10 @@ using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SocialPlatforms;
+using GoogleMobileAds.Api;
 #if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-using GoogleMobileAds.Api;
 #endif
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
@@ -100,9 +100,7 @@ public class WorldManager : MonoBehaviour {
 
 
     //ADS
-#if UNITY_ANDROID
     public InterstitialAd interstitial;
-#endif
 
     private bool scorePostFailed = false;
 

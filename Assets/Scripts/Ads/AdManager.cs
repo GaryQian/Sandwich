@@ -1,12 +1,11 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using GoogleMobileAds.Api;
 #if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
-using GoogleMobileAds.Api;
 #endif
 public class AdManager : MonoBehaviour {
-#if UNITY_ANDROID
     bool ready = false;
 	// Use this for initialization
 	void Start () {
@@ -21,11 +20,11 @@ public class AdManager : MonoBehaviour {
     private void RequestInterstitial() {
         #if UNITY_ANDROID
                 string adUnitId = "ca-app-pub-3270795222614514/2236020819";
-        #elif UNITY_IPHONE
-                        string adUnitId = "INSERT_IOS_INTERSTITIAL_AD_UNIT_ID_HERE";
-        #else
+#elif UNITY_IPHONE
+                        string adUnitId = "ca-app-pub-3270795222614514/1125887612";
+#else
                         string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
         // Initialize an InterstitialAd.
         Util.wm.interstitial = new InterstitialAd(adUnitId);
@@ -76,5 +75,4 @@ public class AdManager : MonoBehaviour {
         ButtonHandler.BuyDeathSandwich -= showAd;
         ButtonHandler.BuySandwichGalaxy -= showAd;
     }
-    #endif
 }
