@@ -4,7 +4,9 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
+#if UNITY_ANDROID
 using GooglePlayGames;
+#endif
 using UnityEngine.SocialPlatforms;
 
 public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCity, breadCloning, sandwocracy, sandriaLaw, sandwichPlanet, humanExtermination, sandwichFleet, enslaveAliens, deathSandwich, sandwichGalaxy, flyingSandwichMonster }

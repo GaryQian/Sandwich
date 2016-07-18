@@ -5,10 +5,12 @@ using System;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+#if UNITY_ANDROID
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 using GoogleMobileAds.Api;
+#endif
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -97,7 +99,9 @@ public class WorldManager : MonoBehaviour {
 
 
     //ADS
+#if UNITY_ANDROID
     public InterstitialAd interstitial;
+#endif
 
     private bool scorePostFailed = false;
 
@@ -185,28 +189,32 @@ public class WorldManager : MonoBehaviour {
     private void RequestInterstitial() {
         #if UNITY_ANDROID
                 string adUnitId = "ca-app-pub-3270795222614514/2236020819";
-        #elif UNITY_IPHONE
+#elif UNITY_IPHONE
                 string adUnitId = "INSERT_IOS_INTERSTITIAL_AD_UNIT_ID_HERE";
-        #else
+#else
                 string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
+#if UNITY_ANDROID
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
+#endif
     }
-
+#if UNITY_ANDROID
     void playInterstitial() {
         if (interstitial.IsLoaded()) {
             interstitial.Show();
             Invoke("RequestInterstitial", 5f);
         }
     }
+#endif
 
     public void setupGPGS() {
+#if UNITY_ANDROID
         //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
 
 
@@ -228,10 +236,12 @@ public class WorldManager : MonoBehaviour {
         catch (Exception e) {
             Debug.LogError("ERROR AUTHENTICATION: " + e.Message);
         }
+#endif
     }
 
     public void postScore() {
         if (!hasCheated) {
+#if UNITY_ANDROID
             scorePostFailed = false;
             //total money
             Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
@@ -256,6 +266,7 @@ public class WorldManager : MonoBehaviour {
             });
 
             if (scorePostFailed) Invoke("postScore", 300f);
+#endif
         }
     }
 
