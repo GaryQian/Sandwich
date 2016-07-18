@@ -1,3 +1,19 @@
+## [1.6.0] - 2016-7-7
+### Added
+- Support for redeeming [Google Play promo codes](https://developer.android.com/google/play/billing/billing_promotions.html) for IAPs.
+- IAndroidStoreSelection extended configuration for accessing the currently selected Android store.
+
+```csharp
+var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+Debug.Log(builder.Configure<IAndroidStoreSelection>().androidStore);
+```
+
+### Fixed
+- Apple Stores - ProcessPurchase not being called on initialize for existing transactions if another storekit transaction observer is added elsewhere in the App. This addresses a number of issues when using third party SDKs, including Facebook's.
+- Google Play - sandbox purchases. In Google's sandbox Unity IAP now uses Google's purchase token instead of Order ID to represent transaction IDs.
+- iOS not initializing when IAP purchase restrictions are active. IAP will now initialise if restrictions are active, enabling browsing of IAP metadata, although purchases will fail until restrictions are disabled.
+- Instantiating multiple ConfigurationBuilders causing purchasing to break on Google Play & iOS.
+
 ## [1.5.0] - 2016-5-10
 ### Added
 - Amazon stores - Added NotifyUnableToFulfillUnavailableProduct(string transactionID) to IAmazonExtensions.

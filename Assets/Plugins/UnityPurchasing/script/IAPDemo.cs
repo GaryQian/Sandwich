@@ -62,7 +62,9 @@ public class IAPDemo : MonoBehaviour, IStoreListener
 						item.metadata.localizedDescription,
 						item.metadata.isoCurrencyCode,
 						item.metadata.localizedPrice.ToString(),
-						item.metadata.localizedPriceString
+						item.metadata.localizedPriceString,
+						item.transactionID,
+						item.receipt
 					}));
 			}
 		}
@@ -184,7 +186,6 @@ public class IAPDemo : MonoBehaviour, IStoreListener
 		// This enables the Microsoft IAP simulator for local testing.
 		// You would remove this before building your release package.
 		builder.Configure<IMicrosoftConfiguration>().useMockBillingSystem = true;
-		builder.Configure<IGooglePlayConfiguration>().SetPublicKey("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2O/9/H7jYjOsLFT/uSy3ZEk5KaNg1xx60RN7yWJaoQZ7qMeLy4hsVB3IpgMXgiYFiKELkBaUEkObiPDlCxcHnWVlhnzJBvTfeCPrYNVOOSJFZrXdotp5L0iS2NVHjnllM+HA1M0W2eSNjdYzdLmZl1bxTpXa4th+dVli9lZu7B7C2ly79i/hGTmvaClzPBNyX+Rtj7Bmo336zh2lYbRdpD5glozUq+10u91PMDPH+jqhx10eyZpiapr8dFqXl5diMiobknw9CgcjxqMTVBQHK6hS0qYKPmUDONquJn280fBs1PTeA6NMG03gb9FLESKFclcuEZtvM8ZwMMRxSLA9GwIDAQAB");
 
 		// Define our products.
 		// In this case our products have the same identifier across all the App stores,
