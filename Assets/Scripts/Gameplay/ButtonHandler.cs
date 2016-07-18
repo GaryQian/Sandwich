@@ -2,7 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+#if UNITY_ANDROID
 using GooglePlayGames;
+#endif
 using UnityEngine.SocialPlatforms;
 
 public class ButtonHandler : MonoBehaviour {
