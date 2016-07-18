@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using System.Security.Cryptography;
-using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
-using GooglePlayGames.BasicApi;
 public class Godmode : MonoBehaviour {
     public int godCounter = 0;
     public Text txt;
