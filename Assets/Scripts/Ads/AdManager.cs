@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_ANDROID
+using UnityEngine;
 using System.Collections;
 using GooglePlayGames.BasicApi;
 using GoogleMobileAds.Api;
@@ -73,3 +74,4 @@ public class AdManager : MonoBehaviour {
         ButtonHandler.BuySandwichGalaxy -= showAd;
     }
 }
+#endif
