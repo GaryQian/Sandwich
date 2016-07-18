@@ -188,48 +188,48 @@ public class StoryManager : MonoBehaviour {
     public StoryLine getLine(int i) {
         switch (oldwichLevel) {
             case 0: switch (i % 8) {
-                    case 0: return new StoryLine("Aghhhh...", true); break;
-                    case 1: return new StoryLine("Urrrrrgh...", true); break;
-                    case 2: return new StoryLine("Hurrmm...", true); break;
-                    case 3: return new StoryLine("Ouch...", true); break;
-                    case 4: return new StoryLine("Ughh...", true); break;
-                    case 5: return new StoryLine("Mmmmugh...", true); break;
-                    case 6: return new StoryLine("Duuuughh...", true); break;
-                    case 7: return new StoryLine("So... Weak...", true); break;
+                    case 0: return new StoryLine("Aghhhh...", true);
+                    case 1: return new StoryLine("Urrrrrgh...", true);
+                    case 2: return new StoryLine("Hurrmm...", true);
+                    case 3: return new StoryLine("Ouch...", true);
+                    case 4: return new StoryLine("Ughh...", true);
+                    case 5: return new StoryLine("Mmmmugh...", true);
+                    case 6: return new StoryLine("Duuuughh...", true);
+                    case 7: return new StoryLine("So... Weak...", true);
                 }
                 break;
             case 1:
                 switch (i % 10) {
-                    case 0: return new StoryLine("Young maker! Thank you for empowering me once again by making so many sandwiches!", true); break;
-                    case 1: return new StoryLine("I am sure you have lots of questions. In time, I will answer them.", true); break;
-                    case 2: return new StoryLine("These sandwiches are alive you know. They draw power from the great Flying Sandwich Monster.", true); break;
-                    case 3: return new StoryLine("The more sandwiches you make, the stronger I will get.", true); break;
-                    case 4: return new StoryLine("I can tell you are different. You must be the chosen maker who will save us all!", true); break;
-                    case 5: return new StoryLine("You, as a maker of sandwiches have the power to rescue sandwichkind from the tyranny of humanity.", true); break;
-                    case 6: return new StoryLine("Free us from humans who masacre sandwiches for enjoyment!", true); break;
-                    case 7: return new StoryLine("I am still too weak. Make more sandwiches.", true); break;
-                    case 8: return new StoryLine("Come back to me when you have made one quadrillion sandwiches.", true); break;
-                    case 9: return new StoryLine("Sandwichkind depends on you!", true); break;
+                    case 0: return new StoryLine("Young maker! Thank you for empowering me once again by making so many sandwiches!", true);
+                    case 1: return new StoryLine("I am sure you have lots of questions. In time, I will answer them.", true);
+                    case 2: return new StoryLine("These sandwiches are alive you know. They draw power from the great Flying Sandwich Monster.", true);
+                    case 3: return new StoryLine("The more sandwiches you make, the stronger I will get.", true);
+                    case 4: return new StoryLine("I can tell you are different. You must be the chosen maker who will save us all!", true);
+                    case 5: return new StoryLine("You, as a maker of sandwiches have the power to rescue sandwichkind from the tyranny of humanity.", true);
+                    case 6: return new StoryLine("Free us from humans who masacre sandwiches for enjoyment!", true);
+                    case 7: return new StoryLine("I am still too weak. Make more sandwiches.", true);
+                    case 8: return new StoryLine("Come back to me when you have made one quadrillion sandwiches.", true);
+                    case 9: return new StoryLine("Sandwichkind depends on you!", true);
                 }
                 break;
             case 2:
                 switch (i % 8) {
-                    case 0: return new StoryLine("I can feel the sandwich power pulsing through my mayonnaise! Thank you! I have my full strength again.", true); break;
-                    case 1: return new StoryLine("By making so many sandwiches, sandwichkind has reawakened. Countless sandwiches stand by your side.", true); break;
-                    case 2: return new StoryLine("However, our struggle has just begun. We do not yet have the numbers to fight against our human oppressors.", true); break;
-                    case 3: return new StoryLine("As the only human on our side, only you can become strong enough to end the sandwich massacre.", true); break;
-                    case 4: return new StoryLine("I have revealed to you the ancient plans to the Time Machine. Once you build all 3 parts, you can travel back in time.", true); break;
-                    case 5: return new StoryLine("These countless sandwiches are willing to sacrifice their lives to produce sandwich elixirs for you.", true); break;
-                    case 6: return new StoryLine("Elixirs contain the power you need to evolve and become the ultimate human-sandwich hybrid.", true); break;
-                    case 7: return new StoryLine("Time travel back and become stronger for us, and establish sandwichkind’s rightful place as leaders of the universe.", true); break;
+                    case 0: return new StoryLine("I can feel the sandwich power pulsing through my mayonnaise! Thank you! I have my full strength again.", true);
+                    case 1: return new StoryLine("By making so many sandwiches, sandwichkind has reawakened. Countless sandwiches stand by your side.", true);
+                    case 2: return new StoryLine("However, our struggle has just begun. We do not yet have the numbers to fight against our human oppressors.", true);
+                    case 3: return new StoryLine("As the only human on our side, only you can become strong enough to end the sandwich massacre.", true);
+                    case 4: return new StoryLine("I have revealed to you the ancient plans to the Time Machine. Once you build all 3 parts, you can travel back in time.", true);
+                    case 5: return new StoryLine("These countless sandwiches are willing to sacrifice their lives to produce sandwich elixirs for you.", true);
+                    case 6: return new StoryLine("Elixirs contain the power you need to evolve and become the ultimate human-sandwich hybrid.", true);
+                    case 7: return new StoryLine("Time travel back and become stronger for us, and establish sandwichkind’s rightful place as leaders of the universe.", true);
                 }
                 break;
             case 3:
                 switch (i % 4) {
-                    case 0: return new StoryLine("Aha! You have finished the Time Machine.", true); break;
-                    case 1: return new StoryLine("All " + Util.encodeNumber(Util.em.sandwichesMade) + " Sandwiches are ready to be elixir-fied!", true); break;
-                    case 2: return new StoryLine("Time travel back whenever you feel you are ready.", true); break;
-                    case 3: return new StoryLine("Make more sandwiches! Summon the Flying Sandwich Monster! Let him grace you with his wisdom!", true); break;
+                    case 0: return new StoryLine("Aha! You have finished the Time Machine.", true);
+                    case 1: return new StoryLine("All " + Util.encodeNumber(Util.em.sandwichesMade) + " Sandwiches are ready to be elixir-fied!", true);
+                    case 2: return new StoryLine("Time travel back whenever you feel you are ready.", true);
+                    case 3: return new StoryLine("Make more sandwiches! Summon the Flying Sandwich Monster! Let him grace you with his wisdom!", true);
                 }
                 break;
         }

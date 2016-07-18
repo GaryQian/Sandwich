@@ -169,17 +169,17 @@ public class Bread : MonoBehaviour {
     }
     public Sprite getBreadSprite(int i) {
         switch (i % totalBreads) {
-            case 0: return bread; break;
-            case 1: return wheat; break;
-            case 2: return french; break;
-            case 3: return rye; break;
-            case 4: return flat; break;
-            case 5: return bagel; break;
-            case 6: return corn; break;
-            case 7: return cinnamon; break;
-            case 8: return banana; break;
-            case 9: return potato; break;
-            case 10: return pizza; break;
+            case 0: return bread;
+            case 1: return wheat;
+            case 2: return french;
+            case 3: return rye;
+            case 4: return flat;
+            case 5: return bagel;
+            case 6: return corn;
+            case 7: return cinnamon;
+            case 8: return banana;
+            case 9: return potato;
+            case 10: return pizza;
         }
         return bread;
     }
@@ -191,17 +191,17 @@ public class Bread : MonoBehaviour {
     }
     public string getBreadName(int i) {
         switch (i % totalBreads) {
-            case 0: return "White Bread"; break;
-            case 1: return "Wheat Bread"; break;
-            case 2: return "French Bread"; break;
-            case 3: return "Rye Bread"; break;
-            case 4: return "Flatbread"; break;
-            case 5: return "Bagel"; break;
-            case 6: return "Cornbread"; break;
-            case 7: return "Cinnamon Bread"; break;
-            case 8: return "Banana Bread"; break;
-            case 9: return "Potato bread"; break;
-            case 10: return "Pizza!"; break;
+            case 0: return "White Bread";
+            case 1: return "Wheat Bread";
+            case 2: return "French Bread";
+            case 3: return "Rye Bread";
+            case 4: return "Flatbread";
+            case 5: return "Bagel";
+            case 6: return "Cornbread";
+            case 7: return "Cinnamon Bread";
+            case 8: return "Banana Bread";
+            case 9: return "Potato bread";
+            case 10: return "Pizza!";
         }
         return "Bread";
     }
