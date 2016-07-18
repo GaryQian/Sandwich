@@ -31,8 +31,9 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+38d) Social.ReportProgress("CgkI1rDm6sMKEAIQFg", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+41d) Social.ReportProgress("CgkI1rDm6sMKEAIQFw", 100.0f, (bool success) => { });
             }
+ #endif
         }
-#endif
+
     }
 
     void handleHumanExtermination() {
