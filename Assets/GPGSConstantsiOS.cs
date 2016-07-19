@@ -22,7 +22,7 @@
 ///
 
 
-public static class GPGSConstants
+public static class GPGSConstantsiOS
 {
         public const string achievement_sextillionaire = "CgkI1rDm6sMKEAIQCg"; // <GPGSID>
         public const string achievement_undecillionaire = "CgkI1rDm6sMKEAIQEg"; // <GPGSID>
