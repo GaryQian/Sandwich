@@ -5,7 +5,7 @@ public class AchievementManager : MonoBehaviour {
 
     public void checkMoneyAcheivements() {
         if (!Util.wm.hasCheated) {
-        #if UNITY_ANDROID
+        //#if UNITY_ANDROID
             if (Util.em.totalMoney < 1E+18f) {
                 if (Util.em.money >= 1E+6f) Social.ReportProgress("CgkI1rDm6sMKEAIQBA", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+9f) Social.ReportProgress("CgkI1rDm6sMKEAIQBQ", 100.0f, (bool success) => { });
@@ -31,7 +31,7 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+38d) Social.ReportProgress("CgkI1rDm6sMKEAIQFg", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+41d) Social.ReportProgress("CgkI1rDm6sMKEAIQFw", 100.0f, (bool success) => { });
             }
-        #endif
+        //#endif
         }
 
     }
@@ -49,18 +49,18 @@ public class AchievementManager : MonoBehaviour {
     }
 
     void OnEnable() {
-    #if UNITY_ANDROID
+    //#if UNITY_ANDROID
         ButtonHandler.BuyHumanExtermination += handleHumanExtermination;
         ButtonHandler.BuyFlyingSandwichMonster += handleFlyingSandwichMonster;
         ButtonHandler.BuySandriaLaw += handleSandriaLaw;
-    #endif
+    //#endif
     }
 
     void OnDisable() {
-    #if UNITY_ANDROID
+    //#if UNITY_ANDROID
         ButtonHandler.BuyHumanExtermination -= handleHumanExtermination;
         ButtonHandler.BuyFlyingSandwichMonster -= handleFlyingSandwichMonster;
         ButtonHandler.BuySandriaLaw -= handleSandriaLaw;
-    #endif
+    //#endif
     }
 }

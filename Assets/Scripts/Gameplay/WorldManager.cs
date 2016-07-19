@@ -7,10 +7,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SocialPlatforms;
 using GoogleMobileAds.Api;
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-#endif
+//#endif
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -108,7 +108,6 @@ public class WorldManager : MonoBehaviour {
     void Awake() {
 
         music = GetComponent<AudioSource>();
-
         Util.wm = this;
         setupUtil();
 
@@ -189,37 +188,46 @@ public class WorldManager : MonoBehaviour {
                 string adUnitId = "unexpected_platform";
         #endif
 
-    #if UNITY_ANDROID
+    //#if UNITY_ANDROID
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
-    #endif
+    //#endif
     }
 
     void playInterstitial() {
-        #if UNITY_ANDROID
+        //#if UNITY_ANDROID
         if (interstitial.IsLoaded()) {
             interstitial.Show();
             Invoke("RequestInterstitial", 5f);
         }
-        #endif
+        //#endif
     }
 
 
     public void setupGPGS() {
     #if UNITY_ANDROID
-        //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
         Debug.Log("Activating GPGS");
-
-        //PlayGamesPlatform.InitializeInstance(config);
-        // recommended for debugging:
-        //PlayGamesPlatform.DebugLogEnabled = true;
-        // Activate the Google Play Games platform
         PlayGamesPlatform.Activate();
         Debug.Log("GPGS Activated");
+        authenticate();
+#elif UNITY_IOS
+        Debug.Log("Activating GPGS");
+        PlayGamesPlatform.Activate();
+        Debug.Log("GPGS Activated");
+        if (em.totalMoney < 1000) {
+            Invoke("authenticate", 90f);
+        }
+        else {
+            authenticate();
+        }
+#endif
+    }
+
+    void authenticate() {
         try {
             Debug.Log("Authenticating GPGS...");
             Social.localUser.Authenticate((bool success) => {
@@ -232,12 +240,11 @@ public class WorldManager : MonoBehaviour {
         catch (Exception e) {
             Debug.LogError("ERROR AUTHENTICATION: " + e.Message);
         }
-    #endif
     }
 
     public void postScore() {
-        if (!hasCheated) {
-        #if UNITY_ANDROID
+        if (!hasCheated && Social.localUser.authenticated) {
+        //#if UNITY_ANDROID
             scorePostFailed = false;
             //total money
             Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
@@ -262,7 +269,7 @@ public class WorldManager : MonoBehaviour {
             });
 
             if (scorePostFailed) Invoke("postScore", 300f);
-        #endif
+        //#endif
         }
     }
 

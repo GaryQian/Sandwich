@@ -2,9 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using GoogleMobileAds.Api;
-#if UNITY_ANDROID
-using GooglePlayGames.BasicApi;
-#endif
+
 public class AdManager : MonoBehaviour {
     bool ready = false;
 	// Use this for initialization
