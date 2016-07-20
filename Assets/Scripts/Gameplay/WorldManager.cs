@@ -224,7 +224,7 @@ public class WorldManager : MonoBehaviour {
 #endif
     }
 
-    void authenticate() {
+    public void authenticate() {
         try {
             Debug.Log("Authenticating...");
             Social.localUser.Authenticate((bool success) => {

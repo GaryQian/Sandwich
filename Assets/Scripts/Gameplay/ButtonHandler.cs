@@ -236,12 +236,22 @@ public class ButtonHandler : MonoBehaviour {
     /// 
 
     public void showLeaderboard() {
-        Social.ShowLeaderboardUI();
+        if (Social.localUser.authenticated) {
+            Social.ShowLeaderboardUI();
+        }
+        else {
+            wm.authenticate();
+        }
     }
     ///
     /// Achievements UI
     public void showAchievements() {
-        Social.ShowAchievementsUI();
+        if (Social.localUser.authenticated) {
+            Social.ShowAchievementsUI();
+        }
+        else {
+            wm.authenticate();
+        }
     }
 
     ///
