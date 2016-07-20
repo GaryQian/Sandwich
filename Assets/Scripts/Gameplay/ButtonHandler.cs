@@ -241,6 +241,7 @@ public class ButtonHandler : MonoBehaviour {
         }
         else {
             wm.authenticate();
+            Social.ShowLeaderboardUI();
         }
     }
     ///
@@ -251,6 +252,7 @@ public class ButtonHandler : MonoBehaviour {
         }
         else {
             wm.authenticate();
+            Social.ShowAchievementsUI();
         }
     }
 
