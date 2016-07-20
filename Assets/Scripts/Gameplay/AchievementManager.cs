@@ -5,7 +5,7 @@ public class AchievementManager : MonoBehaviour {
 
     public void checkMoneyAcheivements() {
         if (!Util.wm.hasCheated) {
-        //#if UNITY_ANDROID
+        #if UNITY_ANDROID
             if (Util.em.totalMoney < 1E+18f) {
                 if (Util.em.money >= 1E+6f) Social.ReportProgress("CgkI1rDm6sMKEAIQBA", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+9f) Social.ReportProgress("CgkI1rDm6sMKEAIQBQ", 100.0f, (bool success) => { });
@@ -31,36 +31,76 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+38d) Social.ReportProgress("CgkI1rDm6sMKEAIQFg", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+41d) Social.ReportProgress("CgkI1rDm6sMKEAIQFw", 100.0f, (bool success) => { });
             }
-        //#endif
+#elif UNITY_IOS
+            if (Util.em.totalMoney < 1E+18f) {
+                if (Util.em.money >= 1E+6f) Social.ReportProgress("millionaire", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+9f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+12f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+15f) Social.ReportProgress("", 100.0f, (bool success) => { });
+
+                //if (Util.em.totalSwipes >= 100) Social.ReportProgress("", 100.0f, (bool success) => { }); //sandwich chef
+            }
+            else if (Util.em.totalMoney < 1E+30f) {
+                //if (Util.em.money >= 1E+18f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+21f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+24f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+27f) Social.ReportProgress("", 100.0f, (bool success) => { });
+
+            }
+            else {
+                //if (Util.em.money >= 1E+30f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+33f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+36f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+39d) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+32d) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+35d) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+38d) Social.ReportProgress("", 100.0f, (bool success) => { });
+                //if (Util.em.money >= 1E+41d) Social.ReportProgress("", 100.0f, (bool success) => { });
+            }
+#endif
         }
 
     }
 
     void handleHumanExtermination() {
-        if (Util.em.humanExterminationCount >= 1 && !Util.wm.hasCheated) Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
+        if (Util.em.humanExterminationCount >= 1 && !Util.wm.hasCheated) {
+#if UNITY_ANDROID
+            Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
+#elif UNITY_IOS
+
+#endif
+        }
     }
 
     void handleFlyingSandwichMonster() {
-        if (Util.em.flyingSandwichMonsterCount >= 1 && !Util.wm.hasCheated) Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+        if (Util.em.flyingSandwichMonsterCount >= 1 && !Util.wm.hasCheated) {
+#if UNITY_ANDROID
+            Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
+#elif UNITY_IOS
+
+#endif
+        }
     }
 
     void handleSandriaLaw() {
-        if (Util.em.sandriaLawCount >= 1 && !Util.wm.hasCheated) Social.ReportProgress("CgkI1rDm6sMKEAIQGA", 100.0f, (bool success) => { }); //I Declare War
+        if (Util.em.sandriaLawCount >= 1 && !Util.wm.hasCheated) {
+#if UNITY_ANDROID
+            Social.ReportProgress("CgkI1rDm6sMKEAIQGA", 100.0f, (bool success) => { }); //I Declare War
+#elif UNITY_IOS
+
+#endif
+        }
     }
 
     void OnEnable() {
-    //#if UNITY_ANDROID
         ButtonHandler.BuyHumanExtermination += handleHumanExtermination;
         ButtonHandler.BuyFlyingSandwichMonster += handleFlyingSandwichMonster;
         ButtonHandler.BuySandriaLaw += handleSandriaLaw;
-    //#endif
     }
 
     void OnDisable() {
-    //#if UNITY_ANDROID
         ButtonHandler.BuyHumanExtermination -= handleHumanExtermination;
         ButtonHandler.BuyFlyingSandwichMonster -= handleFlyingSandwichMonster;
         ButtonHandler.BuySandriaLaw -= handleSandriaLaw;
-    //#endif
     }
 }

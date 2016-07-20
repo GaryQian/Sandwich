@@ -7,10 +7,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SocialPlatforms;
 using GoogleMobileAds.Api;
-//#if UNITY_ANDROID
+#if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
-//#endif
+#elif UNITY_IOS
+using UnityEngine.SocialPlatform.GameCenter;
+#endif
+
 
 public enum MenuType {stats, sandwich, producer, permanent, shop}
 
@@ -188,23 +191,19 @@ public class WorldManager : MonoBehaviour {
                 string adUnitId = "unexpected_platform";
         #endif
 
-    //#if UNITY_ANDROID
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
-    //#endif
     }
 
     void playInterstitial() {
-        //#if UNITY_ANDROID
         if (interstitial.IsLoaded()) {
             interstitial.Show();
             Invoke("RequestInterstitial", 5f);
         }
-        //#endif
     }
 
 
@@ -215,23 +214,21 @@ public class WorldManager : MonoBehaviour {
         Debug.Log("GPGS Activated");
         authenticate();
 #elif UNITY_IOS
-        Debug.Log("Activating GPGS");
-        PlayGamesPlatform.Activate();
-        Debug.Log("GPGS Activated");
-        if (em.totalMoney < 1000) {
+        authenticate();
+        /*if (em.totalMoney < 1000) {
             Invoke("authenticate", 90f);
         }
         else {
             authenticate();
-        }
+        }*/
 #endif
     }
 
     void authenticate() {
         try {
-            Debug.Log("Authenticating GPGS...");
+            Debug.Log("Authenticating...");
             Social.localUser.Authenticate((bool success) => {
-                Debug.Log("GPGS Authenticated, Posting scores.");
+                Debug.Log("Authenticated, Posting scores.");
                 // handle success or failure
                 if (success) postScore();
                 Debug.Log("Scores Posted.");
@@ -244,7 +241,7 @@ public class WorldManager : MonoBehaviour {
 
     public void postScore() {
         if (!hasCheated && Social.localUser.authenticated) {
-        //#if UNITY_ANDROID
+        #if UNITY_ANDROID
             scorePostFailed = false;
             //total money
             Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
@@ -269,7 +266,31 @@ public class WorldManager : MonoBehaviour {
             });
 
             if (scorePostFailed) Invoke("postScore", 300f);
-        //#endif
+#elif UNITY_IOS
+            scorePostFailed = false;
+            //ios stuff.
+            Social.ReportScore((long)em.totalMoney, "totalmoneymade", (bool success) => {
+                // handle success or failure
+                if (!success) {
+                    scorePostFailed = true;
+                }
+            });
+            //total elixirs
+            Social.ReportScore((long)em.totalElixir, "totalswipes", (bool success) => {
+                // handle success or failure
+                if (!success) {
+                    scorePostFailed = true;
+                }
+            });
+            //total swipes
+            Social.ReportScore((long)em.totalSwipes, "totalelixirsearned", (bool success) => {
+                // handle success or failure
+                if (!success) {
+                    scorePostFailed = true;
+                }
+            });
+            if (scorePostFailed) Invoke("postScore", 300f);
+#endif
         }
     }
 

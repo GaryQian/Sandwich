@@ -35,9 +35,9 @@ namespace CompleteProject {
             // If we haven't set up the Unity Purchasing reference
             if (m_StoreController == null) {
                 // Begin to configure our connection to Purchasing
-            #if UNITY_ANDROID
+            //#if UNITY_ANDROID
                 InitializePurchasing();
-            #endif
+            //#endif
             }
         }
 

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 #if UNITY_ANDROID
 using GooglePlayGames;
+#elif UNITY_IOS
+using UnityEngine.SocialPlatform.GameCenter;
 #endif
 using UnityEngine.SocialPlatforms;
 
