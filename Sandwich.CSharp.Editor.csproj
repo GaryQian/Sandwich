@@ -130,6 +130,9 @@
     <Reference Include="winrt">
       <HintPath>Assets\Plugins\UnityPurchasing\winrt\winrt.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.CrashLog">
+      <HintPath>Assets\Plugins\UnityPerf\UnityEngine.CrashLog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Sandwich.CSharp.Plugins.csproj">

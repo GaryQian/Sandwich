@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SocialPlatforms;
 using GoogleMobileAds.Api;
+using UnityEngine.CrashLog;
 #if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -154,6 +155,8 @@ public class WorldManager : MonoBehaviour {
         canvas.GetComponent<Canvas>().sortingGridNormalizedSize = 5;
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
+
+        CrashReporting.Init("9ad44a0b-f023-448d-9c39-61ee9cc5ed9b", "1.05.1", "Android");
     }
 
     public void processOffline() {
