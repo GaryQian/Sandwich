@@ -11,7 +11,7 @@ using GoogleMobileAds.Api;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 #elif UNITY_IOS
-using UnityEngine.SocialPlatform.GameCenter;
+using UnityEngine.SocialPlatforms.GameCenter;
 #endif
 
 

@@ -16,15 +16,16 @@ namespace CompleteProject {
         // counterparts for use with and outside of Unity Purchasing. Define store-specific identifiers 
         // also on each platform's publisher dashboard (iTunes Connect, Google Play Developer Console, etc.)
 
-// General product identifiers for the consumable, non-consumable, and subscription products.
-// Use these handles in the code to reference which product to purchase. Also use these values 
-// when defining the Product Identifiers on the store. Except, for illustration purposes, the 
-// kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
-// specific mapping to Unity Purchasing's AddProduct, below.
+        // General product identifiers for the consumable, non-consumable, and subscription products.
+        // Use these handles in the code to reference which product to purchase. Also use these values 
+        // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
+        // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
+        // specific mapping to Unity Purchasing's AddProduct, below.
+#if UNITY_ANDROID
         public static string knifeCollectionID = "sandwichknifecollection";
 
-#if UNITY_IOS
-        knifeCollectionID = "sandwichknifecollectionios";
+#elif UNITY_IOS
+        public static string knifeCollectionID = "sandwichknifecollectionios";
 #endif
         public static string x3ID = "sandwichx3boost";
         public static string x7ID = "sandwichx7boost";
