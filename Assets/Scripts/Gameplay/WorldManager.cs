@@ -244,21 +244,21 @@ public class WorldManager : MonoBehaviour {
         #if UNITY_ANDROID
             scorePostFailed = false;
             //total money
-            Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQDQ", (bool success) => {
+            Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQGg", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
                 }
             });
             //total elixirs
-            Social.ReportScore((long)em.totalElixir, "CgkI1rDm6sMKEAIQDg", (bool success) => {
+            Social.ReportScore((long)em.totalElixir, "CgkI1rDm6sMKEAIQGw", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
                 }
             });
             //total swipes
-            Social.ReportScore((long)em.totalSwipes, "CgkI1rDm6sMKEAIQDA", (bool success) => {
+            Social.ReportScore((long)em.totalSwipes, "CgkI1rDm6sMKEAIQHA", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
