@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SocialPlatforms;
 using GoogleMobileAds.Api;
-using UnityEngine.CrashLog;
+//using UnityEngine.CrashLog;
 #if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -71,6 +71,7 @@ public class WorldManager : MonoBehaviour {
     public TutorialManager tutorialManager;
     public GameObject muteButton;
     public GameObject musicMuteButton;
+    public GameObject restorePurchasesButton;
 
     public DateTime lastTime;
     public float timeScaleDivisor;
@@ -156,7 +157,14 @@ public class WorldManager : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.WindowsEditor) Util.godmode = true;
 
-        CrashReporting.Init("9ad44a0b-f023-448d-9c39-61ee9cc5ed9b", "1.05.1", "Android");
+        //CrashReporting.Init("9ad44a0b-f023-448d-9c39-61ee9cc5ed9b", "1.05.1", "Android");
+
+        //Remove restore purchases button for non-IOS platforms
+#if UNITY_IOS
+        Debug.Log("Leaving restore purchases intact");
+#elif UNITY_ANDROID
+        Destroy(restorePurchasesButton);
+#endif
     }
 
     public void processOffline() {
@@ -186,13 +194,13 @@ public class WorldManager : MonoBehaviour {
     }
 
     private void RequestInterstitial() {
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
                 string adUnitId = "ca-app-pub-3270795222614514/2236020819";
-        #elif UNITY_IPHONE
+#elif UNITY_IPHONE
                 string adUnitId = "INSERT_IOS_INTERSTITIAL_AD_UNIT_ID_HERE";
-        #else
+#else
                 string adUnitId = "unexpected_platform";
-        #endif
+#endif
 
         // Initialize an InterstitialAd.
         interstitial = new InterstitialAd(adUnitId);
@@ -211,7 +219,7 @@ public class WorldManager : MonoBehaviour {
 
 
     public void setupGPGS() {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
         Debug.Log("Activating GPGS");
         PlayGamesPlatform.Activate();
         Debug.Log("GPGS Activated");
@@ -244,7 +252,7 @@ public class WorldManager : MonoBehaviour {
 
     public void postScore() {
         if (!hasCheated && Social.localUser.authenticated) {
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
             scorePostFailed = false;
             //total money
             Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQGg", (bool success) => {
