@@ -26,6 +26,7 @@ public class EconomyManager : MonoBehaviour {
     public int breadID = 0;
     public double totalTime = 0f;
     public double gameTime = 0f;
+    public double sessionTime = 0f;
     public double sps; //sandwiches per second
     public double sandwichesMade;
     public double lifetimeSandwichesMade;
@@ -123,6 +124,9 @@ public class EconomyManager : MonoBehaviour {
         wm.spawnAlert();
 
         if (totalTime > 90f) Destroy(wm.overlay);
+
+        wm.buttonHandler.toggleBatterySaver();
+        wm.buttonHandler.toggleBatterySaver();
     }
 
     // Update is called once per frame
@@ -142,6 +146,7 @@ public class EconomyManager : MonoBehaviour {
         sandwichesMade += rate * updateRate;
         totalTime += updateRate;
         gameTime += updateRate;
+        sessionTime += updateRate;
         even = !even;
         displayMoney();
     }

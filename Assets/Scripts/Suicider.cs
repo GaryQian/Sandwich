@@ -11,4 +11,10 @@ public class Suicider : MonoBehaviour {
     public void suicide() {
         Destroy(gameObject);
     }
+
+    public void kill() {
+        if (Util.em.sessionTime <= 2f * Util.em.updateRate || Util.em.sessionTime > 5f) {
+            suicide();
+        }
+    }
 }

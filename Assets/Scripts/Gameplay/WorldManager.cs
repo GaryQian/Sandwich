@@ -76,7 +76,7 @@ public class WorldManager : MonoBehaviour {
     public GameObject batterySaverButton;
     public GameObject overlay;
 
-    public DateTime lastTime;
+    public DateTime lastTime = new DateTime(9998, 1, 1);
     public float timeScaleDivisor;
 
     public bool muted = false;
@@ -123,16 +123,6 @@ public class WorldManager : MonoBehaviour {
     }
 
 	void Start () {
-        if (Util.GetBatteryLevel() < 30f) {
-            Application.targetFrameRate = 30;
-            batterySaver = true;
-            batterySaverButton.GetComponent<Image>().color = new Color(0, 1f, 0);
-        }
-        else {
-            Application.targetFrameRate = 50;
-            batterySaver = false;
-            batterySaverButton.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
-        }
         
         if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
 
@@ -518,6 +508,7 @@ public class WorldManager : MonoBehaviour {
         data.muted = muted;
         data.musicMuted = musicMuted;
         data.hasCheated = hasCheated;
+        data.batterySaver = batterySaver;
 
         bf.Serialize(file, data);
         file.Close();
@@ -539,6 +530,7 @@ public class WorldManager : MonoBehaviour {
             muted = data.muted;
             musicMuted = data.musicMuted;
             hasCheated = data.hasCheated;
+            batterySaver = data.batterySaver;
 
             saveVersion();
         }
@@ -572,6 +564,8 @@ public class SaveSettings {
     public bool musicMuted;
 
     public bool hasCheated;
+
+    public bool batterySaver;
 }
 
 [Serializable]
