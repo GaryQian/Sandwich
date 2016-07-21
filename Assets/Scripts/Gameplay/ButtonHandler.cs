@@ -263,6 +263,22 @@ public class ButtonHandler : MonoBehaviour {
         Application.OpenURL("http://facebook.com/sandwichorelse");
     }
 
+    ///
+    ///BatterySaver Mode
+    ///
+
+    public void toggleBatterySaver() {
+        if (!wm.batterySaver) {
+            Application.targetFrameRate = 30;
+            wm.batterySaverButton.GetComponent<Image>().color = new Color(0, 1f, 0);
+        }
+        else {
+            Application.targetFrameRate = 50;
+            wm.batterySaverButton.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+        }
+        wm.batterySaver = !wm.batterySaver;
+    }
+
     /// <summary>
     /// Sand Witch
     /// </summary>

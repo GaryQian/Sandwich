@@ -58,6 +58,7 @@ public class WorldManager : MonoBehaviour {
     public int sandWitchesClicked = 0;
 
     public bool hasCheated = false;
+    public bool batterySaver = false;
 
     public GameplayTouchManager gtm;
     public EconomyManager em;
@@ -72,6 +73,7 @@ public class WorldManager : MonoBehaviour {
     public GameObject muteButton;
     public GameObject musicMuteButton;
     public GameObject restorePurchasesButton;
+    public GameObject batterySaverButton;
 
     public DateTime lastTime;
     public float timeScaleDivisor;
@@ -119,7 +121,16 @@ public class WorldManager : MonoBehaviour {
     }
 
 	void Start () {
-        Application.targetFrameRate = 30;
+        if (Util.GetBatteryLevel() < 30f) {
+            Application.targetFrameRate = 30;
+            batterySaver = true;
+            batterySaverButton.GetComponent<Image>().color = new Color(0, 1f, 0);
+        }
+        else {
+            Application.targetFrameRate = 50;
+            batterySaver = false;
+            batterySaverButton.GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f);
+        }
         
         if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
 
