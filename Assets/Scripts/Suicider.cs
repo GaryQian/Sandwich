@@ -8,7 +8,7 @@ public class Suicider : MonoBehaviour {
         Invoke("suicide", life);
 	}
 
-    void suicide() {
+    public void suicide() {
         Destroy(gameObject);
     }
 }

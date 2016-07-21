@@ -74,6 +74,7 @@ public class WorldManager : MonoBehaviour {
     public GameObject musicMuteButton;
     public GameObject restorePurchasesButton;
     public GameObject batterySaverButton;
+    public GameObject overlay;
 
     public DateTime lastTime;
     public float timeScaleDivisor;
@@ -118,6 +119,7 @@ public class WorldManager : MonoBehaviour {
         Util.wm = this;
         setupUtil();
 
+        overlay.SetActive(true);
     }
 
 	void Start () {

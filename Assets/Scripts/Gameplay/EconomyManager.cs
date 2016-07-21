@@ -121,6 +121,8 @@ public class EconomyManager : MonoBehaviour {
         wm.setupGPGS();
         wm.processOffline();
         wm.spawnAlert();
+
+        if (totalTime > 90f) Destroy(wm.overlay);
     }
 
     // Update is called once per frame
