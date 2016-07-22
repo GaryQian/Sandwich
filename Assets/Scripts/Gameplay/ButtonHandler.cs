@@ -9,6 +9,8 @@ using UnityEngine.SocialPlatforms.GameCenter;
 #endif
 using UnityEngine.SocialPlatforms;
 
+public enum AdWatchType { money, elixir, x2boost, other }
+
 public class ButtonHandler : MonoBehaviour {
 
     public EconomyManager em;
@@ -61,6 +63,8 @@ public class ButtonHandler : MonoBehaviour {
     public static event BuyItem BuyEvolution;
     public static event BuyItem BuySandwichReproduction;
 
+
+    public static AdWatchType adWatchType = AdWatchType.other;
 
     //
 
@@ -301,17 +305,24 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void watchAdMoney() {
         if (wm.adWatchTimeMoney <= 0) {
-            ShowOptions options = new ShowOptions();
-            options.resultCallback = HandleShowResultMoney;
+            adWatchType = AdWatchType.money;
+            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+                Debug.Log("Showing AdMob rewarded video");
+                wm.adm.rewardBasedVideo.Show();
+            }
+            else if (Advertisement.IsReady()) {
+                ShowOptions options = new ShowOptions();
+                options.resultCallback = HandleShowResultMoney;
 
-            Advertisement.Show(wm.zoneID, options);
+                Advertisement.Show(wm.zoneID, options);
+            }
         }
         else {
             em.list.transform.FindChild("AdForMoney").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
         }
     }
 
-    private void HandleShowResultMoney(ShowResult result) {
+    public void HandleShowResultMoney(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
                 //if (Util.adMoneyCooldown <= 0) {
@@ -340,17 +351,24 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void watchAdElixir() {
         if (wm.adWatchTimeElixir <= 0) {
-            ShowOptions options = new ShowOptions();
-            options.resultCallback = HandleShowResultElixir;
+            adWatchType = AdWatchType.elixir;
+            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+                Debug.Log("Showing AdMob rewarded video");
+                wm.adm.rewardBasedVideo.Show();
+            }
+            else if (Advertisement.IsReady()) {
+                ShowOptions options = new ShowOptions();
+                options.resultCallback = HandleShowResultElixir;
 
-            Advertisement.Show(wm.zoneID, options);
+                Advertisement.Show(wm.zoneID, options);
+            }
         }
         else {
             em.list.transform.FindChild("AdForElixir").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
         }
     }
 
-    private void HandleShowResultElixir(ShowResult result) {
+    public void HandleShowResultElixir(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
                 Debug.Log("Video completed. Rewarded 1 elixir");
@@ -372,17 +390,25 @@ public class ButtonHandler : MonoBehaviour {
     /// </summary>
     public void watchAdx2() {
         if (wm.adWatchTimex2 <= 0 && wm.x3Time <= 0 && wm.x7Time <= 0) {
-            ShowOptions options = new ShowOptions();
-            options.resultCallback = HandleShowResultx2;
+            adWatchType = AdWatchType.x2boost;
+            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+                Debug.Log("Showing AdMob rewarded video");
+                wm.adm.rewardBasedVideo.Show();
+                
+            }
+            else if (Advertisement.IsReady()) {
+                ShowOptions options = new ShowOptions();
+                options.resultCallback = HandleShowResultx2;
 
-            Advertisement.Show(wm.zoneID, options);
+                Advertisement.Show(wm.zoneID, options);
+            }
         }
         else {
             em.list.transform.FindChild("AdForx2").transform.FindChild("TimerText").GetComponent<Animator>().SetTrigger("Flash");
         }
     }
 
-    private void HandleShowResultx2(ShowResult result) {
+    public void HandleShowResultx2(ShowResult result) {
         switch (result) {
             case ShowResult.Finished:
                 //if (Util.adMoneyCooldown <= 0) {

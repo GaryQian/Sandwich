@@ -29,7 +29,7 @@ public class WatchButton : MonoBehaviour {
     void Update() {
         if (Util.even) {
             if (type == TimerType.money) {
-                if (wm.adWatchTimeMoney > 0 || !Advertisement.IsReady()) {
+                if (wm.adWatchTimeMoney > 0 || (!Advertisement.IsReady() && !Util.wm.adm.rewardBasedVideo.IsLoaded())) {
                     //disable
                     button.colors = disabledColor;
                 }
@@ -40,7 +40,7 @@ public class WatchButton : MonoBehaviour {
             }
             else if (type == TimerType.elixir) {
 
-                if (wm.adWatchTimeElixir > 0 || !Advertisement.IsReady()) {
+                if (wm.adWatchTimeElixir > 0 || (!Advertisement.IsReady() && !Util.wm.adm.rewardBasedVideo.IsLoaded())) {
                     //disable
                     button.colors = disabledColor;
                 }
@@ -50,7 +50,7 @@ public class WatchButton : MonoBehaviour {
                 }
             }
             else {
-                if (wm.adWatchTimex2 > 0 || !Advertisement.IsReady() || wm.x3Time > 0 || wm.x7Time > 0) {
+                if (wm.adWatchTimex2 > 0 || (!Advertisement.IsReady() && !Util.wm.adm.rewardBasedVideo.IsLoaded()) || wm.x3Time > 0 || wm.x7Time > 0) {
                     //disable
                     button.colors = disabledColor;
                 }
