@@ -11,7 +11,7 @@ public class AdManager : MonoBehaviour {
     void Start () {
         Invoke("setReady", 630f);
         Invoke("RequestInterstitial", 600f);
-        Invoke("RequestRewardBasedVideo", 3f);
+        //Invoke("RequestRewardBasedVideo", 3f);
     }
 
     void setReady() {

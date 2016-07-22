@@ -306,7 +306,7 @@ public class ButtonHandler : MonoBehaviour {
     public void watchAdMoney() {
         if (wm.adWatchTimeMoney <= 0) {
             adWatchType = AdWatchType.money;
-            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+            if (false && (Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
                 Debug.Log("Showing AdMob rewarded video");
                 wm.adm.rewardBasedVideo.Show();
             }
@@ -352,7 +352,7 @@ public class ButtonHandler : MonoBehaviour {
     public void watchAdElixir() {
         if (wm.adWatchTimeElixir <= 0) {
             adWatchType = AdWatchType.elixir;
-            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+            if (false && (Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
                 Debug.Log("Showing AdMob rewarded video");
                 wm.adm.rewardBasedVideo.Show();
             }
@@ -391,7 +391,7 @@ public class ButtonHandler : MonoBehaviour {
     public void watchAdx2() {
         if (wm.adWatchTimex2 <= 0 && wm.x3Time <= 0 && wm.x7Time <= 0) {
             adWatchType = AdWatchType.x2boost;
-            if ((Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
+            if (false && (Util.even && wm.adm.rewardBasedVideo.IsLoaded()) || (!Util.even && !Advertisement.IsReady() && wm.adm.rewardBasedVideo.IsLoaded())) {
                 Debug.Log("Showing AdMob rewarded video");
                 wm.adm.rewardBasedVideo.Show();
                 
