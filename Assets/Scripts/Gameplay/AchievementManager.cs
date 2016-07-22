@@ -34,23 +34,23 @@ public class AchievementManager : MonoBehaviour {
 #elif UNITY_IOS
             if (Util.em.totalMoney < 1E+18f) {
                 if (Util.em.money >= 1E+6f) Social.ReportProgress("millionaire", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+9f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+12f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+15f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+9f) Social.ReportProgress("billionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+12f) Social.ReportProgress("trillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+15f) Social.ReportProgress("quadrillionaire", 100.0f, (bool success) => { });
 
-                //if (Util.em.totalSwipes >= 100) Social.ReportProgress("", 100.0f, (bool success) => { }); //sandwich chef
+                //if (Util.em.totalSwipes >= 100) Social.ReportProgress("sandwichchef", 100.0f, (bool success) => { }); //sandwich chef
             }
             else if (Util.em.totalMoney < 1E+30f) {
-                //if (Util.em.money >= 1E+18f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+21f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+24f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+27f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+18f) Social.ReportProgress("quintillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+21f) Social.ReportProgress("sextillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+24f) Social.ReportProgress("septillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+27f) Social.ReportProgress("octillionaire", 100.0f, (bool success) => { });
 
             }
             else {
-                //if (Util.em.money >= 1E+30f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+33f) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+36f) Social.ReportProgress("", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+30f) Social.ReportProgress("nonillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+33f) Social.ReportProgress("decillionaire", 100.0f, (bool success) => { });
+                if (Util.em.money >= 1E+36f) Social.ReportProgress("undecillionaire", 100.0f, (bool success) => { });
                 //if (Util.em.money >= 1E+39d) Social.ReportProgress("", 100.0f, (bool success) => { });
                 //if (Util.em.money >= 1E+32d) Social.ReportProgress("", 100.0f, (bool success) => { });
                 //if (Util.em.money >= 1E+35d) Social.ReportProgress("", 100.0f, (bool success) => { });
@@ -67,7 +67,7 @@ public class AchievementManager : MonoBehaviour {
 #if UNITY_ANDROID
             Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order
 #elif UNITY_IOS
-
+            Social.ReportProgress("newworldorder", 100.0f, (bool success) => { });
 #endif
         }
     }
@@ -77,7 +77,7 @@ public class AchievementManager : MonoBehaviour {
 #if UNITY_ANDROID
             Social.ReportProgress("CgkI1rDm6sMKEAIQAw", 100.0f, (bool success) => { }); //All Hail
 #elif UNITY_IOS
-
+            Social.ReportProgress("allhail", 100.0f, (bool success) => { });
 #endif
         }
     }
@@ -87,7 +87,7 @@ public class AchievementManager : MonoBehaviour {
 #if UNITY_ANDROID
             Social.ReportProgress("CgkI1rDm6sMKEAIQGA", 100.0f, (bool success) => { }); //I Declare War
 #elif UNITY_IOS
-
+            Social.ReportProgress("ideclarewar", 100.0f, (bool success) => { }); //I Declare War
 #endif
         }
     }

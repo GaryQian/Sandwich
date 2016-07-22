@@ -350,7 +350,7 @@ public class EconomyManager : MonoBehaviour {
                 data = (SaveData)bf.Deserialize(file);
             }
             catch (Exception e) {
-
+                Debug.LogError("Failed to load gamedata: " + e.Message);
             }
             file.Close();
 

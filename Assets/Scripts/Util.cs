@@ -240,7 +240,7 @@ public class Util {
                 }
             }
             catch (System.Exception ex) {
-
+                Debug.Log("Failed to get battery: " + ex.Message);
             }
         }
 

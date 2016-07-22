@@ -133,7 +133,11 @@ public class ResetManager : MonoBehaviour {
 
         em.save();
 
+#if UNITY_ANDROID
         Social.ReportProgress("CgkI1rDm6sMKEAIQAg", 100.0f, (bool success) => { });
+#elif UNITY_IOS
+        Social.ReportProgress("timetraveler", 100.0f, (bool success) => { });
+#endif
 
         if (RESET != null) RESET();
 

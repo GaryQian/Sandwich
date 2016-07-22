@@ -16,7 +16,7 @@ public class ScrollRectSnap : MonoBehaviour {
     public bool snapInH = true;
 
     bool LerpV;
-    float targetV;
+    //float targetV;
     [Tooltip("Snap vertically")]
     public bool snapInV = false;
 
@@ -89,10 +89,10 @@ public class ScrollRectSnap : MonoBehaviour {
             scroll.horizontalNormalizedPosition = Mathf.Lerp(scroll.horizontalNormalizedPosition, targetH, 30 * scroll.elasticity * Time.deltaTime);
             if (Mathf.Approximately(scroll.horizontalNormalizedPosition, targetH)) LerpH = false;
         }
-        if (LerpV) {
+        /*if (LerpV) {
             scroll.verticalNormalizedPosition = Mathf.Lerp(scroll.verticalNormalizedPosition, targetV, 30 * scroll.elasticity * Time.deltaTime);
             if (Mathf.Approximately(scroll.verticalNormalizedPosition, targetV)) LerpV = false;
-        }
+        }*/
     }
 
     public void DragEnd() {

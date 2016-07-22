@@ -9,8 +9,8 @@ public class StoryManager : MonoBehaviour {
     public float oldwichLevelUpScale;
     public static bool messageActive = false;
 
-    GameObject fb;
-    public GameObject flashbackPrefab;
+    //GameObject fb;
+    //public GameObject flashbackPrefab;
 
     public GameObject speechPrefab;
     GameObject speech;
@@ -237,10 +237,10 @@ public class StoryManager : MonoBehaviour {
         return new StoryLine("", true);
     }
 
-    void showFlashback() {
+    /*void showFlashback() {
         fb = Instantiate(flashbackPrefab);
         //setup flashback
-    }
+    }*/
 
 
     void showHumanExterminationBomb() {

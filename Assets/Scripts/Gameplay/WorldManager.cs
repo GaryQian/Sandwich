@@ -448,7 +448,13 @@ public class WorldManager : MonoBehaviour {
         if (File.Exists(Application.persistentDataPath + "/version.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/version.dat", FileMode.Open);
-            Version data = (Version)bf.Deserialize(file);
+            Version data = null;
+            try {
+                data = (Version)bf.Deserialize(file);
+            }
+            catch (Exception e) {
+                Debug.LogError("Failed to load version: " + e.Message);
+            }
             file.Close();
 
             savedVersion = data.version;
@@ -483,7 +489,13 @@ public class WorldManager : MonoBehaviour {
         if (File.Exists(Application.persistentDataPath + "/purchases.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/purchases.dat", FileMode.Open);
-            IAPData data = (IAPData)bf.Deserialize(file);
+            IAPData data = null;
+            try {
+                data = (IAPData)bf.Deserialize(file);
+            }
+            catch (Exception e) {
+                Debug.LogError("Failed to load IAP: " + e.Message);
+            }
             file.Close();
 
             knifeCollectionPurchased = data.knifeCollectionPurchased;
@@ -523,7 +535,9 @@ public class WorldManager : MonoBehaviour {
             try {
                 data = (SaveSettings)bf.Deserialize(file);
             }
-            catch { }
+            catch (Exception e) {
+                Debug.LogError("Failed to load Settings: " + e.Message);
+            }
             file.Close();
 
             if (data != null) lastTime = data.logoffTime;

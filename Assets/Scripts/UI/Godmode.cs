@@ -21,6 +21,11 @@ public class Godmode : MonoBehaviour {
         godmodeOffCode = ("off").GetHashCode();
         resetCode = ("reset!").GetHashCode();
         fpsCode = ("fps").GetHashCode();
+
+        if (fps == null && Application.platform == RuntimePlatform.WindowsEditor) {
+            fps = Instantiate(fpsPrefab);
+            fps.name = "FPS";
+        }
     }
 
     void countDown() {
