@@ -237,11 +237,15 @@ public class ButtonHandler : MonoBehaviour {
 
     public void showLeaderboard() {
         if (Social.localUser.authenticated) {
+            wm.postScore();
             Social.ShowLeaderboardUI();
+            
         }
         else {
             wm.authenticate();
+            wm.postScore();
             Social.ShowLeaderboardUI();
+            
         }
     }
     ///

@@ -28,12 +28,9 @@ public static class GPGSConstantsAndroid
         public const string achievement_undecillionaire = "CgkI1rDm6sMKEAIQEg"; // <GPGSID>
         public const string achievement_decillionaire = "CgkI1rDm6sMKEAIQEQ"; // <GPGSID>
         public const string achievement_sandwich_chef = "CgkI1rDm6sMKEAIQCQ"; // <GPGSID>
-        public const string leaderboard_total_elixirs_earned_deprecated = "CgkI1rDm6sMKEAIQDg"; // <GPGSID>
         public const string achievement_quintillionaire = "CgkI1rDm6sMKEAIQCA"; // <GPGSID>
         public const string achievement_quattuordecillionaire = "CgkI1rDm6sMKEAIQFQ"; // <GPGSID>
         public const string achievement_octillionaire = "CgkI1rDm6sMKEAIQDw"; // <GPGSID>
-        public const string leaderboard_total_money_made_deprecated = "CgkI1rDm6sMKEAIQDQ"; // <GPGSID>
-        public const string leaderboard_swipes_deprecated = "CgkI1rDm6sMKEAIQDA"; // <GPGSID>
         public const string leaderboard_total_elixirs_earned = "CgkI1rDm6sMKEAIQGw"; // <GPGSID>
         public const string achievement_sexdecillionaire = "CgkI1rDm6sMKEAIQFw"; // <GPGSID>
         public const string achievement_new_world_order = "CgkI1rDm6sMKEAIQAQ"; // <GPGSID>
