@@ -213,6 +213,7 @@ public class Util {
             Debug.Log("Battery state: " + device.batteryState);
             Debug.Log("Battery level: " + device.batteryLevel);
             return device.batteryLevel*100;*/
+        return 100f;
 #elif UNITY_ANDROID
         
         if (Application.platform == RuntimePlatform.Android) {
@@ -244,7 +245,7 @@ public class Util {
             }
         }
 
-        return 100;
+        return 100f;
 #endif
     }
 
