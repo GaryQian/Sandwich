@@ -47,11 +47,6 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+30f) Social.ReportProgress("nonillionaire", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+33f) Social.ReportProgress("decillionaire", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+36f) Social.ReportProgress("undecillionaire", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+39d) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+32d) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+35d) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+38d) Social.ReportProgress("", 100.0f, (bool success) => { });
-                //if (Util.em.money >= 1E+41d) Social.ReportProgress("", 100.0f, (bool success) => { });
             }
 #endif
         }
