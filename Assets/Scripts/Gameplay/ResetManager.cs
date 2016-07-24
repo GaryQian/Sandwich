@@ -75,6 +75,7 @@ public class ResetManager : MonoBehaviour {
         em.gameTime = 0f;
         em.rate = 0;
         em.sandwichValue = 0;
+        em.totalSwipes = 0;
 
         //ButtonHandler.buyCount = 1;
 

@@ -11,8 +11,6 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+9f) Social.ReportProgress("CgkI1rDm6sMKEAIQBQ", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+12f) Social.ReportProgress("CgkI1rDm6sMKEAIQBw", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+15f) Social.ReportProgress("CgkI1rDm6sMKEAIQBg", 100.0f, (bool success) => { });
-
-                if (Util.em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
             }
             else if (Util.em.totalMoney < 1E+30f) {
                 if (Util.em.money >= 1E+18f) Social.ReportProgress("CgkI1rDm6sMKEAIQCA", 100.0f, (bool success) => { });
@@ -37,8 +35,6 @@ public class AchievementManager : MonoBehaviour {
                 if (Util.em.money >= 1E+9f) Social.ReportProgress("billionaire", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+12f) Social.ReportProgress("trillionaire", 100.0f, (bool success) => { });
                 if (Util.em.money >= 1E+15f) Social.ReportProgress("quadrillionaire", 100.0f, (bool success) => { });
-
-                //if (Util.em.totalSwipes >= 100) Social.ReportProgress("sandwichchef", 100.0f, (bool success) => { }); //sandwich chef
             }
             else if (Util.em.totalMoney < 1E+30f) {
                 if (Util.em.money >= 1E+18f) Social.ReportProgress("quintillionaire", 100.0f, (bool success) => { });
@@ -59,10 +55,28 @@ public class AchievementManager : MonoBehaviour {
             }
 #endif
         }
-
+        
     }
 
-    void handleHumanExtermination() {
+    public void checkSwipeAchievements() {
+        if (!Util.wm.hasCheated) {
+#if UNITY_ANDROID
+            if (Util.em.totalSwipes >= 100) Social.ReportProgress("CgkI1rDm6sMKEAIQCQ", 100.0f, (bool success) => { }); //sandwich chef
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 1000) Social.ReportProgress("CgkI1rDm6sMKEAIQHQ", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 10000) Social.ReportProgress("CgkI1rDm6sMKEAIQHg", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 100000) Social.ReportProgress("CgkI1rDm6sMKEAIQHw", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 1000000) Social.ReportProgress("CgkI1rDm6sMKEAIQIA", 100.0f, (bool success) => { });
+#elif UNITY_IOS
+            if (Util.em.totalSwipes >= 100) Social.ReportProgress("sandwichchef", 100.0f, (bool success) => { }); //sandwich chef
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 1000) Social.ReportProgress("1000swipes", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 10000) Social.ReportProgress("10000swipes", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 100000) Social.ReportProgress("100000swipes", 100.0f, (bool success) => { });
+            if (Util.em.lifetimeSwipes + Util.em.totalSwipes >= 1000000) Social.ReportProgress("1000000swipes", 100.0f, (bool success) => { });
+#endif
+        }
+    }
+
+        void handleHumanExtermination() {
         if (Util.em.humanExterminationCount >= 1 && !Util.wm.hasCheated) {
 #if UNITY_ANDROID
             Social.ReportProgress("CgkI1rDm6sMKEAIQAQ", 100.0f, (bool success) => { }); //New World Order

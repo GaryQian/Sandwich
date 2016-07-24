@@ -124,7 +124,7 @@ public class WorldManager : MonoBehaviour {
 
 	void Start () {
         
-        if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
+        //if (Application.genuineCheckAvailable) if (!Application.genuine) hasCheated = true;
 
         util = new Util();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -150,6 +150,7 @@ public class WorldManager : MonoBehaviour {
         InvokeRepeating("everySecond", 0, 1f);
         InvokeRepeating("every5", 3f, 5f);
         InvokeRepeating("every10", 5.5f, 10f);
+        InvokeRepeating("every60", 12.8f, 60f);
         Invoke("spawnSandWitch", UnityEngine.Random.Range(Util.sandWitchDelay * 0.75f, Util.sandWitchDelay * 1.25f));
 
         Bread.updateLabel();
@@ -272,7 +273,7 @@ public class WorldManager : MonoBehaviour {
                 }
             });
             //total swipes
-            Social.ReportScore((long)em.totalSwipes, "CgkI1rDm6sMKEAIQHA", (bool success) => {
+            Social.ReportScore((long)em.lifetimeSwipes, "CgkI1rDm6sMKEAIQHA", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
@@ -380,8 +381,13 @@ public class WorldManager : MonoBehaviour {
         if (!hasCheated) {
             am.checkMoneyAcheivements();
         }
-        
         spawnAlert();
+    }
+
+    void every60() {
+        if (!hasCheated) {
+            am.checkSwipeAchievements();
+        }
     }
 
     public void initializeBGMusic() {
@@ -552,6 +558,7 @@ public class WorldManager : MonoBehaviour {
 
     void OnApplicationQuit() {
         em.save();
+        postScore();
     }
 
     void OnApplicationFocus(bool pauseStatus) {
