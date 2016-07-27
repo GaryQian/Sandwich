@@ -17,7 +17,7 @@ public class EconomyManager : MonoBehaviour {
     public long totalElixir = 0; //elixir made ever
     public double rate = 1f; //number of sandwiches per second
     public double sandwichValue = 1f; //val of each sandwich
-    public double swipeRate;
+    public double swipeRate = 1f;
     public float knifeVamp = 0; //amount of the total cps gained on each swipe
     public float reproductionRate = 0;
     public double nurseryPop = 0;
@@ -42,9 +42,9 @@ public class EconomyManager : MonoBehaviour {
     public float x2threshold;
     public float x3threshold;
     public float x5threshold;
-    bool x2shown;
-    bool x3shown;
-    bool x5shown;
+    bool x2shown = false;
+    bool x3shown = false;
+    bool x5shown = false;
     public int multiplier = 1;
     public MultiplierGlow multiplierGlow;
 
