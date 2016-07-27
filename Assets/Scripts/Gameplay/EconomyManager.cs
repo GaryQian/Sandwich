@@ -46,7 +46,6 @@ public class EconomyManager : MonoBehaviour {
     bool x3shown;
     bool x5shown;
     public int multiplier = 1;
-    public int prevMultiplier = 1;
     public MultiplierGlow multiplierGlow;
 
     public MoneyText moneyText;
@@ -74,9 +73,9 @@ public class EconomyManager : MonoBehaviour {
     public int flyingSandwichMonsterCount = 0;
 
     public int toasterVisionLevel = 0;
-    public double toasterVisionBonus;
+    public double toasterVisionBonus = 1f;
     public int communalMindLevel = 0;
-    public double communalMindBonus;
+    public double communalMindBonus = 1f;
     public int dexterousHandsLevel = 1;
 
     public GameObject canvasNotificationTextPrefab;
@@ -133,7 +132,7 @@ public class EconomyManager : MonoBehaviour {
     void Update() {
         if (combo > 0) {
             combo -= comboDecayRate * (combo + 1f) * Time.deltaTime;
-            if (Util.even && combo < x2threshold - 1f) {
+            if (combo < x2threshold - 1f) {
                 x2shown = false;
                 x3shown = false;
                 x5shown = false;
@@ -188,9 +187,7 @@ public class EconomyManager : MonoBehaviour {
         sandwichesMade += swipeRate;
         totalSwipes++;
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 1f), 80, 400f);
-        //GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        //text.GetComponent<NotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)));
+        obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * toasterVisionBonus * wm.x2Multiplier * wm.x3Multiplier * wm.x7Multiplier), new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 1f), 80, 400f);
 
         wm.gtm.knife.GetComponent<Knife>().hasSauce = false;
         wm.activeBread.GetComponent<Bread>().finish();
@@ -296,7 +293,6 @@ public class EconomyManager : MonoBehaviour {
     void checkCombo() {
         
         int initMult = multiplier;
-        prevMultiplier = multiplier;
         if (combo > x2threshold) {
             multiplier = 2;
             multiplierGlow.show();
@@ -332,11 +328,8 @@ public class EconomyManager : MonoBehaviour {
     }
 
     void showMultiplier() {
-        /*
-        GameObject text = (GameObject)Instantiate(NotificationTextPrefab);
-        text.GetComponent<NotificationText>().setup("x" + (int)multiplier, wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.1f, 0.1f)), new Color(1f, 1f * (1f - ((multiplier - 2f) / 2f)), 0), (int)(Screen.height * 0.08f), 0.7f);*/
         GameObject obj = Instantiate(canvasNotificationTextPrefab);
-        obj.GetComponent<CanvasNotificationText>().setup("x" + (int)multiplier, /*Camera.main.WorldToScreenPoint(wm.activeBread.GetComponent<Bread>().finalPos + new Vector3(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f)))*/ new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 0), 150, 500f);
+        obj.GetComponent<CanvasNotificationText>().setup("x" + (int)multiplier, new Vector2(250f + UnityEngine.Random.Range(-75f, 75f), -650f), new Color(1f, 1f, 0), 150, 500f);
     }
 
 
@@ -480,9 +473,7 @@ public class EconomyManager : MonoBehaviour {
 
         wm.saveSettings();
 
-        if (wm.x3Time > 0 || wm.x7Time > 0 || wm.x2Time > 0) {
-            wm.saveIAP();
-        }
+        wm.saveIAP();
     }
 }
 

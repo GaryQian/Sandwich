@@ -103,7 +103,7 @@ public class AdManager : MonoBehaviour {
         ButtonHandler.BuySandwichGalaxy += showInterstitialAd;
 
         // has rewarded the user.
-        rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        //rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
     }
 
     void OnDisable() {

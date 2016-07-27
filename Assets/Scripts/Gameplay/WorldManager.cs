@@ -40,9 +40,9 @@ public class WorldManager : MonoBehaviour {
     public SaberColor saberColor = SaberColor.blue;
     public int flowerColor = 40000;
     public int shoeColor = 40000;
-    public double x2Time;
-    public double x3Time;
-    public double x7Time;
+    public double x2Time = 0;
+    public double x3Time = 0;
+    public double x7Time = 0;
     public double x2Multiplier = 1f;
     public double x3Multiplier = 1f;
     public double x7Multiplier = 1f;

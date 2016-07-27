@@ -153,6 +153,8 @@ public class Bread : MonoBehaviour {
                 case 5: wm.fullAudioSource2.PlayOneShot(s6, 1f); break;
             }
         }
+
+        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     void deleteTrails() {
@@ -160,7 +162,6 @@ public class Bread : MonoBehaviour {
             Transform trail = transform.FindChild("Trail");
             if (trail != null) GameObject.DestroyImmediate(trail.gameObject);
         }
-        //Debug.LogError("Deleteing trails");
     }
 
 
@@ -225,6 +226,6 @@ public class Bread : MonoBehaviour {
     }
 
     void delete() {
-        DestroyImmediate(gameObject);
+        Destroy(gameObject);
     }
 }
