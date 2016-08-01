@@ -259,7 +259,7 @@ public class WorldManager : MonoBehaviour {
 #if UNITY_ANDROID
             scorePostFailed = false;
             //total money
-            Social.ReportScore((long)em.totalMoney, "CgkI1rDm6sMKEAIQGg", (bool success) => {
+            Social.ReportScore((long)em.totalMoney + (long)em.lifetimeMoney, "CgkI1rDm6sMKEAIQGg", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
@@ -273,7 +273,7 @@ public class WorldManager : MonoBehaviour {
                 }
             });
             //total swipes
-            Social.ReportScore((long)em.lifetimeSwipes, "CgkI1rDm6sMKEAIQHA", (bool success) => {
+            Social.ReportScore((long)em.lifetimeSwipes + (long)em.totalSwipes, "CgkI1rDm6sMKEAIQHA", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
@@ -284,7 +284,7 @@ public class WorldManager : MonoBehaviour {
 #elif UNITY_IOS
             scorePostFailed = false;
             //ios stuff.
-            Social.ReportScore((long)em.totalMoney, "totalmoneymade", (bool success) => {
+            Social.ReportScore((long)em.totalMoney + (long)em.lifetimeMoney, "totalmoneymade", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
@@ -298,7 +298,7 @@ public class WorldManager : MonoBehaviour {
                 }
             });
             //total swipes
-            Social.ReportScore((long)em.totalSwipes, "totalelixirsearned", (bool success) => {
+            Social.ReportScore((long)em.totalSwipes + (long)lifetimeSwipes, "totalelixirsearned", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
