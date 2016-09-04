@@ -36,10 +36,10 @@ public class Util {
     public static float sandriaLawRate = 6E+6f;
     public static double sandwichPlanetRate = 5.8E+7f;
     public static double humanExterminationRate = 6E+8f;
-    public static double sandwichFleetRate = 7E+9f;
-    public static double enslaveAliensRate = 8E+10f;
-    public static double deathSandwichRate = 9E+11f;
-    public static double sandwichGalaxyRate = 1E+13f;
+    public static double sandwichFleetRate = 8E+9f;
+    public static double enslaveAliensRate = 1E+11f;
+    public static double deathSandwichRate = 2E+12f;
+    public static double sandwichGalaxyRate = 4E+13f;
     public static double flyingSandwichMonsterRate = 9.999E+14f;
 
     //producer base costs
@@ -62,11 +62,11 @@ public class Util {
 
     //elixir costs
     public static float toasterVisionBase = 8f;
-    public static float toasterVisionScale = 1.08f;
+    public static float toasterVisionScale = 1.05f;
     public static float communalMindBase = 10f;
-    public static float communalMindScale = 1.1f;
+    public static float communalMindScale = 1.08f;
     public static float dexterousHandsBase = 5;
-    public static float dexterousHandsScale = 1.08f;
+    public static float dexterousHandsScale = 1.02f;
 
     //time machine
     public static double timeMachineCost = 8.8E+17f;

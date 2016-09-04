@@ -298,7 +298,7 @@ public class WorldManager : MonoBehaviour {
                 }
             });
             //total swipes
-            Social.ReportScore((long)em.totalSwipes + (long)em.em.lifetimeSwipes, "totalelixirsearned", (bool success) => {
+            Social.ReportScore((long)em.totalSwipes + (long)em.lifetimeSwipes, "totalelixirsearned", (bool success) => {
                 // handle success or failure
                 if (!success) {
                     scorePostFailed = true;
