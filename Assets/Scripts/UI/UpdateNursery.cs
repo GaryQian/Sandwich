@@ -44,6 +44,7 @@ public class UpdateNursery : MonoBehaviour {
             GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);
             obj.GetComponent<CanvasNotificationText>().setup("+$" + Util.encodeNumber(num * Util.wm.x2Multiplier * Util.wm.x3Multiplier * Util.wm.x7Multiplier), new Vector3(0, 0, 0), new Color(0, 1f, 0), 120, 100);
             if (!Util.wm.muted) Util.wm.fullAudioSource.PlayOneShot(sellSound);
+            Util.em.save();
         }
         else {
             GameObject obj = Instantiate(Util.wm.buttonHandler.canvasNotificationTextPrefab);

@@ -568,6 +568,7 @@ public class WorldManager : MonoBehaviour {
         }
         else {
             lastTime = UnbiasedTime.Instance.Now();
+            em.save();
         }
     }
 }

@@ -10,6 +10,8 @@ public enum ProducerType { sandwichCart, deli, autochef, mcdandwich, sandwichCit
 
 [Serializable]
 public class EconomyManager : MonoBehaviour {
+    public bool isLoaded = false;
+
     public double money = 0;
     public double totalMoney = 0; //total money made so far this game.
     public double lifetimeMoney = 0; //money made ever
@@ -334,6 +336,7 @@ public class EconomyManager : MonoBehaviour {
 
 
     void load() {
+        isLoaded = true;
         wm.loadVersion();
         if (File.Exists(Application.persistentDataPath + "/gamedata.dat")) {
             BinaryFormatter bf = new BinaryFormatter();
@@ -408,6 +411,7 @@ public class EconomyManager : MonoBehaviour {
     }
 
     public void save() {
+        if (!isLoaded) load();
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamedata.dat");
 

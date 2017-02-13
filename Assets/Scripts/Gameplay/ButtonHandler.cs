@@ -100,8 +100,13 @@ public class ButtonHandler : MonoBehaviour {
             wm.halfAudioSource.PlayOneShot(kaching);
             //wm.fullAudioSource.PlayOneShot(build);
         }
+        CancelInvoke("saveTask");
+        Invoke("saveTask", 1f);
     }
 
+    private void saveTask() {
+        em.save();
+    }
 
     /// KnifePanel View
     ///
